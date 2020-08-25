@@ -1,0 +1,76 @@
+//
+//  SendGeneralInquiry.swift
+//  POD
+//
+//  Created by Apple on 20/12/19.
+//  Copyright © 2019 Apple. All rights reserved.
+//
+
+import UIKit
+
+class SendGeneralInquiry: UIViewController {
+
+    @IBOutlet var txtMsg:UITextView!
+    @IBOutlet var btnScreenshot:UIButton!
+    var imagePicker: ImagePicker!
+    var imgData:Data!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
+        self.imagePicker = ImagePicker(presentationController: self,delegate: self)
+    }
+    
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+           
+           if (textView.text == "Enter Message") {
+               textView.text = nil
+               textView.textColor = UIColor.black
+           }
+       }
+       
+       public func textViewDidEndEditing(_ textView: UITextView) {
+           if textView.text.isEmpty {
+               textView.text = "Enter Message"
+               textView.textColor = UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1)
+           }
+       }
+    
+    @IBAction func btnScreenSHot_Click(sender:UIButton){
+        self.imagePicker.present(from: sender)
+    }
+    
+    @IBAction func btnSend_Click(){
+        var QueryInfo:[String:AnyObject] = [String:AnyObject]()
+               let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+                if let name = userInfo!["Name"]{
+                    QueryInfo["Name"] = (name as! String) as AnyObject;
+                }
+                if let Address = userInfo!["Address"]{
+                    QueryInfo["Email"] = (Address as! String) as AnyObject;
+                }
+               
+                if let email = userInfo?["Email"]{
+                    QueryInfo["Phone"]  = (email as! String) as AnyObject;
+                }
+                QueryInfo["Message"]  = (txtMsg.text!) as AnyObject;
+                QueryInfo["Image"] = imgData as AnyObject?
+                HelpDeskController.SendGeneralInquiry(vc: self, dicObj: QueryInfo)
+           
+    }
+    
+}
+
+extension SendGeneralInquiry: ImagePickerDelegate {
+
+    func didSelect(image: UIImage?) {
+        imgData = image!.jpegData(compressionQuality: 0.5)
+    }
+    
+    func didGetFileName(filename: String?) {
+        self.btnScreenshot.setTitle(filename, for: UIControl.State.normal)
+    }
+}

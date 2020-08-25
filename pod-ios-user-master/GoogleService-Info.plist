@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>73490473596-u1vsmac6c1m0ldnpl32l35hebkkhcvlh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.73490473596-u1vsmac6c1m0ldnpl32l35hebkkhcvlh</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>73490473596-httll4dt79g3qge3pm30ep18ue2m5ac0.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB5ExPn4HLBkaIuu30Baht7W-BMLY4hRnw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>73490473596</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.seawindsolution.POD</string>
+	<key>PROJECT_ID</key>
+	<string>pod-rks-1568713999606</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pod-rks-1568713999606.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:73490473596:ios:74583482d1fd1a95485ff9</string>
+	<key>DATABASE_URL</key>
+	<string>https://pod-rks-1568713999606.firebaseio.com</string>
+</dict>
+</plist>
