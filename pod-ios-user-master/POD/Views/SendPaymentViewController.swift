@@ -12,9 +12,10 @@ class SendPaymentViewController: UIViewController,OnlinePaymentProtocal {
     
     @IBOutlet var lblOrderID:UILabel!
     @IBOutlet var lblDate:UILabel!
-    @IBOutlet var lblStartDate:UILabel!
+//    @IBOutlet var lblStartDate:UILabel!
+    @IBOutlet weak var lblGST: UILabel!
     @IBOutlet var lblStartTime:UILabel!
-    @IBOutlet var lblEndTime:UILabel!
+//    @IBOutlet var lblEndTime:UILabel!
     @IBOutlet var lblTitle:UILabel!
     @IBOutlet var lblAmount:UILabel!
     @IBOutlet var lblVisiting:UILabel!
@@ -46,12 +47,23 @@ class SendPaymentViewController: UIViewController,OnlinePaymentProtocal {
         
         if let ShotingeEndTime = dicInfo["ShootingEndTime"]{
             
-            self.lblEndTime.text = "\(Helper.ConvertDateToTime(dateStr: ShotingeEndTime as! String,timeFormat: "HH:mm"))"
+            self.lblStartTime.text = "\(lblStartTime.text ?? "") to \((Helper.ConvertDateToTime(dateStr: ShotingeEndTime as! String,timeFormat: "HH:mm")))"
         }
+            
+            if let productPrice : String = dicInfo!["ProductPrice"] as? String{
+                let prodPrice : Int = Int(productPrice) ?? 0
+                let totalHourString : String = dicInfo!["ShootingHours"] as! String
+                let totalHour : Int = Int(totalHourString) ?? 0
+                self.lblAmount.text = "\(prodPrice * totalHour)"
+                let totalPriceString : String = dicInfo!["Total"] as! String
+                let totalPrice : Double = Double(totalPriceString) ?? 0.0
+                
+                 self.lblGST.text = String(format: "%.2f", (totalPrice - Double(prodPrice * totalHour)))
+                
+            }
         
         if let Total = dicInfo["Total"]{
-            self.lblAmount.text = Total as! String
-            self.lblTotal.text = Total as! String
+            self.lblTotal.text = Total as? String
         }
         
         self.lblVisiting.text =  "\((dicInfo["Transportation"] as! String))"
@@ -62,9 +74,7 @@ class SendPaymentViewController: UIViewController,OnlinePaymentProtocal {
         if let trasportation = dicInfo["Transportation"]{
             self.lblVisiting.text = "\(trasportation)"
         }
-        if let amount = dicInfo["ProductPrice"]{
-            //self.lblAmount.text = "\(amount)"
-        }
+    
         }
     }
     

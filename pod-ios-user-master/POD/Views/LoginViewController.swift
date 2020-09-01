@@ -9,12 +9,15 @@
 import UIKit
 import GoogleSignIn
 import  NotificationBannerSwift
+
 class LoginViewController: UIViewController,GIDSignInDelegate {
+    
     @IBOutlet var txtEmail:UITextField!
     @IBOutlet var txtPassword:UITextField!
     @IBOutlet public var viewSocial:UIView!
     @IBOutlet public var useOther:UILabel!
     @IBOutlet public var seperator:UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {

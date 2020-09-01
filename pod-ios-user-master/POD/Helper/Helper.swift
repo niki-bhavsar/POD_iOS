@@ -68,6 +68,7 @@ class Constant{
     public static var getUnPaidOrderByCustomerIdURL:String = Constant.serverURL+"/getUnPaidOrderByCustomerId/";
     public static var PASOrderPaymentdURL:String = Constant.serverURL+"/PASOrderPayment";
     public static var getSuccessResponseURL:String = Constant.serverURL+"/getSuccessResponse";
+     public static var getAppVersionURL:String = Constant.serverURL+"/GetAppVersion/1";
     
     public static var currLat: Double = 0.0
     public static var currLng: Double = 0.0

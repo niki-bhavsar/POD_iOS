@@ -13,11 +13,12 @@ class ExtendPhotographerPaymentViewController:  UIViewController,OnlinePaymentPr
     @IBOutlet var lblOrderID:UILabel!
     @IBOutlet var lblDate:UILabel!
     @IBOutlet var lblStartTime:UILabel!
-    @IBOutlet var lblEndTime:UILabel!
+//    @IBOutlet var lblEndTime:UILabel!
     @IBOutlet var lblcategory:UILabel!
     @IBOutlet var lblVisiting:UILabel!
     @IBOutlet var lblTotal:UILabel!
-    @IBOutlet var lblExtendedTime:UILabel!
+//    @IBOutlet var lblExtendedTime:UILabel!
+    @IBOutlet weak var lblGST: UILabel!
     @IBOutlet var lblShootingAmount:UILabel!
     @IBOutlet var lblExtShootingAmount:UILabel!
     public var dicOrder:[String:AnyObject]!
@@ -34,20 +35,36 @@ class ExtendPhotographerPaymentViewController:  UIViewController,OnlinePaymentPr
                 lblOrderID.text = (OrderNo as! String);
             }
             if let date = dicOrder["ShootingDate"]{
-                lblDate.text = (Helper.ConvertDateToTime(dateStr: date as! String, timeFormat: "yyyy-MM-dd") as! String);
+                lblDate.text = (Helper.ConvertDateToTime(dateStr: date as! String, timeFormat: "yyyy-MM-dd") );
             }
             if let starttime = dicOrder["ShootingStartTime"]{
                 lblStartTime.text = (starttime as! String);
             }
-            if let endtime = dicOrder["ShootingEndTime"]{
-                lblEndTime.text = (endtime as! String);
-            }
+           
             if let extendedtime = dicOrder["ExtEndTime"]{
-                lblExtendedTime.text = (extendedtime as! String);
+                lblStartTime.text = "\(lblStartTime.text ?? "") to \(extendedtime)"
             }
+//            else {
+//                if let endtime = dicOrder["ShootingEndTime"]{
+//                    lblStartTime.text = "\(lblStartTime.text ?? "") to \(endtime)"
+//                }
+//            }
+            if let productPrice : String = dicOrder!["ProductPrice"] as? String{
+                         let prodPrice : Int = Int(productPrice) ?? 0
+                         let totalHourString : String = dicOrder!["ShootingHours"] as! String
+                         let totalHour : Int = Int(totalHourString) ?? 0
+                         self.lblShootingAmount.text = "\(prodPrice * totalHour)"
+                         let totalPriceString : String = dicOrder!["Total"] as! String
+                         let totalPrice : Double = Double(totalPriceString) ?? 0.0
+                         
+                          self.lblGST.text = String(format: "%.2f", (totalPrice - Double(prodPrice * totalHour)))
+                     }
+            
+            
+            
             
             if let shootingAMT = dicOrder["Total"]{
-                lblShootingAmount.text = (shootingAMT as! String);
+//                lblShootingAmount.text = (shootingAMT as! String);
                 shootingamt = Double(shootingAMT as! String)!
             }
             

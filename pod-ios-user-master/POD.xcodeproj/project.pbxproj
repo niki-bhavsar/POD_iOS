@@ -72,6 +72,7 @@
 		18720BE223C61B0B00C1DE40 /* AvenirNext-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18720BDF23C61B0A00C1DE40 /* AvenirNext-Medium.ttf */; };
 		187731D823BF5564002FE60B /* ChatLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187731D723BF5564002FE60B /* ChatLeftCell.swift */; };
 		187731DA23BF5590002FE60B /* ChatRightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187731D923BF5590002FE60B /* ChatRightCell.swift */; };
+		187CB55024FE70FF00A01F69 /* UpdateAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CB54F24FE70FF00A01F69 /* UpdateAppViewController.swift */; };
 		187D50CC2392F46D00B09E7C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D50CB2392F46D00B09E7C /* ProfileViewController.swift */; };
 		188060BB23BF4799007FB508 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188060BA23BF4799007FB508 /* ChatViewController.swift */; };
 		188567F623F6B417002DDF10 /* ExtendOrderPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188567F523F6B417002DDF10 /* ExtendOrderPaymentViewController.swift */; };
@@ -174,6 +175,7 @@
 		18720BDF23C61B0A00C1DE40 /* AvenirNext-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNext-Medium.ttf"; sourceTree = "<group>"; };
 		187731D723BF5564002FE60B /* ChatLeftCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLeftCell.swift; sourceTree = "<group>"; };
 		187731D923BF5590002FE60B /* ChatRightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRightCell.swift; sourceTree = "<group>"; };
+		187CB54F24FE70FF00A01F69 /* UpdateAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppViewController.swift; sourceTree = "<group>"; };
 		187D50CB2392F46D00B09E7C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		188060BA23BF4799007FB508 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		188567F523F6B417002DDF10 /* ExtendOrderPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendOrderPaymentViewController.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				18F14F032403A9C8004B572F /* SendPaymentViewController.swift */,
 				18FE8AFD2412C590004C77AC /* FAQViewController.swift */,
 				18520EB324B7268B004B740A /* ExtendPhotographerPaymentViewController.swift */,
+				187CB54F24FE70FF00A01F69 /* UpdateAppViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				189FA6E023904EA9008EBD79 /* LoginViewController.swift in Sources */,
 				18246D092396F2B20011AF70 /* ApiManager.swift in Sources */,
 				188E5B4D23991F6D00263636 /* SelectGategoryViewController.swift in Sources */,
+				187CB55024FE70FF00A01F69 /* UpdateAppViewController.swift in Sources */,
 				184985A823A809ED000ECC8A /* HelpDeskController.swift in Sources */,
 				1843206C23A2C6B000430FA4 /* ForgetPassController.swift in Sources */,
 				189FA6E723905EEB008EBD79 /* Helper.swift in Sources */,

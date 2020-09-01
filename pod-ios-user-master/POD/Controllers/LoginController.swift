@@ -351,69 +351,63 @@ class LoginController: NSObject {
             try
                 vc.showSpinner(onView: vc.view)
             ApiManager.sharedInstance.requestGETURL(Constant.getUnPaidOrderByCustomerIdURL+userId, success: { (JSON) in
-
-//                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                                                                    let controller = storyboard.instantiateViewController(withIdentifier: "ExtendPhotographerPaymentViewController") as! ExtendPhotographerPaymentViewController
-//                                                                    //controller.dicInfo = dic
-//                                                                    vc.navigationController!.pushViewController(controller, animated: true)
-//                return
+                
                 let msg =  JSON.dictionary?["Message"]
                 let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     vc.removeSpinner(onView: vc.view)
-                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
-                    if(Double(appVersion!)! < Double(version as! String)!){
-                        let callActionHandler = { () -> Void in
-                            let urlStr = "https://apps.apple.com/in/app/apple-store/id1503321883"
-                            if #available(iOS 10.0, *) {
-                                UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
-                                
-                            } else {
-                                UIApplication.shared.openURL(URL(string: urlStr)!)
+                    //                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
+                    //                    if(Double(appVersion!)! < Double(version as! String)!){
+                    //                        let callActionHandler = { () -> Void in
+                    //                            let urlStr = "https://apps.apple.com/in/app/apple-store/id1503321883"
+                    //                            if #available(iOS 10.0, *) {
+                    //                                UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
+                    //
+                    //                            } else {
+                    //                                UIApplication.shared.openURL(URL(string: urlStr)!)
+                    //                            }
+                    //                        }
+                    //                        Helper.ShowAlertMessageWithHandlesr(message:"Update now, New Version is Available." , vc: vc,action:callActionHandler)
+                    //                    }
+                    //                    else{
+                    let orderDetail = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
+                    let dic = (orderDetail![0] as [String:AnyObject])
+                    if let ExtId = dic["ExtId"]{
+                        if(Int(ExtId as! String)! > 0){
+                            if(orderDetail!.count>0){
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let controller = storyboard.instantiateViewController(withIdentifier: "ExtendPhotographerPaymentViewController") as! ExtendPhotographerPaymentViewController
+                                controller.dicOrder = dic
+                                vc.navigationController!.pushViewController(controller, animated: true)
+                            }
+                        } else{
+                            if(orderDetail!.count>0){
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let controller = storyboard.instantiateViewController(withIdentifier: "SendPaymentViewController") as! SendPaymentViewController
+                                controller.dicInfo = dic
+                                vc.navigationController!.pushViewController(controller, animated: true)
                             }
                         }
-                        Helper.ShowAlertMessageWithHandlesr(message:"Update now, New Version is Available." , vc: vc,action:callActionHandler)
                     }
-                    else{
-                        let orderDetail = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
-                        let dic = (orderDetail![0] as! [String:AnyObject])
-                        if let ExtId = dic["ExtId"]{
-                            if(Int(ExtId as! String)! > 0){
-                                if(orderDetail!.count>0){
-                                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                    let controller = storyboard.instantiateViewController(withIdentifier: "ExtendPhotographerPaymentViewController") as! ExtendPhotographerPaymentViewController
-                                    controller.dicOrder = dic
-                                    vc.navigationController!.pushViewController(controller, animated: true)
-                                }
-                            }
-                            else{
-                                if(orderDetail!.count>0){
-                                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                    let controller = storyboard.instantiateViewController(withIdentifier: "SendPaymentViewController") as! SendPaymentViewController
-                                    controller.dicInfo = dic
-                                    vc.navigationController!.pushViewController(controller, animated: true)
-                                }
-                            }
-                        }
-                        
-                    }
+                    
+                    //                    }
                     
                 }
                 else{
                     vc.removeSpinner(onView: vc.view)
-                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
-                    if(Double(appVersion!)! < Double(version as! String)!){
-                        let callActionHandler = { () -> Void in
-                            let urlStr = "https://apps.apple.com/in/app/apple-store/id1503321883"
-                            if #available(iOS 10.0, *) {
-                                UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
-                                
-                            } else {
-                                UIApplication.shared.openURL(URL(string: urlStr)!)
-                            }
-                        }
-                        Helper.ShowAlertMessageWithHandlesr(message:"Update now, new version is available." , vc: vc,action:callActionHandler)
-                    }
+                    //                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
+                    //                    if(Double(appVersion!)! < Double(version as! String)!){
+                    //                        let callActionHandler = { () -> Void in
+                    //                            let urlStr = "https://apps.apple.com/in/app/apple-store/id1503321883"
+                    //                            if #available(iOS 10.0, *) {
+                    //                                UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
+                    //
+                    //                            } else {
+                    //                                UIApplication.shared.openURL(URL(string: urlStr)!)
+                    //                            }
+                    //                        }
+                    //                        Helper.ShowAlertMessageWithHandlesr(message:"Update now, new version is available." , vc: vc,action:callActionHandler)
+                    //                    }
                 }
             }) { (Error) in
                 vc.removeSpinner(onView: vc.view)
