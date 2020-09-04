@@ -18,15 +18,12 @@ class UpdateAppViewController: UIViewController {
     
 
     @IBAction func btnAppStoreClicked(_ sender: Any) {
-        if let url = URL(string: "https://apps.apple.com/in/app/apple-store/id1503321883"){
+        if let url = URL(string: "https://apps.apple.com/in/app/photographer-on-demand/id1503321883"){
              if #available(iOS 10.0, *) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
              } else {
                  UIApplication.shared.openURL(url)
             }
         }
-      
     }
-   
-
 }

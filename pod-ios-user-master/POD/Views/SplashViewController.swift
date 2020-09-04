@@ -13,6 +13,7 @@ class SplashViewController: UIViewController {
     @IBOutlet var imglogo2:UIImageView!
     var appVersion = String()
     var iPhoneVersion = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -21,7 +22,6 @@ class SplashViewController: UIViewController {
             // Fallback on earlier versions
         }
          Helper.rootNavigation = self.navigationController;
-        getAppVersionApi()
         self.LoadAnimation()
         // Do any additional setup after loading the view.
     }
@@ -49,11 +49,8 @@ class SplashViewController: UIViewController {
                     
                     
                 }, completion: {(_ finished: Bool) -> Void in
-                    if(Double(self.appVersion)! < Double(self.iPhoneVersion)!){
-                        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(SplashViewController.showUpdateAppView), userInfo: nil, repeats:  false)
-                    } else {
-                        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(SplashViewController.MoveToLogin), userInfo: nil, repeats:  false)
-                    }
+                    self.getAppVersionApi()
+                    
                 })
             })
         }
@@ -72,72 +69,22 @@ class SplashViewController: UIViewController {
                 let dict : [String : Any] = response![0]
                 
                 self.iPhoneVersion = dict["viphone"] as! String
-                
-                //                    vc.removeSpinner(onView: vc.view)
-                //                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
-                //                    if(Double(appVersion!)! < Double(version as! String)!){
-                //                        let callActionHandler = { () -> Void in
-                //                            let urlStr = "https://apps.apple.com/in/app/apple-store/id1503321883"
-                //                            if #available(iOS 10.0, *) {
-                //                                UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
-                //
-                //                            } else {
-                //                                UIApplication.shared.openURL(URL(string: urlStr)!)
-                //                            }
-                //                        }
-                //                        Helper.ShowAlertMessageWithHandlesr(message:"Update now, New Version is Available." , vc: vc,action:callActionHandler)
-                //                    }
-                //                    else{
-                //                    let orderDetail = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
-                //                    let dic = (orderDetail![0] as [String:AnyObject])
-                //                    if let ExtId = dic["ExtId"]{
-                //                        if(Int(ExtId as! String)! > 0){
-                //                            if(orderDetail!.count>0){
-                //                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                //                                let controller = storyboard.instantiateViewController(withIdentifier: "ExtendPhotographerPaymentViewController") as! ExtendPhotographerPaymentViewController
-                //                                controller.dicOrder = dic
-                //                                vc.navigationController!.pushViewController(controller, animated: true)
-                //                            }
-                //                        } else{
-                //                            if(orderDetail!.count>0){
-                //                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                //                                let controller = storyboard.instantiateViewController(withIdentifier: "SendPaymentViewController") as! SendPaymentViewController
-                //                                controller.dicInfo = dic
-                //                                vc.navigationController!.pushViewController(controller, animated: true)
-                //                            }
-                //                        }
-                //                    }
-                
-                //                    }
+                if(Double(self.appVersion)! < Double(self.iPhoneVersion)!){
+                    Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(SplashViewController.showUpdateAppView), userInfo: nil, repeats:  false)
+                } else {
+                    Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(SplashViewController.MoveToLogin), userInfo: nil, repeats:  false)
+                }
                 
             } else{
-                //                    vc.removeSpinner(onView: vc.view)
-                //                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
-                //                    if(Double(appVersion!)! < Double(version as! String)!){
-                //                        let callActionHandler = { () -> Void in
-                //                            let urlStr = "https://apps.apple.com/in/app/apple-store/id1503321883"
-                //                            if #available(iOS 10.0, *) {
-                //                                UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
-                //
-                //                            } else {
-                //                                UIApplication.shared.openURL(URL(string: urlStr)!)
-                //                            }
-                //                        }
-                //                        Helper.ShowAlertMessageWithHandlesr(message:"Update now, new version is available." , vc: vc,action:callActionHandler)
-                //                    }
+                
             }
         }) { (Error) in
-            //                vc.removeSpinner(onView: vc.view)
         }
     }
     
     
     
    @objc func showUpdateAppView(){
-//    let appVersionStirng : String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-//
-//    let appVersion : Double = Double(appVersionStirng)!
-    
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "UpdateAppViewController") as! UpdateAppViewController
         self.navigationController?.pushViewController(controller, animated: true)

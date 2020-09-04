@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
    
     var timer:Timer!
     let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Constant.homeVC = self;
