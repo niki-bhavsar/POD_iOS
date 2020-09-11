@@ -13,7 +13,7 @@ import SCLAlertView
 class Constant{
     public static var APIKey:String = "123456789123456789"
     //private static var serverURL:String = "https://projects.seawindsolution.com/YOGDEV/POD/Webservices"
-    private static var serverURL:String = "https://www.podahmedabad.com/Webservices"
+    private static var serverURL:String = "https://www.podahmedabad.com/test/Webservices"//"https://www.podahmedabad.com/Webservices"
     
     public static var loginUrl:String = Constant.serverURL+"/customerLogin";
     public static var signUpUrl:String = Constant.serverURL+"/customerRegistration";
