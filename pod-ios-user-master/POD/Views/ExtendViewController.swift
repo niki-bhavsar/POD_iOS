@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExtendViewController: UIViewController {
+class ExtendViewController: BaseViewController {
 
     @IBOutlet var lblexthrours:UILabel!
     @IBOutlet var lblExtAmount:UILabel!

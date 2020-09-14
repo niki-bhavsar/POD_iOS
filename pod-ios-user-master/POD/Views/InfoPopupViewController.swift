@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InfoPopupViewController: UIViewController {
+class InfoPopupViewController: BaseViewController {
     @IBOutlet var txtDesc:UITextView!
     @IBOutlet var heightConstaing:NSLayoutConstraint!
     public var desc:String?

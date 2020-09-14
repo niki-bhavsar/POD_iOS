@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SendGeneralInquiry: UIViewController {
+class SendGeneralInquiry: BaseViewController {
 
     @IBOutlet var txtMsg:UITextView!
     @IBOutlet var btnScreenshot:UIButton!

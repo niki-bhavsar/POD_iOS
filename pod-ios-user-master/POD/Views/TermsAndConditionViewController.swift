@@ -8,7 +8,8 @@
 
 import UIKit
 
-class TermsAndConditionViewController: UIViewController {
+class TermsAndConditionViewController: BaseViewController {
+    
     @IBOutlet var txtView:UITextView!
     @IBOutlet var btnFAQ:UIButton!
     var isFAQ:Bool!

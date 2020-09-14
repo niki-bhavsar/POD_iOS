@@ -8,7 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
-class ChatViewController: UIViewController {
+class ChatViewController: BaseViewController {
 
     @IBOutlet var tblChat:UITableView!
     @IBOutlet var txtChatMsg:UITextField!

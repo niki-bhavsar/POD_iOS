@@ -13,6 +13,7 @@ import FacebookCore
 import GoogleSignIn
 import AVFoundation
 import AlamofireNetworkActivityLogger
+import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,UNUserNotificationCenterDelegate,MessagingDelegate {
@@ -22,8 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        NetworkActivityLogger.shared.startLogging()
-        NetworkActivityLogger.shared.level = .debug
+       //Alamofire logs
+               NetworkActivityLogger.shared.startLogging()
+               NetworkActivityLogger.shared.level = .debug
+        
+        // Keyboard Manager for avoid scrolling
+        IQKeyboardManager.shared().isEnabled = true
+        
         
         self.determineMyCurrentLocation();
         GIDSignIn.sharedInstance().clientID = "73490473596-99b8v0bu4g6nicuv9rhhith4bd0qc0a5.apps.googleusercontent.com"//"920480468386-a3v6c07os2nre2vansr4bj1u5fv1fgj0.apps.googleusercontent.com"

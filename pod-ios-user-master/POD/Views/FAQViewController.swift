@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FAQViewController:UIViewController,UITableViewDataSource,UITableViewDelegate {
+class FAQViewController:BaseViewController, UITableViewDataSource,UITableViewDelegate {
 
     public let refreshControl = UIRefreshControl()
     @IBOutlet var tblFAQ:UITableView!

@@ -8,12 +8,19 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
+    
+    func showSpinner() {
+           startAnimating()
+       }
+       
+       func removeSpinner() {
+           stopAnimating()
+       }
 }
 
 extension Dictionary {
@@ -119,29 +126,29 @@ extension UIViewController : UITextFieldDelegate,UITextViewDelegate{
         self.present(alert, animated: true)
     }
     
-    func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: onView.bounds)
-        spinnerView.tag = -100
-        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
-        ai.startAnimating()
-        ai.center = spinnerView.center
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
-        
-    }
+//    func showSpinner(onView : UIView) {
+//        let spinnerView = UIView.init(frame: onView.bounds)
+//        spinnerView.tag = -100
+//        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+//        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+//        ai.startAnimating()
+//        ai.center = spinnerView.center
+//
+//        DispatchQueue.main.async {
+//            spinnerView.addSubview(ai)
+//            onView.addSubview(spinnerView)
+//        }
+//
+//    }
     
-    func removeSpinner(onView : UIView) {
-        DispatchQueue.main.async {
-            let v = onView.viewWithTag(-100)
-            if(v != nil){
-                v?.removeFromSuperview()
-            }
-        }
-    }
+//    func removeSpinner(onView : UIView) {
+//        DispatchQueue.main.async {
+//            let v = onView.viewWithTag(-100)
+//            if(v != nil){
+//                v?.removeFromSuperview()
+//            }
+//        }
+//    }
     
     func containsViewController(ofKind kind: AnyClass,vc:UIViewController) -> Bool {
         return vc.navigationController!.viewControllers.contains(where: { $0.isKind(of: kind) })

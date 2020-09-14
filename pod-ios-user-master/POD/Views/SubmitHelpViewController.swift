@@ -8,7 +8,9 @@
 
 import UIKit
 import NotificationBannerSwift
-class SubmitHelpViewController: UIViewController {
+
+class SubmitHelpViewController: BaseViewController {
+    
     @IBOutlet var txtQuery: UITextView!
     public var orderDetail:[String:AnyObject]?
     var issueInfo:[String:AnyObject]?

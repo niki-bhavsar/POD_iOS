@@ -15,10 +15,10 @@ import NotificationBannerSwift
 
 class LoginController: NSObject {
     
-    static func Login(loginUser:LoginUser,vc:UIViewController){
+    static func Login(loginUser:LoginUser,vc:LoginViewController){
         do{
             try
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.loginUrl, params: loginUser.toDict(), success: {
                 (JSON) in
                 let msg =  JSON.dictionary?["Message"]
@@ -34,15 +34,15 @@ class LoginController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }, failure: { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             })
         }
         catch let error{
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
     }
     
@@ -77,9 +77,10 @@ class LoginController: NSObject {
         
     }
     
-    static func UpdateUserProfile(vc:UIViewController,dicObj:[String:AnyObject]){
+    static func UpdateUserProfile(vc:ProfileViewController,dicObj:[String:AnyObject]){
         do{
-            vc.showSpinner(onView: vc.view);
+            vc.showSpinner()
+            
             ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.updateCustomerProfileURL, imageData: dicObj["ProfileImage"] as! Data, parameters: dicObj, success: { (JSON) in
                 let result = JSON.string?.parseJSONString!
                 let msg =  result!["Message"]
@@ -91,20 +92,20 @@ class LoginController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg as! String , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }, failure:{ (Error) in
                 Helper.ShowAlertMessage(message:Error.localizedDescription , vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             })
         }
         catch let error{
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
         
     }
     
-    public static func LoginWithFaceBook(vc:UIViewController){
+    public static func LoginWithFaceBook(vc:LoginViewController){
         do{
             let loginManager = LoginManager()
             loginManager.authType = .reauthorize
@@ -119,7 +120,8 @@ class LoginController: NSObject {
                 case .failed( _): break
                     
                 case .success( _, _, _):
-                    vc.showSpinner(onView: vc.view);
+                    vc.showSpinner()
+                    
                     if let accessToken = AccessToken.current?.tokenString {
                         fetchUserProfile(vc:vc,loginToken:accessToken);
                     }
@@ -132,7 +134,7 @@ class LoginController: NSObject {
         }
     }
     
-    public static func LoginWithGoogle(vc:UIViewController){
+    public static func LoginWithGoogle(vc:LoginViewController){
         do{
             GIDSignIn.sharedInstance()?.presentingViewController = vc;
             GIDSignIn.sharedInstance()?.signIn()
@@ -143,15 +145,15 @@ class LoginController: NSObject {
         }
     }
     
-    static func fetchUserProfile(vc:UIViewController,loginToken:String)
-    {
+    static func fetchUserProfile(vc:LoginViewController,loginToken:String) {
+        
         let graphRequest : GraphRequest = GraphRequest(graphPath: "me", parameters: ["fields":"id, email, name, picture.width(480).height(480),location"])
         graphRequest.start(completionHandler: { (connection, result, error) -> Void in
             
             if ((error) != nil)
             {
                 print("Error took place: \(error)")
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 Helper.ShowAlertMessage(message: error!.localizedDescription, vc: vc)
             }
             else
@@ -183,12 +185,12 @@ class LoginController: NSObject {
         })
     }
     
-    static func FacebookRegistration(vc:UIViewController,dicObj:[String:AnyObject]){
+    static func FacebookRegistration(vc:LoginViewController,dicObj:[String:AnyObject]){
         do{
             
             ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.signUpUrl, imageData: dicObj["ProfileImage"] as! Data, parameters: dicObj, success: { (JSON) in
                 let result = JSON.string?.parseJSONString!
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 let msg =  result!["Message"]
                 if(((result!["IsSuccess"]) as! Bool) != false){
                     var data =  (result!["ResponseData"]!)!;
@@ -201,20 +203,54 @@ class LoginController: NSObject {
                 
             }, failure:{ (Error) in
                 Helper.ShowAlertMessage(message:Error.localizedDescription , vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             })
         }
         catch let error{
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
         
     }
+    static func GetCustomerProfile(vc:LoginViewController,userID:String, IsBack:Bool){
+         do{
+             try
+                 vc.showSpinner()
+             ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
+                 let msg =  JSON.dictionary?["Message"]
+                 if((JSON.dictionary?["IsSuccess"]) != false){
+                     Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]!, key: "UserInfo")
+                     DispatchQueue.main.async {
+                         if(IsBack == false){
+                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                             let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                             vc.navigationController!.pushViewController(controller, animated: true)
+                         }
+                         else{
+                             vc.navigationController?.popViewController(animated: true)
+                         }
+                         vc.removeSpinner()
+                     }
+                 }
+                 else{
+                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
+                 }
+                 vc.removeSpinner()
+                 
+             }) { (Error) in
+                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
+                 vc.removeSpinner()
+             }
+             
+         }
+         
+     }
     
-    static func GetCustomerProfile(vc:UIViewController,userID:String, IsBack:Bool){
+    
+    static func GetCustomerProfile(vc:ProfileViewController,userID:String, IsBack:Bool){
         do{
             try
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -228,17 +264,17 @@ class LoginController: NSObject {
                         else{
                             vc.navigationController?.popViewController(animated: true)
                         }
-                        vc.removeSpinner(onView: vc.view)
+                        vc.removeSpinner()
                     }
                 }
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
             
         }
@@ -249,24 +285,24 @@ class LoginController: NSObject {
     static func GetCustomerProfileForProfile(vc:ProfileViewController,userID:String, IsBack:Bool){
         do{
             try
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
 //                    print(JSON.dictionaryObject!["ResponseData"]!)
                     DispatchQueue.main.async {
                         vc.LoadProfileData(userProfile: JSON.dictionaryObject!["ResponseData"]! as! [String : AnyObject])
-                        vc.removeSpinner(onView: vc.view)
+                        vc.removeSpinner()
                     }
                 }
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
             
         }
@@ -290,11 +326,11 @@ class LoginController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
             
         }
@@ -349,13 +385,13 @@ class LoginController: NSObject {
     static func CheckUnPaidUser(userId:String,vc:HomeViewController){
         do{
             try
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             ApiManager.sharedInstance.requestGETURL(Constant.getUnPaidOrderByCustomerIdURL+userId, success: { (JSON) in
                 
                 let msg =  JSON.dictionary?["Message"]
                 let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                     //                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
                     //                    if(Double(appVersion!)! < Double(version as! String)!){
                     //                        let callActionHandler = { () -> Void in
@@ -394,7 +430,7 @@ class LoginController: NSObject {
                     
                 }
                 else{
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                     //                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
                     //                    if(Double(appVersion!)! < Double(version as! String)!){
                     //                        let callActionHandler = { () -> Void in
@@ -410,7 +446,7 @@ class LoginController: NSObject {
                     //                    }
                 }
             }) { (Error) in
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
         }
     }

@@ -8,12 +8,15 @@
 
 import UIKit
 import NotificationBannerSwift
+
 class HelpDeskController: NSObject {
+    
     public static var helpInfo:[String:Any]?
+    
     static func Gethelpinfo(vc:HelpDeskViewController){
         do{
             try
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             ApiManager.sharedInstance.requestGETURL(Constant.getHelpInfoURL, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -23,11 +26,11 @@ class HelpDeskController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
         }
         
@@ -39,7 +42,8 @@ class HelpDeskController: NSObject {
                 Helper.ShowAlertMessage(message:"Please enter inquiry message." , vc: vc)
                 return;
             }
-            vc.showSpinner(onView: vc.view);
+            vc.showSpinner()
+            
             ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.sendGeneralInquiry, imageData: dicObj["Image"] as? Data, parameters: dicObj,imageParam:"Image", success: { (JSON) in
                 let result = JSON.string?.parseJSONString!
                 let msg =  result!["Message"]
@@ -55,15 +59,17 @@ class HelpDeskController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg as! String , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
+                
             }, failure:{ (Error) in
                 Helper.ShowAlertMessage(message:Error.localizedDescription , vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
+                
             })
         }
         catch let error{
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
         
     }

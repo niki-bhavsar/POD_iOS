@@ -8,7 +8,8 @@
 
 import UIKit
 
-class PrivacyPolicyViewController: UIViewController {
+class PrivacyPolicyViewController: BaseViewController {
+    
 @IBOutlet var txtView:UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()

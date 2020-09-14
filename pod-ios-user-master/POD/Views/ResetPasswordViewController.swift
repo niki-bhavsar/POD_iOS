@@ -8,7 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
-class ResetPasswordViewController: UIViewController {
+class ResetPasswordViewController: BaseViewController {
 
     @IBOutlet var txtOTP:UITextField!
     @IBOutlet var txtNewPassword:UITextField!

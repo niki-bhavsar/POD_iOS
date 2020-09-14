@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InquiryDetailInfoPopupViewcontroller: UIViewController {
+class InquiryDetailInfoPopupViewcontroller: BaseViewController {
      @IBOutlet  var lblCharge:UILabel!
      @IBOutlet  var lblHours:UILabel!
      @IBOutlet  var lblAmount:UILabel!

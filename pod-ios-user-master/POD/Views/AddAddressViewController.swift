@@ -9,7 +9,8 @@
 import UIKit
 import MapKit
 
-class AddAddressViewController: UIViewController,MKMapViewDelegate {
+class AddAddressViewController: BaseViewController, MKMapViewDelegate {
+    
     @IBOutlet var txtQuery:UITextView!
     @IBOutlet var mapContainerView:UIView!
     @IBOutlet var btnHome:UIButton!

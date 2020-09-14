@@ -14,7 +14,7 @@ class AddressController: NSObject {
     static func GetAddressList(userID:String,vc:BookingAddressViewController){
         do{
             try
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             listAddress = []; ApiManager.sharedInstance.requestGETURL(Constant.getAddreesByIDURL+""+userID, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -24,12 +24,12 @@ class AddressController: NSObject {
                 else{
                     //Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.tblAdd?.reloadData()
                 vc.refreshControl.endRefreshing()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }
@@ -53,23 +53,24 @@ class AddressController: NSObject {
         
     }
     
-    static func AddAddress(vc:UIViewController,dicObj:[String:AnyObject]!){
+    static func AddAddress(vc:AddAddressViewController,dicObj:[String:AnyObject]!){
         do{
             
             try
-                vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestPOSTURL(Constant.addAddressURL, params: dicObj, success: {
+                vc.showSpinner()
+            ApiManager.sharedInstance.requestPOSTURL(Constant.addAddressURL, params: dicObj, success: {
                     (JSON) in
                     let msg =  JSON.dictionary?["Message"]!
                     if((JSON.dictionary?["IsSuccess"]) != false){
                         
                         if let Address = dicObj["Address"]{
-                                                    Constant.OrderDic!["ShootingAddress"] = Address as AnyObject
+                                                    Constant.OrderDic!["ShootingAddress"] = Address
                                                }
                                                if let lat = dicObj["Lat"]{
-                                                    Constant.OrderDic!["ShootingLat"] = lat as AnyObject
+                                                    Constant.OrderDic!["ShootingLat"] = lat
                                                }
                                                if let lng = dicObj["Lng"]{
-                                                    Constant.OrderDic!["ShootingLng"] = lng as AnyObject
+                                                    Constant.OrderDic!["ShootingLng"] = lng
                                                }
                         
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -82,23 +83,24 @@ class AddressController: NSObject {
                         
                         
                     }
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                 }, failure: { (Error) in
                     Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                 })
         }
         catch let error{
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
     }
     
-    static func DeleteAddress(vc:UIViewController,dicObj:[String:AnyObject]!){
+    static func DeleteAddress(vc:BookingAddressViewController, dicObj:[String:AnyObject]!){
         do{
             
             try
-                vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestPOSTURL(Constant.deleteAddressById, params: dicObj, success: {
+                vc.showSpinner()
+            ApiManager.sharedInstance.requestPOSTURL(Constant.deleteAddressById, params: dicObj, success: {
                     (JSON) in
                     let msg =  JSON.dictionary?["Message"]!
                     if((JSON.dictionary?["IsSuccess"]) != false){
@@ -110,35 +112,36 @@ class AddressController: NSObject {
                         
                         
                     }
-                    vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 }, failure: { (Error) in
                     Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                 })
         }
         catch let error{
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
     }
     
-    static func EditAddress(vc:UIViewController,dicObj:[String:AnyObject]!){
+    static func EditAddress(vc:AddAddressViewController,dicObj:[String:AnyObject]!){
         do{
             
             try
-                vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestPOSTURL(Constant.editAddressURL, params: dicObj, success: {
+                vc.showSpinner()
+            ApiManager.sharedInstance.requestPOSTURL(Constant.editAddressURL, params: dicObj, success: {
                     (JSON) in
                     let msg =  JSON.dictionary?["Message"]!
                     if((JSON.dictionary?["IsSuccess"]) != false){
                         
                         if let Address = dicObj["Address"]{
-                             Constant.OrderDic!["ShootingAddress"] = Address as AnyObject
+                             Constant.OrderDic!["ShootingAddress"] = Address
                         }
                         if let lat = dicObj["Lat"]{
-                             Constant.OrderDic!["ShootingLat"] = lat as AnyObject
+                             Constant.OrderDic!["ShootingLat"] = lat
                         }
                         if let lng = dicObj["Lng"]{
-                             Constant.OrderDic!["ShootingLng"] = lng as AnyObject
+                             Constant.OrderDic!["ShootingLng"] = lng 
                         }
                         
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -151,15 +154,15 @@ class AddressController: NSObject {
                         
                         
                     }
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                 }, failure: { (Error) in
                     Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                 })
         }
         catch let error{
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
     }
 }

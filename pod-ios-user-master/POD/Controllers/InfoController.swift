@@ -13,7 +13,7 @@ class InfoController: NSObject {
     static func GetInfo(vc:UIViewController,txt:UITextView,Slug:String){
         do{
             try
-                vc.showSpinner(onView: vc.view)
+//                vc.showSpinner(onView: vc.view)
             ApiManager.sharedInstance.requestGETURL("\(Constant.gatePageURL)\(Slug)", success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -24,11 +24,11 @@ class InfoController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+//                vc.removeSpinner(onView: vc.view)
               
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+//                vc.removeSpinner(onView: vc.view)
             }
             
         }

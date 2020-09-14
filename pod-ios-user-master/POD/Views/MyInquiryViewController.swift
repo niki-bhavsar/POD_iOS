@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyInquiryViewController:UIViewController,UITableViewDataSource,UITableViewDelegate {
+class MyInquiryViewController:BaseViewController,UITableViewDataSource,UITableViewDelegate {
 
     public let refreshControl = UIRefreshControl()
     @IBOutlet var tblInquiry:UITableView!

@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 import NotificationBannerSwift
-class PaymentDetailViewController: UIViewController,OnlinePaymentProtocal {
+class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
 
     @IBOutlet var btnPAS:UIButton!
     @IBOutlet var btnOnline:UIButton!
@@ -33,8 +33,8 @@ class PaymentDetailViewController: UIViewController,OnlinePaymentProtocal {
     func SetLocationOnMap(){
         
         btnPAS.isSelected = true
-        Constant.OrderDic!["PaymentMethod"] = "PAS" as AnyObject;
-        Constant.OrderDic!["PaymentStatus"] = "2" as AnyObject;
+        Constant.OrderDic!["PaymentMethod"] = "PAS"
+        Constant.OrderDic!["PaymentStatus"] = "2"
         let annotation = MKPointAnnotation()
            annotation.title = title
            annotation.coordinate = CLLocationCoordinate2DMake(Double(Constant.OrderDic!["ShootingLat"]! as! String)! , Double(Constant.OrderDic!["ShootingLng"]! as! String)!)
@@ -46,15 +46,15 @@ class PaymentDetailViewController: UIViewController,OnlinePaymentProtocal {
        
         if let category = Constant.SelectedCategory!["Title"]
         {
-            Constant.OrderDic!["ProductTitle"] = (category as! String) as AnyObject;
+            Constant.OrderDic!["ProductTitle"] = category
         }
         
         if let ProductPrice = Constant.SelectedCategory!["Price"]
         {
-            Constant.OrderDic!["ProductPrice"] = (ProductPrice as! String) as AnyObject;
+            Constant.OrderDic!["ProductPrice"] = ProductPrice
             
         }
-        Constant.OrderDic!["ProductTitles"] = ((Constant.FirstSubcategory)+","+(Constant.AllSubcategory )) as AnyObject;
+        Constant.OrderDic!["ProductTitles"] = ((Constant.FirstSubcategory)+","+(Constant.AllSubcategory ))
     }
     
     @IBAction func btnPaymentMethod_Clic(sender:UIButton){
@@ -62,12 +62,12 @@ class PaymentDetailViewController: UIViewController,OnlinePaymentProtocal {
         btnOnline.isSelected = false;
         sender.isSelected = true;
         if(btnPAS.isSelected == true){
-            Constant.OrderDic!["PaymentMethod"] = "PAS" as AnyObject;
-            Constant.OrderDic!["PaymentStatus"] = "2" as AnyObject;
+            Constant.OrderDic!["PaymentMethod"] = "PAS"
+            Constant.OrderDic!["PaymentStatus"] = "2"
         }
         else{
-            Constant.OrderDic!["PaymentMethod"] = "Online" as AnyObject;
-            Constant.OrderDic!["PaymentStatus"] = "1" as AnyObject;
+            Constant.OrderDic!["PaymentMethod"] = "Online"
+            Constant.OrderDic!["PaymentStatus"] = "1"
         }
     }
     
@@ -87,7 +87,7 @@ class PaymentDetailViewController: UIViewController,OnlinePaymentProtocal {
     func GetTransactionId(transactionID: String, status: Bool) {
         if(transactionID.count != 0){
             if(status == true){
-                Constant.OrderDic!["Transaction_id"] = transactionID as AnyObject
+                Constant.OrderDic!["Transaction_id"] = transactionID 
                 MyOrderController.CreateOrder(vc: self, orderInfo: Constant.OrderDic!)
             }
             else{

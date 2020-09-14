@@ -9,7 +9,7 @@
 import UIKit
 
 
-class HelpViewController: UIViewController {
+class HelpViewController: BaseViewController {
 
     public var orderDetail:[String:AnyObject]?
     override func viewDidLoad() {

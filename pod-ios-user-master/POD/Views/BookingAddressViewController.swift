@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookingAddressViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ActionButtonDelegate {
+class BookingAddressViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, ActionButtonDelegate {
     
     @IBOutlet var tblAdd:UITableView!
     public let refreshControl = UIRefreshControl()
@@ -92,13 +92,13 @@ extension BookingAddressViewController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var dicAddObj = AddressController.listAddress![indexPath.row];
         if let Address = dicAddObj["Address"]{
-             Constant.OrderDic!["ShootingAddress"] = Address as AnyObject
+             Constant.OrderDic!["ShootingAddress"] = Address
         }
         if let lat = dicAddObj["Lat"]{
-             Constant.OrderDic!["ShootingLat"] = lat as AnyObject
+             Constant.OrderDic!["ShootingLat"] = lat
         }
         if let lng = dicAddObj["Lng"]{
-             Constant.OrderDic!["ShootingLng"] = lng as AnyObject
+             Constant.OrderDic!["ShootingLng"] = lng
         }
      
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

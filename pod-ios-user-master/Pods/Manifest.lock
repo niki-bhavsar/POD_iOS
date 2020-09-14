@@ -1,4 +1,5 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.5.0)
   - Alamofire (5.0.5)
   - AlamofireNetworkActivityLogger (3.0.0):
     - Alamofire (~> 5.0.0-rc.2)
@@ -93,6 +94,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
+  - IQKeyboardManager (6.5.6)
   - MarqueeLabel/Swift (3.2.1)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
@@ -107,22 +109,27 @@ PODS:
   - SCLAlertView (0.8)
   - SkyFloatingLabelTextField (3.8.0)
   - SnapKit (4.2.0)
+  - SwiftDate (6.1.0)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - Alamofire
   - AlamofireNetworkActivityLogger
   - FacebookCore
   - FacebookLogin
   - Firebase/Analytics
   - Firebase/Messaging
+  - IQKeyboardManager
   - NotificationBannerSwift (= 2.0.1)
   - SCLAlertView
   - SkyFloatingLabelTextField (~> 3.0)
+  - SwiftDate
   - SwiftyJSON
 
 SPEC REPOS:
   trunk:
+    - ActionSheetPicker-3.0
     - Alamofire
     - AlamofireNetworkActivityLogger
     - FacebookCore
@@ -140,6 +147,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - IQKeyboardManager
     - MarqueeLabel
     - nanopb
     - NotificationBannerSwift
@@ -148,9 +156,11 @@ SPEC REPOS:
     - SCLAlertView
     - SkyFloatingLabelTextField
     - SnapKit
+    - SwiftDate
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: 6d79f6f3b98e2b21d218dd65a39f634ff37a27e5
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   AlamofireNetworkActivityLogger: 94e8a7d454a4a9800cef1d0c1d3699754493684b
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
@@ -168,6 +178,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: 489c1265d2c85b68187a83a911913d190012158d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
+  IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   NotificationBannerSwift: 007774aa590cc9680647b92b2f217bef5c00c32c
@@ -176,8 +187,9 @@ SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 21c4bb8527cb170c3c8bb6cc275f32f0303e33d6
+PODFILE CHECKSUM: 371def4b96947bb463d681e90ffc4160dc3fd08d
 
 COCOAPODS: 1.9.1

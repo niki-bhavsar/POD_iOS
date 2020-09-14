@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyNotificationViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class MyNotificationViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
     
     public let refreshControl = UIRefreshControl()
     @IBOutlet var tblOrder:UITableView!

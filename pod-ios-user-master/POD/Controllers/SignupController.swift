@@ -10,11 +10,11 @@ import UIKit
 import NotificationBannerSwift
 class SignupController: NSObject {
     
-    static func GetOTP(vc:UIViewController,dicObj:[String:AnyObject]!){
+    static func GetOTP(vc:SignUpOTPViewController,dicObj:[String:AnyObject]!){
         do{
             
             try
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.getOTPURL, params: dicObj, success: {
                 (JSON) in
                 let msg =  JSON.dictionary?["Message"]!
@@ -24,24 +24,24 @@ class SignupController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }, failure: { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             })
         }
         catch let error{
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
         
     }
     
-    static func ReGetOTP(vc:UIViewController,dicObj:[String:AnyObject]!){
+    static func ReGetOTP(vc:SignUpOTPViewController,dicObj:[String:AnyObject]!){
         do{
             
             try
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.getResendURL, params: dicObj, success: {
                 (JSON) in
                 let msg =  JSON.dictionary?["Message"]!
@@ -51,22 +51,24 @@ class SignupController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }, failure: { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             })
         }
         catch let error{
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
         
     }
     
-static func UserRegistration(vc:UIViewController,dicObj:[String:AnyObject]){
+static func UserRegistration(vc:SignUpOTPViewController,dicObj:[String:AnyObject]){
     do{
-        vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.signUpUrl, imageData: dicObj["ProfileImage"] as! Data, parameters: dicObj, success: { (JSON) in
+        vc.showSpinner()
+        
+        ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.signUpUrl, imageData: dicObj["ProfileImage"] as! Data, parameters: dicObj, success: { (JSON) in
             let result = JSON.string?.parseJSONString!
             let msg =  result!["Message"]
             if(((result!["IsSuccess"]) as! Bool) != false){
@@ -83,15 +85,15 @@ static func UserRegistration(vc:UIViewController,dicObj:[String:AnyObject]){
             else{
                 Helper.ShowAlertMessage(message:msg as! String , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
             }
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }, failure:{ (Error) in
             Helper.ShowAlertMessage(message:Error.localizedDescription , vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         })
     }
     catch let error{
         Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-        vc.removeSpinner(onView: vc.view)
+        vc.removeSpinner()
     }
 }
 }

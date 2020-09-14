@@ -21,7 +21,7 @@ class InqueryController: NSObject {
             try
                 listCategory = [[String:Any]]()
                 vc.categoryCollection?.reloadData()
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
                 ApiManager.sharedInstance.requestGETURL(Constant.ParentCategoryUrl, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -30,21 +30,21 @@ class InqueryController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.categoryCollection?.reloadData()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
         }
     }
     
-    static func GetSubCategoryById(categoryID:String,vc:InquerySubCategoryViewController){
+    static func GetSubCategoryById(categoryID:String, vc:InquerySubCategoryViewController){
         do{
             try
                 listSubCategory = [[String:Any]]()
                                vc.subCategoryCollection?.reloadData()
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
                 ApiManager.sharedInstance.requestGETURL(Constant.SubCategoryByIdUrl+categoryID, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -53,11 +53,11 @@ class InqueryController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.subCategoryCollection?.reloadData()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
         }
     }
@@ -68,11 +68,11 @@ class InqueryController: NSObject {
             try
                 listCity = [[String:Any]]()
                 
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
                 ApiManager.sharedInstance.requestGETURL(Constant.getCityListURL, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                     listCity = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
                     if(listCity != nil){
                         if(listCity!.count>0){
@@ -83,13 +83,13 @@ class InqueryController: NSObject {
                 }
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                 }
                 
                
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
         }
     }
@@ -99,7 +99,7 @@ class InqueryController: NSObject {
             try
                 listLocations = [[String:Any]]()
                 
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
                 ApiManager.sharedInstance.requestGETURL("\(Constant.getLocatonListURL)/\(cityID)/4", success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -116,18 +116,18 @@ class InqueryController: NSObject {
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
                 vc.pickerView.reloadAllComponents();
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
         }
     }
     
-    static func SubmitQuery(vc:UIViewController,orderInfo:[String:AnyObject]){
+    static func SubmitQuery(vc:SubmitHelpViewController,orderInfo:[String:AnyObject]){
         do{
-              vc.showSpinner(onView: vc.view)
+              vc.showSpinner()
              ApiManager.sharedInstance.requestPOSTURL(Constant.orderIssueURL, params: orderInfo, success: {
                     (JSON) in
                     let msg =  JSON.dictionary?["Message"]
@@ -140,15 +140,43 @@ class InqueryController: NSObject {
                     else{
                         Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 }, failure: { (Error) in
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                     Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
                 })
             
         }
         catch let _{
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
+        }
+        
+    }
+    
+    static func SubmitQuery(vc:SubmitRequestViewController,orderInfo:[String:AnyObject]){
+        do{
+              vc.showSpinner()
+             ApiManager.sharedInstance.requestPOSTURL(Constant.orderIssueURL, params: orderInfo, success: {
+                    (JSON) in
+                    let msg =  JSON.dictionary?["Message"]
+                    if((JSON.dictionary?["IsSuccess"]) != false){
+                        let callActionHandler = { () -> Void in
+                                              vc.navigationController?.popViewController(animated: true)
+                                           }
+                        Helper.ShowAlertMessageWithHandlesr(message:msg!.description , vc: vc,action:callActionHandler)
+                    }
+                    else{
+                        Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
+                }
+                vc.removeSpinner()
+                }, failure: { (Error) in
+                    vc.removeSpinner()
+                    Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
+                })
+            
+        }
+        catch let _{
+            vc.removeSpinner()
         }
         
     }
@@ -156,7 +184,7 @@ class InqueryController: NSObject {
     static func SubmitInquiryy(vc:InqueryDetailSubmitViewConroller,orderInfo:[String:AnyObject]){
         
         do{
-              vc.showSpinner(onView: vc.view)
+              vc.showSpinner()
              ApiManager.sharedInstance.requestPOSTURL(Constant.inquirySubmitURL, params: orderInfo, success: {
                     (JSON) in
                     let msg =  JSON.dictionary?["Message"]
@@ -184,15 +212,15 @@ class InqueryController: NSObject {
                     else{
                         Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 }, failure: { (Error) in
-                    vc.removeSpinner(onView: vc.view)
+                    vc.removeSpinner()
                     Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
                 })
             
         }
         catch let _{
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
         
     }
@@ -202,7 +230,8 @@ class InqueryController: NSObject {
             try
                 listINquiry = [[String:Any]]()
                 vc.tblInquiry?.reloadData()
-                vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestGETURL(Constant.getBookingInquiryURL+userId, success: { (JSON) in
+                vc.showSpinner()
+            ApiManager.sharedInstance.requestGETURL(Constant.getBookingInquiryURL+userId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     listINquiry = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
@@ -212,12 +241,12 @@ class InqueryController: NSObject {
                 else{
                     //Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.tblInquiry?.reloadData()
                 vc.refreshControl.endRefreshing()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }
@@ -228,7 +257,9 @@ class InqueryController: NSObject {
             try
                 listFAQ = [[String:Any]]()
                 vc.tblFAQ?.reloadData()
-                vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestGETURL(Constant.getFAQURL+userId, success: { (JSON) in
+                vc.showSpinner()
+            
+            ApiManager.sharedInstance.requestGETURL(Constant.getFAQURL+userId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     listFAQ = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
@@ -237,12 +268,12 @@ class InqueryController: NSObject {
                 else{
                     //Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.tblFAQ?.reloadData()
                 vc.refreshControl.endRefreshing()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }
@@ -252,7 +283,9 @@ class InqueryController: NSObject {
         do{
             try
             vc.tblInquiry?.reloadData()
-            vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestGETURL(Constant.deleteInquiry+userId+"/"+notificationID, success: { (JSON) in
+            vc.showSpinner()
+            
+            ApiManager.sharedInstance.requestGETURL(Constant.deleteInquiry+userId+"/"+notificationID, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     InqueryController.GetAllInquiry(userId:userId , vc: vc)
@@ -260,12 +293,12 @@ class InqueryController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.tblInquiry?.reloadData()
                 vc.refreshControl.endRefreshing()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }
@@ -275,7 +308,9 @@ class InqueryController: NSObject {
         do{
             try
             vc.tblInquiry?.reloadData()
-            vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestGETURL(Constant.deleteAllInquiry+userId, success: { (JSON) in
+            vc.showSpinner()
+            
+            ApiManager.sharedInstance.requestGETURL(Constant.deleteAllInquiry+userId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     InqueryController.GetAllInquiry(userId:userId , vc: vc)
@@ -283,12 +318,12 @@ class InqueryController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.tblInquiry?.reloadData()
                 vc.refreshControl.endRefreshing()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }

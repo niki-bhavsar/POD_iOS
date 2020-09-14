@@ -9,7 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 import  NotificationBannerSwift
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseViewController {
     
     @IBOutlet var profileImg:UIImageView!
     @IBOutlet var txtfullName:SkyFloatingLabelTextField!

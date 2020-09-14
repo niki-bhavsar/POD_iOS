@@ -14,12 +14,13 @@ class MyOrderController: NSObject {
     public static var listTempOrders:[[String:Any]]?
     public static var listOrderDetails:[[String:Any]]?
     public static var listNotification:[[String:Any]]?
+    
     static func GetOrders(userId:String,vc:MyOrderViewController){
         do{
             try
             
             vc.tblOrder?.reloadData()
-            vc.showSpinner(onView: vc.view)
+            vc.showSpinner()
             ApiManager.sharedInstance.requestGETURL(Constant.getOrdersbyIDURL+userId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 listOrders = [[String:Any]]()
@@ -31,12 +32,12 @@ class MyOrderController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.tblOrder?.reloadData()
                 vc.refreshControl.endRefreshing()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }
@@ -56,7 +57,7 @@ class MyOrderController: NSObject {
             try
                 listOrderDetails = [[String:Any]]()
                 vc.tblOrderDetails?.reloadData()
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             ApiManager.sharedInstance.requestGETURL(Constant.getOrdersbyOrderIDURL+orderId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 listOrderDetails = [[String:Any]]()
@@ -70,12 +71,12 @@ class MyOrderController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
                 
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }
@@ -84,7 +85,7 @@ class MyOrderController: NSObject {
     static func GetTransportationCharges(lat:String,lng:String,vc:PaymentDetailViewController){
         do{
             try
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
             
             var dicObj = [String:AnyObject]()
             dicObj["DestLat"] = lat as AnyObject;
@@ -108,27 +109,27 @@ class MyOrderController: NSObject {
                     
                     vc.lblShootCost.text = price.description
                     vc.lblTotal.text = String(format: "%.2f", total);
-                    Constant.OrderDic!["GST"] = gst as AnyObject;
-                    Constant.OrderDic!["Transportation"] = vc.lblVisitingCost.text as AnyObject
-                    Constant.OrderDic!["SubTotal"] = vc.lblShootCost.text as AnyObject
-                    Constant.OrderDic!["Total"] = vc.lblTotal.text as AnyObject
+                    Constant.OrderDic!["GST"] = gst
+                    Constant.OrderDic!["Transportation"] = vc.lblVisitingCost.text
+                    Constant.OrderDic!["SubTotal"] = vc.lblShootCost.text
+                    Constant.OrderDic!["Total"] = vc.lblTotal.text
                 }
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
         }
     }
     
     
-    static func CreateOrder(vc:PaymentDetailViewController,orderInfo:[String:AnyObject]){
-        do{
-            vc.showSpinner(onView: vc.view)
+    static func CreateOrder(vc:PaymentDetailViewController,orderInfo:[String:Any]){
+//        do{
+            vc.showSpinner()
             
             ApiManager.sharedInstance.requestPOSTURL(Constant.CreateOrderURL, params: orderInfo, success: {
                 (JSON) in
@@ -145,21 +146,21 @@ class MyOrderController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }, failure: { (Error) in
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
             })
-        }
-        catch let _{
-            vc.removeSpinner(onView: vc.view)
-        }
+//        }
+//        catch let _{
+//            vc.removeSpinner(onView: vc.view)
+//        }
         
     }
     
     static func ExtendOrder(vc:ExtendViewController,orderInfo:[String:AnyObject]){
         do{
-            vc.showSpinner(onView: vc.view)
+            vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.extendOrderRequestURL, params: orderInfo, success: {
                 (JSON) in
                 let msg =  JSON.dictionary?["Message"]
@@ -175,15 +176,15 @@ class MyOrderController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }, failure: { (Error) in
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
             })
             
         }
         catch let _{
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
         
     }
@@ -198,7 +199,9 @@ class MyOrderController: NSObject {
             try
                 listNotification = [[String:Any]]()
             vc.tblOrder?.reloadData()
-            vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestGETURL(Constant.getNotificationbyIDURL+userId, success: { (JSON) in
+            vc.showSpinner()
+            
+            ApiManager.sharedInstance.requestGETURL(Constant.getNotificationbyIDURL+userId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     listNotification = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
@@ -208,12 +211,12 @@ class MyOrderController: NSObject {
                 else{
                     //Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.tblOrder?.reloadData()
                 vc.refreshControl.endRefreshing()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }
@@ -223,7 +226,9 @@ class MyOrderController: NSObject {
         do{
             try
             vc.tblOrder?.reloadData()
-            vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestGETURL(Constant.deleteNotificationbyIDURL+notificationID, success: { (JSON) in
+            vc.showSpinner()
+            
+            ApiManager.sharedInstance.requestGETURL(Constant.deleteNotificationbyIDURL+notificationID, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     if(listNotification != nil){
@@ -234,12 +239,12 @@ class MyOrderController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.tblOrder?.reloadData()
                 vc.refreshControl.endRefreshing()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }
@@ -248,7 +253,9 @@ class MyOrderController: NSObject {
     static func DeleteAllNotificatins(userId:String,vc:MyNotificationViewController){
         do{
             try
-            vc.showSpinner(onView: vc.view); ApiManager.sharedInstance.requestGETURL(Constant.deleteAllNotification+userId, success: { (JSON) in
+            vc.showSpinner()
+            
+            ApiManager.sharedInstance.requestGETURL(Constant.deleteAllNotification+userId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     MyOrderController.GetNotificatins(userId:userId , vc: vc)
@@ -256,13 +263,13 @@ class MyOrderController: NSObject {
                 else{
                 Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.tblOrder?.reloadData()
                 vc.refreshControl.endRefreshing()
                 
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.refreshControl.endRefreshing()
             }
         }
@@ -271,7 +278,7 @@ class MyOrderController: NSObject {
     
     static func photographOrderPayment(vc:SendPaymentViewController,orderInfo:[String:AnyObject]){
         do{
-            vc.showSpinner(onView: vc.view)
+            vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.photographOrderPaymentURL, params: orderInfo, success: {
                 (JSON) in
                 let msg =  JSON.dictionary?["Message"]
@@ -286,21 +293,21 @@ class MyOrderController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }, failure: { (Error) in
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
             })
         }
         catch let _{
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
     }
     
     
     static func ExtendedOrderPayment(vc:ExtendOrderPaymentViewController,orderInfo:[String:AnyObject]){
            do{
-               vc.showSpinner(onView: vc.view)
+               vc.showSpinner()
                ApiManager.sharedInstance.requestPOSTURL(Constant.extendOrderPaymentURL, params: orderInfo, success: {
                    (JSON) in
                    let msg =  JSON.dictionary?["Message"]
@@ -313,20 +320,20 @@ class MyOrderController: NSObject {
                    else{
                        Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                    }
-                   vc.removeSpinner(onView: vc.view)
+                   vc.removeSpinner()
                }, failure: { (Error) in
-                   vc.removeSpinner(onView: vc.view)
+                   vc.removeSpinner()
                    Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
                })
            }
            catch let _{
-               vc.removeSpinner(onView: vc.view)
+               vc.removeSpinner()
            }
        }
     
     static func ExtendedRemainPhotoGrapherOrderPayment(vc:ExtendPhotographerPaymentViewController,orderInfo:[String:AnyObject]){
            do{
-               vc.showSpinner(onView: vc.view)
+               vc.showSpinner()
                ApiManager.sharedInstance.requestPOSTURL(Constant.PASOrderPaymentdURL, params: orderInfo, success: {
                    (JSON) in
                    let msg =  JSON.dictionary?["Message"]
@@ -340,20 +347,20 @@ class MyOrderController: NSObject {
                    else{
                        Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                    }
-                   vc.removeSpinner(onView: vc.view)
+                   vc.removeSpinner()
                }, failure: { (Error) in
-                   vc.removeSpinner(onView: vc.view)
+                   vc.removeSpinner()
                    Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
                })
            }
            catch let _{
-               vc.removeSpinner(onView: vc.view)
+               vc.removeSpinner()
            }
        }
     
     static func ExtendedRemainPhotoGrapherOrderPayment(vc:SendPaymentViewController,orderInfo:[String:AnyObject]){
         do{
-            vc.showSpinner(onView: vc.view)
+            vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.PASOrderPaymentdURL, params: orderInfo, success: {
                 (JSON) in
                 let msg =  JSON.dictionary?["Message"]
@@ -366,14 +373,14 @@ class MyOrderController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }, failure: { (Error) in
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
             })
         }
         catch let _{
-            vc.removeSpinner(onView: vc.view)
+            vc.removeSpinner()
         }
     }
     

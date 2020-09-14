@@ -8,7 +8,8 @@
 
 import UIKit
 import NotificationBannerSwift
-class ProfileResetPasswordViewController: UIViewController {
+
+class ProfileResetPasswordViewController: BaseViewController {
 
     @IBOutlet var txtCurrentPassword:UITextField!
     @IBOutlet var txtNewPassword:UITextField!

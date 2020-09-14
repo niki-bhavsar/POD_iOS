@@ -8,7 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
-class ForgetPasswordViewController: UIViewController {
+class ForgetPasswordViewController: BaseViewController {
     
     @IBOutlet var txtEmail:UITextField!
     override func viewDidLoad() {

@@ -8,7 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
-class ExtendPhotographerPaymentViewController:  UIViewController,OnlinePaymentProtocal {
+class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePaymentProtocal {
     
     @IBOutlet var lblOrderID:UILabel!
     @IBOutlet var lblDate:UILabel!
@@ -88,9 +88,9 @@ class ExtendPhotographerPaymentViewController:  UIViewController,OnlinePaymentPr
     
     @IBAction func btnPayClick(){
         
-        Constant.OrderDic = [String:AnyObject]()
-        Constant.OrderDic!["Name"] =  dicOrder["Name"] as AnyObject;
-        Constant.OrderDic!["Email"] =  dicOrder["Email"] as AnyObject;
+        Constant.OrderDic = [String:Any]()
+        Constant.OrderDic!["Name"] =  dicOrder["Name"]
+        Constant.OrderDic!["Email"] =  dicOrder["Email"]
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
         controller.totalAmount =  lblTotal.text!
         controller.del = self; self.navigationController?.pushViewController(controller, animated: true)

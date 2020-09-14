@@ -7,7 +7,7 @@
 //
 import UIKit
 import AVFoundation
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     var IsOpenMenu:Bool = false
     @IBOutlet var viewBanner:UIView!
     @IBOutlet var pageControler:UIPageControl!
@@ -135,40 +135,40 @@ class HomeViewController: UIViewController {
             let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
                 
             Constant.OrderDic = [String:AnyObject]()
-            Constant.OrderDic!["CustomerId"] = "" as AnyObject;
-            Constant.OrderDic!["Name"] = "" as AnyObject;
-            Constant.OrderDic!["Email"] = "" as AnyObject;
-            Constant.OrderDic!["Phone1"] = "" as AnyObject;
-            Constant.OrderDic!["ShootingAddress"] = "" as AnyObject;
-            Constant.OrderDic!["ShootingDate"] = "" as AnyObject;
-            Constant.OrderDic!["ShootingStartTime"] = "" as AnyObject;
-            Constant.OrderDic!["ShootingEndTime"] = "" as AnyObject;
-            Constant.OrderDic!["ShootingHours"] = "" as AnyObject;
-            Constant.OrderDic!["ProductId"] = "" as AnyObject;
-            Constant.OrderDic!["ProductIds"] = "" as AnyObject;
-            Constant.OrderDic!["ProductTitle"] = "" as AnyObject;
-            Constant.OrderDic!["ProductPrice"] = "" as AnyObject;
-            Constant.OrderDic!["Transportation"] = "" as AnyObject;
-            Constant.OrderDic!["SubTotal"] = "" as AnyObject;
-            Constant.OrderDic!["Total"] = "" as AnyObject;
-            Constant.OrderDic!["PaymentMethod"] = "" as AnyObject;
-            Constant.OrderDic!["PaymentStatus"] = "" as AnyObject;
-            Constant.OrderDic!["Transaction_id"] = "POD" as AnyObject;
-            Constant.OrderDic!["ShootingLat"] = "" as AnyObject;
-            Constant.OrderDic!["ShootingLng"] = "" as AnyObject;
-            Constant.OrderDic!["ShootingMeetPoint"] = "" as AnyObject;
+            Constant.OrderDic!["CustomerId"] = ""
+            Constant.OrderDic!["Name"] = ""
+            Constant.OrderDic!["Email"] = ""
+            Constant.OrderDic!["Phone1"] = ""
+            Constant.OrderDic!["ShootingAddress"] = ""
+            Constant.OrderDic!["ShootingDate"] = ""
+            Constant.OrderDic!["ShootingStartTime"] = ""
+            Constant.OrderDic!["ShootingEndTime"] = ""
+            Constant.OrderDic!["ShootingHours"] = ""
+            Constant.OrderDic!["ProductId"] = ""
+            Constant.OrderDic!["ProductIds"] = ""
+            Constant.OrderDic!["ProductTitle"] = ""
+            Constant.OrderDic!["ProductPrice"] = ""
+            Constant.OrderDic!["Transportation"] = ""
+            Constant.OrderDic!["SubTotal"] = ""
+            Constant.OrderDic!["Total"] = ""
+            Constant.OrderDic!["PaymentMethod"] = ""
+            Constant.OrderDic!["PaymentStatus"] = ""
+            Constant.OrderDic!["Transaction_id"] = "POD"
+            Constant.OrderDic!["ShootingLat"] = ""
+            Constant.OrderDic!["ShootingLng"] = ""
+            Constant.OrderDic!["ShootingMeetPoint"] = ""
             
             if let UserID = userInfo!["Id"]{
-                Constant.OrderDic!["CustomerId"] = UserID as AnyObject;
+                Constant.OrderDic!["CustomerId"] = UserID
             }
             if let Name = userInfo!["Name"]{
-                Constant.OrderDic!["Name"] = Name as AnyObject;
+                Constant.OrderDic!["Name"] = Name
             }
             if let Email = userInfo!["Email"]{
-                Constant.OrderDic!["Email"] = Email as AnyObject;
+                Constant.OrderDic!["Email"] = Email
             }
             if let Name = userInfo!["Name"]{
-                Constant.OrderDic!["Name"] = Name as AnyObject;
+                Constant.OrderDic!["Name"] = Name 
             }
 //            
             if(segue.identifier == "InqueryCategoryViewController")

@@ -12,12 +12,13 @@ class CategoryController: NSObject {
     
     public static var listCategory:[[String:Any]]?
     public static var listSubCategory:[[String:Any]]?
+    
     static func GetCategory(vc:SelectGategoryViewController){
         do{
             try
                 listCategory = [[String:Any]]()
                 vc.categoryCollection?.reloadData()
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
                 ApiManager.sharedInstance.requestGETURL(Constant.ParentCategoryUrl, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -27,11 +28,11 @@ class CategoryController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.categoryCollection?.reloadData()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
             
         }
@@ -43,7 +44,7 @@ class CategoryController: NSObject {
             try
                 listSubCategory = [[String:Any]]()
                 vc.subCategoryCollection?.reloadData()
-                vc.showSpinner(onView: vc.view)
+                vc.showSpinner()
                 ApiManager.sharedInstance.requestGETURL(Constant.SubCategoryByIdUrl+categoryID, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -53,11 +54,11 @@ class CategoryController: NSObject {
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
                 vc.subCategoryCollection?.reloadData()
             }) { (Error) in
                 Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-                vc.removeSpinner(onView: vc.view)
+                vc.removeSpinner()
             }
         }
         

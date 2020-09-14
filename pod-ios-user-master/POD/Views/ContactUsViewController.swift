@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactUsViewController: UIViewController {
+class ContactUsViewController: BaseViewController {
 
     @IBOutlet var txtView:UITextView!
     override func viewDidLoad() {

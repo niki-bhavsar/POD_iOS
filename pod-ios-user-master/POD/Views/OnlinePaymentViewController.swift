@@ -14,7 +14,7 @@ protocol OnlinePaymentProtocal {
     func GetTransactionId(transactionID:String,status:Bool);
 }
 
-class OnlinePaymentViewController: UIViewController, UIWebViewDelegate {
+class OnlinePaymentViewController: BaseViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webView: UIWebView!
     var salt_str = "3a405cd6b78a2c4f429edca4bb6c5c153be89364"

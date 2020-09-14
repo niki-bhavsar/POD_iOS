@@ -9,7 +9,9 @@
 import UIKit
 import SkyFloatingLabelTextField
 import NotificationBannerSwift
-class SignUpOTPViewController: UIViewController {
+
+class SignUpOTPViewController: BaseViewController {
+    
     @IBOutlet var profileImg:UIImageView!
     @IBOutlet var txtOTP:SkyFloatingLabelTextField!
     @IBOutlet var txtPassword:SkyFloatingLabelTextField!

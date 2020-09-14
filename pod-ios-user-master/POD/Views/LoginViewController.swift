@@ -10,7 +10,7 @@ import UIKit
 import GoogleSignIn
 import  NotificationBannerSwift
 
-class LoginViewController: UIViewController,GIDSignInDelegate {
+class LoginViewController: BaseViewController,GIDSignInDelegate {
     
     @IBOutlet var txtEmail:UITextField!
     @IBOutlet var txtPassword:UITextField!
@@ -70,7 +70,7 @@ extension LoginViewController{
         }
         return
       }
-      self.showSpinner(onView: self.view)
+      self.showSpinner()
       // Perform any operations on signed in user here.
       let userId = user.userID                  // For client-side use only!
       let idToken = user.authentication.idToken // Safe to send to the server

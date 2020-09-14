@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectSubCategoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,CategoryActionButtonDelegate {
+class SelectSubCategoryViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, CategoryActionButtonDelegate {
 
     @IBOutlet var subCategoryCollection:UICollectionView?
     public var categoryId:String?

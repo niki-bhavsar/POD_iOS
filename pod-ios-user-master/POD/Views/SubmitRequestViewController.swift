@@ -8,7 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
-class SubmitRequestViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
+class SubmitRequestViewController: BaseViewController,UIPickerViewDelegate,UIPickerViewDataSource {
 
     @IBOutlet var txtDate:UITextField!
     @IBOutlet var txtSH:UITextField!

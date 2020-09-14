@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SelectGategoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,CategoryActionButtonDelegate {
+class SelectGategoryViewController : BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, CategoryActionButtonDelegate {
+    
     public  var listCategory:[[String:Any]] = [[String:Any]]()
     public var categoryIndex:Int = 0;
     public var IsSelected:Bool = false;

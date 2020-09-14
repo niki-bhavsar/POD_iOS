@@ -8,7 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
-class OrderDetailViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, URLSessionDownloadDelegate, UIDocumentInteractionControllerDelegate {
+class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate, URLSessionDownloadDelegate, UIDocumentInteractionControllerDelegate {
     
     @IBOutlet  var viewPopup:UIView!
     @IBOutlet  var viewExtPopup:UIView!
@@ -72,7 +72,7 @@ class OrderDetailViewController: UIViewController,UITableViewDataSource,UITableV
         if(self.orderInfoDetail != nil){
             if let invoiceFile = self.orderInfoDetail!["InVoiceFile"]{
                 if(invoiceFile.length != 0){
-                    self.showSpinner(onView: self.view)
+                    self.showSpinner()
                     let url = URL(string: invoiceFile as! String)!
                     downloadTask = backgroundSession.downloadTask(with: url)
                     downloadTask.resume()
@@ -227,7 +227,7 @@ extension OrderDetailViewController : OrderDetailDelegate{
             viewer.delegate = self
             viewer.presentPreview(animated: true)
         }
-        self.removeSpinner(onView: self.view)
+        self.removeSpinner()
     }
     
     //MARK: URLSessionTaskDelegate
@@ -241,7 +241,7 @@ extension OrderDetailViewController : OrderDetailDelegate{
             Helper.ShowAlertMessage(message:"File downloaded successfully." , vc: self,title:"Success",bannerStyle: BannerStyle.success)
             print("The task finished transferring data successfully")
         }
-        self.removeSpinner(onView: self.view)
+        self.removeSpinner()
     }
     
     //MARK: UIDocumentInteractionControllerDelegate

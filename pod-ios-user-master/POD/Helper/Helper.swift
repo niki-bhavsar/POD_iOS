@@ -81,7 +81,7 @@ class Constant{
     public static var AllSubcategoryArr: [String] = [String]()
     public static var AllSubcategoryIdArr: [String] = [String]()
     public static var SelectedAddress: [String:AnyObject]?=nil;
-    public static var OrderDic: [String:AnyObject]?
+    public static var OrderDic: [String:Any]?
     public static var InquiryDic: [String:AnyObject]?
     
     public static var SelectedSubCategory: [String:AnyObject]?=nil;

@@ -9,7 +9,8 @@
 import UIKit
 import SkyFloatingLabelTextField
 import NotificationBannerSwift
-class InqueryDetailSubmitViewConroller : UIViewController,UIPickerViewDelegate,UIPickerViewDataSource{
+class InqueryDetailSubmitViewConroller : BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+    
     @IBOutlet var txtState:UITextField!
     @IBOutlet public var txtCity:UITextField!
     @IBOutlet public var txtLocation:UITextField!

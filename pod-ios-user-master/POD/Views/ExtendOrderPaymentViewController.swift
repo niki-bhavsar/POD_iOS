@@ -8,7 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
-class ExtendOrderPaymentViewController: UIViewController ,OnlinePaymentProtocal {
+class ExtendOrderPaymentViewController: BaseViewController ,OnlinePaymentProtocal {
     
     @IBOutlet var btnPAS:UIButton!
     @IBOutlet var btnOnline:UIButton!

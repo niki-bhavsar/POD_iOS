@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InqueryCategoryViewController:UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,CategoryActionButtonDelegate {
+class InqueryCategoryViewController:BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, CategoryActionButtonDelegate {
     
     @IBOutlet var categoryCollection:UICollectionView?
     public  var listCategory:[[String:Any]] = [[String:Any]]()

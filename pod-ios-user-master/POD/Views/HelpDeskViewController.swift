@@ -8,7 +8,8 @@
 
 import UIKit
 
-class HelpDeskViewController: UIViewController {
+class HelpDeskViewController: BaseViewController {
+    
     @IBOutlet var lblName:UILabel!
     @IBOutlet var lblAbout:UILabel!
     @IBOutlet var lblAddress:UILabel!

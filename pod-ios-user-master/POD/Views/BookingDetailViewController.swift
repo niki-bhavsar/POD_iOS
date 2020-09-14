@@ -9,9 +9,8 @@
 import UIKit
 import SkyFloatingLabelTextField
 import NotificationBannerSwift
-class BookingDetailViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
-    
-    
+
+class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     
     @IBOutlet var lblName:UILabel!
     @IBOutlet var lblemail:UILabel!
@@ -89,7 +88,7 @@ class BookingDetailViewController: UIViewController,UIPickerViewDelegate,UIPicke
         }
         
         //Constant.OrderDic!["ProductId"] = Constant.FirstSubcategoryId as AnyObject;
-        Constant.OrderDic!["ProductIds"] = Constant.AllSubcategoryId as AnyObject;
+        Constant.OrderDic!["ProductIds"] = Constant.AllSubcategoryId
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(BookingDetailViewController.showTC))
         tapGesture.numberOfTapsRequired = 1;
         lblPriceInfo.addGestureRecognizer(tapGesture)
@@ -121,7 +120,7 @@ class BookingDetailViewController: UIViewController,UIPickerViewDelegate,UIPicke
             if(txtEH.text!.count != 0){
                 let minutes = Int(txtEH.text!)!*60*60
                 let endTime = dateformatter.string(from:(selectedStartTime!.addingTimeInterval(TimeInterval(minutes))))
-            Constant.OrderDic!["ShootingEndTime"] = endTime as AnyObject;
+            Constant.OrderDic!["ShootingEndTime"] = endTime
             }
         }
         txtSH!.resignFirstResponder() // 2-5
@@ -137,7 +136,7 @@ class BookingDetailViewController: UIViewController,UIPickerViewDelegate,UIPicke
             dateformatter.dateFormat = "HH:mm"
             let minutes = Int(txtEH.text!)!*60*60
             let endTime = dateformatter.string(from:(selectedStartTime!.addingTimeInterval(TimeInterval(minutes))))
-        Constant.OrderDic!["ShootingEndTime"] = endTime as AnyObject;
+        Constant.OrderDic!["ShootingEndTime"] = endTime
         }
         txtEH!.resignFirstResponder() // 2-5
     }
@@ -203,11 +202,11 @@ class BookingDetailViewController: UIViewController,UIPickerViewDelegate,UIPicke
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        Constant.OrderDic!["Phone1"] = txtContact.text as AnyObject;
-        Constant.OrderDic!["ShootingDate"] = txtDate.text as AnyObject;
-        Constant.OrderDic!["ShootingStartTime"] = txtSH.text as AnyObject;
-        Constant.OrderDic!["ShootingHours"] = txtEH.text as AnyObject;
-        Constant.OrderDic!["NoOfPeople"] = txtNoOfPeople.text as AnyObject;
+        Constant.OrderDic!["Phone1"] = txtContact.text
+        Constant.OrderDic!["ShootingDate"] = txtDate.text
+        Constant.OrderDic!["ShootingStartTime"] = txtSH.text
+        Constant.OrderDic!["ShootingHours"] = txtEH.text
+        Constant.OrderDic!["NoOfPeople"] = txtNoOfPeople.text 
         let controller = storyboard.instantiateViewController(withIdentifier: "BookingAddressViewController") as! BookingAddressViewController;
         self.navigationController?.pushViewController(controller, animated: true)
     }

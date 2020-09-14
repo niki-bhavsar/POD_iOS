@@ -9,7 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 import NotificationBannerSwift
-class InqueryDetailViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
+class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet var lblName:UILabel!
     @IBOutlet var lblemail:UILabel!
@@ -73,8 +73,8 @@ class InqueryDetailViewController: UIViewController,UIPickerViewDelegate,UIPicke
             Constant.InquiryDic!["CustomerId"] = id as AnyObject;
         }
         //Constant.InquiryDic!["TypeOfShoot"] = "OutDoor" as AnyObject;
-        Constant.OrderDic!["ProductId"] = Constant.FirstSubcategoryId as AnyObject;
-               Constant.OrderDic!["ProductIds"] = Constant.AllSubcategoryId as AnyObject;
+        Constant.OrderDic!["ProductId"] = Constant.FirstSubcategoryId
+               Constant.OrderDic!["ProductIds"] = Constant.AllSubcategoryId
         
     }
     
@@ -98,7 +98,7 @@ class InqueryDetailViewController: UIViewController,UIPickerViewDelegate,UIPicke
                 let minutes = Int(txtEH.text!)!*60*60
                 let endTime = dateformatter.string(from:(selectedStartTimeInq!.addingTimeInterval(TimeInterval(minutes))))
             Constant.InquiryDic!["EndTime"] = endTime as AnyObject;
-                Constant.OrderDic!["ShootingEndTime"] = endTime as AnyObject
+                Constant.OrderDic!["ShootingEndTime"] = endTime
             }
            txtEH!.resignFirstResponder() // 2-5
        }
@@ -122,7 +122,7 @@ class InqueryDetailViewController: UIViewController,UIPickerViewDelegate,UIPicke
                 let minutes = Int(txtEH.text!)!*60*60
                 let endTime = dateformatter.string(from:(selectedStartTimeInq!.addingTimeInterval(TimeInterval(minutes))))
                 Constant.InquiryDic!["EndTime"] = endTime as AnyObject;
-                 Constant.OrderDic!["ShootingEndTime"] = endTime as AnyObject;
+                 Constant.OrderDic!["ShootingEndTime"] = endTime
             }
         }
         
@@ -174,11 +174,11 @@ class InqueryDetailViewController: UIViewController,UIPickerViewDelegate,UIPicke
         Constant.InquiryDic!["ShootingHours"] = txtEH.text as AnyObject;
         Constant.InquiryDic!["NoOfPeople"] = txtNoOfPeople.text as AnyObject;
         
-        Constant.OrderDic!["Phone1"] = txtContact.text as AnyObject;
-        Constant.OrderDic!["ShootingDate"] = txtDate.text as AnyObject;
-        Constant.OrderDic!["ShootingStartTime"] = txtSH.text as AnyObject;
-        Constant.OrderDic!["ShootingHours"] = txtEH.text as AnyObject;
-        Constant.OrderDic!["NoOfPeople"] = txtNoOfPeople.text as AnyObject;
+        Constant.OrderDic!["Phone1"] = txtContact.text
+        Constant.OrderDic!["ShootingDate"] = txtDate.text
+        Constant.OrderDic!["ShootingStartTime"] = txtSH.text
+        Constant.OrderDic!["ShootingHours"] = txtEH.text
+        Constant.OrderDic!["NoOfPeople"] = txtNoOfPeople.text
         
         
 //        @Part("CustomerId") RequestBody CustomerId,

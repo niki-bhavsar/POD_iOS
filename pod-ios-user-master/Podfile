@@ -14,6 +14,9 @@ target 'POD' do
   pod 'FacebookLogin'
   pod 'NotificationBannerSwift', '2.0.1'
   pod 'SCLAlertView'
+  pod 'IQKeyboardManager'
+  pod 'ActionSheetPicker-3.0'
+  pod 'SwiftDate'
   # Pods for POD
 
 end

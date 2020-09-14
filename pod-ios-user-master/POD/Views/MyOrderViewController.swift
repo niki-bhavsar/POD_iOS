@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyOrderViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class MyOrderViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet var btnUpcoming:UIButton!
     @IBOutlet var btnComplete:UIButton!

@@ -8,7 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
-class SendPaymentViewController: UIViewController,OnlinePaymentProtocal {
+class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal {
     
     @IBOutlet var lblOrderID:UILabel!
     @IBOutlet var lblDate:UILabel!
@@ -93,9 +93,9 @@ class SendPaymentViewController: UIViewController,OnlinePaymentProtocal {
 //
 //        //}
         
-        Constant.OrderDic = [String:AnyObject]()
-        Constant.OrderDic!["Name"] =  dicInfo["Name"] as AnyObject;
-        Constant.OrderDic!["Email"] =  dicInfo["Email"] as AnyObject;
+        Constant.OrderDic = [String:Any]()
+        Constant.OrderDic!["Name"] =  dicInfo["Name"]
+        Constant.OrderDic!["Email"] =  dicInfo["Email"]
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
         controller.totalAmount =  lblTotal.text!
         controller.del = self; self.navigationController?.pushViewController(controller, animated: true)
