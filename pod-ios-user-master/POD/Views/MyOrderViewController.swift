@@ -94,9 +94,9 @@ extension MyOrderViewController {
         if let ShootingDate = orderOBj!["ShootingDate"]{
             cell.lblOrderDate!.text = "Order Date: \(ShootingDate as! String)"
         }
-        if let EntDt = orderOBj!["EntDt"]{
+        if let ShootingStartTime = orderOBj!["ShootingStartTime"]{
             
-            cell.lblOrderTimeUILabel!.text = "Order Time: \(Helper.ConvertDateToTime(dateStr: (EntDt as! String),timeFormat: "HH:mm:ss"))"
+            cell.lblOrderTime!.text = "Order Time: \(ShootingStartTime)"//"Order Time: \(Helper.ConvertDateToTime(dateStr: (EntDt as! String),timeFormat: "HH:mm:ss"))"
         }
         if let AMount = orderOBj!["Total"]{
             cell.lblOrderPayment?.text = (AMount as! String)

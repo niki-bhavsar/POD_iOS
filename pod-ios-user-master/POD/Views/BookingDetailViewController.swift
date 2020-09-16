@@ -202,8 +202,13 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
             Helper.ShowAlertMessage(message: "Please select  hours.", vc: self,title:"Required",bannerStyle: BannerStyle.warning);
             return;
         }
-        if(txtNoOfPeople.text!.count==0){
+        if(txtNoOfPeople.text!.count == 0){
             Helper.ShowAlertMessage(message: "Please enter No of people.", vc: self,title:"Required",bannerStyle: BannerStyle.warning);
+            return;
+        }
+        
+        if(txtNoOfPeople.text == "0"){
+            Helper.ShowAlertMessage(message: "No of people should not be 0.", vc: self,title:"Required",bannerStyle: BannerStyle.warning);
             return;
         }
         

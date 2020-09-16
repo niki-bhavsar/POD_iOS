@@ -175,6 +175,11 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
             return;
         }
         
+        if(txtNoOfPeople.text == "0"){
+            Helper.ShowAlertMessage(message: "No of people should not be 0.", vc: self,title:"Required",bannerStyle: BannerStyle.warning);
+            return;
+        }
+        
         let nop =  Int(txtEH.text!)
         if((Int(Multiplier!)! > nop!)){
             Helper.ShowAlertMessage(message: "Selected hours should not be less than \(Multiplier ?? "0")", vc: self,title:"Required",bannerStyle: BannerStyle.warning);

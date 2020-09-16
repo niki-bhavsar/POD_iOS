@@ -13,9 +13,11 @@ class OrderCell: UITableViewCell {
     @IBOutlet var viewBG:UIView?
     @IBOutlet var lblOrderNo:UILabel?
     @IBOutlet var lblOrderDate:UILabel?
-    @IBOutlet var lblOrderTimeUILabel:UILabel?
+    @IBOutlet var lblOrderTime:UILabel?
     @IBOutlet var lblOrderPayment:UILabel?
     @IBOutlet var lblStatus:UILabel?
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
