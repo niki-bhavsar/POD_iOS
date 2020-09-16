@@ -31,7 +31,7 @@ class SubmitRequestViewController: BaseViewController,UIPickerViewDelegate,UIPic
         InitializeKeyBoardNotificationObserver()
          self.txtDate.setInputViewDatePicker(target: self, selector: #selector(dateDone))
         self.txtEH.setDismissToolBar(target: self)
-        self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone))
+        self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone), IsFutureDisable: false, selectedDate: Date())
         pickerView.delegate = self
         pickerView.dataSource = self
         txtEH.inputView = pickerView

@@ -13,12 +13,12 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
     
     @IBOutlet var lblName:UILabel!
     @IBOutlet var lblemail:UILabel!
-    @IBOutlet var lblPriceInfo:UILabel!
+//    @IBOutlet var lblPriceInfo:UILabel!
     @IBOutlet var txtContact:SkyFloatingLabelTextField!
     @IBOutlet var txtDate:UITextField!
     @IBOutlet var txtSH:UITextField!
     @IBOutlet var txtEH:UITextField!
-    @IBOutlet var txtDOB:UITextField!
+//    @IBOutlet var txtDOB:UITextField!
     @IBOutlet var lblHeaderTitle:UILabel!
     @IBOutlet var txtNoOfPeople:UITextField!
     
@@ -27,6 +27,8 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
     var hours = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16.17,18,19,20,21,22,23,24]
     var selectedStartTimeInq:Date!
      var Multiplier:String?
+    var selectedDate = Date()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -35,16 +37,25 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
             // Fallback on earlier versions
         }
         InitializeKeyBoardNotificationObserver()
-        txtContact.addDoneButtonOnKeyboard(view: self.view);
-        txtNoOfPeople.addDoneButtonOnKeyboard(view: self.view);
+        
+        txtContact.addDoneButtonOnKeyboard(view: self.view)
+        
+        txtNoOfPeople.addDoneButtonOnKeyboard(view: self.view)
+        
         self.txtDate.setInputViewDatePicker(target: self, selector: #selector(dateDone),IsPreviousDisable:true)
-        self.txtDOB.setInputViewDatePicker(target: self, selector: #selector(dobDateDone),IsFutureDisable:true)
-        self.txtEH.setInputViewTimePicker(target: self, selector: #selector(hoursDone))
-        self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone))
+        
+            self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone), IsFutureDisable: true, selectedDate: selectedDate)
+        
+          self.txtEH.setInputViewTimePicker(target: self, selector: #selector(hoursDone), IsFutureDisable: false, selectedDate: Date())
+        
+        
+//        self.txtDOB.setInputViewDatePicker(target: self, selector: #selector(dobDateDone),IsFutureDisable:true)
+
+        
         pickerView.delegate = self
         pickerView.dataSource = self
         txtEH.inputView = pickerView
-        self.txtDOB.tintColor = UIColor.clear
+//        self.txtDOB.tintColor = UIColor.clear
         self.txtDate.tintColor = UIColor.clear
         self.txtEH.tintColor = UIColor.clear
         self.txtSH.tintColor = UIColor.clear
@@ -83,6 +94,9 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
             let dateformatter = DateFormatter() // 2-2
             dateformatter.dateFormat = "dd-MM-yyyy" // 2-3
             self.txtDate.text = dateformatter.string(from: datePicker.date) //2-4
+            selectedDate = datePicker.date
+            self.txtSH.text = ""
+            self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone), IsFutureDisable: true, selectedDate: selectedDate)
         }
         self.txtDate.resignFirstResponder() // 2-5
     }
@@ -103,14 +117,14 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
            txtEH!.resignFirstResponder() // 2-5
        }
     
-    @objc func dobDateDone() {
-           if let datePicker = self.txtDOB.inputView as? UIDatePicker { // 2-1
-               let dateformatter = DateFormatter() // 2-2
-               dateformatter.dateFormat = "dd-MM-yyyy" // 2-3
-               self.txtDOB.text = dateformatter.string(from: datePicker.date) //2-4
-           }
-           self.txtDOB.resignFirstResponder() // 2-5
-       }
+//    @objc func dobDateDone() {
+//           if let datePicker = self.txtDOB.inputView as? UIDatePicker { // 2-1
+//               let dateformatter = DateFormatter() // 2-2
+//               dateformatter.dateFormat = "dd-MM-yyyy" // 2-3
+//               self.txtDOB.text = dateformatter.string(from: datePicker.date) //2-4
+//           }
+//           self.txtDOB.resignFirstResponder() // 2-5
+//       }
     
     @objc func timeDone() {
         if let datePicker = txtSH!.inputView as? UIDatePicker { // 2-1

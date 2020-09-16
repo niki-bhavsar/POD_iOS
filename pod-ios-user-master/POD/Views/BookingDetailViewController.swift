@@ -20,7 +20,6 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
     @IBOutlet var txtSH:UITextField!
     @IBOutlet var txtEH:UITextField!
     @IBOutlet var lblHeaderTitle:UILabel!
-    @IBOutlet var txtQuery:UITextView!
     @IBOutlet var txtNoOfPeople:UITextField!
     
     var selectedStartTime:Date?
@@ -29,6 +28,7 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
     var hours = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16.17,18,19,20,21,22,23,24]
     var bookingInfo = [String:AnyObject]()
     var Multiplier:String?
+    var selectedDate = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,15 +38,25 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
             // Fallback on earlier versions
         }
         InitializeKeyBoardNotificationObserver()
-        txtContact.addDoneButtonOnKeyboard(view: self.view);
-        txtNoOfPeople.addDoneButtonOnKeyboard(view: self.view);
+        
+        txtContact.addDoneButtonOnKeyboard(view: self.view)
+        
+        txtNoOfPeople.addDoneButtonOnKeyboard(view: self.view)
+        
         self.txtDate.setInputViewDatePicker(target: self, selector: #selector(dateDone),IsPreviousDisable:true)
+        
+         self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone), IsFutureDisable: true, selectedDate: selectedDate)
+        
         //self.txtEH.setDismissToolBar(target: self)
-        self.txtEH.setInputViewTimePicker(target: self, selector: #selector(hoursDone))
-        self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone))
+        
+        self.txtEH.setInputViewTimePicker(target: self, selector: #selector(hoursDone), IsFutureDisable: true, selectedDate: Date())
+        
+        
+        
         pickerView.delegate = self
         pickerView.dataSource = self
         txtEH.inputView = pickerView
+        
         self.txtDate.tintColor = UIColor.clear
         self.txtSH.tintColor = UIColor.clear
         self.txtEH.tintColor = UIColor.clear
@@ -68,9 +78,9 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
         }
         
         if(Constant.SelectedCategory != nil){
-            lblPriceInfo.text =  "Hourly price for "+(Constant.AllSubcategory as! String)+" session is ₹ "+(Constant.SelectedCategory!["Price"] as! String)+" Price"
+            lblPriceInfo.text =  "Hourly price for "+(Constant.AllSubcategory )+" session is ₹ "+(Constant.SelectedCategory!["Price"] as! String)+" Price"
             
-            lblPriceInfo.halfTextColorChange(fullText: lblPriceInfo.text!, changeText:[(Constant.AllSubcategory as! String),(Constant.SelectedCategory!["Price"] as! String)], color:  UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
+            lblPriceInfo.halfTextColorChange(fullText: lblPriceInfo.text!, changeText:[(Constant.AllSubcategory ),(Constant.SelectedCategory!["Price"] as! String)], color:  UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
             
         }
         else{
@@ -105,6 +115,9 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
             let dateformatter = DateFormatter() // 2-2
             dateformatter.dateFormat = "dd-MM-yyyy" // 2-3
             self.txtDate.text = dateformatter.string(from: datePicker.date) //2-4
+            selectedDate = datePicker.date
+            self.txtSH.text = ""
+            self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone), IsFutureDisable: true, selectedDate: selectedDate)
         }
         self.txtDate.resignFirstResponder() // 2-5
     }

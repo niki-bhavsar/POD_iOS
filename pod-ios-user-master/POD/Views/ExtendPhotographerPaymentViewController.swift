@@ -40,48 +40,59 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
             if let starttime = dicOrder["ShootingStartTime"]{
                 lblStartTime.text = (starttime as! String);
             }
-           
+            
             if let extendedtime = dicOrder["ExtEndTime"]{
                 lblStartTime.text = "\(lblStartTime.text ?? "") to \(extendedtime)"
             }
-//            else {
-//                if let endtime = dicOrder["ShootingEndTime"]{
-//                    lblStartTime.text = "\(lblStartTime.text ?? "") to \(endtime)"
-//                }
-//            }
+            //            else {
+            //                if let endtime = dicOrder["ShootingEndTime"]{
+            //                    lblStartTime.text = "\(lblStartTime.text ?? "") to \(endtime)"
+            //                }
+            //            }
+            
+            var subTotalVal : Double = 0.0
+            var extendedVal : Double = 0.0
+            var totlaVal : Double = 0.0
+            
+            if let SubTotal : String = dicOrder!["SubTotal"] as? String{
+                lblShootingAmount.text = SubTotal
+                subTotalVal = Double(SubTotal) ?? 0.0
+            }
+            
             if let productPrice : String = dicOrder!["ProductPrice"] as? String{
-                         let prodPrice : Int = Int(productPrice) ?? 0
-                         let totalHourString : String = dicOrder!["ShootingHours"] as! String
-                         let totalHour : Int = Int(totalHourString) ?? 0
-                         self.lblShootingAmount.text = "\(prodPrice * totalHour)"
-                         let totalPriceString : String = dicOrder!["Total"] as! String
-                         let totalPrice : Double = Double(totalPriceString) ?? 0.0
-                         
-                          self.lblGST.text = String(format: "%.2f", (totalPrice - Double(prodPrice * totalHour)))
-                     }
-            
-            
-            
-            
-            if let shootingAMT = dicOrder["Total"]{
-//                lblShootingAmount.text = (shootingAMT as! String);
-                shootingamt = Double(shootingAMT as! String)!
+                let prodPrice : Int = Int(productPrice) ?? 0
+                let extHours : String = dicOrder!["ExtHours"] as! String
+                let extHoursInt : Int = Int(extHours) ?? 0
+                
+                lblExtShootingAmount.text = "\(prodPrice * extHoursInt)"
+                extendedVal = Double(prodPrice * extHoursInt)
             }
             
             if let visiting = dicOrder["Transportation"]{
                 lblVisiting.text = (visiting as! String);
             }
             
-            if let extAMT = dicOrder["ExtAmount"]{
-                lblExtShootingAmount.text = (extAMT as! String);
-                extamt = Double(extAMT as! String)!
+            if let totalStr : String = dicOrder!["Total"] as? String{
+                let extAMTStr : String = dicOrder!["ExtAmount"] as! String
+                let extAMT : Double = Double(extAMTStr) ?? 0.0
+                
+                let total : Double = Double(totalStr) ?? 0.0
+                lblTotal.text = String(format: "%.2f", total + extAMT)
+                totlaVal = total + extAMT
             }
             
-            let total = shootingamt + extamt
-            lblTotal.text = total.description;
+             var gstVal : Double = 0.0
+            gstVal = subTotalVal + extendedVal
             
+             lblGST.text = String(format: "%.2f", totlaVal - gstVal)
             
         }
+        
+        
+      
+        
+        
+        
         // Do any additional setup after loading the view.
     }
     

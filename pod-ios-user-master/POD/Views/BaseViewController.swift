@@ -271,11 +271,22 @@ extension UITextField{
         self.inputAccessoryView = toolBar //9
     }
     
-    func setInputViewTimePicker(target: Any, selector: Selector) {
+    func setInputViewTimePicker(target: Any, selector: Selector,IsFutureDisable:Bool, selectedDate : Date) {
         // Create a UIDatePicker object and assign to inputView
         let screenWidth = UIScreen.main.bounds.width
         let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))//1
         datePicker.datePickerMode = .time //2
+        
+        if(IsFutureDisable == true){
+            let dateformatter = DateFormatter()
+            dateformatter.dateFormat = "dd-MM-yyyy"
+            let currentDate : String = dateformatter.string(from: Date())
+            
+            if(dateformatter.string(from: selectedDate) == currentDate){
+                datePicker.minimumDate = selectedDate
+            }
+        }
+        
         self.inputView = datePicker //3
         
         // Create a toolbar and assign it to inputAccessoryView

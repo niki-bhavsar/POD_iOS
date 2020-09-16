@@ -12,7 +12,6 @@ class SignupController: NSObject {
     
     static func GetOTP(vc:SignUpOTPViewController,dicObj:[String:AnyObject]!){
         do{
-            
             try
                 vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.getOTPURL, params: dicObj, success: {
@@ -34,7 +33,6 @@ class SignupController: NSObject {
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
             vc.removeSpinner()
         }
-        
     }
     
     static func ReGetOTP(vc:SignUpOTPViewController,dicObj:[String:AnyObject]!){
