@@ -91,8 +91,8 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal {
         //        //}
         
         Constant.OrderDic = [String:Any]()
-        Constant.OrderDic!["Name"] =  dicInfo["Name"]
-        Constant.OrderDic!["Email"] =  dicInfo["Email"]
+        Constant.OrderDic["Name"] =  dicInfo["Name"]
+        Constant.OrderDic["Email"] =  dicInfo["Email"]
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
         controller.totalAmount =  lblTotal.text!
         controller.del = self; self.navigationController?.pushViewController(controller, animated: true)

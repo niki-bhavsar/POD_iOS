@@ -9,20 +9,25 @@
 import UIKit
 import SkyFloatingLabelTextField
 import NotificationBannerSwift
-class SIgnUpViewController: BaseViewController {
 
+class SIgnUpViewController: BaseViewController {
+    
+    @IBOutlet weak var btnTerms: UIButton!
+    @IBOutlet weak var lblTerms: UILabel!
     @IBOutlet var profileImg:UIImageView!
     @IBOutlet var txtfullName:SkyFloatingLabelTextField!
     @IBOutlet var txtEmail:SkyFloatingLabelTextField!
     @IBOutlet var txtPhoneNo:SkyFloatingLabelTextField!
-    @IBOutlet var txtAddress:SkyFloatingLabelTextField!
-    @IBOutlet var sv:UIScrollView!
+    // @IBOutlet var txtAddress:SkyFloatingLabelTextField!
+    // @IBOutlet var sv:UIScrollView!
     @IBOutlet var btnSubmit:UIButton!
     @IBOutlet var txtDOB:UITextField!
-       @IBOutlet var btnMale:UIButton!
-       @IBOutlet var btnFemale:UIButton!
+    @IBOutlet var btnMale:UIButton!
+    @IBOutlet var btnFemale:UIButton!
     var imagePicker: ImagePicker!
     var isImageSelected:Bool = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -32,14 +37,48 @@ class SIgnUpViewController: BaseViewController {
         }
         self.InitializeKeyBoardNotificationObserver()
         Helper.SetRoundImage(img: profileImg, cornerRadius: 50, borderWidth: 4, borderColor: UIColor.init(red: 250/255, green: 158/255, blue: 0, alpha: 1))
-        //self.btnMale.isSelected = true;
         self.SetStatusBarColor()
         txtPhoneNo.addDoneButtonOnKeyboard(view: self.view);
         self.txtDOB.setInputViewDatePicker(target: self, selector: #selector(dateDone),IsFutureDisable:true)
         self.imagePicker = ImagePicker(presentationController: self,delegate: self)
         profileImg.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(SIgnUpViewController.ShowImagePicker)))
-         sv.contentSize = CGSize.init(width: 0, height: btnSubmit.frame.origin.y+btnSubmit.frame.size.height)
-        // Do any additional setup after loading the view.
+        
+        let text = lblTerms.text ?? ""
+             let underlineAttriString = NSMutableAttributedString(string: text)
+             let range1 = (text as NSString).range(of: "Terms & Condition")
+             let range2 = (text as NSString).range(of: "Privacy Policy")
+             underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range1)
+             underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range2)
+             
+             underlineAttriString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: range1)
+             underlineAttriString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: range2)
+             lblTerms.attributedText = underlineAttriString
+             lblTerms.isUserInteractionEnabled = true
+             lblTerms.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(tapLabel(gesture:))))
+    }
+    
+    @IBAction func tapLabel(gesture: UITapGestureRecognizer) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if gesture.didTapAttributedTextInLabel(label: lblTerms, targetText: "Terms & Condition") {
+            print("Terms of service")
+            let controller = storyboard.instantiateViewController(withIdentifier: "TermsAndConditionViewController") as! TermsAndConditionViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+            
+        } else if gesture.didTapAttributedTextInLabel(label: lblTerms, targetText: "Privacy Policy") {
+            print("Privacy policy")
+            let controller = storyboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+        } else {
+            print("Tapped none")
+        }
+    }
+    
+    @IBAction func termsClicked(_ sender: UIButton) {
+        if(btnTerms.isSelected == true){
+            btnTerms.isSelected = false
+        } else {
+             btnTerms.isSelected = true
+        }
     }
     
     @objc func ShowImagePicker(){
@@ -47,98 +86,123 @@ class SIgnUpViewController: BaseViewController {
     }
     
     @objc func dateDone() {
-           if let datePicker = self.txtDOB.inputView as? UIDatePicker { // 2-1
-               let dateformatter = DateFormatter() // 2-2
-               dateformatter.dateFormat = "yyyy-MM-dd" // 2-3
-               self.txtDOB.text = dateformatter.string(from: datePicker.date) //2-4
-           }
-           self.txtDOB.resignFirstResponder() // 2-5
-       }
+        if let datePicker = self.txtDOB.inputView as? UIDatePicker { // 2-1
+            let dateformatter = DateFormatter() // 2-2
+            dateformatter.dateFormat = "yyyy-MM-dd" // 2-3
+            self.txtDOB.text = dateformatter.string(from: datePicker.date) //2-4
+        }
+        self.txtDOB.resignFirstResponder() // 2-5
+    }
     
     @IBAction func btnSelectGender(sender:UIButton){
-        self.btnMale.isSelected = false;
-        self.btnFemale.isSelected = false;
-        sender.isSelected = true;
+        self.btnMale.isSelected = false
+        self.btnFemale.isSelected = false
+        sender.isSelected = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-        }
-
+        super.viewWillDisappear(animated)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
-    
     
     @IBAction func btnVerifyOTP(){
         if(txtfullName.text?.count == 0){
             Helper.ShowAlertMessage(message:"Please enter fullname" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return;
-        }
-        else if(txtEmail.text?.count == 0){
+        } else if(txtEmail.text?.count == 0){
             Helper.ShowAlertMessage(message:"Please enter email" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return;
-        }
-//        else if(txtAddress.text?.count == 0){
-//            Helper.ShowAlertMessage(message:"Please enter address" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
-//            return;
-//        }
-        else if(txtPhoneNo.text?.count == 0){
-            Helper.ShowAlertMessage(message:"Please enter phoneno" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
+        } else if(txtPhoneNo.text?.count == 0){
+            Helper.ShowAlertMessage(message:"Please enter mobile no" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return;
-        }
-//            else if(txtDOB.text?.count == 0){
-//                       Helper.ShowAlertMessage(message:"Please select Date of Birth" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
-//                       return;
-//                   }
-        else if(!isImageSelected){
+        }  else if(!isImageSelected){
             Helper.ShowAlertMessage(message:"Please select profile image" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return;
-        }
-        var userInfo:[String:AnyObject] = [String:AnyObject]()
+        } else if(btnTerms.isSelected == false){
+                   Helper.ShowAlertMessage(message:"Please agree Terms & Condition and Privacy Policy" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
+                   return;
+               }
+        
+        var userInfo = [String : Any]()
         if(isImageSelected){
-            userInfo["ProfileImage"] = profileImg.image!.jpegData(compressionQuality: 0.5) as AnyObject?
+            userInfo["ProfileImage"] = profileImg.image!.jpegData(compressionQuality: 0.5)
         }
         else{
-            userInfo["ProfileImage"] = Data.init() as AnyObject
+            userInfo["ProfileImage"] = Data.init()
         }
-        userInfo["ProfileImageUrl"] = "" as AnyObject
-        userInfo["Name"] = txtfullName.text as AnyObject
-        userInfo["Email"] = txtEmail.text as AnyObject
-        userInfo["Phone"] = txtPhoneNo.text as AnyObject
+        userInfo["ProfileImageUrl"] = ""
+        userInfo["Name"] = txtfullName.text
+        userInfo["Email"] = txtEmail.text
+        userInfo["Phone"] = txtPhoneNo.text
         if(txtDOB.text?.count != 0){
-             userInfo["DOB"] = txtDOB.text as AnyObject
-        }
-        else{
-            
+            userInfo["DOB"] = txtDOB.text
+        } else{
             let dateformatter = DateFormatter() // 2-2
             dateformatter.dateFormat = "yyyy-MM-dd" // 2-3
-            userInfo["DOB"] = dateformatter.string(from: Date.init()) as AnyObject
+            userInfo["DOB"] = dateformatter.string(from: Date.init())
         }
         //userInfo["Address"] = txtAddress.text as AnyObject
         if(btnMale.isSelected){
-            userInfo["Gender"] = "Male" as AnyObject;
-        }
-        else  if(btnFemale.isSelected){
-            userInfo["Gender"] = "Female" as AnyObject
+            userInfo["Gender"] = "Male"
+        } else if(btnFemale.isSelected){
+            userInfo["Gender"] = "Female"
         }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SignUpOTPViewController") as! SignUpOTPViewController
-        controller.userInfo = userInfo;
+        controller.userInfo = userInfo
         self.navigationController!.pushViewController(controller, animated: true)
         
     }
     
-    
-    
 }
 
 extension SIgnUpViewController: ImagePickerDelegate {
-
+    
     func didSelect(image: UIImage?) {
         self.profileImg.image = image
-        isImageSelected = true;
+        isImageSelected = true
     }
+}
+extension UITapGestureRecognizer {
+    func didTapAttributedTextInLabel(label: UILabel, targetText: String) -> Bool {
+        guard let attributedString = label.attributedText, let lblText = label.text else { return false }
+        let targetRange = (lblText as NSString).range(of: targetText)
+        //IMPORTANT label correct font for NSTextStorage needed
+        let mutableAttribString = NSMutableAttributedString(attributedString: attributedString)
+        mutableAttribString.addAttributes(
+            [NSAttributedString.Key.font: label.font ?? UIFont.smallSystemFontSize],
+            range: NSRange(location: 0, length: attributedString.length)
+        )
+        // Create instances of NSLayoutManager, NSTextContainer and NSTextStorage
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer(size: CGSize.zero)
+        let textStorage = NSTextStorage(attributedString: mutableAttribString)
+        
+        // Configure layoutManager and textStorage
+        layoutManager.addTextContainer(textContainer)
+        textStorage.addLayoutManager(layoutManager)
+        
+        // Configure textContainer
+        textContainer.lineFragmentPadding = 0.0
+        textContainer.lineBreakMode = label.lineBreakMode
+        textContainer.maximumNumberOfLines = label.numberOfLines
+        let labelSize = label.bounds.size
+        textContainer.size = labelSize
+        
+        // Find the tapped character location and compare it to the specified range
+        let locationOfTouchInLabel = self.location(in: label)
+        let textBoundingBox = layoutManager.usedRect(for: textContainer)
+        let textContainerOffset = CGPoint(x: (labelSize.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x,
+                                          y: (labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y);
+        let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - textContainerOffset.x, y:
+            locationOfTouchInLabel.y - textContainerOffset.y);
+        let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        
+        return NSLocationInRange(indexOfCharacter, targetRange)
+    }
+    
 }

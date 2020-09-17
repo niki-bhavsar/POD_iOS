@@ -120,7 +120,7 @@ class InquerySubCategoryViewController: BaseViewController, UICollectionViewDele
             
             Constant.AllSubcategory = (Constant.AllSubcategoryArr.map{String($0)}).joined(separator: ",")
             
-            Constant.InquiryDic!["TypeOfShoot"] = "\(Constant.FirstSubcategoryId),\(Constant.AllSubcategoryId)" as AnyObject;
+            Constant.InquiryDic["TypeOfShoot"] = "\(Constant.FirstSubcategoryId),\(Constant.AllSubcategoryId)" 
             controller.Multiplier = obj["Multiplier"] as? String
             self.navigationController?.pushViewController(controller, animated: true)
         }

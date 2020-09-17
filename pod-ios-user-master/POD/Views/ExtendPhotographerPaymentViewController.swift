@@ -25,8 +25,9 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var shootingamt:Double = 0.0
-        var extamt:Double = 0.0
+//        var shootingamt:Double = 0.0
+//        var extamt:Double = 0.0
+        
         if(dicOrder != nil){
             if let category = dicOrder["ProductTitle"]{
                 lblcategory.text = (category as! String);
@@ -100,14 +101,11 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
     @IBAction func btnPayClick(){
         
         Constant.OrderDic = [String:Any]()
-        Constant.OrderDic!["Name"] =  dicOrder["Name"]
-        Constant.OrderDic!["Email"] =  dicOrder["Email"]
+        Constant.OrderDic["Name"] =  dicOrder["Name"]
+        Constant.OrderDic["Email"] =  dicOrder["Email"]
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
         controller.totalAmount =  lblTotal.text!
         controller.del = self; self.navigationController?.pushViewController(controller, animated: true)
-        
-        
-        
     }
     
     func GetTransactionId(transactionID: String, status: Bool) {

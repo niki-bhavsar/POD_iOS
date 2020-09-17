@@ -30,7 +30,7 @@ class MeetinPonitLocationViewController: BaseViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        Constant.OrderDic!["ShootingMeetPoint"] = txtQuery!.text 
+        Constant.OrderDic["ShootingMeetPoint"] = txtQuery!.text
        
         let controller = storyboard.instantiateViewController(withIdentifier: "PaymentDetailViewController") as! PaymentDetailViewController
         self.navigationController?.pushViewController(controller, animated: true)

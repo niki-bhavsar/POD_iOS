@@ -79,8 +79,8 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
         if let photographFile = dicObj["photographFile"]{
             if(photographFile.length == 0){
                 Constant.OrderDic = [String:Any]()
-                Constant.OrderDic!["Name"] =  dicObj["Name"]
-                Constant.OrderDic!["Email"] =  dicObj["Email"]
+                Constant.OrderDic["Name"] =  dicObj["Name"]
+                Constant.OrderDic["Email"] =  dicObj["Email"]
                 let controller = self.vc?.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
                 controller.totalAmount = "199"
                 controller.del = self; self.vc?.navigationController!.pushViewController(controller, animated: true)

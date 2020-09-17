@@ -30,8 +30,8 @@ class OnlinePaymentViewController: BaseViewController, UIWebViewDelegate {
         let amount_str = totalAmount
         let currency_str = "INR"
         let description_str = "POD"
-        let name_str = Constant.OrderDic!["Name"] as! String
-        let email_str = Constant.OrderDic!["Email"] as! String
+        let name_str = Constant.OrderDic["Name"] as! String
+        let email_str = Constant.OrderDic["Email"] as! String
         let phone_str = "8333873777"
         let address_line_1_str = "Ahmedabad"
         let address_line_2_str = "Ahmedabad"

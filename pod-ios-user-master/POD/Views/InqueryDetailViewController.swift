@@ -68,12 +68,12 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
         let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
         if let name = userInfo!["Name"]{
             lblName.text = (name as! String);
-            Constant.InquiryDic!["Name"] = name as AnyObject;
+            Constant.InquiryDic["Name"] = name
         }
-       
+        
         if let email = userInfo?["Email"]{
             lblemail.text = (email as! String);
-            Constant.InquiryDic!["Email"] = email as AnyObject;
+            Constant.InquiryDic["Email"] = email
         }
         
         if let mobileNo = userInfo?["Phone"]{
@@ -81,12 +81,11 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
         }
         
         if let id = userInfo!["Id"]{
-            Constant.InquiryDic!["CustomerId"] = id as AnyObject;
+            Constant.InquiryDic["CustomerId"] = id
         }
         //Constant.InquiryDic!["TypeOfShoot"] = "OutDoor" as AnyObject;
-        Constant.OrderDic!["ProductId"] = Constant.FirstSubcategoryId
-               Constant.OrderDic!["ProductIds"] = Constant.AllSubcategoryId
-        
+        Constant.OrderDic["ProductId"] = Constant.FirstSubcategoryId
+        Constant.OrderDic["ProductIds"] = Constant.AllSubcategoryId
     }
     
     @objc func dateDone() {
@@ -111,8 +110,8 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
                 dateformatter.dateFormat = "HH:mm"
                 let minutes = Int(txtEH.text!)!*60*60
                 let endTime = dateformatter.string(from:(selectedStartTimeInq!.addingTimeInterval(TimeInterval(minutes))))
-            Constant.InquiryDic!["EndTime"] = endTime as AnyObject;
-                Constant.OrderDic!["ShootingEndTime"] = endTime
+            Constant.InquiryDic["EndTime"] = endTime
+                Constant.OrderDic["ShootingEndTime"] = endTime
             }
            txtEH!.resignFirstResponder() // 2-5
        }
@@ -135,8 +134,8 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
             if(txtEH.text!.count != 0){
                 let minutes = Int(txtEH.text!)!*60*60
                 let endTime = dateformatter.string(from:(selectedStartTimeInq!.addingTimeInterval(TimeInterval(minutes))))
-                Constant.InquiryDic!["EndTime"] = endTime as AnyObject;
-                 Constant.OrderDic!["ShootingEndTime"] = endTime
+                Constant.InquiryDic["EndTime"] = endTime
+                 Constant.OrderDic["ShootingEndTime"] = endTime
             }
         }
         
@@ -186,18 +185,18 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
             return;
         }
         
-        Constant.InquiryDic!["Phone"] = txtContact.text as AnyObject;
-        Constant.InquiryDic!["DateOfShoot"] = txtDate.text as AnyObject;
-        Constant.InquiryDic!["StartTime"] = txtSH.text as AnyObject;
+        Constant.InquiryDic["Phone"] = txtContact.text
+        Constant.InquiryDic["DateOfShoot"] = txtDate.text
+        Constant.InquiryDic["StartTime"] = txtSH.text
         //Constant.InquiryDic!["DOB"] = txtDOB.text as AnyObject;
-        Constant.InquiryDic!["ShootingHours"] = txtEH.text as AnyObject;
-        Constant.InquiryDic!["NoOfPeople"] = txtNoOfPeople.text as AnyObject;
+        Constant.InquiryDic["ShootingHours"] = txtEH.text
+        Constant.InquiryDic["NoOfPeople"] = txtNoOfPeople.text 
         
-        Constant.OrderDic!["Phone1"] = txtContact.text
-        Constant.OrderDic!["ShootingDate"] = txtDate.text
-        Constant.OrderDic!["ShootingStartTime"] = txtSH.text
-        Constant.OrderDic!["ShootingHours"] = txtEH.text
-        Constant.OrderDic!["NoOfPeople"] = txtNoOfPeople.text
+        Constant.OrderDic["Phone1"] = txtContact.text
+        Constant.OrderDic["ShootingDate"] = txtDate.text
+        Constant.OrderDic["ShootingStartTime"] = txtSH.text
+        Constant.OrderDic["ShootingHours"] = txtEH.text
+        Constant.OrderDic["NoOfPeople"] = txtNoOfPeople.text
         
         
 //        @Part("CustomerId") RequestBody CustomerId,

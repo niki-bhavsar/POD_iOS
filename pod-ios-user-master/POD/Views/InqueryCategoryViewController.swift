@@ -132,7 +132,7 @@ class InqueryCategoryViewController:BaseViewController, UICollectionViewDelegate
             print(Constant.AllSubcategoryId)
             print("----Constant.AllSubcategory------")
             
-            Constant.InquiryDic!["TypeOfShoot"] = Constant.AllSubcategoryId as AnyObject;
+            Constant.InquiryDic["TypeOfShoot"] = Constant.AllSubcategoryId
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }

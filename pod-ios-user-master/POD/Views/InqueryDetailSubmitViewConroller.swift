@@ -47,7 +47,7 @@ class InqueryDetailSubmitViewConroller : BaseViewController, UIPickerViewDelegat
         self.txtLocation.tintColor = UIColor.clear
         self.txtMedia.tintColor = UIColor.clear
         self.pickerView.selectRow(1, inComponent:0, animated:true)
-        if let hours = Constant.OrderDic!["ShootingHours"]{
+        if let hours = Constant.OrderDic["ShootingHours"]{
             lblHours.text = "Shooting duration is :      \(hours)"
             lblHours.halfTextColorChange(fullText: lblHours.text!, changeText: hours as! String, color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
         }
@@ -75,17 +75,18 @@ class InqueryDetailSubmitViewConroller : BaseViewController, UIPickerViewDelegat
     
     
     @IBAction func btnSubmit_Click(){
-        Constant.InquiryDic!["City"] = txtCity.text as AnyObject;
-        Constant.InquiryDic!["Source"] = txtMedia.text as AnyObject;
-        Constant.InquiryDic!["Message"] = txtQuery.text as AnyObject;
-        Constant.InquiryDic!["State"] = txtState.text as AnyObject;
-        Constant.InquiryDic!["Area"] = txtLocation.text as AnyObject;
-        Constant.InquiryDic!["Country"] = "India" as AnyObject;
+        Constant.InquiryDic["City"] = txtCity.text
+        Constant.InquiryDic["Source"] = txtMedia.text
+        Constant.InquiryDic["Message"] = txtQuery.text
+        Constant.InquiryDic["State"] = txtState.text
+        Constant.InquiryDic["Area"] = txtLocation.text
+        Constant.InquiryDic["Country"] = "India"
+        
         if(txtQuery.text!.count==0){
             Helper.ShowAlertMessage(message: "Please enter instruction.", vc: self,title:"Required",bannerStyle: BannerStyle.warning);
             return;
         }
-        InqueryController.SubmitInquiryy(vc: self, orderInfo: Constant.InquiryDic!)
+        InqueryController.SubmitInquiryy(vc: self, orderInfo: Constant.InquiryDic)
     }
     
     

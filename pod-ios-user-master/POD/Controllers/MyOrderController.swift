@@ -101,18 +101,18 @@ class MyOrderController: NSObject {
                         Constant.TrasportationCharges = Double(transportation)!
                     }
                     vc.lblVisitingCost.text = Constant.TrasportationCharges.description;
-                    let p = Double(Constant.SelectedCategory!["Price"] as! String)!
-                    let h = Double(Constant.OrderDic!["ShootingHours"]! as! String)!
+                    let p = Double(Constant.SelectedCategory["Price"] as! String)!
+                    let h = Double(Constant.OrderDic["ShootingHours"]! as! String)!
                     let price = (p*h)
                     let gst = ((price*18)/100)
                     let total = (Double(vc.lblVisitingCost.text!)! + Double(price)+gst)
                     
                     vc.lblShootCost.text = price.description
                     vc.lblTotal.text = String(format: "%.2f", total);
-                    Constant.OrderDic!["GST"] = gst
-                    Constant.OrderDic!["Transportation"] = vc.lblVisitingCost.text
-                    Constant.OrderDic!["SubTotal"] = vc.lblShootCost.text
-                    Constant.OrderDic!["Total"] = vc.lblTotal.text
+                    Constant.OrderDic["GST"] = gst
+                    Constant.OrderDic["Transportation"] = vc.lblVisitingCost.text
+                    Constant.OrderDic["SubTotal"] = vc.lblShootCost.text
+                    Constant.OrderDic["Total"] = vc.lblTotal.text
                 }
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)

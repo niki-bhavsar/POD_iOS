@@ -8,9 +8,11 @@
 
 import UIKit
 import NotificationBannerSwift
+import SkyFloatingLabelTextField
+
 class ForgetPasswordViewController: BaseViewController {
     
-    @IBOutlet var txtEmail:UITextField!
+  @IBOutlet var txtEmail:SkyFloatingLabelTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {

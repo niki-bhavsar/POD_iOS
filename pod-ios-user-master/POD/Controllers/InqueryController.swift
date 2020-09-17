@@ -77,7 +77,7 @@ class InqueryController: NSObject {
                     if(listCity != nil){
                         if(listCity!.count>0){
                             InqueryController.GetLocation(cityID: listCity![0]["id"] as! String, vc: vc)
-                            vc.txtCity.text = listCity![0]["name"] as! String
+                            vc.txtCity.text = listCity![0]["name"] as? String
                         }
                     }
                 }
@@ -181,7 +181,7 @@ class InqueryController: NSObject {
         
     }
     
-    static func SubmitInquiryy(vc:InqueryDetailSubmitViewConroller,orderInfo:[String:AnyObject]){
+    static func SubmitInquiryy(vc:InqueryDetailSubmitViewConroller,orderInfo : [String : Any]){
         
         do{
               vc.showSpinner()
@@ -192,12 +192,12 @@ class InqueryController: NSObject {
                        
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let controller = storyboard.instantiateViewController(withIdentifier: "InquiryDetailInfoPopupViewcontroller") as! InquiryDetailInfoPopupViewcontroller
-                        let p = Double(Constant.SelectedCategory!["Price"] as! String)!
+                        let p = Double(Constant.SelectedCategory["Price"] as! String)!
                         let h = Double(orderInfo["ShootingHours"]! as! String)!
                         let price = (p*h)
                         
                         controller.hours = "As per submitted inquiry amount of \(Int(h).description) hours session will be"
-                        controller.charge = "The submitted shooting session charge per hrs is \(Constant.SelectedCategory!["Price"] as! String)"
+                        controller.charge = "The submitted shooting session charge per hrs is \(Constant.SelectedCategory["Price"] as! String)"
                         controller.amount = "\(price.description)"
                         controller.vc = vc;
                         controller.modalPresentationStyle = .overCurrentContext

@@ -44,10 +44,10 @@ class HomeViewController: BaseViewController {
         Constant.AllSubcategoryIdArr.removeAll();
         lblNotificationCount.text = Constant.notificationCount.description;
         if(Constant.OrderDic != nil){
-            Constant.OrderDic?.removeAll()
+            Constant.OrderDic.removeAll()
         }
         if(Constant.InquiryDic != nil){
-            Constant.InquiryDic?.removeAll()
+            Constant.InquiryDic.removeAll()
         }
         self.viewlayer.isHidden = true;
         Constant.IsOpenMenu = false;
@@ -135,62 +135,61 @@ class HomeViewController: BaseViewController {
             let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
                 
             Constant.OrderDic = [String:AnyObject]()
-            Constant.OrderDic!["CustomerId"] = ""
-            Constant.OrderDic!["Name"] = ""
-            Constant.OrderDic!["Email"] = ""
-            Constant.OrderDic!["Phone1"] = ""
-            Constant.OrderDic!["ShootingAddress"] = ""
-            Constant.OrderDic!["ShootingDate"] = ""
-            Constant.OrderDic!["ShootingStartTime"] = ""
-            Constant.OrderDic!["ShootingEndTime"] = ""
-            Constant.OrderDic!["ShootingHours"] = ""
-            Constant.OrderDic!["ProductId"] = ""
-            Constant.OrderDic!["ProductIds"] = ""
-            Constant.OrderDic!["ProductTitle"] = ""
-            Constant.OrderDic!["ProductPrice"] = ""
-            Constant.OrderDic!["Transportation"] = ""
-            Constant.OrderDic!["SubTotal"] = ""
-            Constant.OrderDic!["Total"] = ""
-            Constant.OrderDic!["PaymentMethod"] = ""
-            Constant.OrderDic!["PaymentStatus"] = ""
-            Constant.OrderDic!["Transaction_id"] = "POD"
-            Constant.OrderDic!["ShootingLat"] = ""
-            Constant.OrderDic!["ShootingLng"] = ""
-            Constant.OrderDic!["ShootingMeetPoint"] = ""
+            Constant.OrderDic["CustomerId"] = ""
+            Constant.OrderDic["Name"] = ""
+            Constant.OrderDic["Email"] = ""
+            Constant.OrderDic["Phone1"] = ""
+            Constant.OrderDic["ShootingAddress"] = ""
+            Constant.OrderDic["ShootingDate"] = ""
+            Constant.OrderDic["ShootingStartTime"] = ""
+            Constant.OrderDic["ShootingEndTime"] = ""
+            Constant.OrderDic["ShootingHours"] = ""
+            Constant.OrderDic["ProductId"] = ""
+            Constant.OrderDic["ProductIds"] = ""
+            Constant.OrderDic["ProductTitle"] = ""
+            Constant.OrderDic["ProductPrice"] = ""
+            Constant.OrderDic["Transportation"] = ""
+            Constant.OrderDic["SubTotal"] = ""
+            Constant.OrderDic["Total"] = ""
+            Constant.OrderDic["PaymentMethod"] = ""
+            Constant.OrderDic["PaymentStatus"] = ""
+            Constant.OrderDic["Transaction_id"] = "POD"
+            Constant.OrderDic["ShootingLat"] = ""
+            Constant.OrderDic["ShootingLng"] = ""
+            Constant.OrderDic["ShootingMeetPoint"] = ""
             
             if let UserID = userInfo!["Id"]{
-                Constant.OrderDic!["CustomerId"] = UserID
+                Constant.OrderDic["CustomerId"] = UserID
             }
             if let Name = userInfo!["Name"]{
-                Constant.OrderDic!["Name"] = Name
+                Constant.OrderDic["Name"] = Name
             }
             if let Email = userInfo!["Email"]{
-                Constant.OrderDic!["Email"] = Email
+                Constant.OrderDic["Email"] = Email
             }
             if let Name = userInfo!["Name"]{
-                Constant.OrderDic!["Name"] = Name 
+                Constant.OrderDic["Name"] = Name
             }
 //            
-            if(segue.identifier == "InqueryCategoryViewController")
-            {
+            if(segue.identifier == "InqueryCategoryViewController"){
                 
                 Constant.InquiryDic = [String:AnyObject]()
-                Constant.InquiryDic!["CustomerId"] = "" as AnyObject;
-                Constant.InquiryDic!["Name"] = "" as AnyObject;
-                Constant.InquiryDic!["Email"] = "" as AnyObject;
-                Constant.InquiryDic!["Phone"] = "" as AnyObject;
-                Constant.InquiryDic!["DOB"] = "" as AnyObject;
-                Constant.InquiryDic!["TypeOfShoot"] = "" as AnyObject;
-                Constant.InquiryDic!["DateOfShoot"] = "" as AnyObject;
-                Constant.InquiryDic!["StartTime"] = "" as AnyObject;
-                Constant.InquiryDic!["EndTime"] = "" as AnyObject;
-                Constant.InquiryDic!["ShootingHours"] = "" as AnyObject;
-                Constant.InquiryDic!["Area"] = "" as AnyObject;
-                Constant.InquiryDic!["City"] = "" as AnyObject;
-                Constant.InquiryDic!["State"] = "" as AnyObject;
-                Constant.InquiryDic!["Country"] = "" as AnyObject;
-                Constant.InquiryDic!["Message"] = "" as AnyObject;
-                Constant.InquiryDic!["Source"] = "" as AnyObject;
+                Constant.InquiryDic["CustomerId"] = ""
+                Constant.InquiryDic["Name"] = ""
+                Constant.InquiryDic["Email"] = ""
+                Constant.InquiryDic["Phone"] = ""
+                Constant.InquiryDic["DOB"] = ""
+                Constant.InquiryDic["TypeOfShoot"] = ""
+                Constant.InquiryDic["DateOfShoot"] = ""
+                Constant.InquiryDic["StartTime"] = ""
+                Constant.InquiryDic["EndTime"] = ""
+                Constant.InquiryDic["ShootingHours"] = ""
+                Constant.InquiryDic["Area"] = ""
+                Constant.InquiryDic["City"] = ""
+                Constant.InquiryDic["State"] = ""
+                Constant.InquiryDic["Country"] = ""
+                Constant.InquiryDic["Message"] = ""
+                Constant.InquiryDic["Source"] = ""
                 
             }
         }

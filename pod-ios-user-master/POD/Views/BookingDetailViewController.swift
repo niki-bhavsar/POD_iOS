@@ -78,12 +78,11 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
         }
         
         if(Constant.SelectedCategory != nil){
-            lblPriceInfo.text =  "Hourly price for "+(Constant.AllSubcategory )+" session is ₹ "+(Constant.SelectedCategory!["Price"] as! String)+" Price"
+            lblPriceInfo.text =  "Hourly price for "+(Constant.AllSubcategory )+" session is ₹ "+(Constant.SelectedCategory["Price"] as! String)+" Price"
             
-            lblPriceInfo.halfTextColorChange(fullText: lblPriceInfo.text!, changeText:[(Constant.AllSubcategory ),(Constant.SelectedCategory!["Price"] as! String)], color:  UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
+            lblPriceInfo.halfTextColorChange(fullText: lblPriceInfo.text!, changeText:[(Constant.AllSubcategory ),(Constant.SelectedCategory["Price"] as! String)], color:  UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
             
-        }
-        else{
+        } else{
             lblPriceInfo.text =  "Hourly price for N/A session is ₹N/A Price"
         }
         
@@ -92,13 +91,12 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
 //        DispatchQueue.main.async {
 //           // self.lblPriceInfo.addTrailing(with: "... ", moreText: "Learnmore", moreTextFont: readmoreFont!, moreTextColor: readmoreFontColor)
 //        }
-        if let categoryId = Constant.SelectedCategory!["Id"]
-        {
-            Constant.OrderDic!["ProductId"] = (categoryId as! String) as AnyObject;
+        if let categoryId = Constant.SelectedCategory["Id"] {
+            Constant.OrderDic["ProductId"] = (categoryId as! String) as AnyObject;
         }
         
         //Constant.OrderDic!["ProductId"] = Constant.FirstSubcategoryId as AnyObject;
-        Constant.OrderDic!["ProductIds"] = Constant.AllSubcategoryId
+        Constant.OrderDic["ProductIds"] = Constant.AllSubcategoryId
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(BookingDetailViewController.showTC))
         tapGesture.numberOfTapsRequired = 1;
         lblPriceInfo.addGestureRecognizer(tapGesture)
@@ -133,7 +131,7 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
             if(txtEH.text!.count != 0){
                 let minutes = Int(txtEH.text!)!*60*60
                 let endTime = dateformatter.string(from:(selectedStartTime!.addingTimeInterval(TimeInterval(minutes))))
-            Constant.OrderDic!["ShootingEndTime"] = endTime
+                Constant.OrderDic["ShootingEndTime"] = endTime
             }
         }
         txtSH!.resignFirstResponder() // 2-5
@@ -149,7 +147,7 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
             dateformatter.dateFormat = "HH:mm"
             let minutes = Int(txtEH.text!)!*60*60
             let endTime = dateformatter.string(from:(selectedStartTime!.addingTimeInterval(TimeInterval(minutes))))
-        Constant.OrderDic!["ShootingEndTime"] = endTime
+            Constant.OrderDic["ShootingEndTime"] = endTime
         }
         txtEH!.resignFirstResponder() // 2-5
     }
@@ -173,7 +171,7 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
     }
     
     @IBAction func btnShowInfo(){
-        if let content = Constant.SelectedCategory!["Content"]{
+        if let content = Constant.SelectedCategory["Content"]{
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
@@ -220,11 +218,11 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        Constant.OrderDic!["Phone1"] = txtContact.text
-        Constant.OrderDic!["ShootingDate"] = txtDate.text
-        Constant.OrderDic!["ShootingStartTime"] = txtSH.text
-        Constant.OrderDic!["ShootingHours"] = txtEH.text
-        Constant.OrderDic!["NoOfPeople"] = txtNoOfPeople.text 
+        Constant.OrderDic["Phone1"] = txtContact.text
+        Constant.OrderDic["ShootingDate"] = txtDate.text
+        Constant.OrderDic["ShootingStartTime"] = txtSH.text
+        Constant.OrderDic["ShootingHours"] = txtEH.text
+        Constant.OrderDic["NoOfPeople"] = txtNoOfPeople.text 
         let controller = storyboard.instantiateViewController(withIdentifier: "BookingAddressViewController") as! BookingAddressViewController;
         self.navigationController?.pushViewController(controller, animated: true)
     }

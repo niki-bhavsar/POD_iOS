@@ -10,7 +10,7 @@ import UIKit
 import NotificationBannerSwift
 class SignupController: NSObject {
     
-    static func GetOTP(vc:SignUpOTPViewController,dicObj:[String:AnyObject]!){
+    static func GetOTP(vc:SignUpOTPViewController, dicObj : [String : Any]){
         do{
             try
                 vc.showSpinner()
@@ -35,7 +35,7 @@ class SignupController: NSObject {
         }
     }
     
-    static func ReGetOTP(vc:SignUpOTPViewController,dicObj:[String:AnyObject]!){
+    static func ReGetOTP(vc:SignUpOTPViewController, dicObj : [String : Any]){
         do{
             
             try
@@ -62,11 +62,11 @@ class SignupController: NSObject {
         
     }
     
-static func UserRegistration(vc:SignUpOTPViewController,dicObj:[String:AnyObject]){
+static func UserRegistration(vc:SignUpOTPViewController, dicObj : [String : Any]){
     do{
         vc.showSpinner()
         
-        ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.signUpUrl, imageData: dicObj["ProfileImage"] as! Data, parameters: dicObj, success: { (JSON) in
+        ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.signUpUrl, imageData: dicObj["ProfileImage"] as? Data, parameters: dicObj, success: { (JSON) in
             let result = JSON.string?.parseJSONString!
             let msg =  result!["Message"]
             if(((result!["IsSuccess"]) as! Bool) != false){

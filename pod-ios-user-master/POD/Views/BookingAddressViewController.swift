@@ -92,13 +92,13 @@ extension BookingAddressViewController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var dicAddObj = AddressController.listAddress![indexPath.row];
         if let Address = dicAddObj["Address"]{
-             Constant.OrderDic!["ShootingAddress"] = Address
+            Constant.OrderDic["ShootingAddress"] = Address
         }
         if let lat = dicAddObj["Lat"]{
-             Constant.OrderDic!["ShootingLat"] = lat
+            Constant.OrderDic["ShootingLat"] = lat
         }
         if let lng = dicAddObj["Lng"]{
-             Constant.OrderDic!["ShootingLng"] = lng
+            Constant.OrderDic["ShootingLng"] = lng
         }
      
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -114,7 +114,7 @@ extension BookingAddressViewController
     }
     
     func EditTapped(at index: IndexPath) {
-        var dicAddObj = AddressController.listAddress![index.row]
+        let dicAddObj = AddressController.listAddress![index.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "AddAddressViewController") as! AddAddressViewController
         controller.IsEdit = true;

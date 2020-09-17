@@ -25,9 +25,13 @@ class SignUpOTPViewController: BaseViewController {
     @IBOutlet var btnMale:UIButton!
     @IBOutlet var btnFemale:UIButton!
     @IBOutlet var sv:UIScrollView!
-    public var userInfo:[String:AnyObject]!
-    var imgData:Data = Data.init()
-    var IsAcceptTC:Bool = false;
+    
+    var userInfo = [String : Any]()
+    
+    var imgData : Data = Data.init()
+    var IsAcceptTC : Bool = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -53,55 +57,57 @@ class SignUpOTPViewController: BaseViewController {
     func SetUserInfo(){
 
         
-        if let name = userInfo!["Name"]{
-            lblName.text = (name as! String);
+        if let name = userInfo["Name"]{
+            lblName.text = name as? String
         }
 //        if let Address = userInfo!["Address"]{
 //            lblAdress.text = (Address as! String);
 //        }
-        if let mobileNo = userInfo?["Phone"]{
-            lblMobileNo.text = (mobileNo as! String);
+        if let mobileNo = userInfo["Phone"]{
+            lblMobileNo.text = mobileNo as? String
         }
         
-        if let dob = userInfo?["DOB"]{
-            txtDOB.text = (dob as! String);
+        if let dob = userInfo["DOB"]{
+            txtDOB.text = dob as? String
         }
-        if let email = userInfo?["Email"]{
-            lblEmail.text = (email as! String);
+        if let email = userInfo["Email"]{
+            lblEmail.text = email as? String
         }
-        if let gender = userInfo?["Gender"]{
+        if let gender = userInfo["Gender"]{
             btnMale.isSelected = false
-            btnFemale.isSelected = false;
-            if((gender as! String) == "Male"){
+            btnFemale.isSelected = false
+            
+            if(gender as? String == "Male"){
                 btnMale.isSelected = true
-            }
-            else{
+            } else{
                 btnFemale.isSelected = true
             }
         }
         else{
-            userInfo["Gender"] = "Male" as AnyObject
+            userInfo["Gender"] = "Male"
         }
-        if let profileImage = userInfo?["ProfileImage"]{
+        
+        if let profileImage = userInfo["ProfileImage"]{
             imgData = ((profileImage as! NSData) as Data)
             profileImg.image = UIImage.init(data: imgData)
         }
-        var otpDic = [String:AnyObject]()
-        otpDic["Name"] = lblName.text as AnyObject
-        otpDic["Email"] = lblEmail.text as AnyObject
-        otpDic["Phone"] = lblMobileNo.text as AnyObject
+        
+        var otpDic = [String : Any]()
+        
+        otpDic["Name"] = lblName.text
+        otpDic["Email"] = lblEmail.text
+        otpDic["Phone"] = lblMobileNo.text
+        
         SignupController.GetOTP(vc: self, dicObj: otpDic)
-        //userInfo.removeValue(forKey: "ProfileImage")
+        
         
     }
     
     @IBAction func btnTC_Click(){
-        if(btnCheck.isSelected)
-        {
+        if(btnCheck.isSelected) {
             btnCheck.isSelected = false
             IsAcceptTC = false
-        }
-        else{
+        } else{
             btnCheck.isSelected = true
                      IsAcceptTC = true
         }
@@ -127,21 +133,21 @@ class SignUpOTPViewController: BaseViewController {
         txtPassword.resignFirstResponder()
         txtOTP.resignFirstResponder()
         
-        userInfo?["OTP"]=txtOTP.text as AnyObject?
-        userInfo?["Password"]=txtPassword.text as AnyObject?
-        userInfo?["SignBy"] = "1" as AnyObject?
-        userInfo?["SocialId"] = "1" as AnyObject?
-        SignupController.UserRegistration(vc: self, dicObj: userInfo)
+        userInfo["OTP"] = txtOTP.text
+        userInfo["Password"] = txtPassword.text
+        userInfo["SignBy"] = "1"
+        userInfo["SocialId"] = "1"
+        SignupController.UserRegistration(vc: self, dicObj: userInfo )
     }
     
      @IBAction func btnResend_Click(){
         txtPassword.resignFirstResponder()
         txtOTP.resignFirstResponder()
         
-        var otpDic = [String:AnyObject]()
-        otpDic["Name"] = lblName.text as AnyObject
-        otpDic["Email"] = lblEmail.text as AnyObject
-        otpDic["Phone"] = lblMobileNo.text as AnyObject
+        var otpDic = [String : Any]()
+        otpDic["Name"] = lblName.text
+        otpDic["Email"] = lblEmail.text
+        otpDic["Phone"] = lblMobileNo.text 
         SignupController.ReGetOTP(vc: self, dicObj: otpDic)
      }
     

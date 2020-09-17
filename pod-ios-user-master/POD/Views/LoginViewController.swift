@@ -29,7 +29,19 @@ class LoginViewController: BaseViewController,GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = self
         self.navigationController?.setNavigationBarHidden(true, animated: true);
     }
+    @IBAction func forgotPasswordClicked(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                  let controller = storyboard.instantiateViewController(withIdentifier: "ForgetPasswordViewController") as! ForgetPasswordViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
     
+    @IBAction func registerClicked(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
     @IBAction func btnLoginClick(){
         if(txtEmail.text!.count == 0){
             Helper.ShowAlertMessage(message: "Please enter email/phoneno.", vc: self,title:"Required",bannerStyle: BannerStyle.warning)

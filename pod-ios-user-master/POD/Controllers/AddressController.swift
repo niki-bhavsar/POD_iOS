@@ -9,8 +9,11 @@
 import UIKit
 import NotificationBannerSwift
 class AddressController: NSObject {
+    
     public static var listAddress:[[String:Any]]?
+    
     public static var listSearchAddress:[[String:Any]]?
+    
     static func GetAddressList(userID:String,vc:BookingAddressViewController){
         do{
             try
@@ -64,13 +67,13 @@ class AddressController: NSObject {
                     if((JSON.dictionary?["IsSuccess"]) != false){
                         
                         if let Address = dicObj["Address"]{
-                                                    Constant.OrderDic!["ShootingAddress"] = Address
+                            Constant.OrderDic["ShootingAddress"] = Address
                                                }
                                                if let lat = dicObj["Lat"]{
-                                                    Constant.OrderDic!["ShootingLat"] = lat
+                                                Constant.OrderDic["ShootingLat"] = lat
                                                }
                                                if let lng = dicObj["Lng"]{
-                                                    Constant.OrderDic!["ShootingLng"] = lng
+                                                Constant.OrderDic["ShootingLng"] = lng
                                                }
                         
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -135,13 +138,13 @@ class AddressController: NSObject {
                     if((JSON.dictionary?["IsSuccess"]) != false){
                         
                         if let Address = dicObj["Address"]{
-                             Constant.OrderDic!["ShootingAddress"] = Address
+                            Constant.OrderDic["ShootingAddress"] = Address
                         }
                         if let lat = dicObj["Lat"]{
-                             Constant.OrderDic!["ShootingLat"] = lat
+                            Constant.OrderDic["ShootingLat"] = lat
                         }
                         if let lng = dicObj["Lng"]{
-                             Constant.OrderDic!["ShootingLng"] = lng 
+                            Constant.OrderDic["ShootingLng"] = lng 
                         }
                         
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)

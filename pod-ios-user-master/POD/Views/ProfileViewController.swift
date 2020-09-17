@@ -15,8 +15,8 @@ class ProfileViewController: BaseViewController {
     @IBOutlet var txtfullName:SkyFloatingLabelTextField!
     @IBOutlet var txtEmail:SkyFloatingLabelTextField!
     @IBOutlet var txtPhoneNo:SkyFloatingLabelTextField!
-    @IBOutlet var txtAddress:SkyFloatingLabelTextField!
-    @IBOutlet var sv:UIScrollView!
+//    @IBOutlet var txtAddress:SkyFloatingLabelTextField!
+//    @IBOutlet var sv:UIScrollView!
     @IBOutlet var btnSubmit:UIButton!
     @IBOutlet var activityInd:UIActivityIndicatorView!
     @IBOutlet var txtDOB:UITextField!
@@ -25,6 +25,8 @@ class ProfileViewController: BaseViewController {
     var imagePicker: ImagePicker!
     var imgData:Data!
     let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         if #available(iOS 13.0, *) {
@@ -38,7 +40,7 @@ class ProfileViewController: BaseViewController {
         self.SetStatusBarColor()
         self.imagePicker = ImagePicker(presentationController: self,delegate: self)
         profileImg.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(ProfileViewController.ShowImagePicker)))
-        sv.contentSize = CGSize.init(width: 0, height: btnSubmit.frame.origin.y+btnSubmit.frame.size.height)
+//        sv.contentSize = CGSize.init(width: 0, height: btnSubmit.frame.origin.y+btnSubmit.frame.size.height)
         
         txtEmail.isUserInteractionEnabled = false
         txtPhoneNo.isUserInteractionEnabled = false;
@@ -80,9 +82,9 @@ class ProfileViewController: BaseViewController {
         if let name = userProfile["Name"]{
             txtfullName.text = (name as! String);
         }
-        if let Address = userProfile["Address"]{
-            txtAddress.text = (Address as! String);
-        }
+//        if let Address = userProfile["Address"]{
+//            txtAddress.text = (Address as! String);
+//        }
         if let mobileNo = userProfile["Phone"]{
             txtPhoneNo.text = (mobileNo as! String);
             if(txtPhoneNo.text?.count == 0)
@@ -166,7 +168,7 @@ class ProfileViewController: BaseViewController {
         
         txtfullName.resignFirstResponder()
         txtPhoneNo.resignFirstResponder()
-        txtAddress.resignFirstResponder()
+//        txtAddress.resignFirstResponder()
         txtEmail.resignFirstResponder()
         txtDOB.resignFirstResponder()
         let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]

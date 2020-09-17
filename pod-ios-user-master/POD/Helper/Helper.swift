@@ -11,39 +11,40 @@ import CoreLocation
 import NotificationBannerSwift
 import SCLAlertView
 class Constant{
+    
     public static var APIKey:String = "123456789123456789"
     //private static var serverURL:String = "https://projects.seawindsolution.com/YOGDEV/POD/Webservices"
     private static var serverURL:String = "https://www.podahmedabad.com/test/Webservices"//"https://www.podahmedabad.com/Webservices"
     
-    public static var loginUrl:String = Constant.serverURL+"/customerLogin";
-    public static var signUpUrl:String = Constant.serverURL+"/customerRegistration";
-    public static var ForgetpasswordUrl:String = Constant.serverURL+"/customerLogin";
-    public static var ParentCategoryUrl:String = Constant.serverURL+"/getAllParentsCategory";
-    public static var SubCategoryByIdUrl:String = Constant.serverURL+"/getCategorysById/";
-    public static var getOTPURL:String = Constant.serverURL+"/customerRegistrationSendOTP";
-    public static var getResendURL:String = Constant.serverURL+"/customerRegistrationSendOTP";
-    public static var insertTrackingDataURL:String = Constant.serverURL+"/insertTrackingData";
-    public static var forgetPassOTPURL:String = Constant.serverURL+"/customerForgotPasswordSendOTP";
-    public static var forgetPasswordResend:String = Constant.serverURL+"/customerForgotPasswordReSendOTP";
-    public static var ResetPasswordSubMitURL:String = Constant.serverURL+"/customerResetPassword";
-    public static var ChangedPasswordURL:String = Constant.serverURL+"/changeCustomerPassword";
-    public static var updateCustomerProfileURL:String = Constant.serverURL+"/updateCustomerProfile";
-    public static var getCustomerProfileURL:String = Constant.serverURL+"/getCustomerProfileByCustomerId";
-    public static var getHelpInfoURL:String = Constant.serverURL+"/get247SupportSettings";
+    public static var loginUrl:String = Constant.serverURL+"/customerLogin"
+    public static var signUpUrl:String = Constant.serverURL+"/customerRegistration"
+    public static var ForgetpasswordUrl:String = Constant.serverURL+"/customerLogin"
+    public static var ParentCategoryUrl:String = Constant.serverURL+"/getAllParentsCategory"
+    public static var SubCategoryByIdUrl:String = Constant.serverURL+"/getCategorysById/"
+    public static var getOTPURL:String = Constant.serverURL+"/customerRegistrationSendOTP"
+    public static var getResendURL:String = Constant.serverURL+"/customerRegistrationSendOTP"
+    public static var insertTrackingDataURL:String = Constant.serverURL+"/insertTrackingData"
+    public static var forgetPassOTPURL:String = Constant.serverURL+"/customerForgotPasswordSendOTP"
+    public static var forgetPasswordResend:String = Constant.serverURL+"/customerForgotPasswordReSendOTP"
+    public static var ResetPasswordSubMitURL:String = Constant.serverURL+"/customerResetPassword"
+    public static var ChangedPasswordURL:String = Constant.serverURL+"/changeCustomerPassword"
+    public static var updateCustomerProfileURL:String = Constant.serverURL+"/updateCustomerProfile"
+    public static var getCustomerProfileURL:String = Constant.serverURL+"/getCustomerProfileByCustomerId"
+    public static var getHelpInfoURL:String = Constant.serverURL+"/get247SupportSettings"
     
-    public static var getAddressList:String = Constant.serverURL+"/getAllCustomerAddressByCustomerId/";
-    public static var editAddressURL:String = Constant.serverURL+"/editCustomerAddress";
-    public static var getAddreesByIDURL:String = Constant.serverURL+"/getAllCustomerAddressByCustomerId/";
-    public static var deleteAddressById:String = Constant.serverURL+"/deleteCustomerAddress";
-    public static var addAddressURL:String = Constant.serverURL+"/addNewCustomerAddress";
-    public static var getTrasportationChargeURL:String = Constant.serverURL+"/getTransportationCharge";
-     public static var getOrdersbyIDURL:String = Constant.serverURL+"/getOrderByCustomerId/";
-    public static var getOrdersbyOrderIDURL:String = Constant.serverURL+"/getOrderByOrderId/";
-    public static var sendGeneralInquiry:String = Constant.serverURL+"/addGeneralQuery";
-    public static var CreateOrderURL:String = Constant.serverURL+"/createOrder";
-    public static var orderIssueURL:String = Constant.serverURL+"/orderIssue";
-    public static var inquirySubmitURL:String = Constant.serverURL+"/BookingInquiry";
-     public static var gatePageURL:String = Constant.serverURL+"/getpage/";
+    public static var getAddressList:String = Constant.serverURL+"/getAllCustomerAddressByCustomerId/"
+    public static var editAddressURL:String = Constant.serverURL+"/editCustomerAddress"
+    public static var getAddreesByIDURL:String = Constant.serverURL+"/getAllCustomerAddressByCustomerId/"
+    public static var deleteAddressById:String = Constant.serverURL+"/deleteCustomerAddress"
+    public static var addAddressURL:String = Constant.serverURL+"/addNewCustomerAddress"
+    public static var getTrasportationChargeURL:String = Constant.serverURL+"/getTransportationCharge"
+     public static var getOrdersbyIDURL:String = Constant.serverURL+"/getOrderByCustomerId/"
+    public static var getOrdersbyOrderIDURL:String = Constant.serverURL+"/getOrderByOrderId/"
+    public static var sendGeneralInquiry:String = Constant.serverURL+"/addGeneralQuery"
+    public static var CreateOrderURL:String = Constant.serverURL+"/createOrder"
+    public static var orderIssueURL:String = Constant.serverURL+"/orderIssue"
+    public static var inquirySubmitURL:String = Constant.serverURL+"/BookingInquiry"
+     public static var gatePageURL:String = Constant.serverURL+"/getpage/"
     
      public static var extendOrderRequestURL:String = Constant.serverURL+"/extendOrderRequest"
     public static var extendOrderPaymentURL:String = Constant.serverURL+"/extendOrderPayment"
@@ -56,41 +57,46 @@ class Constant{
     public static var SendAdminMessageURL:String = Constant.serverURL+"/sendChatMessages/"
     public static var GetdminMessageURL:String = Constant.serverURL+"/getChatMessages"
     public static var getBannersURL:String = Constant.serverURL+"/getBanner"
-    public static var getNotificationbyIDURL:String = Constant.serverURL+"/getCustomNotification/";
-    public static var deleteNotificationbyIDURL:String = Constant.serverURL+"/deleteCustomNotification/";
-    public static var photographOrderPaymentURL:String = Constant.serverURL+"/photographOrderPayment/";
-    public static var getBookingInquiryURL:String = Constant.serverURL+"/getBookingInquiry/";
-    public static var getFAQURL:String = Constant.serverURL+"/getFAQ/";
-    public static var deleteAllNotification:String = Constant.serverURL+"/clearAllCustomerNotificationBycustomerId/";
-    public static var deleteAllInquiry:String = Constant.serverURL+"/clearAllBookingInquiryByCustomerId/";
-    public static var deleteInquiry:String = Constant.serverURL+"/clearAllBookingInquiryByCustomerIdInquieryId/";
-    public static var searchAddressURL:String = Constant.serverURL+"/getMapArea/";
-    public static var getUnPaidOrderByCustomerIdURL:String = Constant.serverURL+"/getUnPaidOrderByCustomerId/";
-    public static var PASOrderPaymentdURL:String = Constant.serverURL+"/PASOrderPayment";
-    public static var getSuccessResponseURL:String = Constant.serverURL+"/getSuccessResponse";
-     public static var getAppVersionURL:String = Constant.serverURL+"/GetAppVersion/1";
+    public static var getNotificationbyIDURL:String = Constant.serverURL+"/getCustomNotification/"
+    public static var deleteNotificationbyIDURL:String = Constant.serverURL+"/deleteCustomNotification/"
+    public static var photographOrderPaymentURL:String = Constant.serverURL+"/photographOrderPayment/"
+    public static var getBookingInquiryURL:String = Constant.serverURL+"/getBookingInquiry/"
+    public static var getFAQURL:String = Constant.serverURL+"/getFAQ/"
+    public static var deleteAllNotification:String = Constant.serverURL+"/clearAllCustomerNotificationBycustomerId/"
+    public static var deleteAllInquiry:String = Constant.serverURL+"/clearAllBookingInquiryByCustomerId/"
+    public static var deleteInquiry:String = Constant.serverURL+"/clearAllBookingInquiryByCustomerIdInquieryId/"
+    public static var searchAddressURL:String = Constant.serverURL+"/getMapArea/"
+    public static var getUnPaidOrderByCustomerIdURL:String = Constant.serverURL+"/getUnPaidOrderByCustomerId/"
+    public static var PASOrderPaymentdURL:String = Constant.serverURL+"/PASOrderPayment"
+    public static var getSuccessResponseURL:String = Constant.serverURL+"/getSuccessResponse"
+     public static var getAppVersionURL:String = Constant.serverURL+"/GetAppVersion/1"
     
     public static var currLat: Double = 0.0
     public static var currLng: Double = 0.0
-    public static var deviceToken: String = ""
     
+    public static var deviceToken: String = ""
     public static var FirstSubcategoryId: String = ""
     public static var AllSubcategoryId: String = ""
     public static var FirstSubcategory: String = ""
     public static var AllSubcategory: String = ""
-    public static var AllSubcategoryArr: [String] = [String]()
-    public static var AllSubcategoryIdArr: [String] = [String]()
-    public static var SelectedAddress: [String:AnyObject]?=nil;
-    public static var OrderDic: [String:Any]?
-    public static var InquiryDic: [String:AnyObject]?
     
-    public static var SelectedSubCategory: [String:AnyObject]?=nil;
-    public static var SelectedCategory: [String:AnyObject]?=nil;
+    public static var AllSubcategoryArr = [String]()
+    public static var AllSubcategoryIdArr = [String]()
+    public static var SelectedAddress = [String:Any]()
+    
+    public static var OrderDic = [String:Any]()
+    public static var InquiryDic =  [String:Any]()
+    public static var SelectedSubCategory = [String:Any]()
+    
+    public static var SelectedCategory = [String:Any]()
+    
+    
     public static var TrasportationCharges: Double = 0.0
+    
     public static var mainNav:UINavigationController?
-    public static var notificationCount:Int = 0;
+    public static var notificationCount:Int = 0
     public static var IsOpenMenu:Bool = false
-    public static var homeVC:HomeViewController?;
+    public static var homeVC:HomeViewController?
 }
 
 
@@ -100,10 +106,11 @@ class Helper: NSObject {
     public static var ISINquery = false
     public static var rootNavigation :  UINavigationController?
     static  var banner:FloatGrowingNotificationBanner?
+    
     static func SetRoundImage(img:UIImageView!,cornerRadius:Int,borderWidth:Int=1,borderColor:UIColor = UIColor.white){
-        img.layer.cornerRadius = CGFloat(cornerRadius);
+        img.layer.cornerRadius = CGFloat(cornerRadius)
         img.layer.borderColor = borderColor.cgColor
-        img.layer.borderWidth=CGFloat(borderWidth);
+        img.layer.borderWidth=CGFloat(borderWidth)
     }
     
     public static func ShowAlertMessage(message:String,buttonTitle:String = "OK",vc:UIViewController,title:String="",bannerStyle:BannerStyle = BannerStyle.success){
