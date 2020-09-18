@@ -125,7 +125,7 @@ class InqueryController: NSObject {
         }
     }
     
-    static func SubmitQuery(vc:SubmitHelpViewController,orderInfo:[String:AnyObject]){
+    static func SubmitQuery(vc:SubmitHelpViewController,orderInfo:[String:Any]){
         do{
               vc.showSpinner()
              ApiManager.sharedInstance.requestPOSTURL(Constant.orderIssueURL, params: orderInfo, success: {
@@ -153,7 +153,7 @@ class InqueryController: NSObject {
         
     }
     
-    static func SubmitQuery(vc:SubmitRequestViewController,orderInfo:[String:AnyObject]){
+    static func SubmitQuery(vc:SubmitRequestViewController,orderInfo:[String:Any]){
         do{
               vc.showSpinner()
              ApiManager.sharedInstance.requestPOSTURL(Constant.orderIssueURL, params: orderInfo, success: {

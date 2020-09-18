@@ -192,6 +192,7 @@ class Helper: NSObject {
       }
     
     public static func ArchivedUserDefaultObject(obj:Any,key:String){
+        
         let encodedData = NSKeyedArchiver.archivedData(withRootObject: obj)
         UserDefaults.standard.set(encodedData, forKey: key)
         UserDefaults.standard.synchronize()

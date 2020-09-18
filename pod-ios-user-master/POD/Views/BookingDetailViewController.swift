@@ -64,18 +64,18 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
     }
     
     func SetInfo(){
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-        if let name = userInfo!["Name"]{
-            lblName.text = (name as! String);
-        }
-       
-        if let email = userInfo?["Email"]{
-            lblemail.text = (email as! String);
-        }
-        
-        if let mobileNo = userInfo?["Phone"]{
-            txtContact.text = (mobileNo as! String);
-        }
+        let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+//        if let name = userInfo!["Name"]{
+        lblName.text = account.name
+//        }
+//
+//        if let email = userInfo?["Email"]{
+        lblemail.text = account.email
+//        }
+//
+//        if let mobileNo = userInfo?["Phone"]{
+        txtContact.text = account.phone
+//        }
         
         if(Constant.SelectedCategory != nil){
             lblPriceInfo.text =  "Hourly price for "+(Constant.AllSubcategory )+" session is ₹ "+(Constant.SelectedCategory["Price"] as! String)+" Price"

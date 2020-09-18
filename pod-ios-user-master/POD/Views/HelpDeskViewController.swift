@@ -26,8 +26,7 @@ class HelpDeskViewController: BaseViewController {
         HelpDeskController.Gethelpinfo(vc:self)
         // Do any additional setup after loading the view.
     }
-    public func SetInfo(dic:[String:AnyObject]?)
-    {
+    public func SetInfo(dic:[String:Any]?) {
         if let name = dic!["Name"]{
             lblName.text = (name as! String);
         }

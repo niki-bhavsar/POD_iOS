@@ -43,6 +43,7 @@
 		184C22D92391B228002D6866 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C22D82391B228002D6866 /* Menu.swift */; };
 		184C22DC2391B316002D6866 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C22DB2391B316002D6866 /* MenuController.swift */; };
 		184C22DF2391B75A002D6866 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C22DE2391B75A002D6866 /* MenuCell.swift */; };
+		184C3858251477BA007D1BD9 /* UpdateTermsAndConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C3857251477BA007D1BD9 /* UpdateTermsAndConditionViewController.swift */; };
 		1850F13C23A51B4A008CFCEB /* HelpDeskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1850F13B23A51B4A008CFCEB /* HelpDeskViewController.swift */; };
 		18520EB424B7268B004B740A /* ExtendPhotographerPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18520EB324B7268B004B740A /* ExtendPhotographerPaymentViewController.swift */; };
 		185290DC23999EB500E27889 /* SelectSubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185290DB23999EB500E27889 /* SelectSubCategoryViewController.swift */; };
@@ -50,6 +51,8 @@
 		185290E02399B8A000E27889 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185290DF2399B8A000E27889 /* SceneDelegate.swift */; };
 		1855C54823AA9B4200ED8141 /* MyOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1855C54723AA9B4200ED8141 /* MyOrderController.swift */; };
 		1857347623C0AE49002CBAE7 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857347523C0AE49002CBAE7 /* ChatController.swift */; };
+		18581303251483530052C77B /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18581301251483520052C77B /* AccountManager.swift */; };
+		18581304251483530052C77B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18581302251483520052C77B /* Account.swift */; };
 		185A468D23AFC68D0029FBC4 /* InquiryDetailInfoPopupViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185A468C23AFC68D0029FBC4 /* InquiryDetailInfoPopupViewcontroller.swift */; };
 		185C8AE423982F34009E6D20 /* TermsAndConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C8AE323982F34009E6D20 /* TermsAndConditionViewController.swift */; };
 		185C8AE623982F5C009E6D20 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C8AE523982F5C009E6D20 /* PrivacyPolicyViewController.swift */; };
@@ -184,6 +187,7 @@
 		184C22D82391B228002D6866 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		184C22DB2391B316002D6866 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		184C22DE2391B75A002D6866 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		184C3857251477BA007D1BD9 /* UpdateTermsAndConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTermsAndConditionViewController.swift; sourceTree = "<group>"; };
 		1850F13B23A51B4A008CFCEB /* HelpDeskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpDeskViewController.swift; sourceTree = "<group>"; };
 		18520EB324B7268B004B740A /* ExtendPhotographerPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendPhotographerPaymentViewController.swift; sourceTree = "<group>"; };
 		185290DB23999EB500E27889 /* SelectSubCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSubCategoryViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 		185290DF2399B8A000E27889 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1855C54723AA9B4200ED8141 /* MyOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderController.swift; sourceTree = "<group>"; };
 		1857347523C0AE49002CBAE7 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		18581301251483520052C77B /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		18581302251483520052C77B /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		185A468C23AFC68D0029FBC4 /* InquiryDetailInfoPopupViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryDetailInfoPopupViewcontroller.swift; sourceTree = "<group>"; };
 		185C8AE323982F34009E6D20 /* TermsAndConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewController.swift; sourceTree = "<group>"; };
 		185C8AE523982F5C009E6D20 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
@@ -376,6 +382,15 @@
 			path = CustomCells;
 			sourceTree = "<group>";
 		};
+		18581300251483520052C77B /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				18581301251483520052C77B /* AccountManager.swift */,
+				18581302251483520052C77B /* Account.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		187CAA2F250FA0C10002CE62 /* NVActivityIndicatorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +477,7 @@
 		189FA6A923904C4F008EBD79 /* POD */ = {
 			isa = PBXGroup;
 			children = (
+				18581300251483520052C77B /* Account */,
 				1813F12924D0A2660090E1FD /* GoogleService-Info.plist */,
 				18720BDD23C61B0900C1DE40 /* AvenirNext-Bold.ttf */,
 				18720BDF23C61B0A00C1DE40 /* AvenirNext-Medium.ttf */,
@@ -533,6 +549,7 @@
 				18FE8AFD2412C590004C77AC /* FAQViewController.swift */,
 				18520EB324B7268B004B740A /* ExtendPhotographerPaymentViewController.swift */,
 				187CB54F24FE70FF00A01F69 /* UpdateAppViewController.swift */,
+				184C3857251477BA007D1BD9 /* UpdateTermsAndConditionViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -768,6 +785,7 @@
 				189FA6AF23904C4F008EBD79 /* ViewController.swift in Sources */,
 				187CAA6C250FA0C10002CE62 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,
 				189FA6AB23904C4F008EBD79 /* AppDelegate.swift in Sources */,
+				184C3858251477BA007D1BD9 /* UpdateTermsAndConditionViewController.swift in Sources */,
 				18611807239C1E5200736D4D /* InqueryController.swift in Sources */,
 				187CAA7D250FA0C20002CE62 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
 				183FCD7E23CDD31400AA6F86 /* FreelancerController.swift in Sources */,
@@ -787,6 +805,7 @@
 				185C8AE623982F5C009E6D20 /* PrivacyPolicyViewController.swift in Sources */,
 				187CAA5C250FA0C10002CE62 /* NVActivityIndicatorShape.swift in Sources */,
 				18C0820C2428C7D400F8DA6E /* SearchAreaTableViewCell.swift in Sources */,
+				18581304251483530052C77B /* Account.swift in Sources */,
 				1863ECDB23B3AA70002FD5C9 /* OrderDetailTableViewCell.swift in Sources */,
 				1816A26B2393093C0022E8B8 /* MyOrderViewController.swift in Sources */,
 				1895EC65239EF48E00F2B79D /* UITextViewWorkaround.swift in Sources */,
@@ -799,6 +818,7 @@
 				18FE8B042412D01A004C77AC /* FAQCell.swift in Sources */,
 				187CAA74250FA0C10002CE62 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
 				1862970A239AE5DF00E57243 /* BookingAddressViewController.swift in Sources */,
+				18581303251483530052C77B /* AccountManager.swift in Sources */,
 				185CED9423A15F7800DAB091 /* SignupController.swift in Sources */,
 				1863E60B23B1F1F40066E33A /* ExtendViewController.swift in Sources */,
 				1862970E239AFC2A00E57243 /* MeetinPonitLocationViewController.swift in Sources */,

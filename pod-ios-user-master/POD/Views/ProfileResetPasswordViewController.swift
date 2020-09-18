@@ -56,13 +56,13 @@ class ProfileResetPasswordViewController: BaseViewController {
                txtConfirmPassword.resignFirstResponder()
                txtNewPassword.resignFirstResponder()
                txtCurrentPassword.resignFirstResponder()
-               let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-               var otpDic = [String:AnyObject]()
-               if let Id = userInfo!["Id"]{
-                    otpDic["Id"] = Id as AnyObject
-               }
-               otpDic["OldPassword"] = txtCurrentPassword.text as AnyObject
-               otpDic["NewPassword"] = txtNewPassword.text as AnyObject
+        let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+               var otpDic = [String:Any]()
+//               if let Id = userInfo!["Id"]{
+        otpDic["Id"] = account.user_id
+//               }
+               otpDic["OldPassword"] = txtCurrentPassword.text
+               otpDic["NewPassword"] = txtNewPassword.text
               ForgetPassController.ChangePassword(vc:self,dicObj:otpDic)
     }
    

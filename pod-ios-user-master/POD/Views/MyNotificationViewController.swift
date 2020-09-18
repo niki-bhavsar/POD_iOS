@@ -13,7 +13,9 @@ class MyNotificationViewController: BaseViewController,UITableViewDataSource,UIT
     public let refreshControl = UIRefreshControl()
     @IBOutlet var tblOrder:UITableView!
     @IBOutlet var btnDeleteAll:UIButton!
-    let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+
+    let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -36,15 +38,15 @@ class MyNotificationViewController: BaseViewController,UITableViewDataSource,UIT
     
     @objc private func refreshOrderData(_ sender: Any) {
         // Fetch Weather Data
-        if let Id = userInfo!["Id"]{
-            MyOrderController.GetNotificatins(userId: Id as! String, vc: self);
-        }
+//        if let Id = userInfo!["Id"]{
+        MyOrderController.GetNotificatins(userId: account.user_id, vc: self);
+//        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let Id = userInfo!["Id"]{
-            MyOrderController.GetNotificatins(userId: Id as! String, vc: self);
-        }
+//        if let Id = userInfo!["Id"]{
+        MyOrderController.GetNotificatins(userId: account.user_id, vc: self);
+//        }
     }
     
 }
@@ -100,9 +102,9 @@ extension MyNotificationViewController {
             // Fallback on earlier versions
         }
         deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-            if let Id = self.userInfo!["Id"]{
-                MyOrderController.DeleteAllNotificatins(userId: Id as! String, vc: self)
-            }
+//            if let Id = self.userInfo!["Id"]{
+            MyOrderController.DeleteAllNotificatins(userId: self.account.user_id, vc: self)
+//            }
         }))
         
         deleteAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in

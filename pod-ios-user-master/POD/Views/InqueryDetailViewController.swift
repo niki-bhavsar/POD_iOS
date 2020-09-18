@@ -65,24 +65,25 @@ class InqueryDetailViewController: BaseViewController, UIPickerViewDelegate, UIP
     }
     
     func SetInfo(){
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-        if let name = userInfo!["Name"]{
-            lblName.text = (name as! String);
-            Constant.InquiryDic["Name"] = name
-        }
+         let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
         
-        if let email = userInfo?["Email"]{
-            lblemail.text = (email as! String);
-            Constant.InquiryDic["Email"] = email
-        }
+//        if let name = userInfo!["Name"]{
+        lblName.text = account.name
+            Constant.InquiryDic["Name"] = account.name
+//        }
         
-        if let mobileNo = userInfo?["Phone"]{
-            txtContact.text = (mobileNo as! String);
-        }
+//        if let email = userInfo?["Email"]{
+            lblemail.text = account.email
+            Constant.InquiryDic["Email"] = account.email
+//        }
+//
+//        if let mobileNo = userInfo?["Phone"]{
+            txtContact.text = account.phone
+//        }
         
-        if let id = userInfo!["Id"]{
-            Constant.InquiryDic["CustomerId"] = id
-        }
+//        if let id = userInfo!["Id"]{
+            Constant.InquiryDic["CustomerId"] = account.user_id
+//        }
         //Constant.InquiryDic!["TypeOfShoot"] = "OutDoor" as AnyObject;
         Constant.OrderDic["ProductId"] = Constant.FirstSubcategoryId
         Constant.OrderDic["ProductIds"] = Constant.AllSubcategoryId

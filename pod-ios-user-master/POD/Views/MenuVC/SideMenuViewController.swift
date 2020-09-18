@@ -38,26 +38,27 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
         } else {
             // Fallback on earlier versions
         }
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-         if let name = userInfo!["Name"]{
-             lblProfileName.text = (name as! String);
-         }
-        if let imgURL = userInfo?["ProfileImage"]{
-             
-            let imageUrl:NSURL = NSURL(string:  (imgURL as! String))!
+        let account = AccountManager.instance().activeAccount
+//        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+//         if let name = userInfo!["Name"]{
+            lblProfileName.text = account?.name
+//         }
+//        if let imgURL = userInfo?["ProfileImage"]{
+        let imgURL = account?.profileImage
+        let imageUrl:NSURL = NSURL(string:  (imgURL!))!
             if(imageUrl.absoluteString?.count != 0){
              DispatchQueue.global(qos: .default).async {
              let imageData:NSData? = NSData(contentsOf: imageUrl as URL) ?? nil
                  DispatchQueue.main.async {
                     if(imageData != nil){
-                        let image = UIImage(data: imageData as! Data)
+                        let image = UIImage(data: imageData! as Data)
                     self.profileImage.image = image
                     self.profileImage.contentMode = UIView.ContentMode.scaleAspectFit
                     }
                   }
                 }
             }
-         }
+//         }
     }
     
     deinit {

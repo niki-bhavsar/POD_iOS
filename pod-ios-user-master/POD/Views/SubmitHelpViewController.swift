@@ -12,9 +12,10 @@ import NotificationBannerSwift
 class SubmitHelpViewController: BaseViewController {
     
     @IBOutlet var txtQuery: UITextView!
-    public var orderDetail:[String:AnyObject]?
-    var issueInfo:[String:AnyObject]?
-    var issuType:String?
+    public var orderDetail = [String:Any]()
+    var issueInfo  = [String:Any]()
+    var issuType = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -47,29 +48,30 @@ class SubmitHelpViewController: BaseViewController {
             Helper.ShowAlertMessage(message: "Please enter query", vc: self,title:"Required",bannerStyle: BannerStyle.warning);
             return;
         }
-        issueInfo = [String:AnyObject]();
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-         if let name = userInfo!["Name"]{
-            issueInfo!["CustomerName"] = name as AnyObject
-         }
-         if let Id = userInfo!["Id"]{
-             issueInfo!["CustomerId"] = Id as AnyObject
-         }
-         if let mobileNo = userInfo?["Phone"]{
-             issueInfo!["CustomerPhone"] = mobileNo as AnyObject
-         }
-         if let email = userInfo?["Email"]{
-             issueInfo!["CustomerEmail"] = email as AnyObject
-         }
-        issueInfo!["OrderId"] = orderDetail!["Id"] as AnyObject
-        issueInfo!["OrderNo"] = orderDetail!["OrderNo"] as AnyObject
-        issueInfo!["OrderTitle"] = orderDetail!["ProductTitle"] as AnyObject
-        issueInfo!["Type"] = issuType as AnyObject
-        issueInfo!["ReScheduleDate"] = "" as AnyObject
-        issueInfo!["ReScheduleStartTime"] = "" as AnyObject
-        issueInfo!["ReScheduleEndTime"] = "" as AnyObject
-        issueInfo!["Issue"] = txtQuery.text as AnyObject
-        InqueryController.SubmitQuery(vc: self, orderInfo: issueInfo!)
+        issueInfo = [String:Any]()
+        
+        let account = AccountManager.instance().activeAccount! //Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+//         if let name = userInfo!["Name"]{
+        issueInfo["CustomerName"] = account.name
+//         }
+//         if let Id = userInfo!["Id"]{
+        issueInfo["CustomerId"] = account.user_id
+//         }
+//         if let mobileNo = userInfo?["Phone"]{
+        issueInfo["CustomerPhone"] = account.phone
+//         }
+//         if let email = userInfo?["Email"]{
+        issueInfo["CustomerEmail"] = account.email
+//         }
+        issueInfo["OrderId"] = orderDetail["Id"]
+        issueInfo["OrderNo"] = orderDetail["OrderNo"]
+        issueInfo["OrderTitle"] = orderDetail["ProductTitle"]
+        issueInfo["Type"] = issuType
+        issueInfo["ReScheduleDate"] = ""
+        issueInfo["ReScheduleStartTime"] = ""
+        issueInfo["ReScheduleEndTime"] = ""
+        issueInfo["Issue"] = txtQuery.text
+        InqueryController.SubmitQuery(vc: self, orderInfo: issueInfo)
     }
 
 }

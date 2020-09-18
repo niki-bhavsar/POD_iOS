@@ -17,15 +17,17 @@ import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,UNUserNotificationCenterDelegate,MessagingDelegate {
+    
     var player: AVAudioPlayer?
     var locationManager:CLLocationManager!
     var window : UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-       //Alamofire logs
-               NetworkActivityLogger.shared.startLogging()
-               NetworkActivityLogger.shared.level = .debug
+        //Alamofire logs
+        NetworkActivityLogger.shared.startLogging()
+        NetworkActivityLogger.shared.level = .debug
         
         // Keyboard Manager for avoid scrolling
         IQKeyboardManager.shared().isEnabled = true
@@ -59,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         } else {
             // Fallback on earlier versions
         }
+        
         UIApplication.shared.applicationIconBadgeNumber = 0
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as! SplashViewController
@@ -87,8 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     
     // This method will be called when app received push notifications in foreground
     @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-    { completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
+        completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
         
         DispatchQueue.global(qos: .background).async {
             DispatchQueue.main.async {
@@ -178,8 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         
-        if(Constant.currLat != userLocation.coordinate.latitude)
-        {
+        if(Constant.currLat != userLocation.coordinate.latitude){
             DispatchQueue.global(qos: .background).async {
                 print("Run on background thread")
                 LoginController.SaveUserTrackingData()
@@ -195,8 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         Constant.currLng = userLocation.coordinate.longitude
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-    {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
         print("Error \(error)")
     }
     

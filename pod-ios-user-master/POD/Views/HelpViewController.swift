@@ -11,7 +11,8 @@ import UIKit
 
 class HelpViewController: BaseViewController {
 
-    public var orderDetail:[String:AnyObject]?
+    public var orderDetail = [String:Any]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -28,14 +29,15 @@ class HelpViewController: BaseViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                let controller = storyboard.instantiateViewController(withIdentifier: "SubmitHelpViewController") as! SubmitHelpViewController
         controller.issuType = sender.tag.description
-        controller.orderDetail = self.orderDetail; Helper.rootNavigation?.pushViewController(controller, animated: true)
+        controller.orderDetail = self.orderDetail
+        Helper.rootNavigation?.pushViewController(controller, animated: true)
     }
     
     @IBAction func btnReschedule_CLick(sender:UIButton){
            let storyboard = UIStoryboard(name: "Main", bundle: nil)
                   let controller = storyboard.instantiateViewController(withIdentifier: "SubmitRequestViewController") as! SubmitRequestViewController
         controller.issuType = sender.tag.description
-        controller.orderDetail = self.orderDetail;
+        controller.orderDetail = self.orderDetail
                   Helper.rootNavigation?.pushViewController(controller, animated: true)
        }
     

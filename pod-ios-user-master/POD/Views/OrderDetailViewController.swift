@@ -29,7 +29,8 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     @IBOutlet public var heightConstraing:NSLayoutConstraint!
     @IBOutlet public var TimeheightConstraing:NSLayoutConstraint!
     public var orderID:String?
-    public var orderInfoDetail:[String:AnyObject]?
+    public var orderInfoDetail = [String:Any]()
+    
     public let refreshControl = UIRefreshControl()
     var downloadTask: URLSessionDownloadTask!
     var backgroundSession: URLSession!
@@ -70,8 +71,8 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     
     @IBAction func btnDownload_Click(){
         if(self.orderInfoDetail != nil){
-            if let invoiceFile = self.orderInfoDetail!["InVoiceFile"]{
-                if(invoiceFile.length != 0){
+            if let invoiceFile = self.orderInfoDetail["InVoiceFile"]{
+                if((invoiceFile as AnyObject).length != 0){
                     self.showSpinner()
                     let url = URL(string: invoiceFile as! String)!
                     downloadTask = backgroundSession.downloadTask(with: url)
@@ -95,7 +96,8 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     @IBAction func btnGetHelp_Click(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "HelpViewController") as! HelpViewController
-        controller.orderDetail =  orderInfoDetail; self.navigationController?.pushViewController(controller, animated: true)
+        controller.orderDetail =  orderInfoDetail
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     

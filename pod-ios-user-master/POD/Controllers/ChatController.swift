@@ -126,7 +126,7 @@ class ChatController: NSObject {
         return s1 < s2
     }
     
-    static func SendMessage(vc:ChatViewController,dicObj:[String:AnyObject]){
+    static func SendMessage(vc:ChatViewController,dicObj:[String:Any]){
         do{
             vc.showSpinner()
             
@@ -151,7 +151,7 @@ class ChatController: NSObject {
         }
     }
     
-    static func SendAdminMessage(vc:AdminChatViewController,dicObj:[String:AnyObject]){
+    static func SendAdminMessage(vc:AdminChatViewController,dicObj:[String:Any]){
         do{
             vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.SendAdminMessageURL,  params: dicObj, success: { (JSON) in

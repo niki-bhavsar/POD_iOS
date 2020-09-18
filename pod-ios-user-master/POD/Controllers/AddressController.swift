@@ -56,7 +56,7 @@ class AddressController: NSObject {
         
     }
     
-    static func AddAddress(vc:AddAddressViewController,dicObj:[String:AnyObject]!){
+    static func AddAddress(vc:AddAddressViewController,dicObj:[String:Any]!){
         do{
             
             try
@@ -127,7 +127,7 @@ class AddressController: NSObject {
         }
     }
     
-    static func EditAddress(vc:AddAddressViewController,dicObj:[String:AnyObject]!){
+    static func EditAddress(vc:AddAddressViewController,dicObj:[String:Any]!){
         do{
             
             try

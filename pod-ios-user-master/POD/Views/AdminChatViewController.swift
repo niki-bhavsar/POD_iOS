@@ -14,8 +14,10 @@ class AdminChatViewController: BaseViewController {
         @IBOutlet var txtChatMsg:UITextField!
         public var dicObj:[String:AnyObject]!
         public let refreshControl = UIRefreshControl()
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-        override func viewDidLoad() {
+    
+       let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+       
+    override func viewDidLoad() {
             super.viewDidLoad()
             if #available(iOS 13.0, *) {
                 overrideUserInterfaceStyle = .light
@@ -25,9 +27,9 @@ class AdminChatViewController: BaseViewController {
             self.KeyBoardNotificationObserver()
             self.tblChat.estimatedRowHeight = 60;
             self.tblChat.rowHeight = UITableView.automaticDimension
-            if let Id = userInfo!["Id"]{
-                ChatController.GetAdminChatMessage(vc: self, senderID: (Id as! String), receiverID: "1")
-            }
+//            if let Id = userInfo!["Id"]{
+        ChatController.GetAdminChatMessage(vc: self, senderID: account.user_id, receiverID: "1")
+//            }
             if #available(iOS 10.0, *) {
                 tblChat.refreshControl = refreshControl
             } else {
@@ -38,20 +40,20 @@ class AdminChatViewController: BaseViewController {
         }
         
         @objc private func refreshOrderData(_ sender: Any) {
-           if let Id = userInfo!["Id"]{
-                  ChatController.GetAdminChatMessage(vc: self, senderID: (Id as! String), receiverID: "1")
-            }
+//           if let Id = userInfo!["Id"]{
+                  ChatController.GetAdminChatMessage(vc: self, senderID: account.user_id, receiverID: "1")
+//            }
         }
         
         @IBAction func btnBack(sender:UIButton){
             let callOKActionHandler = { () -> Void in
-                var dic = [String:AnyObject]();
-                dic["uType"] = "c" as AnyObject;
-                dic["isLiveChat"] = false as AnyObject;
-                dic["isActiveChat"] = false as AnyObject;
-                dic["Sender"] = (self.userInfo!["Id"] as! String) as AnyObject;
-                dic["Receiver"] = "1" as AnyObject;
-                dic["Message"] = "Offline" as AnyObject;
+                var dic = [String:Any]()
+                dic["uType"] = "c"
+                dic["isLiveChat"] = false
+                dic["isActiveChat"] = false
+                dic["Sender"] = self.account.user_id
+                dic["Receiver"] = "1"
+                dic["Message"] = "Offline"
                 ChatController.SendAdminMessage(vc: self, dicObj: dic)
                 self.navigationController?.popViewController(animated: true)
            
@@ -62,22 +64,22 @@ class AdminChatViewController: BaseViewController {
             Helper.ShowAlertMessageWithHandlesr(message: "Drop your message we will response you and notify soon thanks.", buttonTitle: "OK", title: "Are you sure do you want to go back?", vc: self, actionOK: callOKActionHandler, actionCancel: callCancelActionHandler)
        }
         
-        @IBAction func btnSend(sender:UIButton){
-                if(txtChatMsg.text!.count == 0){
-                    Helper.ShowAlertMessage(message:"Please enter message" , buttonTitle: "OK", vc: self, title: "Required", bannerStyle: .warning)
-                    return;
-                }
-               var dic = [String:AnyObject]();
-               dic["uType"] = "c" as AnyObject;
-               dic["isLiveChat"] = true as AnyObject;
-               dic["isActiveChat"] = true as AnyObject;
-               dic["Sender"] = (userInfo!["Id"] as! String) as AnyObject;
-               dic["Receiver"] = "1" as AnyObject;
-               dic["Message"] = txtChatMsg.text as AnyObject;
-               ChatController.SendAdminMessage(vc: self, dicObj: dic)
-               txtChatMsg.text = "";
-           
+    @IBAction func btnSend(sender:UIButton){
+        if(txtChatMsg.text!.count == 0){
+            Helper.ShowAlertMessage(message:"Please enter message" , buttonTitle: "OK", vc: self, title: "Required", bannerStyle: .warning)
+            return;
         }
+        var dic = [String:Any]();
+        dic["uType"] = "c"
+        dic["isLiveChat"] = true
+        dic["isActiveChat"] = true
+        dic["Sender"] = account.user_id
+        dic["Receiver"] = "1"
+        dic["Message"] = txtChatMsg.text
+        ChatController.SendAdminMessage(vc: self, dicObj: dic)
+        txtChatMsg.text = ""
+        
+    }
         
         func KeyBoardNotificationObserver(){
             NotificationCenter.default.addObserver(self, selector: #selector(self.KeyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil); NotificationCenter.default.addObserver(self, selector: #selector(self.KeyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)

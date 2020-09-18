@@ -14,9 +14,10 @@ class SubmitRequestViewController: BaseViewController,UIPickerViewDelegate,UIPic
     @IBOutlet var txtSH:UITextField!
     @IBOutlet var txtEH:UITextField!
     @IBOutlet var txtQuery: UITextView!
-    public var orderDetail:[String:AnyObject]?
-    var issueInfo:[String:AnyObject]?
-    var issuType:String?
+    public var orderDetail = [String:Any]()
+    var issueInfo = [String:Any]()
+    var issuType = String()
+    
      var pickerView = UIPickerView()
     var hours = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16.17,18,19,20,21,22,23,24]
        
@@ -92,29 +93,30 @@ class SubmitRequestViewController: BaseViewController,UIPickerViewDelegate,UIPic
             Helper.ShowAlertMessage(message: "Please  select shooting hours", vc: self,title:"Required",bannerStyle: BannerStyle.warning);
             return;
         }
-        issueInfo = [String:AnyObject]();
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-         if let name = userInfo!["Name"]{
-            issueInfo!["CustomerName"] = name as AnyObject
-         }
-         if let Id = userInfo!["Id"]{
-             issueInfo!["CustomerId"] = Id as AnyObject
-         }
-         if let mobileNo = userInfo?["Phone"]{
-             issueInfo!["CustomerPhone"] = mobileNo as AnyObject
-         }
-         if let email = userInfo?["Email"]{
-             issueInfo!["CustomerEmail"] = email as AnyObject
-         }
-        issueInfo!["OrderId"] = orderDetail!["Id"] as AnyObject
-        issueInfo!["OrderNo"] = orderDetail!["OrderNo"] as AnyObject
-        issueInfo!["OrderTitle"] = orderDetail!["ProductTitle"] as AnyObject
-        issueInfo!["Type"] = issuType as AnyObject
-        issueInfo!["ReScheduleDate"] = txtDate.text as AnyObject
-        issueInfo!["ReScheduleStartTime"] = txtSH.text as AnyObject
-        issueInfo!["ReScheduleEndTime"] = txtEH.text as AnyObject
-        issueInfo!["Issue"] = txtQuery.text as AnyObject
-        InqueryController.SubmitQuery(vc: self, orderInfo: issueInfo!)
+        issueInfo = [String:Any]()
+        
+        let accoount = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+//         if let name = userInfo!["Name"]{
+        issueInfo["CustomerName"] = accoount.name
+//         }
+//         if let Id = userInfo!["Id"]{
+        issueInfo["CustomerId"] = accoount.user_id
+//         }
+//         if let mobileNo = userInfo?["Phone"]{
+        issueInfo["CustomerPhone"] = accoount.phone
+//         }
+//         if let email = userInfo?["Email"]{
+        issueInfo["CustomerEmail"] = accoount.email
+//         }
+        issueInfo["OrderId"] = orderDetail["Id"]
+        issueInfo["OrderNo"] = orderDetail["OrderNo"]
+        issueInfo["OrderTitle"] = orderDetail["ProductTitle"]
+        issueInfo["Type"] = issuType
+        issueInfo["ReScheduleDate"] = txtDate.text
+        issueInfo["ReScheduleStartTime"] = txtSH.text
+        issueInfo["ReScheduleEndTime"] = txtEH.text
+        issueInfo["Issue"] = txtQuery.text
+        InqueryController.SubmitQuery(vc: self, orderInfo: issueInfo)
     }
   
 }

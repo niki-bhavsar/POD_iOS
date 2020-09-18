@@ -20,8 +20,10 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal {
     @IBOutlet var lblAmount:UILabel!
     @IBOutlet var lblVisiting:UILabel!
     @IBOutlet var lblTotal:UILabel!
-    public var dicInfo:[String:AnyObject]!
-    let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    public var dicInfo:[String:Any]!
+    
+    let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.SetData()

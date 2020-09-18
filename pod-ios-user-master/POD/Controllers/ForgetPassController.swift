@@ -10,7 +10,7 @@ import UIKit
 import NotificationBannerSwift
 class ForgetPassController: NSObject {
 
-    static func ForgetPasswordSendOTP(vc:ForgetPasswordViewController,dicObj:[String:AnyObject]!){
+    static func ForgetPasswordSendOTP(vc:ForgetPasswordViewController,dicObj:[String:Any]!){
         do{
             
             try
@@ -69,7 +69,7 @@ class ForgetPassController: NSObject {
         }
     }
     
-    static func ResetPasswordSubmit(vc:ResetPasswordViewController,dicObj:[String:AnyObject]!){
+    static func ResetPasswordSubmit(vc:ResetPasswordViewController,dicObj:[String:Any]!){
         do{
             
             try
@@ -99,7 +99,7 @@ class ForgetPassController: NSObject {
         }
     }
     
-    static func ChangePassword(vc:ProfileResetPasswordViewController,dicObj:[String:AnyObject]!){
+    static func ChangePassword(vc:ProfileResetPasswordViewController,dicObj:[String:Any]!){
         do{
             
             try
@@ -146,6 +146,7 @@ class ForgetPassController: NSObject {
                 }
             }
         }
+        AccountManager.instance().activeAccount = nil
         if(isPresent){
             vc.navigationController?.popToViewController(findVc!, animated: true)
         }

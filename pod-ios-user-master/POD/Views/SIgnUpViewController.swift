@@ -122,9 +122,9 @@ class SIgnUpViewController: BaseViewController {
             Helper.ShowAlertMessage(message:"Please select profile image" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return;
         } else if(btnTerms.isSelected == false){
-                   Helper.ShowAlertMessage(message:"Please agree Terms & Condition and Privacy Policy" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
-                   return;
-               }
+            Helper.ShowAlertMessage(message:"Please agree Terms & Condition and Privacy Policy" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
+            return;
+        }
         
         var userInfo = [String : Any]()
         if(isImageSelected){
@@ -150,6 +150,7 @@ class SIgnUpViewController: BaseViewController {
         } else if(btnFemale.isSelected){
             userInfo["Gender"] = "Female"
         }
+        userInfo["TermsCondition"] = "1"
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SignUpOTPViewController") as! SignUpOTPViewController

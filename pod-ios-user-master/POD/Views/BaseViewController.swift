@@ -54,6 +54,7 @@ extension UIViewController : UITextFieldDelegate,UITextViewDelegate{
     }
     
     @IBAction func btnLogout_Click(){
+            AccountManager.instance().activeAccount = nil
     self.navigationController?.popToRootViewController(animated: true);
     }
     

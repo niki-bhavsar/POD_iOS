@@ -21,7 +21,7 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
     @IBOutlet weak var lblGST: UILabel!
     @IBOutlet var lblShootingAmount:UILabel!
     @IBOutlet var lblExtShootingAmount:UILabel!
-    public var dicOrder:[String:AnyObject]!
+    public var dicOrder:[String:Any]!
     
     override func viewDidLoad() {
         super.viewDidLoad()

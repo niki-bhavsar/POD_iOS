@@ -44,20 +44,21 @@ class SendGeneralInquiry: BaseViewController {
     }
     
     @IBAction func btnSend_Click(){
-        var QueryInfo:[String:AnyObject] = [String:AnyObject]()
-               let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-                if let name = userInfo!["Name"]{
-                    QueryInfo["Name"] = (name as! String) as AnyObject;
-                }
-                if let Address = userInfo!["Address"]{
-                    QueryInfo["Email"] = (Address as! String) as AnyObject;
-                }
-               
-                if let email = userInfo?["Email"]{
-                    QueryInfo["Phone"]  = (email as! String) as AnyObject;
-                }
-                QueryInfo["Message"]  = (txtMsg.text!) as AnyObject;
-                QueryInfo["Image"] = imgData as AnyObject?
+        var QueryInfo : [String:Any] = [String:Any]()
+              let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+        
+//                if let name = userInfo!["Name"]{
+        QueryInfo["Name"] = account.name
+//                }
+//                if let Address = userInfo!["Address"]{
+        QueryInfo["Email"] = account.email
+//                }
+//
+//                if let email = userInfo?["Email"]{
+        QueryInfo["Phone"]  = account.email
+//                }
+                QueryInfo["Message"]  = (txtMsg.text!)
+                QueryInfo["Image"] = imgData
                 HelpDeskController.SendGeneralInquiry(vc: self, dicObj: QueryInfo)
            
     }

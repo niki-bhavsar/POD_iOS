@@ -8,12 +8,14 @@
 
 import UIKit
 
-class MyInquiryViewController:BaseViewController,UITableViewDataSource,UITableViewDelegate {
-
+class MyInquiryViewController:BaseViewController, UITableViewDataSource, UITableViewDelegate {
+    
     public let refreshControl = UIRefreshControl()
     @IBOutlet var tblInquiry:UITableView!
     @IBOutlet var btnDeleteAll:UIButton!
-    let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
+    let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -30,21 +32,22 @@ class MyInquiryViewController:BaseViewController,UITableViewDataSource,UITableVi
             tblInquiry.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(refreshOrderData(_:)), for: .valueChanged)
-
+        
         // Do any additional setup after loading the view.
     }
     
     @objc private func refreshOrderData(_ sender: Any) {
-           // Fetch Weather Data
-           if let Id = userInfo!["Id"]{
-               InqueryController.GetAllInquiry(userId: Id as! String, vc: self);
-           }
-       }
+        // Fetch Weather Data
+        //           if let Id = userInfo!["Id"]{
+        InqueryController.GetAllInquiry(userId: account.user_id, vc: self);
+        //           }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let Id = userInfo!["Id"]{
-            InqueryController.GetAllInquiry(userId: Id as! String, vc: self);
-        }
+        //        if let Id = userInfo!["Id"]{
+        InqueryController.GetAllInquiry(userId:account.user_id, vc: self);
+        //        }
     }
     
     @IBAction func btnDeleteAll(sender:UIButton){
@@ -56,9 +59,9 @@ class MyInquiryViewController:BaseViewController,UITableViewDataSource,UITableVi
             // Fallback on earlier versions
         }
         deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-            if let Id = self.userInfo!["Id"]{
-                InqueryController.DeleteAllInquiries(userId: Id as! String, vc: self)
-            }
+            
+            InqueryController.DeleteAllInquiries(userId: self.account.user_id, vc: self)
+            
         }))
         
         deleteAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -108,16 +111,16 @@ extension MyInquiryViewController {
             cell.lblId!.text = "\(Id as! String)"
         }
         if let From = orderOBj!["StartTime"]{
-           cell.lblFrom!.text = "From: \(From as! String)"
+            cell.lblFrom!.text = "From: \(From as! String)"
         }
         if let To = orderOBj!["EndTime"]{
-           cell.lblTo!.text = "To: \(To as! String)"
+            cell.lblTo!.text = "To: \(To as! String)"
         }
         cell.setNeedsUpdateConstraints();
         cell.updateConstraintsIfNeeded();
         return cell;
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
     }
 }

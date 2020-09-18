@@ -20,8 +20,8 @@ class HelpDeskController: NSObject {
             ApiManager.sharedInstance.requestGETURL(Constant.getHelpInfoURL, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    helpInfo = (JSON.dictionaryObject!["ResponseData"]) as? [String:Any];
-                    vc.SetInfo(dic: helpInfo as [String : AnyObject]?)
+                    helpInfo = (JSON.dictionaryObject!["ResponseData"]) as? [String:Any]
+                    vc.SetInfo(dic: helpInfo)
                 }
                 else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
@@ -36,7 +36,7 @@ class HelpDeskController: NSObject {
         
     }
     
-    static func SendGeneralInquiry(vc:SendGeneralInquiry,dicObj:[String:AnyObject]){
+    static func SendGeneralInquiry(vc:SendGeneralInquiry,dicObj:[String:Any]){
         do{
             if(vc.txtMsg.text.count==0 || vc.txtMsg.text == "Enter Message" ){
                 Helper.ShowAlertMessage(message:"Please enter inquiry message." , vc: vc)

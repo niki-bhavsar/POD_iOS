@@ -13,7 +13,9 @@ class FAQViewController:BaseViewController, UITableViewDataSource,UITableViewDel
     public let refreshControl = UIRefreshControl()
     @IBOutlet var tblFAQ:UITableView!
     @IBOutlet var btnDeleteAll:UIButton!
-    let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
+   let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -36,15 +38,15 @@ class FAQViewController:BaseViewController, UITableViewDataSource,UITableViewDel
     
     @objc private func refreshOrderData(_ sender: Any) {
            // Fetch Weather Data
-           if let Id = userInfo!["Id"]{
-               InqueryController.GetFAQ(userId: Id as! String, vc: self);
-           }
+//           if let Id = userInfo!["Id"]{
+        InqueryController.GetFAQ(userId: account.user_id, vc: self);
+//           }
        }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let Id = userInfo!["Id"]{
-            InqueryController.GetFAQ(userId: Id as! String, vc: self);
-        }
+//        if let Id = userInfo!["Id"]{
+            InqueryController.GetFAQ(userId: account.user_id, vc: self);
+//        }
     }
     
 }

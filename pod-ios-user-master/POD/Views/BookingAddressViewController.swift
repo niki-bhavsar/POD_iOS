@@ -43,10 +43,10 @@ class BookingAddressViewController: BaseViewController, UITableViewDelegate, UIT
     }
     
     func getAddressList(){
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-        if let Id = userInfo!["Id"]{
-            AddressController.GetAddressList(userID: Id as! String, vc: self)
-        }
+        let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+//        if let Id = userInfo!["Id"]{
+        AddressController.GetAddressList(userID: account.user_id, vc: self)
+//        }
     }
 
 }

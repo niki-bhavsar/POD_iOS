@@ -24,7 +24,8 @@ class ProfileViewController: BaseViewController {
     @IBOutlet var btnFemale:UIButton!
     var imagePicker: ImagePicker!
     var imgData:Data!
-    let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
+    let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
     
     
     override func viewDidLoad() {
@@ -46,9 +47,9 @@ class ProfileViewController: BaseViewController {
         txtPhoneNo.isUserInteractionEnabled = false;
         btnSubmit.isEnabled = false
         self.btnMale.isSelected = true;
-        if let Id = userInfo!["Id"]{
-            LoginController.GetCustomerProfileForProfile(vc: self, userID: Id as! String, IsBack: false)
-        }
+//        let Id = account.user_id
+            LoginController.GetCustomerProfileForProfile(vc: self, userID: account.user_id, IsBack: false)
+        
         
         //self.LoadProfileData()
     }
@@ -77,8 +78,8 @@ class ProfileViewController: BaseViewController {
         sender.isSelected = true;
     }
     
-    func LoadProfileData(userProfile:[String:AnyObject]){
-        
+    func LoadProfileData(userProfile:[String:Any]){
+        account.parseUserDict(userDict: userProfile as NSDictionary, account: account)
         if let name = userProfile["Name"]{
             txtfullName.text = (name as! String);
         }
@@ -171,23 +172,27 @@ class ProfileViewController: BaseViewController {
 //        txtAddress.resignFirstResponder()
         txtEmail.resignFirstResponder()
         txtDOB.resignFirstResponder()
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-        var otpDic = [String:AnyObject]()
-        if let Id = userInfo!["Id"]{
-            otpDic["Id"] = Id as AnyObject
-        }
-        otpDic["ProfileImage"] = profileImg.image!.jpegData(compressionQuality: 0.5) as AnyObject?
-        otpDic["Name"] = txtfullName.text as AnyObject
-        otpDic["Address"] = Date.init() as AnyObject
-        otpDic["Phone"] = txtPhoneNo.text as AnyObject
+        
+//        let account = AccountManager.instance().activeAccount!
+//        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+        
+        var otpDic = [String:Any]()
+        
+      
+        otpDic["Id"] = account.user_id
+        
+        otpDic["ProfileImage"] = profileImg.image!.jpegData(compressionQuality: 0.5) 
+        otpDic["Name"] = txtfullName.text
+        otpDic["Address"] = Date.init()
+        otpDic["Phone"] = txtPhoneNo.text
         if(btnMale.isSelected){
-            otpDic["Gender"] = "Male" as AnyObject;
+            otpDic["Gender"] = "Male"
+        } else {
+            otpDic["Gender"] = "Female"
         }
-        else {
-            otpDic["Gender"] = "Female" as AnyObject;
-        }
-        otpDic["DOB"] = txtDOB.text as AnyObject;
-        LoginController.UpdateUserProfile(vc: self, dicObj: otpDic)
+        otpDic["DOB"] = txtDOB.text
+          otpDic["TermsCondition"] = "1"
+        LoginController.UpdateUserProfile(vc: self, dicObj: otpDic, account: account)
     }
     
 }

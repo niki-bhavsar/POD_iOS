@@ -114,26 +114,27 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
     }
     
     func AddAddress(){
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-         var otpDic = [String:AnyObject]()
-         if let Id = userInfo!["Id"]{
-              otpDic["CustomerId"] = Id as AnyObject
-         }
+         let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+         var otpDic = [String:Any]()
+        
+//         if let Id = userInfo!["Id"]{
+        otpDic["CustomerId"] = account.user_id
+//         }
           
-        otpDic["Type"] = selectedType.description as AnyObject
+        otpDic["Type"] = selectedType.description
         if(selectedType == 3){
-            otpDic["Title"] = txtOther.text as AnyObject
+            otpDic["Title"] = txtOther.text
         }
         else if(selectedType == 2){
-            otpDic["Title"] = "Work" as AnyObject
+            otpDic["Title"] = "Work"
         }
         else if(selectedType == 1){
-            otpDic["Title"] = "Home" as AnyObject
+            otpDic["Title"] = "Home"
         }
                
-        otpDic["Address"] = txtQuery.text as AnyObject
-        otpDic["Lat"] = self.lat.description as AnyObject
-        otpDic["Lng"] = self.lng.description as AnyObject
+        otpDic["Address"] = txtQuery.text
+        otpDic["Lat"] = self.lat.description
+        otpDic["Lng"] = self.lng.description
         AddressController.AddAddress(vc: self, dicObj: otpDic)
         
 //        @Part("CustomerId") RequestBody CustomerId,
@@ -145,23 +146,26 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
     }
     
     func UpdateAdddress(){
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-         var otpDic = [String:AnyObject]()
-         if let Id = userInfo!["Id"]{
-              otpDic["CustomerId"] = Id as AnyObject
-         }
-        otpDic["Id"] = editDic!["Id"] as AnyObject
-        otpDic["Type"] = selectedType.description as AnyObject
+         let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+         var otpDic = [String:Any]()
+        
+//         if let Id = userInfo!["Id"]{
+                 otpDic["CustomerId"] = account.user_id
+         //         }
+        
+        otpDic["Id"] = editDic!["Id"]
+        otpDic["Type"] = selectedType.description
         if(selectedType == 3){
-            otpDic["Title"] = txtOther.text as AnyObject
+            otpDic["Title"] = txtOther.text
         }
         else if(selectedType == 2){
-            otpDic["Title"] = "Work" as AnyObject
+            otpDic["Title"] = "Work"
         }
         else if(selectedType == 1){
-            otpDic["Title"] = "Home" as AnyObject
+            otpDic["Title"] = "Home"
         }
-        var add = txtQuery.text;
+        var add = txtQuery.text
+        
         if(txtHome.text!.count>0){
             add = add!+", "+txtHome.text!
         }
@@ -169,8 +173,8 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
             add = add!+", "+txtLandmark.text!
         }
         otpDic["Address"] = add as AnyObject
-        otpDic["Lat"] = self.lat.description as AnyObject
-        otpDic["Lng"] = self.lng.description as AnyObject
+        otpDic["Lat"] = self.lat.description
+        otpDic["Lng"] = self.lng.description
         AddressController.EditAddress(vc: self, dicObj: otpDic)
     }
     
@@ -178,8 +182,8 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
         
         let latitude = editDic!["Lat"]
         let longitude = editDic?["Lng"]
-        lat = Double(((latitude?.description)!)) as! Double
-        lng = Double(((longitude?.description)!)) as! Double
+        lat = Double(((latitude?.description)!))!
+        lng = Double(((longitude?.description)!))!
         Helper.getAddressFromLatLon(pdblLatitude: (latitude?.description)!, withLongitude: (longitude?.description)!,txt: self.txtQuery)
         self.SetLocationOnMap();
         if let Title = editDic!["Title"]{

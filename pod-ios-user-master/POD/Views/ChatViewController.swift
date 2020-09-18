@@ -15,7 +15,9 @@ class ChatViewController: BaseViewController {
     public var dicObj:[String:AnyObject]!
     public let refreshControl = UIRefreshControl()
     var refreshTimer:Timer?
-    let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
+    let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -26,9 +28,9 @@ class ChatViewController: BaseViewController {
         self.KeyBoardNotificationObserver()
         self.tblChat.estimatedRowHeight = 60;
         self.tblChat.rowHeight = UITableView.automaticDimension
-        if let Id = userInfo!["Id"]{
-             ChatController.GetChatMessage(vc: self, senderID: (dicObj["PhotographerId"] as! String), receiverID: (Id as! String),OrderID: (dicObj["Id"] as! String))
-        }
+//        if let Id = userInfo!["Id"]{
+        ChatController.GetChatMessage(vc: self, senderID: (dicObj["PhotographerId"] as! String), receiverID: account.user_id, OrderID: (dicObj["Id"] as! String))
+//        }
         if #available(iOS 10.0, *) {
             tblChat.refreshControl = refreshControl
         } else {
@@ -40,42 +42,45 @@ class ChatViewController: BaseViewController {
     }
     
     @objc private func refreshOrderData(_ sender: Any) {
-       if let Id = userInfo!["Id"]{
-             ChatController.GetChatMessage(vc: self, senderID: (dicObj["PhotographerId"] as! String), receiverID: (Id as! String),OrderID: (dicObj["Id"] as! String))
-        }
+//       if let Id = userInfo!["Id"]{
+             ChatController.GetChatMessage(vc: self, senderID: (dicObj["PhotographerId"] as! String), receiverID: account.user_id,OrderID: (dicObj["Id"] as! String))
+//        }
     }
     
     @objc private func refreshOrderDataWithTimeInterval(_ sender: Any) {
-       if let Id = userInfo!["Id"]{
-             ChatController.GetChatMessageWithoutLoadder(vc: self, senderID: (Id as! String), receiverID: (dicObj["PhotographerId"] as! String),OrderID: (dicObj["Id"] as! String))
-        }
+//       if let Id = userInfo!["Id"]{
+             ChatController.GetChatMessageWithoutLoadder(vc: self, senderID: account.user_id, receiverID: (dicObj["PhotographerId"] as! String),OrderID: (dicObj["Id"] as! String))
+//        }
     }
     
     @IBAction func btnClickLocation(sender:UIButton){
         let currLocation = "https://www.google.com/maps/search/?api=1&query=\(Constant.currLat.description),\(Constant.currLng.description)"
-        var dic = [String:AnyObject]();
-        dic["uType"] = "p" as AnyObject;
-        dic["isLocation"] = true as AnyObject;
-        dic["Sender"] = (userInfo!["Id"] as! String) as AnyObject;
-        dic["Receiver"] = (dicObj["PhotographerId"] as! String) as AnyObject;
-        dic["Message"] = currLocation as AnyObject;
-        dic["orderId"] = (dicObj["Id"] as! String) as AnyObject;
+        
+        var dic = [String:Any]()
+        
+        dic["uType"] = "p"
+        dic["isLocation"] = true
+        dic["Sender"] = account.user_id
+        dic["Receiver"] = (dicObj["PhotographerId"] as! String)
+        dic["Message"] = currLocation
+        dic["orderId"] = (dicObj["Id"] as! String)
         ChatController.SendMessage(vc: self, dicObj: dic)
     }
     
     @IBAction func btnSend(sender:UIButton){
-            if(txtChatMsg.text!.count == 0){
-                Helper.ShowAlertMessage(message:"Please enter message" , buttonTitle: "OK", vc: self, title: "Required", bannerStyle: .warning)
-                return;
-            }
-           var dic = [String:AnyObject]();
-           dic["uType"] = "p" as AnyObject;
-           dic["isLocation"] = true as AnyObject;
-           dic["Sender"] = (userInfo!["Id"] as! String) as AnyObject;
-           dic["Receiver"] = (dicObj["PhotographerId"] as! String) as AnyObject;
-           dic["Message"] = txtChatMsg.text as AnyObject;
-           ChatController.SendMessage(vc: self, dicObj: dic)
-           txtChatMsg.text = "";
+        if(txtChatMsg.text!.count == 0){
+            Helper.ShowAlertMessage(message:"Please enter message" , buttonTitle: "OK", vc: self, title: "Required", bannerStyle: .warning)
+            return;
+        }
+        var dic = [String:Any]()
+        dic["uType"] = "p"
+        dic["isLocation"] = true
+        dic["Sender"] = account.user_id
+        dic["Receiver"] = (dicObj["PhotographerId"] as! String)
+        dic["Message"] = txtChatMsg.text
+        ChatController.SendMessage(vc: self, dicObj: dic)
+        
+        txtChatMsg.text = ""
     }
     
     func KeyBoardNotificationObserver(){
@@ -132,9 +137,9 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell:UITableViewCell?
         if(ChatController.listChat!.count>indexPath.row){
-        let dic =  ChatController.listChat![indexPath.row] as! [String:AnyObject]
+            let dic =  ChatController.listChat![indexPath.row] as [String:Any]
         
-        if((dic["Sender"] as! String) != (userInfo!["Id"] as! String)){
+            if((dic["Sender"] as! String) != account.user_id){
             cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftCell", for: indexPath) as! ChatLeftCell
             (cell as! ChatLeftCell).SetData(dic: dic)
         }

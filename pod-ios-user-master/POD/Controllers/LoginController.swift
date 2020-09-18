@@ -23,7 +23,11 @@ class LoginController: NSObject {
                 (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]!, key: "UserInfo")
+                    let account = Account()
+                    account.parseUserDict(userDict: JSON.dictionaryObject?["ResponseData"] as! NSDictionary, account: account)
+                    
+                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
+                    
                     DispatchQueue.main.async {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
@@ -48,36 +52,32 @@ class LoginController: NSObject {
     
     
     static func SaveUserTrackingData(){
-        do{
-            let isUserExist = Helper.UnArchivedUserDefaultObject(key: "UserInfo")
-            if (!Helper.isObjectNotNil(object: isUserExist as AnyObject)) {
-                let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-                print(Constant.deviceToken)
-                var trackInfo = try [String:AnyObject]()
-                if let userId = userInfo!["Id"]{
-                    trackInfo["userId"] = userId
-                }
-                trackInfo["lng"] = Constant.currLng as AnyObject
-                trackInfo["lat"] = Constant.currLat as AnyObject
-                trackInfo["deviceId"] = Constant.deviceToken  as AnyObject;
-                ApiManager.sharedInstance.requestPOSTURL(Constant.insertTrackingDataURL, params: trackInfo, success: {
-                    (JSON) in
-                    
-                    if((JSON.dictionary?["IsSuccess"]) != false){
-                        print("Tracked")
-                    }
-                    else{}
-                }, failure: { (Error) in
-                })
-            }
-        }
-        catch let _{
-            
-        }
         
+        //            let isUserExist = Helper.UnArchivedUserDefaultObject(key: "UserInfo")
+        if (AccountManager.instance().activeAccount != nil) {
+            let acc : Account = AccountManager.instance().activeAccount!
+            //                let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+            print(Constant.deviceToken)
+            var trackInfo = [String:Any]()
+//            if let userId = userInfo!["Id"]{
+            trackInfo["userId"] = acc.user_id
+//            }
+            trackInfo["lng"] = Constant.currLng as AnyObject
+            trackInfo["lat"] = Constant.currLat as AnyObject
+            trackInfo["deviceId"] = Constant.deviceToken  as AnyObject;
+            ApiManager.sharedInstance.requestPOSTURL(Constant.insertTrackingDataURL, params: trackInfo, success: {
+                (JSON) in
+                
+                if((JSON.dictionary?["IsSuccess"]) != false){
+                    print("Tracked")
+                }
+                else{}
+            }, failure: { (Error) in
+            })
+        }
     }
     
-    static func UpdateUserProfile(vc:ProfileViewController,dicObj:[String:AnyObject]){
+    static func UpdateUserProfile(vc:ProfileViewController,dicObj:[String:Any], account : Account){
         do{
             vc.showSpinner()
             
@@ -159,43 +159,46 @@ class LoginController: NSObject {
             else
             {
                 print("Print entire fetched result: \(JSON(result!))")
-                var userInfo:[String:AnyObject] = [String:AnyObject]()
+                var userInfo:[String:Any] = [String:Any]()
                 let pictureData = JSON(result!).dictionaryObject!["picture"] as! NSDictionary
                 let data = JSON(pictureData).dictionaryObject!["data"] as! NSDictionary
                 let pictureUrlString  = data["url"] as! String
                 let pictureUrl = NSURL(string: pictureUrlString)
-                let imageData:NSData = NSData(contentsOf: pictureUrl as! URL)!
+                let imageData:NSData = NSData(contentsOf: pictureUrl! as URL)!
                 if(imageData != nil){
                     userInfo["ProfileImage"] = imageData
                 }
                 else{
                     userInfo["ProfileImage"] = Data.init() as AnyObject
                 }
-                userInfo["Name"] = JSON(result!).dictionaryObject!["name"] as AnyObject
-                userInfo["Email"] = JSON(result!).dictionaryObject!["email"] as AnyObject
-                userInfo["Phone"] = "" as AnyObject
-                userInfo["Address"] = JSON(result!).dictionaryObject!["location"] as AnyObject
-                userInfo["OTP"] = "" as AnyObject?
-                userInfo["Password"] = ""  as AnyObject?
-                userInfo["SignBy"] = "2" as AnyObject?
-                userInfo["SocialId"] = "2" as AnyObject?
+                userInfo["Name"] = JSON(result!).dictionaryObject!["name"]
+                userInfo["Email"] = JSON(result!).dictionaryObject!["email"]
+                userInfo["Phone"] = ""
+                userInfo["Address"] = JSON(result!).dictionaryObject!["location"]
+                userInfo["OTP"] = ""
+                userInfo["Password"] = ""
+                userInfo["SignBy"] = "2"
+                userInfo["SocialId"] = "2"
                 LoginController.FacebookRegistration(vc: vc, dicObj: userInfo)
             }
             //vc.removeSpinner(onView: vc.view)
         })
     }
     
-    static func FacebookRegistration(vc:LoginViewController,dicObj:[String:AnyObject]){
+    static func FacebookRegistration(vc:LoginViewController,dicObj:[String:Any]){
         do{
             
-            ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.signUpUrl, imageData: dicObj["ProfileImage"] as! Data, parameters: dicObj, success: { (JSON) in
+            ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.signUpUrl, imageData: dicObj["ProfileImage"] as? Data, parameters: dicObj, success: { (JSON) in
                 let result = JSON.string?.parseJSONString!
                 vc.removeSpinner()
                 let msg =  result!["Message"]
                 if(((result!["IsSuccess"]) as! Bool) != false){
-                    var data =  (result!["ResponseData"]!)!;
+                    var data =  (result!["ResponseData"]!)!
+                    let account = Account()
 //                    print((((result!["ResponseData"]!)! as! [String:AnyObject])["Id"])!)
-                    self.GetCustomerProfile(vc: vc, userID: (((result!["ResponseData"]!)! as! [String:AnyObject])["Id"])! as! String,IsBack: false)
+                    self.GetCustomerProfile(vc: vc, userID: (((result!["ResponseData"]!)! as! [String:Any])["Id"] as! String), IsBack: false, account: account)
+                    
+//                    self.GetCustomerProfile(vc: vc, userID: (((result!["ResponseData"]!)! as! [String:Any])["Id"])! as! String,IsBack: false)
                 }
                 else{
                     Helper.ShowAlertMessage(message:msg as! String , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
@@ -212,14 +215,15 @@ class LoginController: NSObject {
         }
         
     }
-    static func GetCustomerProfile(vc:LoginViewController,userID:String, IsBack:Bool){
+    static func GetCustomerProfile(vc:LoginViewController,userID:String, IsBack:Bool, account: Account){
          do{
              try
                  vc.showSpinner()
              ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
                  let msg =  JSON.dictionary?["Message"]
                  if((JSON.dictionary?["IsSuccess"]) != false){
-                     Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]!, key: "UserInfo")
+                    account.parseUserDict(userDict: JSON.dictionaryObject!["ResponseData"] as! NSDictionary, account: account)
+//                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
                      DispatchQueue.main.async {
                          if(IsBack == false){
                              let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -254,7 +258,7 @@ class LoginController: NSObject {
             ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]!, key: "UserInfo")
+                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
                     DispatchQueue.main.async {
                         if(IsBack == false){
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -291,7 +295,7 @@ class LoginController: NSObject {
                 if((JSON.dictionary?["IsSuccess"]) != false){
 //                    print(JSON.dictionaryObject!["ResponseData"]!)
                     DispatchQueue.main.async {
-                        vc.LoadProfileData(userProfile: JSON.dictionaryObject!["ResponseData"]! as! [String : AnyObject])
+                        vc.LoadProfileData(userProfile: JSON.dictionaryObject!["ResponseData"]! as! [String : Any])
                         vc.removeSpinner()
                     }
                 }
@@ -407,7 +411,7 @@ class LoginController: NSObject {
                     //                    }
                     //                    else{
                     let orderDetail = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
-                    let dic = (orderDetail![0] as [String:AnyObject])
+                    let dic = (orderDetail![0] as [String:Any])
                     if let ExtId = dic["ExtId"]{
                         if(Int(ExtId as! String)! > 0){
                             if(orderDetail!.count>0){

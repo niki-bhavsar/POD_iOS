@@ -14,7 +14,9 @@ class MyOrderViewController: BaseViewController,UITableViewDataSource,UITableVie
     @IBOutlet var btnComplete:UIButton!
     public let refreshControl = UIRefreshControl()
     @IBOutlet var tblOrder:UITableView!
-    let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
+    let account = AccountManager.instance().activeAccount! //Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.btnUpcoming.isSelected = true;
@@ -34,16 +36,16 @@ class MyOrderViewController: BaseViewController,UITableViewDataSource,UITableVie
         self.SetStatusBarColor()
         refreshControl.addTarget(self, action: #selector(refreshOrderData(_:)), for: .valueChanged)
         // Do any additional setup after loading the view.
-        if let Id = userInfo!["Id"]{
-                   MyOrderController.GetOrders(userId: Id as! String, vc: self);
-        }
+//        if let Id = userInfo!["Id"]{
+        MyOrderController.GetOrders(userId: account.user_id, vc: self);
+//        }
     }
     
     @objc private func refreshOrderData(_ sender: Any) {
         // Fetch Weather Data
-        if let Id = userInfo!["Id"]{
-            MyOrderController.GetOrders(userId: Id as! String, vc: self);
-        }
+//        if let Id = userInfo!["Id"]{
+            MyOrderController.GetOrders(userId: account.user_id, vc: self);
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,7 +128,7 @@ extension MyOrderViewController {
     
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-            controller.orderID = OrderId as! String;
+            controller.orderID = OrderId as? String
                Helper.rootNavigation?.pushViewController(controller, animated: true)
         }
     }

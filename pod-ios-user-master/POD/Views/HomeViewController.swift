@@ -16,7 +16,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet var lblNotificationCount:UILabel!
    
     var timer:Timer!
-    let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+    let account = AccountManager.instance().activeAccount//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,8 +89,8 @@ class HomeViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let Id = userInfo!["Id"]{
-            LoginController.CheckUnPaidUser(userId: Id as! String, vc: self)
+        if let Id = account?.user_id{
+            LoginController.CheckUnPaidUser(userId: Id , vc: self)
         }
         LoadNotification();
     }
@@ -105,7 +105,7 @@ class HomeViewController: BaseViewController {
     }
     
     @objc func LoadNotification(){
-        if let Id = userInfo!["Id"]{
+        if let Id = account?.user_id{
             DispatchQueue.global(qos: .default).async {
                 
                 LoginController.GetNotificatins(userId: Id as! String, vc: self)
@@ -132,7 +132,7 @@ class HomeViewController: BaseViewController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
         if(segue.identifier == "SelectGategoryViewController" || segue.identifier == "InqueryCategoryViewController"){
-            let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+            let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
                 
             Constant.OrderDic = [String:AnyObject]()
             Constant.OrderDic["CustomerId"] = ""
@@ -158,18 +158,19 @@ class HomeViewController: BaseViewController {
             Constant.OrderDic["ShootingLng"] = ""
             Constant.OrderDic["ShootingMeetPoint"] = ""
             
-            if let UserID = userInfo!["Id"]{
-                Constant.OrderDic["CustomerId"] = UserID
-            }
-            if let Name = userInfo!["Name"]{
-                Constant.OrderDic["Name"] = Name
-            }
-            if let Email = userInfo!["Email"]{
-                Constant.OrderDic["Email"] = Email
-            }
-            if let Name = userInfo!["Name"]{
-                Constant.OrderDic["Name"] = Name
-            }
+//            if let UserID = userInfo!["Id"]{
+            Constant.OrderDic["CustomerId"] = account.user_id
+//            }
+//            if let Name = userInfo!["Name"]{
+            Constant.OrderDic["Name"] = account.name
+//            }
+//            if let Email = userInfo!["Email"]{
+            Constant.OrderDic["Email"] = account.email
+//            }
+            
+//            if let Name = userInfo!["Name"]{
+//                Constant.OrderDic["Name"] = Name
+//            }
 //            
             if(segue.identifier == "InqueryCategoryViewController"){
                 
@@ -197,23 +198,22 @@ class HomeViewController: BaseViewController {
     
     func CheckCompleteProfile(){
         var result:Bool = true;
-        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-        if let mobileNo = userInfo?["Phone"]{
-            if(mobileNo.count==0 || mobileNo as! String == ""){
+        let account = AccountManager.instance().activeAccount! //Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+//        if let mobileNo = account.phone{
+        if(account.phone.count==0 || account.phone == ""){
                 result = false;
             }
-        }
-        else{
-            result = false;
-        }
-        if let email = userInfo?["Email"]{
-            if(email.count==0 || email as! String == ""){
+//        } else{
+//            result = false;
+//        }
+        
+//        if let email = userInfo?["Email"]{
+            if(account.email.count==0 || account.email == ""){
                 result = false;
             }
-        }
-        else{
-            result = false;
-        }
+//        } else{
+//            result = false;
+//        }
         
         if(result == false){
             let callActionHandler = { () -> Void in
@@ -286,8 +286,7 @@ class HomeViewController: BaseViewController {
     let maxWidth:CGFloat = pageWidth * 4
     let contentOffset:CGFloat = self.sv.contentOffset.x
     var slideToX = contentOffset + pageWidth
-    if  contentOffset + pageWidth == maxWidth
-    {
+    if  contentOffset + pageWidth == maxWidth{
           slideToX = 0
     }
     sv.setContentOffset(CGPoint(x:slideToX, y:0), animated: true)

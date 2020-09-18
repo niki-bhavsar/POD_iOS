@@ -21,7 +21,7 @@ class SplashViewController: UIViewController {
         } else {
             // Fallback on earlier versions
         }
-         Helper.rootNavigation = self.navigationController;
+        Helper.rootNavigation = self.navigationController;
         self.LoadAnimation()
         // Do any additional setup after loading the view.
     }
@@ -57,9 +57,6 @@ class SplashViewController: UIViewController {
     }
     
     func getAppVersionApi(){
-        //        do{
-        //            try
-        //                vc.showSpinner(onView: vc.view)
         ApiManager.sharedInstance.requestGETURL(Constant.getAppVersionURL, success: { (JSON) in
             
             //                let msg =  JSON.dictionary?["Message"]
@@ -84,27 +81,47 @@ class SplashViewController: UIViewController {
     
     
     
-   @objc func showUpdateAppView(){
+    @objc func showUpdateAppView(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "UpdateAppViewController") as! UpdateAppViewController
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc func MoveToLogin(){
-
-        let isUserExist = Helper.UnArchivedUserDefaultObject(key: "UserInfo")
-        if (Helper.isObjectNotNil(object: isUserExist as AnyObject)) {
-
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        //        let isUserExist = Helper.UnArchivedUserDefaultObject(key: "UserInfo")
+        
+        if (AccountManager.instance().activeAccount != nil) {
+            let acc : Account = AccountManager.instance().activeAccount!
+            if(acc.termsCondition == "1"){
+                let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                self.navigationController?.pushViewController(controller, animated: true)
+            } else {
+                let controller = storyboard.instantiateViewController(withIdentifier: "UpdateTermsAndConditionViewController") as! UpdateTermsAndConditionViewController
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        } else {
             let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             self.navigationController?.pushViewController(controller, animated: true)
         }
-        else{
-
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        
+        
+        //        if (AccountManager.instance().activeAccount != nil) {
+        //            let acc : Account = AccountManager.instance().activeAccount!
+        ////             let userInfo : [String : Any] = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as! [String : Any]
+        //            if(acc.termsCondition == "1"){
+        //                let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        //                self.navigationController?.pushViewController(controller, animated: true)
+        //            } else {
+        //                let controller = storyboard.instantiateViewController(withIdentifier: "UpdateTermsAndConditionViewController") as! UpdateTermsAndConditionViewController
+        //                self.navigationController?.pushViewController(controller, animated: true)
+        //            }
+        //        }else{
+        //            let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+        //            self.navigationController?.pushViewController(controller, animated: true)
+        //        }
     }
     
 }
