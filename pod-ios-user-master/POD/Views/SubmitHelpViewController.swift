@@ -23,7 +23,7 @@ class SubmitHelpViewController: BaseViewController {
         } else {
             // Fallback on earlier versions
         }
-        self.SetStatusBarColor()
+//        self.SetStatusBarColor()
         txtQuery.leftSpace()
         
     }

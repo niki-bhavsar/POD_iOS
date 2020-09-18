@@ -37,7 +37,7 @@ class SIgnUpViewController: BaseViewController {
         }
         self.InitializeKeyBoardNotificationObserver()
         Helper.SetRoundImage(img: profileImg, cornerRadius: 50, borderWidth: 4, borderColor: UIColor.init(red: 250/255, green: 158/255, blue: 0, alpha: 1))
-        self.SetStatusBarColor()
+//        self.SetStatusBarColor()
         txtPhoneNo.addDoneButtonOnKeyboard(view: self.view);
         self.txtDOB.setInputViewDatePicker(target: self, selector: #selector(dateDone),IsFutureDisable:true)
         self.imagePicker = ImagePicker(presentationController: self,delegate: self)

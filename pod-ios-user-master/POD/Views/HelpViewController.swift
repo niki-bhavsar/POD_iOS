@@ -20,7 +20,7 @@ class HelpViewController: BaseViewController {
         } else {
             // Fallback on earlier versions
         }
-        self.SetStatusBarColor()
+//        self.SetStatusBarColor()
         
         // Do any additional setup after loading the view.
     }

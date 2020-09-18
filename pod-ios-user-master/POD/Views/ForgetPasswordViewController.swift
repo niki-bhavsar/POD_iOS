@@ -21,7 +21,7 @@ class ForgetPasswordViewController: BaseViewController {
             // Fallback on earlier versions
         }
         self.navigationController?.setNavigationBarHidden(true, animated: true);
-        self.SetStatusBarColor()
+//        self.SetStatusBarColor()
         // Do any additional setup after loading the view.
     }
     

@@ -38,7 +38,7 @@ class ProfileViewController: BaseViewController {
         self.InitializeKeyBoardNotificationObserver()
         Helper.SetRoundImage(img: profileImg, cornerRadius: 50, borderWidth: 4, borderColor: UIColor.init(red: 250/255, green: 158/255, blue: 0, alpha: 1))
         self.txtDOB.setInputViewDatePicker(target: self, selector: #selector(dateDone),IsFutureDisable:true)
-        self.SetStatusBarColor()
+//        self.SetStatusBarColor()
         self.imagePicker = ImagePicker(presentationController: self,delegate: self)
         profileImg.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(ProfileViewController.ShowImagePicker)))
 //        sv.contentSize = CGSize.init(width: 0, height: btnSubmit.frame.origin.y+btnSubmit.frame.size.height)

@@ -17,9 +17,10 @@ class MenuCell: UITableViewCell {
         // Initialization code
     }
     
-    func SetData(icon:String,name:String){
+    func SetData(icon:String, name:String){
+        
         self.icon.image = UIImage.init(named: icon)
-        self.lblTitle.text = name;
+        self.lblTitle.text = name
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

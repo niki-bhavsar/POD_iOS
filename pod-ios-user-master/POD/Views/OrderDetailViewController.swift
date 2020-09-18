@@ -52,7 +52,7 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
         
         tblOrderDetails.rowHeight = UITableView.automaticDimension
         tblOrderDetails.estimatedRowHeight = 400
-        self.SetStatusBarColor()
+//        self.SetStatusBarColor()
         MyOrderController.GetOrderByorderId(orderId: orderID!, vc: self)
         refreshControl.addTarget(self, action: #selector(refreshOrderData(_:)), for: .valueChanged)
         let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")

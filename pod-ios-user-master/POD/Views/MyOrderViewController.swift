@@ -33,7 +33,7 @@ class MyOrderViewController: BaseViewController,UITableViewDataSource,UITableVie
         } else {
             tblOrder.addSubview(refreshControl)
         }
-        self.SetStatusBarColor()
+//        self.SetStatusBarColor()
         refreshControl.addTarget(self, action: #selector(refreshOrderData(_:)), for: .valueChanged)
         // Do any additional setup after loading the view.
 //        if let Id = userInfo!["Id"]{

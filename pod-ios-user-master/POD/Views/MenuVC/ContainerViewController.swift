@@ -14,6 +14,7 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var sideMenuWidthConstraint: NSLayoutConstraint!
     var sideMenuOpen = false
     var visiblewidth:Int! = 60;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sideMenuConstraint.constant = -(self.view.frame.size.width-((self.view.frame.size.width*25)/100))

@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 class HomeViewController: BaseViewController {
+    
     var IsOpenMenu:Bool = false
     @IBOutlet var viewBanner:UIView!
     @IBOutlet var pageControler:UIPageControl!
@@ -26,8 +27,8 @@ class HomeViewController: BaseViewController {
         } else {
             // Fallback on earlier versions
         }
-        self.navigationController?.setNavigationBarHidden(true, animated: true);
-        self.SetStatusBarColor()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.SetStatusBarColor()
         Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(moveToNextPage), userInfo: nil, repeats: true)
         
     }
@@ -128,73 +129,142 @@ class HomeViewController: BaseViewController {
         
     }
     
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    @IBAction func bookNowclicked(_ sender: Any) {
+        let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+        
+        Constant.OrderDic = [String:Any]()
+        Constant.OrderDic["CustomerId"] = ""
+        Constant.OrderDic["Name"] = ""
+        Constant.OrderDic["Email"] = ""
+        Constant.OrderDic["Phone1"] = ""
+        Constant.OrderDic["ShootingAddress"] = ""
+        Constant.OrderDic["ShootingDate"] = ""
+        Constant.OrderDic["ShootingStartTime"] = ""
+        Constant.OrderDic["ShootingEndTime"] = ""
+        Constant.OrderDic["ShootingHours"] = ""
+        Constant.OrderDic["ProductId"] = ""
+        Constant.OrderDic["ProductIds"] = ""
+        Constant.OrderDic["ProductTitle"] = ""
+        Constant.OrderDic["ProductPrice"] = ""
+        Constant.OrderDic["Transportation"] = ""
+        Constant.OrderDic["SubTotal"] = ""
+        Constant.OrderDic["Total"] = ""
+        Constant.OrderDic["PaymentMethod"] = ""
+        Constant.OrderDic["PaymentStatus"] = ""
+        Constant.OrderDic["Transaction_id"] = "POD"
+        Constant.OrderDic["ShootingLat"] = ""
+        Constant.OrderDic["ShootingLng"] = ""
+        Constant.OrderDic["ShootingMeetPoint"] = ""
+        
+        //            if let UserID = userInfo!["Id"]{
+        Constant.OrderDic["CustomerId"] = account.user_id
+        //            }
+        //            if let Name = userInfo!["Name"]{
+        Constant.OrderDic["Name"] = account.name
+        //            }
+        //            if let Email = userInfo!["Email"]{
+        Constant.OrderDic["Email"] = account.email
+        //            }
+        
+        //            if let Name = userInfo!["Name"]{
+        //                Constant.OrderDic["Name"] = Name
+        //            }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SelectGategoryViewController") as! SelectGategoryViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
     
-        if(segue.identifier == "SelectGategoryViewController" || segue.identifier == "InqueryCategoryViewController"){
-            let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-                
-            Constant.OrderDic = [String:AnyObject]()
-            Constant.OrderDic["CustomerId"] = ""
-            Constant.OrderDic["Name"] = ""
-            Constant.OrderDic["Email"] = ""
-            Constant.OrderDic["Phone1"] = ""
-            Constant.OrderDic["ShootingAddress"] = ""
-            Constant.OrderDic["ShootingDate"] = ""
-            Constant.OrderDic["ShootingStartTime"] = ""
-            Constant.OrderDic["ShootingEndTime"] = ""
-            Constant.OrderDic["ShootingHours"] = ""
-            Constant.OrderDic["ProductId"] = ""
-            Constant.OrderDic["ProductIds"] = ""
-            Constant.OrderDic["ProductTitle"] = ""
-            Constant.OrderDic["ProductPrice"] = ""
-            Constant.OrderDic["Transportation"] = ""
-            Constant.OrderDic["SubTotal"] = ""
-            Constant.OrderDic["Total"] = ""
-            Constant.OrderDic["PaymentMethod"] = ""
-            Constant.OrderDic["PaymentStatus"] = ""
-            Constant.OrderDic["Transaction_id"] = "POD"
-            Constant.OrderDic["ShootingLat"] = ""
-            Constant.OrderDic["ShootingLng"] = ""
-            Constant.OrderDic["ShootingMeetPoint"] = ""
-            
-//            if let UserID = userInfo!["Id"]{
-            Constant.OrderDic["CustomerId"] = account.user_id
-//            }
-//            if let Name = userInfo!["Name"]{
-            Constant.OrderDic["Name"] = account.name
-//            }
-//            if let Email = userInfo!["Email"]{
-            Constant.OrderDic["Email"] = account.email
-//            }
-            
-//            if let Name = userInfo!["Name"]{
-//                Constant.OrderDic["Name"] = Name
-//            }
+    @IBAction func inquiryNowclicked(_ sender: Any) {
+        Constant.InquiryDic = [String:Any]()
+                     Constant.InquiryDic["CustomerId"] = ""
+                     Constant.InquiryDic["Name"] = ""
+                     Constant.InquiryDic["Email"] = ""
+                     Constant.InquiryDic["Phone"] = ""
+                     Constant.InquiryDic["DOB"] = ""
+                     Constant.InquiryDic["TypeOfShoot"] = ""
+                     Constant.InquiryDic["DateOfShoot"] = ""
+                     Constant.InquiryDic["StartTime"] = ""
+                     Constant.InquiryDic["EndTime"] = ""
+                     Constant.InquiryDic["ShootingHours"] = ""
+                     Constant.InquiryDic["Area"] = ""
+                     Constant.InquiryDic["City"] = ""
+                     Constant.InquiryDic["State"] = ""
+                     Constant.InquiryDic["Country"] = ""
+                     Constant.InquiryDic["Message"] = ""
+                     Constant.InquiryDic["Source"] = ""
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+               let controller = storyboard.instantiateViewController(withIdentifier: "InqueryCategoryViewController") as! InqueryCategoryViewController
+               self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    
+//        if(segue.identifier == "SelectGategoryViewController" || segue.identifier == "InqueryCategoryViewController"){
+//            let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
+//                
+//            Constant.OrderDic = [String:AnyObject]()
+//            Constant.OrderDic["CustomerId"] = ""
+//            Constant.OrderDic["Name"] = ""
+//            Constant.OrderDic["Email"] = ""
+//            Constant.OrderDic["Phone1"] = ""
+//            Constant.OrderDic["ShootingAddress"] = ""
+//            Constant.OrderDic["ShootingDate"] = ""
+//            Constant.OrderDic["ShootingStartTime"] = ""
+//            Constant.OrderDic["ShootingEndTime"] = ""
+//            Constant.OrderDic["ShootingHours"] = ""
+//            Constant.OrderDic["ProductId"] = ""
+//            Constant.OrderDic["ProductIds"] = ""
+//            Constant.OrderDic["ProductTitle"] = ""
+//            Constant.OrderDic["ProductPrice"] = ""
+//            Constant.OrderDic["Transportation"] = ""
+//            Constant.OrderDic["SubTotal"] = ""
+//            Constant.OrderDic["Total"] = ""
+//            Constant.OrderDic["PaymentMethod"] = ""
+//            Constant.OrderDic["PaymentStatus"] = ""
+//            Constant.OrderDic["Transaction_id"] = "POD"
+//            Constant.OrderDic["ShootingLat"] = ""
+//            Constant.OrderDic["ShootingLng"] = ""
+//            Constant.OrderDic["ShootingMeetPoint"] = ""
 //            
-            if(segue.identifier == "InqueryCategoryViewController"){
-                
-                Constant.InquiryDic = [String:AnyObject]()
-                Constant.InquiryDic["CustomerId"] = ""
-                Constant.InquiryDic["Name"] = ""
-                Constant.InquiryDic["Email"] = ""
-                Constant.InquiryDic["Phone"] = ""
-                Constant.InquiryDic["DOB"] = ""
-                Constant.InquiryDic["TypeOfShoot"] = ""
-                Constant.InquiryDic["DateOfShoot"] = ""
-                Constant.InquiryDic["StartTime"] = ""
-                Constant.InquiryDic["EndTime"] = ""
-                Constant.InquiryDic["ShootingHours"] = ""
-                Constant.InquiryDic["Area"] = ""
-                Constant.InquiryDic["City"] = ""
-                Constant.InquiryDic["State"] = ""
-                Constant.InquiryDic["Country"] = ""
-                Constant.InquiryDic["Message"] = ""
-                Constant.InquiryDic["Source"] = ""
-                
-            }
-        }
-     }
+////            if let UserID = userInfo!["Id"]{
+//            Constant.OrderDic["CustomerId"] = account.user_id
+////            }
+////            if let Name = userInfo!["Name"]{
+//            Constant.OrderDic["Name"] = account.name
+////            }
+////            if let Email = userInfo!["Email"]{
+//            Constant.OrderDic["Email"] = account.email
+////            }
+//            
+////            if let Name = userInfo!["Name"]{
+////                Constant.OrderDic["Name"] = Name
+////            }
+////            
+//            if(segue.identifier == "InqueryCategoryViewController"){
+//                
+//                Constant.InquiryDic = [String:Any]()
+//                Constant.InquiryDic["CustomerId"] = ""
+//                Constant.InquiryDic["Name"] = ""
+//                Constant.InquiryDic["Email"] = ""
+//                Constant.InquiryDic["Phone"] = ""
+//                Constant.InquiryDic["DOB"] = ""
+//                Constant.InquiryDic["TypeOfShoot"] = ""
+//                Constant.InquiryDic["DateOfShoot"] = ""
+//                Constant.InquiryDic["StartTime"] = ""
+//                Constant.InquiryDic["EndTime"] = ""
+//                Constant.InquiryDic["ShootingHours"] = ""
+//                Constant.InquiryDic["Area"] = ""
+//                Constant.InquiryDic["City"] = ""
+//                Constant.InquiryDic["State"] = ""
+//                Constant.InquiryDic["Country"] = ""
+//                Constant.InquiryDic["Message"] = ""
+//                Constant.InquiryDic["Source"] = ""
+//                
+//            }
+//        }
+//     }
     
     func CheckCompleteProfile(){
         var result:Bool = true;
