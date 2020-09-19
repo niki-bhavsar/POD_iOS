@@ -18,7 +18,8 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
     @IBOutlet var lblVisiting:UILabel!
     @IBOutlet var lblTotal:UILabel!
 //    @IBOutlet var lblExtendedTime:UILabel!
-    @IBOutlet weak var lblGST: UILabel!
+    @IBOutlet weak var lblCGST: UILabel!
+     @IBOutlet weak var lblSGST: UILabel!
     @IBOutlet var lblShootingAmount:UILabel!
     @IBOutlet var lblExtShootingAmount:UILabel!
     public var dicOrder:[String:Any]!
@@ -82,10 +83,15 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
                 totlaVal = total + extAMT
             }
             
-             var gstVal : Double = 0.0
+            var gstVal : Double = 0.0
             gstVal = subTotalVal + extendedVal
             
-             lblGST.text = String(format: "%.2f", totlaVal - gstVal)
+            let cGST : Double = (totlaVal - gstVal) / 2
+            let sGST : Double = (totlaVal - gstVal) / 2
+            
+            lblCGST.text = String(format: "%.2f", cGST)
+            
+            lblSGST.text = String(format: "%.2f", sGST)
             
         }
         
@@ -120,11 +126,11 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
     }
     
     func SubmitPhotographerPaymentRequest(transactionID:String){
-        var dic = [String:AnyObject]()
-        dic["OrderId"] = dicOrder["ExtOrderId"] as AnyObject;
-        dic["TransactionId"] = transactionID as AnyObject;
-        dic["ExtId"] = dicOrder["ExtId"] as AnyObject;
-        dic["CustomerId"] = dicOrder["ExtCustomerId"] as AnyObject;
+        var dic = [String:Any]()
+        dic["OrderId"] = dicOrder["ExtOrderId"]
+        dic["TransactionId"] = transactionID
+        dic["ExtId"] = dicOrder["ExtId"]
+        dic["CustomerId"] = dicOrder["ExtCustomerId"]
         MyOrderController.ExtendedRemainPhotoGrapherOrderPayment(vc: self, orderInfo: dic);
     }
 }

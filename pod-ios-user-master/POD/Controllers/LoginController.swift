@@ -29,9 +29,15 @@ class LoginController: NSObject {
                     Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
                     
                     DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-                        vc.navigationController!.pushViewController(controller, animated: true)
+                        if(AccountManager.instance().activeAccount?.termsCondition == "1"){
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                            vc.navigationController!.pushViewController(controller, animated: true)
+                        } else{
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "UpdateTermsAndConditionViewController") as! UpdateTermsAndConditionViewController
+                            vc.navigationController!.pushViewController(controller, animated: true)
+                        }
                     }
                     
                 }

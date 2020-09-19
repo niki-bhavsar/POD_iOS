@@ -29,7 +29,7 @@ class ResetPasswordViewController: BaseViewController {
     
     
     @IBAction func btnResend_Click(){
-       var otpDic = [String:AnyObject]()
+       var otpDic = [String:Any]()
        otpDic["E_O_P"] = mobileNo as AnyObject;
        ForgetPassController.ForgetPasswordReSendOTP(vc:self,dicObj:otpDic)
     }
@@ -62,10 +62,10 @@ class ResetPasswordViewController: BaseViewController {
                        return;
         }
         
-        var otpDic = [String:AnyObject]()
-        otpDic["E_O_P"] = mobileNo as AnyObject;
-        otpDic["OTP"] = txtOTP.text as AnyObject;
-        otpDic["Password"] = txtNewPassword.text as AnyObject;
+        var otpDic = [String:Any]()
+        otpDic["E_O_P"] = mobileNo
+        otpDic["OTP"] = txtOTP.text
+        otpDic["Password"] = txtNewPassword.text
         ForgetPassController.ResetPasswordSubmit(vc:self,dicObj:otpDic)
     }
 }

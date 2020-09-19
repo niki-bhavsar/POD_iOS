@@ -62,7 +62,7 @@ class MyOrderController: NSObject {
                 let msg =  JSON.dictionary?["Message"]
                 listOrderDetails = [[String:Any]]()
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    let dicObjOrder = ((JSON.dictionaryObject!["ResponseData"]) as? [[String:AnyObject]]);
+                    let dicObjOrder = ((JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]])
 //                    print(dicObjOrder)
                     listOrderDetails = dicObjOrder;
                     vc.tblOrderDetails.reloadData()
@@ -87,9 +87,9 @@ class MyOrderController: NSObject {
             try
                 vc.showSpinner()
             
-            var dicObj = [String:AnyObject]()
-            dicObj["DestLat"] = lat as AnyObject;
-            dicObj["DestLng"] = lng as AnyObject;
+            var dicObj = [String:Any]()
+            dicObj["DestLat"] = lat
+            dicObj["DestLng"] = lng
             ApiManager.sharedInstance.requestPOSTURL(Constant.getTrasportationChargeURL,params: dicObj, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
@@ -158,7 +158,7 @@ class MyOrderController: NSObject {
         
     }
     
-    static func ExtendOrder(vc:ExtendViewController,orderInfo:[String:AnyObject]){
+    static func ExtendOrder(vc:ExtendViewController,orderInfo:[String:Any]){
         do{
             vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.extendOrderRequestURL, params: orderInfo, success: {
@@ -276,7 +276,7 @@ class MyOrderController: NSObject {
     }
     
     
-    static func photographOrderPayment(vc:SendPaymentViewController,orderInfo:[String:AnyObject]){
+    static func photographOrderPayment(vc:SendPaymentViewController,orderInfo:[String:Any]){
         do{
             vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.photographOrderPaymentURL, params: orderInfo, success: {
@@ -305,7 +305,7 @@ class MyOrderController: NSObject {
     }
     
     
-    static func ExtendedOrderPayment(vc:ExtendOrderPaymentViewController,orderInfo:[String:AnyObject]){
+    static func ExtendedOrderPayment(vc:ExtendOrderPaymentViewController,orderInfo:[String:Any]){
            do{
                vc.showSpinner()
                ApiManager.sharedInstance.requestPOSTURL(Constant.extendOrderPaymentURL, params: orderInfo, success: {
@@ -331,7 +331,7 @@ class MyOrderController: NSObject {
            }
        }
     
-    static func ExtendedRemainPhotoGrapherOrderPayment(vc:ExtendPhotographerPaymentViewController,orderInfo:[String:AnyObject]){
+    static func ExtendedRemainPhotoGrapherOrderPayment(vc:ExtendPhotographerPaymentViewController,orderInfo:[String:Any]){
            do{
                vc.showSpinner()
                ApiManager.sharedInstance.requestPOSTURL(Constant.PASOrderPaymentdURL, params: orderInfo, success: {
@@ -358,7 +358,7 @@ class MyOrderController: NSObject {
            }
        }
     
-    static func ExtendedRemainPhotoGrapherOrderPayment(vc:SendPaymentViewController,orderInfo:[String:AnyObject]){
+    static func ExtendedRemainPhotoGrapherOrderPayment(vc:SendPaymentViewController,orderInfo:[String:Any]){
         do{
             vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.PASOrderPaymentdURL, params: orderInfo, success: {

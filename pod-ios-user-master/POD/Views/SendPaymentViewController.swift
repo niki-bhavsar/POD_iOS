@@ -13,7 +13,8 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal {
     @IBOutlet var lblOrderID:UILabel!
     @IBOutlet var lblDate:UILabel!
     //    @IBOutlet var lblStartDate:UILabel!
-    @IBOutlet weak var lblGST: UILabel!
+    @IBOutlet weak var lblCGST: UILabel!
+     @IBOutlet weak var lblSGST: UILabel!
     @IBOutlet var lblStartTime:UILabel!
     //    @IBOutlet var lblEndTime:UILabel!
     @IBOutlet var lblTitle:UILabel!
@@ -72,7 +73,11 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal {
                 self.lblVisiting.text = "\(trasportation)"
             }
             
-            lblGST.text = String(format: "%.2f", totlaVal - subTotalVal)
+            let cGST : Double = (totlaVal - subTotalVal) / 2
+            let sGST : Double = (totlaVal - subTotalVal) / 2
+            
+            lblCGST.text = String(format: "%.2f", cGST)
+             lblSGST.text = String(format: "%.2f", sGST)
             
         }
     }
@@ -125,11 +130,11 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal {
     }
     
     func SubmitPhotographerPaymentRequest(transactionID:String){
-        var dic = [String:AnyObject]()
-        dic["OrderId"] = dicInfo["Id"] as AnyObject;
-        dic["TransactionId"] = transactionID as AnyObject;
-        dic["ExtId"] = dicInfo["ExtId"] as AnyObject;
-        dic["CustomerId"] = dicInfo["CustomerId"] as AnyObject;
+        var dic = [String:Any]()
+        dic["OrderId"] = dicInfo["Id"]
+        dic["TransactionId"] = transactionID
+        dic["ExtId"] = dicInfo["ExtId"]
+        dic["CustomerId"] = dicInfo["CustomerId"] 
         MyOrderController.ExtendedRemainPhotoGrapherOrderPayment(vc: self, orderInfo: dic);
     }
     

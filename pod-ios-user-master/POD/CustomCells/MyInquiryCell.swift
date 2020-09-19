@@ -43,7 +43,7 @@ class MyInquiryCell: UITableViewCell {
             // Fallback on earlier versions
         }
         deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-            let obj = InqueryController.listINquiry![self.indexPath.row] as [String:AnyObject];
+            let obj = InqueryController.listINquiry![self.indexPath.row] as [String:Any]
             InqueryController.DeleteInquiry(userId: obj["CustomerId"] as! String, notificationID: obj["Id"] as! String, vc: self.vc)
         }))
         

@@ -12,7 +12,7 @@ class AdminChatViewController: BaseViewController {
 
    @IBOutlet var tblChat:UITableView!
         @IBOutlet var txtChatMsg:UITextField!
-        public var dicObj:[String:AnyObject]!
+        public var dicObj = [String:Any]()
         public let refreshControl = UIRefreshControl()
     
        let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
@@ -125,7 +125,7 @@ class AdminChatViewController: BaseViewController {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             var cell:UITableViewCell?
             
-            let dic =  ChatController.listAdminChat![indexPath.row] as! [String:AnyObject]
+            let dic : [String:Any] =  ChatController.listAdminChat![indexPath.row]
             
             if((dic["uType"] as! String) != "c"){
                 cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftCell", for: indexPath) as! ChatLeftCell

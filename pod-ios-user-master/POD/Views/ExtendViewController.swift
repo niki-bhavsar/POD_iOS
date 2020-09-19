@@ -12,7 +12,8 @@ class ExtendViewController: BaseViewController {
 
     @IBOutlet var lblexthrours:UILabel!
     @IBOutlet var lblExtAmount:UILabel!
-    public var OrderInfo:[String:AnyObject]?
+    public var OrderInfo = [String:Any]()
+    
     var vc:OrderDetailViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,8 @@ class ExtendViewController: BaseViewController {
         var currentValue = Int(lblexthrours.text!)
         currentValue = currentValue!+1;
         lblexthrours.text = currentValue?.description
-        let p = Double(OrderInfo!["ProductPrice"] as! String)!
-        let h = Double(lblexthrours.text as! String)!
+        let p = Double(OrderInfo["ProductPrice"] as! String)!
+        let h = Double(lblexthrours.text!)!
         let price = (p*h)
         lblExtAmount.text = "Total Extended Amount:\(price.description)";
     }
@@ -45,8 +46,8 @@ class ExtendViewController: BaseViewController {
         currentValue = currentValue!-1;
            lblexthrours.text = currentValue?.description
         }
-        let p = Double(OrderInfo!["ProductPrice"] as! String)!
-        let h = Double(lblexthrours.text as! String)!
+        let p = Double(OrderInfo["ProductPrice"] as! String)!
+        let h = Double(lblexthrours.text!)!
         let price = (p*h)
         let gstPrice = (price*18)/100;
         let priceWIthGST = price+gstPrice;
@@ -55,50 +56,51 @@ class ExtendViewController: BaseViewController {
     
     @IBAction func btnExtend_CLick(){
         
-        var extendIndfo = [String:AnyObject]()
-        if let ExtOrderId = OrderInfo!["Id"]{
+        var extendIndfo = [String:Any]()
+        
+        if let ExtOrderId = OrderInfo["Id"]{
             extendIndfo["ExtOrderId"] = ExtOrderId
         }
-        if let ExtPhotographerId = OrderInfo!["PhotographerId"]{
+        if let ExtPhotographerId = OrderInfo["PhotographerId"]{
             extendIndfo["ExtPhotographerId"] = ExtPhotographerId
         }
-        if let ExtCustomerId = OrderInfo!["CustomerId"]{
+        if let ExtCustomerId = OrderInfo["CustomerId"]{
             extendIndfo["ExtCustomerId"] = ExtCustomerId
         }
-        if let ExtName = OrderInfo!["Name"]{
+        if let ExtName = OrderInfo["Name"]{
             extendIndfo["ExtName"] = ExtName
         }
-        if let ExtEmail = OrderInfo!["Email"]{
+        if let ExtEmail = OrderInfo["Email"]{
             extendIndfo["ExtEmail"] = ExtEmail
         }
-        if let ExtOrderTitle = OrderInfo!["ProductTitle"]{
+        if let ExtOrderTitle = OrderInfo["ProductTitle"]{
             extendIndfo["ExtOrderTitle"] = ExtOrderTitle
         }
-        if let ExtAddress = OrderInfo!["ShootingAddress"]{
+        if let ExtAddress = OrderInfo["ShootingAddress"]{
             extendIndfo["ExtAddress"] = ExtAddress
         }
-        if let ExtDate = OrderInfo!["ShootingDate"]{
+        if let ExtDate = OrderInfo["ShootingDate"]{
             extendIndfo["ExtDate"] = ExtDate
         }
-        if let ExtStartTime = OrderInfo!["ShotingStartTime"]{
+        if let ExtStartTime = OrderInfo["ShotingStartTime"]{
             extendIndfo["ExtStartTime"] = ExtStartTime
         }
         if let ExtHours = lblexthrours.text {
-            extendIndfo["ExtHours"] = ExtHours as AnyObject
+            extendIndfo["ExtHours"] = ExtHours
         }
         
-        extendIndfo["ExtReqFlg"] = "Yes" as AnyObject
-        extendIndfo["ExtGST"] = "0" as AnyObject
+        extendIndfo["ExtReqFlg"] = "Yes"
+        extendIndfo["ExtGST"] = "0"
         
-        if let ExtAmount = OrderInfo!["ProductPrice"]{
+        if let ExtAmount = OrderInfo["ProductPrice"]{
             
             let p = Double(ExtAmount as! String)!
-            let h = Double(lblexthrours.text as! String)!
+            let h = Double(lblexthrours.text!)!
             let price = (p*h)
             let gstPrice = (price*18)/100;
             let priceWIthGST = price+gstPrice;
-            extendIndfo["ExtGST"] = gstPrice as AnyObject;
-            extendIndfo["ExtAmount"] = priceWIthGST as AnyObject
+            extendIndfo["ExtGST"] = gstPrice
+            extendIndfo["ExtAmount"] = priceWIthGST
         }
         
         MyOrderController.ExtendOrder(vc: self, orderInfo: extendIndfo)

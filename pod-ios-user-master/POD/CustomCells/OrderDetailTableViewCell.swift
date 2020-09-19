@@ -53,7 +53,7 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
     var paymentMehod:String?
     var ExtpaymentMehod:String?
     var extAmount:String?
-    var dicObj:[String:AnyObject]!
+    var dicObj = [String:Any]()
     public var vc:OrderDetailViewController?
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -65,9 +65,9 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
         // Configure the view for the selected state
     }
     
-    public func SetData(dic:[String:AnyObject]){
+    public func SetData(dic:[String:Any]){
         dicObj = dic;
-        vc!.orderInfoDetail = dic;
+        vc!.orderInfoDetail = dic
         self.SetOrderDetailData(dic: dic)
     }
     
@@ -77,7 +77,7 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
     
     @IBAction func btnSend_Click(){
         if let photographFile = dicObj["photographFile"]{
-            if(photographFile.length == 0){
+            if((photographFile as AnyObject).length == 0){
                 Constant.OrderDic = [String:Any]()
                 Constant.OrderDic["Name"] =  dicObj["Name"]
                 Constant.OrderDic["Email"] =  dicObj["Email"]
@@ -111,7 +111,7 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
     
     
     
-    func SetOrderDetailData(dic:[String:AnyObject]){
+    func SetOrderDetailData(dic:[String:Any]){
         self.widthExtend.constant = 0;
         self.SendDetailHeightConstraing.constant = 0;
         self.ExthrsheightConentView.constant = 0;
@@ -294,7 +294,7 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
         }
         
         if let invoiceFile = dic["InVoiceFile"]{
-            if(invoiceFile.length == 0){
+            if((invoiceFile as AnyObject).length == 0){
                 vc?.btnDownload.isHidden = true;
                 vc?.btnExtPopupDownload.isHidden = true;
             }
@@ -305,7 +305,7 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
         }
         
         if let photographFile = dicObj["photographFile"]{
-            if(photographFile.length > 0){
+            if((photographFile as AnyObject).length > 0){
                 btnSend.setTitle(" Pay:  "+(photographFile as! String), for: UIControl.State.normal)
                 self.SendDetailHeightConstraing.constant = 250;
             }
@@ -317,7 +317,7 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
         if let pStatus = dic["pStatus"]{
             let statusName = Helper.GetPhotoGrapherStatusName(index:Int(pStatus as! String)!)
              self.lblPhotographerSatus.text = statusName
-                 self.lblPhotographerSatus.halfTextColorChange(fullText: statusName, changeText: statusName as! String, color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
+            self.lblPhotographerSatus.halfTextColorChange(fullText: statusName, changeText: statusName , color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
             
                
         }
@@ -346,12 +346,12 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
     }
     
     func SubmitPhotographerRequest(){
-        var dic = [String:AnyObject]()
-        dic["OrderId"] = dicObj["Id"] as AnyObject;
-        dic["PaymentMethod"] = "Online" as AnyObject;
-        dic["PaymentStatus"] = "1" as AnyObject;
-        dic["Amount"] = "199" as AnyObject;
-        dic["CustomerId"] = dicObj["CustomerId"] as AnyObject;
+        var dic = [String:Any]()
+        dic["OrderId"] = dicObj["Id"]
+        dic["PaymentMethod"] = "Online"
+        dic["PaymentStatus"] = "1"
+        dic["Amount"] = "199"
+        dic["CustomerId"] = dicObj["CustomerId"]
         //MyOrderController.photographOrderPayment(vc: vc!, orderInfo: dic);
     }
 }

@@ -16,7 +16,7 @@ class ExtendOrderPaymentViewController: BaseViewController ,OnlinePaymentProtoca
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblVisitingCost: UILabel!
     @IBOutlet weak var lblShootCost: UILabel!
-    var dicOrder:[String:AnyObject]!
+    var dicOrder = [String:Any]()
     var prodcutPrice:Double = 0;
     var extHours:Int = 0;
     override func viewDidLoad() {
@@ -88,23 +88,23 @@ class ExtendOrderPaymentViewController: BaseViewController ,OnlinePaymentProtoca
     }
     
     func ExtendedOrderPayment(transactionID:String){
-        var QueryInfo:[String:AnyObject] = [String:AnyObject]()
-        QueryInfo["ExtTransaction_id"] = transactionID as AnyObject;
-        QueryInfo["ExtPayMentStatus"] = 2 as AnyObject;
+        var QueryInfo = [String:Any]()
+        QueryInfo["ExtTransaction_id"] = transactionID
+        QueryInfo["ExtPayMentStatus"] = 2
         if(btnOnline.isSelected){
-            QueryInfo["ExtPayMentMethod"] = "ONLINE" as AnyObject;
+            QueryInfo["ExtPayMentMethod"] = "ONLINE"
         }
         else{
-            QueryInfo["ExtPayMentMethod"] = "PAS" as AnyObject;
+            QueryInfo["ExtPayMentMethod"] = "PAS"
         }
         if let ExtId = dicOrder["ExtId"]{
-            QueryInfo["ExtId"] = (ExtId as! String) as AnyObject;
+            QueryInfo["ExtId"] = (ExtId as! String)
         }
         if let ExtPayMentStatus = dicOrder["ExtPayMentStatus"]{
-            QueryInfo["ExtPayMentStatus"] = (ExtPayMentStatus as! String) as AnyObject;
+            QueryInfo["ExtPayMentStatus"] = (ExtPayMentStatus as! String)
         }
         if let ExtOrderId = dicOrder["ExtOrderId"]{
-            QueryInfo["ExtOrderId"] = (ExtOrderId as! String) as AnyObject;
+            QueryInfo["ExtOrderId"] = (ExtOrderId as! String) 
         }
         MyOrderController.ExtendedOrderPayment(vc: self, orderInfo: QueryInfo)
     }

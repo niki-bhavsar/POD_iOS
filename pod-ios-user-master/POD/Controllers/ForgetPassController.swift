@@ -43,7 +43,7 @@ class ForgetPassController: NSObject {
         }
     }
     
-    static func ForgetPasswordReSendOTP(vc:ResetPasswordViewController,dicObj:[String:AnyObject]!){
+    static func ForgetPasswordReSendOTP(vc:ResetPasswordViewController,dicObj:[String:Any]!){
         do{
             
             try

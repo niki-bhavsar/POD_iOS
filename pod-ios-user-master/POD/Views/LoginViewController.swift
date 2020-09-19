@@ -42,6 +42,7 @@ class LoginViewController: BaseViewController,GIDSignInDelegate {
         let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
         self.navigationController?.pushViewController(controller, animated: true)
     }
+    
     @IBAction func btnLoginClick(){
         if(txtEmail.text!.count == 0){
             Helper.ShowAlertMessage(message: "Please enter email/phoneno.", vc: self,title:"Required",bannerStyle: BannerStyle.warning)
@@ -90,8 +91,8 @@ extension LoginViewController{
       let profileImageURL = user.profile.imageURL(withDimension: 100)
       let email = user.profile.email
       
-        var userInfo:[String:AnyObject] = [String:AnyObject]()
-        let imageData:NSData = NSData(contentsOf: profileImageURL as! URL)!
+        var userInfo:[String:Any] = [String:Any]()
+        let imageData:NSData = NSData(contentsOf: profileImageURL!)!
         if(imageData != nil){
             userInfo["ProfileImage"] = imageData
         }

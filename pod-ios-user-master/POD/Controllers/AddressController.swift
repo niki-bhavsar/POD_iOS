@@ -98,7 +98,7 @@ class AddressController: NSObject {
         }
     }
     
-    static func DeleteAddress(vc:BookingAddressViewController, dicObj:[String:AnyObject]!){
+    static func DeleteAddress(vc:BookingAddressViewController, dicObj:[String:Any]!){
         do{
             
             try

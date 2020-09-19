@@ -93,6 +93,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
         completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
         
+        print(notification.request.content.userInfo.printJson())
+        
         DispatchQueue.global(qos: .background).async {
             DispatchQueue.main.async {
                 self.playSound()

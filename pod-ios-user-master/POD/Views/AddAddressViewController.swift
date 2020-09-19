@@ -25,7 +25,7 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
     var lat:Double = 0.0
     var lng:Double = 0.0
     var selectedType:Int = 1;
-    var editDic:[String:AnyObject]?
+    var editDic = [String:Any]()
     public var IsEdit:Bool?
     override func viewDidLoad() {
         
@@ -153,7 +153,7 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
                  otpDic["CustomerId"] = account.user_id
          //         }
         
-        otpDic["Id"] = editDic!["Id"]
+        otpDic["Id"] = editDic["Id"]
         otpDic["Type"] = selectedType.description
         if(selectedType == 3){
             otpDic["Title"] = txtOther.text
@@ -180,13 +180,13 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
     
     func SetEditInfo(){
         
-        let latitude = editDic!["Lat"]
-        let longitude = editDic?["Lng"]
-        lat = Double(((latitude?.description)!))!
-        lng = Double(((longitude?.description)!))!
-        Helper.getAddressFromLatLon(pdblLatitude: (latitude?.description)!, withLongitude: (longitude?.description)!,txt: self.txtQuery)
+        let latitude = editDic["Lat"]
+        let longitude = editDic["Lng"]
+        lat = Double((((latitude as AnyObject).description)!))!
+        lng = Double((((longitude as AnyObject).description)!))!
+        Helper.getAddressFromLatLon(pdblLatitude: ((latitude as AnyObject).description)!, withLongitude: ((longitude as AnyObject).description)!,txt: self.txtQuery)
         self.SetLocationOnMap();
-        if let Title = editDic!["Title"]{
+        if let Title = editDic["Title"]{
             btnHome.layer.borderColor = UIColor.lightGray.cgColor
             btnWork.layer.borderColor = UIColor.lightGray.cgColor
             txtOther.layer.borderColor = UIColor.lightGray.cgColor
@@ -202,13 +202,13 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
 
             }
             else{
-                txtOther.text = Title as! String;
+                txtOther.text = Title as? String;
                  txtOther.layer.borderColor = UIColor.green.cgColor
                     selectedType = 3;
             }
         }
-        if let Address = editDic!["Address"]{
-            txtQuery.text = Address  as! String
+        if let Address = editDic["Address"]{
+            txtQuery.text = Address  as? String
         }
        
     }
@@ -329,21 +329,21 @@ extension AddAddressViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchAreaTableViewCell", for: indexPath) as! SearchAreaTableViewCell
-        let obj =  AddressController.listSearchAddress![indexPath.row] as [String:AnyObject]
+        let obj =  AddressController.listSearchAddress![indexPath.row] as [String:Any]
         if let name = obj["Name"]{
-            cell.lblName.text = name as! String;
+            cell.lblName.text = name as? String
         }
         
         return cell;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         var obj =  AddressController.listSearchAddress![indexPath.row]
+        let obj =  AddressController.listSearchAddress![indexPath.row]
         if let name = obj["Name"]{
-            txtArea.text = name as! String;
+            txtArea.text = name as? String
         }
-        lat = Double(obj["Lat"] as! String) as! Double
-        lng = Double(obj["Lng"] as! String) as! Double
+        lat = Double(obj["Lat"] as! String)!
+        lng = Double(obj["Lng"] as! String)!
         mapView!.removeAnnotations(mapView!.annotations)
         SetLocationOnMap()
         txtArea.resignFirstResponder()

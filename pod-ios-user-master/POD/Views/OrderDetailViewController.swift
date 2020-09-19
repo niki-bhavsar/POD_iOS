@@ -157,7 +157,7 @@ extension OrderDetailViewController : OrderDetailDelegate{
             controller.vc = self;
             controller.modalPresentationStyle = .overCurrentContext
             controller.modalTransitionStyle = .crossDissolve
-            controller.OrderInfo = MyOrderController.listOrderDetails![index.row] as [String : AnyObject];
+            controller.OrderInfo = MyOrderController.listOrderDetails![index.row] as [String : Any]
             
             self.present(controller, animated: true, completion: nil)
         }

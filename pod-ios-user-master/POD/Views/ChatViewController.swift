@@ -12,7 +12,7 @@ class ChatViewController: BaseViewController {
 
     @IBOutlet var tblChat:UITableView!
     @IBOutlet var txtChatMsg:UITextField!
-    public var dicObj:[String:AnyObject]!
+    public var dicObj = [String:Any]()
     public let refreshControl = UIRefreshControl()
     var refreshTimer:Timer?
     

@@ -130,7 +130,7 @@ extension BookingAddressViewController
         }
         deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
             let dicAddObj = AddressController.listAddress![index.row]
-            var dicObj = [String:AnyObject]()
+            var dicObj = [String:Any]()
             
             if let customarID = dicAddObj["CustomerId"]{
                 dicObj["CustomerId"] = customarID as AnyObject

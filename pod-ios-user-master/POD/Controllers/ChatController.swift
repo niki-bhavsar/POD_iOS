@@ -120,7 +120,7 @@ class ChatController: NSObject {
         
     }
     
-    static func personSort(p1:[String:AnyObject], p2:[String:AnyObject]) -> Bool {
+    static func personSort(p1:[String:Any], p2:[String:Any]) -> Bool {
         let s1 = (p1["Id"] as! String)
         let s2 = (p2["Id"] as! String)
         return s1 < s2
