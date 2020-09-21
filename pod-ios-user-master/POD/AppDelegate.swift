@@ -85,7 +85,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         //Print full message.
+        if (application.applicationState == .active ){
+            print("Active")
+        } else if (application.applicationState == .background){
+            print("Background")
+        } else if (application.applicationState == .inactive){
+            print("Inactive")
+        }
+        print("didReceiveRemoteNotification \(userInfo)")
+        
         print(userInfo)
+        
+        if(AccountManager.instance().activeAccount != nil){
+            let dict : [String : Any] = userInfo as! [String : Any]
+            let apsDict : [String : Any] = dict["aps"] as! [String : Any]
+            let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
+            let type : String = dict["gcm.notification.Type"] as! String
+            let orderId : String = dict["gcm.notification.OrderId"] as! String
+            if(type == "1"){
+                let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                    controller.orderID = orderId
+                    if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                        if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                        } else {
+                            Helper.rootNavigation?.pushViewController(controller, animated: true)
+                        }
+                        
+                    } else {
+                        Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
+                }))
+                Helper.getTopViewController().present(alert, animated: true, completion: nil)
+            }
+        }
+        
+        
     }
     
     // This method will be called when app received push notifications in foreground
@@ -98,19 +138,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         DispatchQueue.global(qos: .background).async {
             DispatchQueue.main.async {
                 self.playSound()
+                if(AccountManager.instance().activeAccount != nil){
+                    let dict : [String : Any] = notification.request.content.userInfo as! [String : Any]
+                    let apsDict : [String : Any] = dict["aps"] as! [String : Any]
+                    let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
+                    let type : String = dict["gcm.notification.Type"] as! String
+                    let orderId : String = dict["gcm.notification.OrderId"] as! String
+                    if(type == "1"){
+                        let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                            controller.orderID = orderId
+                            if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                                if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                                } else {
+                                    Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                }
+                                
+                            } else {
+                                Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
+                            }
+                        }))
+                        alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
+                        }))
+                        Helper.getTopViewController().present(alert, animated: true, completion: nil)
+                    }
+                }
+                
             }
         }
     }
     
+    
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
-        // Print full message.
-        print(userInfo)
+        //        let userInfo = response.notification.request.content.userInfo
+        //        // Print message ID.
+        //        // Print full message.
+        //        print(userInfo)
+        //
+        //        completionHandler()
         
-        completionHandler()
+        
+        print(response.notification.request.content.userInfo)
+        if(AccountManager.instance().activeAccount != nil){
+            let dict = response.notification.request.content.userInfo
+            let apsDict : [String : Any] = dict["aps"] as! [String : Any]
+            let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
+            let type : String = dict["gcm.notification.Type"] as! String
+            let orderId : String = dict["gcm.notification.OrderId"] as! String
+            if(type == "1"){
+                let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                    controller.orderID = orderId
+                    if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                        if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                        } else {
+                            Helper.rootNavigation?.pushViewController(controller, animated: true)
+                        }
+                    } else {
+                        Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
+                }))
+                Helper.getTopViewController().present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     
@@ -131,6 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("received remote notification")
     }
+
     
     func playSound() {
         guard let url = Bundle.main.url(forResource: "NotificationSound", withExtension: "caf") else { return }
@@ -226,7 +328,7 @@ extension String {
                 return nil
             }
         }
-        catch let error{
+        catch _{
             
         }
         return nil

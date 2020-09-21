@@ -107,6 +107,16 @@ class Helper: NSObject {
     public static var rootNavigation :  UINavigationController?
     static  var banner:FloatGrowingNotificationBanner?
     
+    class func getTopViewController() -> UIViewController {
+           var topController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
+           
+           while ((topController?.presentedViewController) != nil) {
+               topController = topController?.presentedViewController
+           }
+           
+           return topController!
+       }
+    
     static func SetRoundImage(img:UIImageView!,cornerRadius:Int,borderWidth:Int=1,borderColor:UIColor = UIColor.white){
         img.layer.cornerRadius = CGFloat(cornerRadius)
         img.layer.borderColor = borderColor.cgColor

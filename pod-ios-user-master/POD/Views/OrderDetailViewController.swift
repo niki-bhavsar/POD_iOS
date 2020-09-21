@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
+
 class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate, URLSessionDownloadDelegate, UIDocumentInteractionControllerDelegate {
     
     @IBOutlet  var viewPopup:UIView!
@@ -28,6 +29,7 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     @IBOutlet public var btnDownload:UIButton!
     @IBOutlet public var heightConstraing:NSLayoutConstraint!
     @IBOutlet public var TimeheightConstraing:NSLayoutConstraint!
+    
     public var orderID:String?
     public var orderInfoDetail = [String:Any]()
     
@@ -36,8 +38,15 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     var backgroundSession: URLSession!
     var isExtended:Bool = false;
     @IBOutlet public var tblOrderDetails:UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateOrderDetail(_:)),
+                                               name: NSNotification.Name("UpdateOrderDetailView"),
+                                               object: nil)
+        
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         } else {
@@ -59,6 +68,13 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
         backgroundSession = Foundation.URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
         // Do any additional setup after loading the view.
     }
+    
+    @objc func updateOrderDetail(_ notification: Notification) {
+        
+        let orderId : String = notification.object as! String//notification.userInfo as! String
+        MyOrderController.GetOrderByorderId(orderId: orderId, vc: self)
+//        MyOrderController.GetOrderByorderId(orderId: orderId, vc: self)
+      }
     
     @objc private func refreshOrderData(_ sender: Any) {
         // Fetch Weather Data
