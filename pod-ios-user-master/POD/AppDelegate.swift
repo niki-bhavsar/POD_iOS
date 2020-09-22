@@ -14,6 +14,8 @@ import GoogleSignIn
 import AVFoundation
 import AlamofireNetworkActivityLogger
 import IQKeyboardManager
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,UNUserNotificationCenterDelegate,MessagingDelegate {
@@ -33,7 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         IQKeyboardManager.shared().isEnabled = true
         
         
-        self.determineMyCurrentLocation();
+//        self.determineMyCurrentLocation();
+        
+        GMSServices.provideAPIKey("AIzaSyB5ibVY-g-GRIkIFFoChxDdZcIXKekwqdg")
+        GMSPlacesClient.provideAPIKey("AIzaSyB5ibVY-g-GRIkIFFoChxDdZcIXKekwqdg")
+        
         GIDSignIn.sharedInstance().clientID = "73490473596-99b8v0bu4g6nicuv9rhhith4bd0qc0a5.apps.googleusercontent.com"//"920480468386-a3v6c07os2nre2vansr4bj1u5fv1fgj0.apps.googleusercontent.com"
         
         FirebaseApp.configure()
@@ -270,36 +276,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         
     }
     //MARK:- To get the user current location delegate methods
-    func determineMyCurrentLocation() {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-            //locationManager.startUpdatingHeading()
-        }
-    }
+//    func determineMyCurrentLocation() {
+//        locationManager = CLLocationManager()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.requestAlwaysAuthorization()
+//
+//        if CLLocationManager.locationServicesEnabled() {
+//            locationManager.startUpdatingLocation()
+//            //locationManager.startUpdatingHeading()
+//        }
+//    }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation:CLLocation = locations[0] as CLLocation
-        
-        if(Constant.currLat != userLocation.coordinate.latitude){
-            DispatchQueue.global(qos: .background).async {
-                print("Run on background thread")
-                LoginController.SaveUserTrackingData()
-                DispatchQueue.main.async {
-                    print("We finished that.")
-                    
-                }
-            }
-        }
-        print("user latitude = \(userLocation.coordinate.latitude)")
-        print("user longitude = \(userLocation.coordinate.longitude)")
-        Constant.currLat = userLocation.coordinate.latitude
-        Constant.currLng = userLocation.coordinate.longitude
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let userLocation:CLLocation = locations[0] as CLLocation
+//
+////        if(Constant.currLat != userLocation.coordinate.latitude){
+////            DispatchQueue.global(qos: .background).async {
+////                print("Run on background thread")
+//////                LoginController.SaveUserTrackingData()
+////                DispatchQueue.main.async {
+////                    print("We finished that.")
+////
+////                }
+////            }
+////        }
+////        print("user latitude = \(userLocation.coordinate.latitude)")
+////        print("user longitude = \(userLocation.coordinate.longitude)")
+//        Constant.currLat = userLocation.coordinate.latitude
+//        Constant.currLng = userLocation.coordinate.longitude
+//    }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
         print("Error \(error)")

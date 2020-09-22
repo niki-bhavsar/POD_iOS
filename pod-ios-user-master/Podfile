@@ -4,9 +4,9 @@
 target 'POD' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-	pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'Alamofire'
-   pod 'AlamofireNetworkActivityLogger'
+  pod 'AlamofireNetworkActivityLogger'
   pod 'SwiftyJSON'
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
@@ -17,6 +17,11 @@ target 'POD' do
   pod 'IQKeyboardManager'
   pod 'ActionSheetPicker-3.0'
   pod 'SwiftDate'
+  #  pod 'GoogleMaps'
+  #  pod 'GooglePlaces'
+  
+  pod 'GoogleMaps', '~>3.7.0'
+  pod 'GooglePlaces', '~>3.7.0'
   # Pods for POD
-
+  
 end

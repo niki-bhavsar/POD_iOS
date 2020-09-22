@@ -16,7 +16,7 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
     @IBOutlet var btnHome:UIButton!
     @IBOutlet var btnWork:UIButton!
     @IBOutlet var txtOther:UITextField!
-    @IBOutlet var txtHome:UITextField!
+    @IBOutlet var txtFlat:UITextField!
     @IBOutlet var txtLandmark:UITextField!
     @IBOutlet var txtArea:UITextField!
     @IBOutlet var tblArea:UITableView!
@@ -166,8 +166,8 @@ class AddAddressViewController: BaseViewController, MKMapViewDelegate {
         }
         var add = txtQuery.text
         
-        if(txtHome.text!.count>0){
-            add = add!+", "+txtHome.text!
+        if(txtFlat.text!.count>0){
+            add = add!+", "+txtFlat.text!
         }
         if(txtLandmark.text!.count>0){
             add = add!+", "+txtLandmark.text!

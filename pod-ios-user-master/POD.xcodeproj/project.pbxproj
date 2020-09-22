@@ -601,6 +601,7 @@
 				189FA6A423904C4F008EBD79 /* Frameworks */,
 				189FA6A523904C4F008EBD79 /* Resources */,
 				093A95547676A722E1B5924B /* [CP] Embed Pods Frameworks */,
+				BFF20C60E611E4605E117A98 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -679,6 +680,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-POD/Pods-POD-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFF20C60E611E4605E117A98 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-POD/Pods-POD-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-POD/Pods-POD-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-POD/Pods-POD-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E6D28A3E905FBE2E92975583 /* [CP] Check Pods Manifest.lock */ = {

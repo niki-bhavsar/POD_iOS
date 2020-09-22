@@ -75,6 +75,13 @@ PODS:
   - GoogleDataTransportCCTSupport (3.2.0):
     - GoogleDataTransport (~> 6.1)
     - nanopb (~> 1.30905.0)
+  - GoogleMaps (3.7.0):
+    - GoogleMaps/Maps (= 3.7.0)
+  - GoogleMaps/Base (3.7.0)
+  - GoogleMaps/Maps (3.7.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.7.0):
+    - GoogleMaps/Base (= 3.7.0)
   - GoogleUtilities/AppDelegateSwizzler (6.6.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -120,6 +127,8 @@ DEPENDENCIES:
   - FacebookLogin
   - Firebase/Analytics
   - Firebase/Messaging
+  - GoogleMaps (~> 3.7.0)
+  - GooglePlaces (~> 3.7.0)
   - IQKeyboardManager
   - NotificationBannerSwift (= 2.0.1)
   - SCLAlertView
@@ -146,6 +155,8 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
+    - GoogleMaps
+    - GooglePlaces
     - GoogleUtilities
     - IQKeyboardManager
     - MarqueeLabel
@@ -177,6 +188,8 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 2fd5c5a56c069db635c8e7b92d4809a9591d0a69
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: 489c1265d2c85b68187a83a911913d190012158d
+  GoogleMaps: 55da829c68aa931f3ae982b9e341cc2f3d89c587
+  GooglePlaces: a62077320f9d64239245af63aa1aa136393ebeb6
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
@@ -190,6 +203,6 @@ SPEC CHECKSUMS:
   SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 371def4b96947bb463d681e90ffc4160dc3fd08d
+PODFILE CHECKSUM: 7d441d3a64bbeb6ce8105e5a59d14cc5bff5c490
 
 COCOAPODS: 1.9.1
