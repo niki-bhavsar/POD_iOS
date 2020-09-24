@@ -18,13 +18,13 @@ class SignUpOTPViewController: BaseViewController {
     @IBOutlet var lblName:UILabel!
     @IBOutlet var lblEmail:UILabel!
     @IBOutlet var lblMobileNo:UILabel!
-    @IBOutlet var lblAdress:UILabel!
-    @IBOutlet var btnCheck:UIButton!
+    
+    
     @IBOutlet var btnSignIn:UIButton!
     @IBOutlet var txtDOB:UITextField!
     @IBOutlet var btnMale:UIButton!
     @IBOutlet var btnFemale:UIButton!
-    @IBOutlet var sv:UIScrollView!
+    
     
     var userInfo = [String : Any]()
     
@@ -42,27 +42,19 @@ class SignUpOTPViewController: BaseViewController {
         self.InitializeKeyBoardNotificationObserver()
         txtPassword.addDoneButtonOnKeyboard(view: self.view)
         Helper.SetRoundImage(img: profileImg, cornerRadius: 50, borderWidth: 4, borderColor: UIColor.init(red: 250/255, green: 158/255, blue: 0, alpha: 1))
-        // Do any additional setup after loading the view.
-        sv.contentSize = CGSize.init(width: 0, height: btnSignIn.frame.origin.y+btnSignIn.frame.size.height+50)
-        //self.btnMale.isSelected = true;
-        self.SetUserInfo();
-    }
-    
-    @IBAction func btnSelectGender(sender:UIButton){
-        self.btnMale.isSelected = false;
-        self.btnFemale.isSelected = false;
-        sender.isSelected = true;
+  
+        self.SetUserInfo()
     }
     
     func SetUserInfo(){
-
+        
         
         if let name = userInfo["Name"]{
             lblName.text = name as? String
         }
-//        if let Address = userInfo!["Address"]{
-//            lblAdress.text = (Address as! String);
-//        }
+        //        if let Address = userInfo!["Address"]{
+        //            lblAdress.text = (Address as! String);
+        //        }
         if let mobileNo = userInfo["Phone"]{
             lblMobileNo.text = mobileNo as? String
         }
@@ -103,15 +95,7 @@ class SignUpOTPViewController: BaseViewController {
         
     }
     
-    @IBAction func btnTC_Click(){
-        if(btnCheck.isSelected) {
-            btnCheck.isSelected = false
-            IsAcceptTC = false
-        } else{
-            btnCheck.isSelected = true
-                     IsAcceptTC = true
-        }
-    }
+    
     
     @IBAction func btnSignIn_Click(){
         if(txtOTP.text?.count == 0){
@@ -128,7 +112,7 @@ class SignUpOTPViewController: BaseViewController {
         }
         else if(txtPassword.text!.count<4){
             Helper.ShowAlertMessage(message:"Password must contains at least 4 character long." , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
-                       return;
+            return;
         }
         txtPassword.resignFirstResponder()
         txtOTP.resignFirstResponder()
@@ -140,7 +124,7 @@ class SignUpOTPViewController: BaseViewController {
         SignupController.UserRegistration(vc: self, dicObj: userInfo )
     }
     
-     @IBAction func btnResend_Click(){
+    @IBAction func btnResend_Click(){
         txtPassword.resignFirstResponder()
         txtOTP.resignFirstResponder()
         
@@ -149,9 +133,9 @@ class SignUpOTPViewController: BaseViewController {
         otpDic["Email"] = lblEmail.text
         otpDic["Phone"] = lblMobileNo.text 
         SignupController.ReGetOTP(vc: self, dicObj: otpDic)
-     }
+    }
     
-
+    
     
     
     /*

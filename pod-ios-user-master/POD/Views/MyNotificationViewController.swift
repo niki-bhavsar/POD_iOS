@@ -90,6 +90,13 @@ extension MyNotificationViewController {
         return cell;
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let orderOBj = MyOrderController.listNotification?[indexPath.row]
+        if let generalId = orderOBj!["generalId"]{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+            controller.orderID = generalId as? String
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
         
     }
     

@@ -152,17 +152,17 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
         
         if let Total = dic["Total"]{
             
-//            let p = Double(dic["ProductPrice"] as! String)!
-//            let h = Double(dic["ShootingHours"] as! String)!
-             let e = Double(dic["ExtAmount"] as! String)!
-//            let v = Double(dic["Transportation"] as! String)!
-//            let finalAMount = ((p*h)+e+v);
+            //            let p = Double(dic["ProductPrice"] as! String)!
+            //            let h = Double(dic["ShootingHours"] as! String)!
+            let e = Double(dic["ExtAmount"] as! String)!
+            //            let v = Double(dic["Transportation"] as! String)!
+            //            let finalAMount = ((p*h)+e+v);
             //let gst = (((p*h)*18)/100)
             var pricewithgst = Double(Total as! String)!
             pricewithgst = pricewithgst+e
-            self.lblAmount!.text = "Amount:   \(String(format: "%.2f", pricewithgst as! CVarArg))"
+            self.lblAmount!.text = "Amount:   \(String(format: "%.2f", pricewithgst as CVarArg))"
             self.lblAmount.halfTextColorChange(fullText: self.lblAmount.text!, changeText: pricewithgst.description , color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
-            self.total = "Total:   \(String(format: "%.2f", pricewithgst as! CVarArg))"
+            self.total = "Total:   \(String(format: "%.2f", pricewithgst as CVarArg))"
         }
         
         if let PaymentMethod = dic["PaymentMethod"]{
@@ -200,7 +200,7 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
                 self.TimeheightConstraing.constant = 0;
                 self.btnExtend.isHidden = true;
                 self.widthExtend.constant = 0;
-               //  self.btnExtend.setTitle("Pay", for: UIControl.State.normal)
+                //  self.btnExtend.setTitle("Pay", for: UIControl.State.normal)
             }
             if(Status as! String == "2" || Status as! String == "3" || Status as! String == "5" || Status as! String == "6"){
                 
@@ -297,8 +297,7 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
             if((invoiceFile as AnyObject).length == 0){
                 vc?.btnDownload.isHidden = true;
                 vc?.btnExtPopupDownload.isHidden = true;
-            }
-            else{
+            } else{
                 vc?.btnDownload.isHidden = false;
                 vc?.btnExtPopupDownload.isHidden = false;
             }
@@ -316,10 +315,10 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
         
         if let pStatus = dic["pStatus"]{
             let statusName = Helper.GetPhotoGrapherStatusName(index:Int(pStatus as! String)!)
-             self.lblPhotographerSatus.text = statusName
+            self.lblPhotographerSatus.text = statusName
             self.lblPhotographerSatus.halfTextColorChange(fullText: statusName, changeText: statusName , color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
             
-               
+            
         }
         
         self.addHeightConstraing.constant = self.txtAdd.contentSize.height+10

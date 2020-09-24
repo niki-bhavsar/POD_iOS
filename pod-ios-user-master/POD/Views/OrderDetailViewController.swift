@@ -83,6 +83,16 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     
     @IBAction func btnViewReceipt_Click(){
         self.viewPopup.isHidden = false;
+        if let invoiceFile = orderInfoDetail["InVoiceFile"]{
+            if((invoiceFile as AnyObject).length == 0){
+                btnDownload.isHidden = true;
+                btnExtPopupDownload.isHidden = true;
+            } else{
+                btnDownload.isHidden = false;
+                btnExtPopupDownload.isHidden = false;
+            }
+        }
+        
     }
     
     @IBAction func btnDownload_Click(){
@@ -115,8 +125,6 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
         controller.orderDetail =  orderInfoDetail
         self.navigationController?.pushViewController(controller, animated: true)
     }
-    
-    
 }
 
 extension OrderDetailViewController : OrderDetailDelegate{

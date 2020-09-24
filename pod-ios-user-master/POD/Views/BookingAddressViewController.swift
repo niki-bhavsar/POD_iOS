@@ -118,7 +118,8 @@ extension BookingAddressViewController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "AddAddressViewController") as! AddAddressViewController
         controller.IsEdit = true;
-        controller.editDic = dicAddObj as [String : AnyObject]; self.navigationController?.pushViewController(controller, animated: true)
+        controller.editDic = dicAddObj as [String : AnyObject];
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func DeleteTapped(at index: IndexPath) {
