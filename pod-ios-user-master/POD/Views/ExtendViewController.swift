@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
 class ExtendViewController: BaseViewController {
 
@@ -55,6 +56,11 @@ class ExtendViewController: BaseViewController {
     }
     
     @IBAction func btnExtend_CLick(){
+        
+        if(lblexthrours.text == "0"){
+            Helper.ShowAlertMessage(message: "Please add hours", vc: self,title:"Required",bannerStyle: BannerStyle.warning)
+            return
+        }
         
         var extendIndfo = [String:Any]()
         

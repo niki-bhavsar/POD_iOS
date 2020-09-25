@@ -156,14 +156,11 @@ class LoginController: NSObject {
         let graphRequest : GraphRequest = GraphRequest(graphPath: "me", parameters: ["fields":"id, email, name, picture.width(480).height(480),location"])
         graphRequest.start(completionHandler: { (connection, result, error) -> Void in
             
-            if ((error) != nil)
-            {
+            if ((error) != nil){
                 print("Error took place: \(error)")
                 vc.removeSpinner()
                 Helper.ShowAlertMessage(message: error!.localizedDescription, vc: vc)
-            }
-            else
-            {
+            } else {
                 print("Print entire fetched result: \(JSON(result!))")
                 var userInfo:[String:Any] = [String:Any]()
                 let pictureData = JSON(result!).dictionaryObject!["picture"] as! NSDictionary

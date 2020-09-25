@@ -141,6 +141,7 @@ extension SideMenuViewController {
                     }
                 }
             }
+            AccountManager.instance().activeAccount = nil
             if(isPresent){
                 self.navigationController?.popToViewController(findVc!, animated: true)
             }

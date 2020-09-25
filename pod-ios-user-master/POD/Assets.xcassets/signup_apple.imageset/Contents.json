@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "signup_google.png",
+      "filename" : "signup_apple.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "signup_google@2x.png",
+      "filename" : "signup_apple@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "signup_google@3x.png",
+      "filename" : "signup_apple@3x.png",
       "scale" : "3x"
     }
   ],

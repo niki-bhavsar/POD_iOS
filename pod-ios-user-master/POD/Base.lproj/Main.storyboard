@@ -143,7 +143,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yeh-Nm-L2B">
-                                <rect key="frame" x="106" y="550" width="108" height="50"/>
+                                <rect key="frame" x="80" y="550" width="160" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZT-Sf-B47">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -157,7 +157,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kv-oE-iAn">
-                                        <rect key="frame" x="58" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="110" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="1nY-qt-kwO"/>
                                             <constraint firstAttribute="height" constant="50" id="HfM-CA-G6k"/>
@@ -167,14 +167,27 @@
                                             <action selector="btnGoogle_Click" destination="BYZ-38-t0r" eventType="touchUpInside" id="R0Q-OJ-rDq"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6N-bG-Yb2">
+                                        <rect key="frame" x="55" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="ies-Ga-Nyh"/>
+                                            <constraint firstAttribute="height" constant="50" id="qUX-pP-j2c"/>
+                                        </constraints>
+                                        <state key="normal" image="signup_apple"/>
+                                        <connections>
+                                            <action selector="btnApple_Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OB8-99-5ao"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="3EY-h1-TNv"/>
                                     <constraint firstItem="RZT-Sf-B47" firstAttribute="top" secondItem="Yeh-Nm-L2B" secondAttribute="top" id="4ua-PW-aav"/>
-                                    <constraint firstAttribute="width" constant="108" id="70l-Eo-UBd"/>
+                                    <constraint firstAttribute="width" constant="160" id="70l-Eo-UBd"/>
+                                    <constraint firstItem="W6N-bG-Yb2" firstAttribute="centerX" secondItem="Yeh-Nm-L2B" secondAttribute="centerX" id="IfS-eQ-uay"/>
                                     <constraint firstItem="RZT-Sf-B47" firstAttribute="leading" secondItem="Yeh-Nm-L2B" secondAttribute="leading" id="Qzg-gA-twz"/>
                                     <constraint firstAttribute="trailing" secondItem="7Kv-oE-iAn" secondAttribute="trailing" id="VVG-oK-5QK"/>
+                                    <constraint firstItem="W6N-bG-Yb2" firstAttribute="centerY" secondItem="Yeh-Nm-L2B" secondAttribute="centerY" id="b4R-bL-Omg"/>
                                     <constraint firstItem="7Kv-oE-iAn" firstAttribute="top" secondItem="Yeh-Nm-L2B" secondAttribute="top" id="dqR-ew-Od7"/>
                                     <constraint firstItem="7Kv-oE-iAn" firstAttribute="width" secondItem="RZT-Sf-B47" secondAttribute="width" id="uxi-BH-YW6"/>
                                 </constraints>
@@ -270,6 +283,7 @@
                     <navigationItem key="navigationItem" id="5zk-nu-7TF"/>
                     <size key="freeformSize" width="320" height="650"/>
                     <connections>
+                        <outlet property="btnApple" destination="W6N-bG-Yb2" id="nPG-Nc-AIA"/>
                         <outlet property="seperator" destination="6iw-vo-8FY" id="zKN-AU-IDF"/>
                         <outlet property="txtEmail" destination="xEp-vI-QUV" id="iQV-HS-Evm"/>
                         <outlet property="txtPassword" destination="iyU-a0-usX" id="iXD-tC-aa7"/>
@@ -513,7 +527,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFZ-mB-K44">
-                                                <rect key="frame" x="90" y="235" width="76" height="30"/>
+                                                <rect key="frame" x="115" y="235" width="101" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="2SX-Fi-ueB"/>
                                                 </constraints>
@@ -529,7 +543,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIS-74-1Y4">
-                                                <rect key="frame" x="10" y="235" width="60" height="30"/>
+                                                <rect key="frame" x="10" y="235" width="85" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="riO-Qp-cBR"/>
                                                 </constraints>
@@ -678,7 +692,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bg_s" translatesAutoresizingMaskIntoConstraints="NO" id="ToF-Fw-JwQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="3840"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CL-CP-ewo">
                                 <rect key="frame" x="133.5" y="10" width="53" height="24"/>
@@ -725,7 +739,7 @@
                                 </constraints>
                             </view>
                             <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wh-OH-2La">
-                                <rect key="frame" x="0.0" y="204" width="320" height="364"/>
+                                <rect key="frame" x="0.0" y="204" width="320" height="3636"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WvN-Ta-SNf">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="359"/>
@@ -909,7 +923,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6q0-5f-ffK">
-                                                <rect key="frame" x="90" y="240" width="76" height="30"/>
+                                                <rect key="frame" x="115" y="240" width="101" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="4fw-fC-wLY"/>
                                                 </constraints>
@@ -925,7 +939,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLx-Fa-gju">
-                                                <rect key="frame" x="10" y="240" width="60" height="30"/>
+                                                <rect key="frame" x="10" y="240" width="85" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="FQE-cH-jaY"/>
                                                 </constraints>
@@ -2694,7 +2708,7 @@ Regards, Team POD :)</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG" translatesAutoresizingMaskIntoConstraints="NO" id="xWM-ri-obC">
-                                <rect key="frame" x="0.0" y="0.0" width="1080" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="2160" height="568"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HeaderBG" translatesAutoresizingMaskIntoConstraints="NO" id="JlB-Mu-rCK">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
@@ -3597,7 +3611,7 @@ Regards, Team POD :)</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fx7-uQ-YAV">
-                                                <rect key="frame" x="80" y="285" width="76" height="30"/>
+                                                <rect key="frame" x="105" y="285" width="101" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="VJu-wo-eC2"/>
                                                 </constraints>
@@ -3610,7 +3624,7 @@ Regards, Team POD :)</string>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCe-hr-6I7">
-                                                <rect key="frame" x="10" y="285" width="60" height="30"/>
+                                                <rect key="frame" x="10" y="285" width="85" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="4Pt-ej-rhN"/>
                                                 </constraints>
@@ -5719,7 +5733,7 @@ Regards, Team POD :)</string>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="okS-BI-Ty4">
-                                                            <rect key="frame" x="3" y="-1" width="285" height="40"/>
+                                                            <rect key="frame" x="3" y="-2" width="285" height="41"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -9083,7 +9097,7 @@ Regards, Team POD :)</string>
                                         <rect key="frame" x="0.0" y="28" width="302" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zyg-R3-9bk" id="Yat-Xa-geN">
-                                            <rect key="frame" x="0.0" y="2" width="302" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="302" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHF-KE-pTv">
@@ -9934,8 +9948,8 @@ Regards, Team POD :)</string>
         <image name="Work" width="30" height="30"/>
         <image name="background_slider" width="812" height="612"/>
         <image name="check" width="30" height="30"/>
-        <image name="facebook" width="155" height="154"/>
-        <image name="google" width="155" height="154"/>
+        <image name="facebook" width="40" height="40"/>
+        <image name="google" width="40" height="40"/>
         <image name="ic_back" width="12" height="20.5"/>
         <image name="ic_bg_s" width="1080" height="1920"/>
         <image name="ic_booknow" width="109" height="132"/>
@@ -9947,6 +9961,7 @@ Regards, Team POD :)</string>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
         <image name="menu" width="90" height="90"/>
         <image name="send" width="32" height="32"/>
+        <image name="signup_apple" width="40" height="40"/>
         <image name="sms" width="32" height="32"/>
         <image name="trash" width="30" height="30"/>
         <image name="uncheck" width="30" height="30"/>
