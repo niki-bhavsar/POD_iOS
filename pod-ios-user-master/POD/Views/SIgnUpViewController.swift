@@ -26,7 +26,9 @@ class SIgnUpViewController: BaseViewController {
     @IBOutlet var btnFemale:UIButton!
     var imagePicker: ImagePicker!
     var isImageSelected:Bool = false
-    
+    var isFromAppleSignin = Bool()
+    var strEmail = String()
+    var strName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,19 @@ class SIgnUpViewController: BaseViewController {
              lblTerms.attributedText = underlineAttriString
              lblTerms.isUserInteractionEnabled = true
              lblTerms.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(tapLabel(gesture:))))
+        
+        if(isFromAppleSignin == true){
+            if(strEmail.count > 0){
+                txtEmail.text = strEmail
+                txtEmail.isUserInteractionEnabled = false
+            }
+            
+            if(strName.count > 0){
+                txtfullName.text = strName
+                txtfullName.isUserInteractionEnabled = false
+            }
+        }
+        
     }
     
     @IBAction func tapLabel(gesture: UITapGestureRecognizer) {

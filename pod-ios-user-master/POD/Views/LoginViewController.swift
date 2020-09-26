@@ -31,6 +31,7 @@ class LoginViewController: BaseViewController,GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = self
         self.navigationController?.setNavigationBarHidden(true, animated: true);
     }
+    
     @IBAction func forgotPasswordClicked(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -42,6 +43,7 @@ class LoginViewController: BaseViewController,GIDSignInDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
+        controller.isFromAppleSignin = false
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -66,17 +68,28 @@ class LoginViewController: BaseViewController,GIDSignInDelegate {
     }
     @IBAction func btnApple_Click(_ sender: Any) {
         if #available(iOS 13.0, *) {
-            let provider = ASAuthorizationAppleIDProvider()
-            let appleIdRequest = provider.createRequest()
-            appleIdRequest.requestedScopes = [.fullName, .email]
+//            let provider = ASAuthorizationAppleIDProvider()
+//            let appleIdRequest = provider.createRequest()
+//            appleIdRequest.requestedScopes = [.fullName, .email]
+//
+////            let paswordProvider = ASAuthorizationPasswordProvider()
+////            let passwordRequest = paswordProvider.createRequest()
+//
+//            let controller = ASAuthorizationController(authorizationRequests: [appleIdRequest])
+//            controller.delegate = self
+//            controller.presentationContextProvider = self
+//            controller.performRequests()
             
-            let paswordProvider = ASAuthorizationPasswordProvider()
-            let passwordRequest = paswordProvider.createRequest()
             
-            let controller = ASAuthorizationController(authorizationRequests: [appleIdRequest, passwordRequest])
-            controller.delegate = self
-            controller.presentationContextProvider = self
-            controller.performRequests()
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.performRequests()
+
+            
+            
         } else {
             print("iOS 13")
         }
@@ -129,7 +142,7 @@ extension LoginViewController {
         userInfo["Gender"] = ""
         userInfo["DOB"] = ""
         userInfo["ProfileImageUrl"] = ""
-        userInfo["TermsCondition"] = "1"
+        userInfo["TermsCondition"] = "0"
         LoginController.FacebookRegistration(vc: self, dicObj: userInfo)
     }
     
@@ -144,35 +157,64 @@ extension LoginViewController {
 extension LoginViewController: ASAuthorizationControllerDelegate {
     
     @available(iOS 13.0, *)
+//    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+//    if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+//    let userIdentifier = appleIDCredential.user
+//    let fullName = appleIDCredential.fullName
+//    let email = appleIDCredential.email
+//    print("User id is \(userIdentifier) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))") }
+//    }
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let credentials as ASAuthorizationAppleIDCredential:
-            
+
             let appleId = credentials.user
-            
+
             let appleUserFirstName: String = credentials.fullName?.givenName ?? ""
-            
+
             let appleUserLastName: String = credentials.fullName?.familyName ?? ""
-            
+
             let appleUserEmail: String = credentials.email ?? ""
+
+            print("Email : \(appleUserEmail)")
+
+            print("Id : \(appleId)")
+
+            print("Firstname : \(appleUserFirstName)")
+
+            print("Full NME : \(credentials.fullName)")
             
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
+            controller.isFromAppleSignin = true
+            controller.strName = "\(appleUserFirstName) \(appleUserLastName)"
+            controller.strEmail = appleUserEmail
+            self.navigationController?.pushViewController(controller, animated: true)
+
             //self.showCompleteProfileScreen(strFirstName: appleUserFirstName , strLastName: appleUserLastName , strEmail: appleUserEmail, strPhone: "", strBirthdate: "")
-            
+
         case let passwordCredentials as ASPasswordCredential:
             let appleUsername = passwordCredentials.user
-            
+
             let applePassword: String = passwordCredentials.password
+
+            let message: String  = "Apple User ID: \(appleUsername), \n  password: \(applePassword)"
             
-            //let message: String  = "Apple User ID: \(appleUsername), \n  password: \(applePassword)"
-            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
+            controller.isFromAppleSignin = true
+            self.navigationController?.pushViewController(controller, animated: true)
+
             //Utility.showAlertWithOkButton(withMessage: message)
             //self.showCompleteProfileScreen(strFirstName: "" , strLastName: "" , strEmail: "", strPhone: "", strBirthdate: "")
-            
+
         default:
             break
         }
     }
 }
+    
 
 @available(iOS 13.0, *)
 func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

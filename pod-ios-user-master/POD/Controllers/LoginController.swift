@@ -187,7 +187,7 @@ class LoginController: NSObject {
                 userInfo["Gender"] = ""
                 userInfo["DOB"] = ""
                 userInfo["ProfileImageUrl"] = ""
-                userInfo["TermsCondition"] = "1"
+                userInfo["TermsCondition"] = "0"
                 LoginController.FacebookRegistration(vc: vc, dicObj: userInfo)
             }
             //vc.removeSpinner(onView: vc.view)
