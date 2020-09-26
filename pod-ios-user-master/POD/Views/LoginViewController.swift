@@ -121,11 +121,15 @@ extension LoginViewController {
         userInfo["Name"] = fullName
         userInfo["Email"] = email
         userInfo["Phone"] = ""
-        userInfo["Address"] = ""
+//        userInfo["Address"] = ""
         userInfo["OTP"] = "1234"
         userInfo["Password"] = idToken
         userInfo["SignBy"] = "3"
         userInfo["SocialId"] = "3"
+        userInfo["Gender"] = ""
+        userInfo["DOB"] = ""
+        userInfo["ProfileImageUrl"] = ""
+        userInfo["TermsCondition"] = "1"
         LoginController.FacebookRegistration(vc: self, dicObj: userInfo)
     }
     

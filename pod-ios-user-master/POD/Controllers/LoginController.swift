@@ -153,21 +153,23 @@ class LoginController: NSObject {
     
     static func fetchUserProfile(vc:LoginViewController,loginToken:String) {
         
-        let graphRequest : GraphRequest = GraphRequest(graphPath: "me", parameters: ["fields":"id, email, name, picture.width(480).height(480),location"])
+        let graphRequest : GraphRequest = GraphRequest(graphPath: "me", parameters: ["fields":"id, email, name, picture.width(480).height(480),location,gender,birthday"])
         graphRequest.start(completionHandler: { (connection, result, error) -> Void in
             
             if ((error) != nil){
-                print("Error took place: \(error)")
+                print("Error took place: \(error ?? nil)")
                 vc.removeSpinner()
                 Helper.ShowAlertMessage(message: error!.localizedDescription, vc: vc)
             } else {
                 print("Print entire fetched result: \(JSON(result!))")
                 var userInfo:[String:Any] = [String:Any]()
+                
                 let pictureData = JSON(result!).dictionaryObject!["picture"] as! NSDictionary
                 let data = JSON(pictureData).dictionaryObject!["data"] as! NSDictionary
                 let pictureUrlString  = data["url"] as! String
                 let pictureUrl = NSURL(string: pictureUrlString)
                 let imageData:NSData = NSData(contentsOf: pictureUrl! as URL)!
+                
                 if(imageData != nil){
                     userInfo["ProfileImage"] = imageData
                 }
@@ -177,11 +179,15 @@ class LoginController: NSObject {
                 userInfo["Name"] = JSON(result!).dictionaryObject!["name"]
                 userInfo["Email"] = JSON(result!).dictionaryObject!["email"]
                 userInfo["Phone"] = ""
-                userInfo["Address"] = JSON(result!).dictionaryObject!["location"]
+//                userInfo["Address"] = JSON(result!).dictionaryObject!["location"]
                 userInfo["OTP"] = ""
                 userInfo["Password"] = ""
                 userInfo["SignBy"] = "2"
                 userInfo["SocialId"] = "2"
+                userInfo["Gender"] = ""
+                userInfo["DOB"] = ""
+                userInfo["ProfileImageUrl"] = ""
+                userInfo["TermsCondition"] = "1"
                 LoginController.FacebookRegistration(vc: vc, dicObj: userInfo)
             }
             //vc.removeSpinner(onView: vc.view)

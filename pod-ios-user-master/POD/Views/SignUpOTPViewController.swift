@@ -29,7 +29,6 @@ class SignUpOTPViewController: BaseViewController {
     var userInfo = [String : Any]()
     
     var imgData : Data = Data.init()
-    var IsAcceptTC : Bool = false
     
     
     override func viewDidLoad() {
@@ -106,10 +105,7 @@ class SignUpOTPViewController: BaseViewController {
             Helper.ShowAlertMessage(message:"Please enter password" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return;
         }
-        else if(!self.IsAcceptTC){
-            Helper.ShowAlertMessage(message:"Please accept terms and conditions" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
-            return;
-        }
+       
         else if(txtPassword.text!.count<4){
             Helper.ShowAlertMessage(message:"Password must contains at least 4 character long." , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return;
