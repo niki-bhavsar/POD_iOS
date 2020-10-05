@@ -270,7 +270,7 @@ class HomeViewController: BaseViewController {
         var result:Bool = true;
         let account = AccountManager.instance().activeAccount! //Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
 //        if let mobileNo = account.phone{
-        if(account.phone.count==0 || account.phone == ""){
+        if(account.phone.count == 0 || account.phone == ""){
                 result = false;
             }
 //        } else{
@@ -278,7 +278,7 @@ class HomeViewController: BaseViewController {
 //        }
         
 //        if let email = userInfo?["Email"]{
-            if(account.email.count==0 || account.email == ""){
+            if(account.email.count == 0 || account.email == ""){
                 result = false;
             }
 //        } else{

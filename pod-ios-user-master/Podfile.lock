@@ -102,6 +102,7 @@ PODS:
   - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
   - IQKeyboardManager (6.5.6)
+  - JWTDecode (2.4.1)
   - MarqueeLabel/Swift (3.2.1)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
@@ -130,6 +131,7 @@ DEPENDENCIES:
   - GoogleMaps (~> 3.7.0)
   - GooglePlaces (~> 3.7.0)
   - IQKeyboardManager
+  - JWTDecode
   - NotificationBannerSwift (= 2.0.1)
   - SCLAlertView
   - SkyFloatingLabelTextField (~> 3.0)
@@ -159,6 +161,7 @@ SPEC REPOS:
     - GooglePlaces
     - GoogleUtilities
     - IQKeyboardManager
+    - JWTDecode
     - MarqueeLabel
     - nanopb
     - NotificationBannerSwift
@@ -192,6 +195,7 @@ SPEC CHECKSUMS:
   GooglePlaces: a62077320f9d64239245af63aa1aa136393ebeb6
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
+  JWTDecode: 4bd4da0cdf0f8154fd467fa48499f34ec057fb88
   MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   NotificationBannerSwift: 007774aa590cc9680647b92b2f217bef5c00c32c
@@ -203,6 +207,6 @@ SPEC CHECKSUMS:
   SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 7d441d3a64bbeb6ce8105e5a59d14cc5bff5c490
+PODFILE CHECKSUM: 236122f077171bc16a74319d6ea76434da4fa170
 
 COCOAPODS: 1.9.1

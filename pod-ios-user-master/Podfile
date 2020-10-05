@@ -17,6 +17,7 @@ target 'POD' do
   pod 'IQKeyboardManager'
   pod 'ActionSheetPicker-3.0'
   pod 'SwiftDate'
+  pod 'JWTDecode'
   #  pod 'GoogleMaps'
   #  pod 'GooglePlaces'
   

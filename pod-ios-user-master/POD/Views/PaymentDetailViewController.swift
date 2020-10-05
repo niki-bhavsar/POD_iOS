@@ -44,16 +44,14 @@ class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
         
         MyOrderController.GetTransportationCharges(lat: (Constant.OrderDic["ShootingLat"]! as! String), lng: (Constant.OrderDic["ShootingLng"]! as! String), vc: self)
         
-        if let category = Constant.SelectedCategory["Title"]
-        {
+        if let category = Constant.SelectedCategory["Title"] {
             Constant.OrderDic["ProductTitle"] = category
         }
         
-        if let ProductPrice = Constant.SelectedCategory["Price"]
-        {
+        if let ProductPrice = Constant.SelectedCategory["Price"] {
             Constant.OrderDic["ProductPrice"] = ProductPrice
-            
         }
+        
         Constant.OrderDic["ProductTitles"] = ((Constant.FirstSubcategory)+","+(Constant.AllSubcategory ))
     }
     

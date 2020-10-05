@@ -87,12 +87,12 @@ class LoginController: NSObject {
         do{
             vc.showSpinner()
             
-            ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.updateCustomerProfileURL, imageData: dicObj["ProfileImage"] as! Data, parameters: dicObj, success: { (JSON) in
+            ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.updateCustomerProfileURL, imageData: dicObj["ProfileImage"] as? Data, parameters: dicObj, success: { (JSON) in
                 let result = JSON.string?.parseJSONString!
                 let msg =  result!["Message"]
                 if(((result!["IsSuccess"]) as! Bool) != false){
                     
-                    self.GetCustomerProfile(vc: vc, userID: (dicObj["Id"])! as! String,IsBack: true)
+                    self.GetCustomerProfile(vc: vc, userID: (dicObj["Id"])! as! String,IsBack: true, account: account)
                     Helper.ShowAlertMessage(message:msg as! String , vc: vc, title: "Profile",bannerStyle: BannerStyle.success)
                 }
                 else{
@@ -235,11 +235,16 @@ class LoginController: NSObject {
 //                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
                      DispatchQueue.main.async {
                          if(IsBack == false){
-                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                             let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-                             vc.navigationController!.pushViewController(controller, animated: true)
-                         }
-                         else{
+                              let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            if(account.termsCondition == "0"){
+                                let controller = storyboard.instantiateViewController(withIdentifier: "UpdateTermsAndConditionViewController") as! UpdateTermsAndConditionViewController
+                                vc.navigationController!.pushViewController(controller, animated: true)
+                            } else {
+                              
+                                let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                                vc.navigationController!.pushViewController(controller, animated: true)
+                            }
+                         } else{
                              vc.navigationController?.popViewController(animated: true)
                          }
                          vc.removeSpinner()
@@ -260,14 +265,16 @@ class LoginController: NSObject {
      }
     
     
-    static func GetCustomerProfile(vc:ProfileViewController,userID:String, IsBack:Bool){
+    static func GetCustomerProfile(vc:ProfileViewController,userID:String, IsBack:Bool, account : Account){
         do{
             try
                 vc.showSpinner()
             ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
+//                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
+                     account.parseUserDict(userDict: JSON.dictionaryObject!["ResponseData"] as! NSDictionary, account: account)
+                    
                     DispatchQueue.main.async {
                         if(IsBack == false){
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -295,7 +302,7 @@ class LoginController: NSObject {
     }
     
     
-    static func GetCustomerProfileForProfile(vc:ProfileViewController,userID:String, IsBack:Bool){
+    static func GetCustomerProfileForProfile(vc:ProfileViewController,userID:String, IsBack:Bool, account : Account){
         do{
             try
                 vc.showSpinner()
@@ -304,7 +311,9 @@ class LoginController: NSObject {
                 if((JSON.dictionary?["IsSuccess"]) != false){
 //                    print(JSON.dictionaryObject!["ResponseData"]!)
                     DispatchQueue.main.async {
-                        vc.LoadProfileData(userProfile: JSON.dictionaryObject!["ResponseData"]! as! [String : Any])
+                         account.parseUserDict(userDict: JSON.dictionaryObject!["ResponseData"] as! NSDictionary, account: account)
+                         vc.LoadProfileData(account: account)
+//                        vc.LoadProfileData(userProfile: JSON.dictionaryObject!["ResponseData"]! as! [String : Any])
                         vc.removeSpinner()
                     }
                 }

@@ -9,6 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 import NotificationBannerSwift
+import AuthenticationServices
 
 class SIgnUpViewController: BaseViewController {
     
@@ -32,6 +33,8 @@ class SIgnUpViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         KeychainItem.deleteUserIdentifierFromKeychain()
+        
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         } else {

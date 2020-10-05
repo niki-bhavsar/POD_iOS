@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180CEF6A23AD005100FDD23F /* InfoPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CEF6923AD005100FDD23F /* InfoPopupViewController.swift */; };
+		180D858E2522FFF500756BC9 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D858D2522FFF500756BC9 /* KeychainItem.swift */; };
 		1813F12A24D0A2670090E1FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1813F12924D0A2660090E1FD /* GoogleService-Info.plist */; };
 		1814175E23F332B300DF2E79 /* MyNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814175D23F332B300DF2E79 /* MyNotificationViewController.swift */; };
 		1816A26B2393093C0022E8B8 /* MyOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816A26A2393093C0022E8B8 /* MyOrderViewController.swift */; };
@@ -152,6 +153,7 @@
 
 /* Begin PBXFileReference section */
 		180CEF6923AD005100FDD23F /* InfoPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupViewController.swift; sourceTree = "<group>"; };
+		180D858D2522FFF500756BC9 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		1813F12924D0A2660090E1FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1814175D23F332B300DF2E79 /* MyNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNotificationViewController.swift; sourceTree = "<group>"; };
 		1816A26A2393093C0022E8B8 /* MyOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderViewController.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 		189FA6E523905E64008EBD79 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				180D858D2522FFF500756BC9 /* KeychainItem.swift */,
 				187CAA2F250FA0C10002CE62 /* NVActivityIndicatorView */,
 				189FA6E623905EEB008EBD79 /* Helper.swift */,
 				18F8D63C2395AFAB00D6786E /* ImagePicker.swift */,
@@ -808,6 +811,7 @@
 				189FA6AB23904C4F008EBD79 /* AppDelegate.swift in Sources */,
 				184C3858251477BA007D1BD9 /* UpdateTermsAndConditionViewController.swift in Sources */,
 				18611807239C1E5200736D4D /* InqueryController.swift in Sources */,
+				180D858E2522FFF500756BC9 /* KeychainItem.swift in Sources */,
 				187CAA7D250FA0C20002CE62 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
 				183FCD7E23CDD31400AA6F86 /* FreelancerController.swift in Sources */,
 				18330DED2393C77500515708 /* HelpViewController.swift in Sources */,
@@ -1002,7 +1006,7 @@
 				CODE_SIGN_ENTITLEMENTS = POD/POD.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2A53RWCCV7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1084,7 +1088,7 @@
 				CODE_SIGN_ENTITLEMENTS = POD/POD.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2A53RWCCV7;
 				FRAMEWORK_SEARCH_PATHS = (

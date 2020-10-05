@@ -48,7 +48,7 @@ class ProfileViewController: BaseViewController {
         btnSubmit.isEnabled = false
         self.btnMale.isSelected = true;
 //        let Id = account.user_id
-            LoginController.GetCustomerProfileForProfile(vc: self, userID: account.user_id, IsBack: false)
+        LoginController.GetCustomerProfileForProfile(vc: self, userID: account.user_id, IsBack: false, account: account)
         
         
         //self.LoadProfileData()
@@ -78,44 +78,62 @@ class ProfileViewController: BaseViewController {
         sender.isSelected = true;
     }
     
-    func LoadProfileData(userProfile:[String:Any]){
-        account.parseUserDict(userDict: userProfile as NSDictionary, account: account)
-        if let name = userProfile["Name"]{
-            txtfullName.text = (name as! String);
+    func LoadProfileData(account : Account){
+//        account.parseUserDict(userDict: userProfile as NSDictionary, account: account)
+        txtfullName.text = account.name
+        txtPhoneNo.text = account.phone
+        if(txtPhoneNo.text?.count == 0) {
+            txtPhoneNo.isUserInteractionEnabled = true
         }
-//        if let Address = userProfile["Address"]{
-//            txtAddress.text = (Address as! String);
+        
+        txtEmail.text = account.email
+        txtDOB.text = account.dob
+        btnMale.isSelected = false
+                   btnFemale.isSelected = false
+        
+        if(account.gender == "Male"){
+            btnMale.isSelected = true
+        } else{
+            btnFemale.isSelected = true
+        }
+        
+        
+//        if let name = userProfile["Name"]{
+//            txtfullName.text = (name as! String);
 //        }
-        if let mobileNo = userProfile["Phone"]{
-            txtPhoneNo.text = (mobileNo as! String);
-            if(txtPhoneNo.text?.count == 0)
-            {
-                txtPhoneNo.isUserInteractionEnabled = true;
-            }
-        }
-        if let email = userProfile["Email"]{
-            txtEmail.text = (email as! String);
-        }
+////        if let Address = userProfile["Address"]{
+////            txtAddress.text = (Address as! String);
+////        }
+//        if let mobileNo = userProfile["Phone"]{
+//            txtPhoneNo.text = (mobileNo as! String);
+//            if(txtPhoneNo.text?.count == 0)
+//            {
+//                txtPhoneNo.isUserInteractionEnabled = true;
+//            }
+//        }
+//        if let email = userProfile["Email"]{
+//            txtEmail.text = (email as! String);
+//        }
+//
+//        if let dob = userProfile["DOB"]{
+//            txtDOB.text = (dob as! String);
+//        }
+//
+//        if let gender = userProfile["Gender"]{
+//            btnMale.isSelected = false
+//            btnFemale.isSelected = false;
+//            if((gender as! String) == "Male"){
+//                btnMale.isSelected = true
+//            }
+//            else{
+//                btnFemale.isSelected = true
+//            }
+//        }
         
-        if let dob = userProfile["DOB"]{
-            txtDOB.text = (dob as! String);
-        }
-        
-        if let gender = userProfile["Gender"]{
-            btnMale.isSelected = false
-            btnFemale.isSelected = false;
-            if((gender as! String) == "Male"){
-                btnMale.isSelected = true
-            }
-            else{
-                btnFemale.isSelected = true
-            }
-        }
-        
-        if let imgURL = userProfile["ProfileImage"]{
+        if (account.profileImage != nil || account.profileImage != "") {
             self.activityInd.isHidden = false;
             self.activityInd.startAnimating()
-            let imageUrl:NSURL = NSURL(string:  (imgURL as! String))!
+            let imageUrl:NSURL = NSURL(string:  account.profileImage)!
             if(imageUrl.absoluteString?.count != 0){
                 DispatchQueue.global(qos: .default).async {
                     if(imageUrl != nil){
@@ -130,19 +148,16 @@ class ProfileViewController: BaseViewController {
                         }
                     }
                 }
-            }
-            else{
+            } else{
                 self.activityInd.stopAnimating()
                 self.activityInd.isHidden = true;
                 btnSubmit.isEnabled = true
             }
-        }
-        else{
+        }else{
             self.activityInd.stopAnimating()
             self.activityInd.isHidden = true;
             btnSubmit.isEnabled = true
         }
-        
     }
     
     @IBAction func btnUpdate_Click(){

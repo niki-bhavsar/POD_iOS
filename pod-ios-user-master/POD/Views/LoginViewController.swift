@@ -10,6 +10,7 @@ import UIKit
 import GoogleSignIn
 import  NotificationBannerSwift
 import AuthenticationServices
+import JWTDecode
 
 class LoginViewController: BaseViewController,GIDSignInDelegate {
     
@@ -66,30 +67,17 @@ class LoginViewController: BaseViewController,GIDSignInDelegate {
         Constant.notificationCount = 0;
         LoginController.CheckSuccess(vc: self);
     }
+    
     @IBAction func btnApple_Click(_ sender: Any) {
         if #available(iOS 13.0, *) {
-//            let provider = ASAuthorizationAppleIDProvider()
-//            let appleIdRequest = provider.createRequest()
-//            appleIdRequest.requestedScopes = [.fullName, .email]
-//
-////            let paswordProvider = ASAuthorizationPasswordProvider()
-////            let passwordRequest = paswordProvider.createRequest()
-//
-//            let controller = ASAuthorizationController(authorizationRequests: [appleIdRequest])
-//            controller.delegate = self
-//            controller.presentationContextProvider = self
-//            controller.performRequests()
-            
-            
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             let request = appleIDProvider.createRequest()
             request.requestedScopes = [.fullName, .email]
+            
             let authorizationController = ASAuthorizationController(authorizationRequests: [request])
             authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
             authorizationController.performRequests()
-
-            
-            
         } else {
             print("iOS 13")
         }
@@ -170,12 +158,16 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         case let credentials as ASAuthorizationAppleIDCredential:
 
             let appleId = credentials.user
+//            credentials.identityToken
+//            credentials.authorizationCode
+//            credentials.authorizedScopes
+//            credentials.realUserStatus
 
-            let appleUserFirstName: String = credentials.fullName?.givenName ?? ""
+            var appleUserFirstName: String = credentials.fullName?.givenName ?? ""
 
-            let appleUserLastName: String = credentials.fullName?.familyName ?? ""
+            var appleUserLastName: String = credentials.fullName?.familyName ?? ""
 
-            let appleUserEmail: String = credentials.email ?? ""
+            var appleUserEmail: String = credentials.email ?? ""
 
             print("Email : \(appleUserEmail)")
 
@@ -183,14 +175,55 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 
             print("Firstname : \(appleUserFirstName)")
 
-            print("Full NME : \(credentials.fullName)")
+//            print("Full NME : \(credentials.fullName)")
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
-            controller.isFromAppleSignin = true
-            controller.strName = "\(appleUserFirstName) \(appleUserLastName)"
-            controller.strEmail = appleUserEmail
-            self.navigationController?.pushViewController(controller, animated: true)
+            self.saveUserInKeychain(appleId)
+            
+            
+            //Niki
+            
+            if let identityTokenData = credentials.identityToken,
+               let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
+               print("Identity Token \(identityTokenString)")
+               do {
+                  let jwt = try decode(jwt: identityTokenString)
+                  let decodedBody = jwt.body as Dictionary
+                  print(decodedBody)
+                  print("Decoded email: "+(decodedBody["email"] as? String ?? "n/a")   )
+                appleUserEmail = decodedBody["email"] as? String ?? "n/a"
+                appleUserFirstName = ""
+                appleUserLastName = ""
+               } catch {
+                  print("decoding failed")
+               }
+            }
+            
+            
+            
+             var userInfo:[String:Any] = [String:Any]()
+            userInfo["ProfileImage"] = Data.init()
+                    
+                    userInfo["Name"] = "\(appleUserFirstName) \(appleUserLastName)"
+                    userInfo["Email"] = appleUserEmail
+                    userInfo["Phone"] = ""
+            //        userInfo["Address"] = ""
+                    userInfo["OTP"] = "1234"
+                    userInfo["Password"] = appleId
+                    userInfo["SignBy"] = "3"
+                    userInfo["SocialId"] = "3"
+                    userInfo["Gender"] = ""
+                    userInfo["DOB"] = ""
+                    userInfo["ProfileImageUrl"] = ""
+                    userInfo["TermsCondition"] = "0"
+                    LoginController.FacebookRegistration(vc: self, dicObj: userInfo)
+            
+            
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
+//            controller.isFromAppleSignin = true
+//            controller.strName = "\(appleUserFirstName) \(appleUserLastName)"
+//            controller.strEmail = appleUserEmail
+//            self.navigationController?.pushViewController(controller, animated: true)
 
             //self.showCompleteProfileScreen(strFirstName: appleUserFirstName , strLastName: appleUserLastName , strEmail: appleUserEmail, strPhone: "", strBirthdate: "")
 
@@ -200,11 +233,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             let applePassword: String = passwordCredentials.password
 
             let message: String  = "Apple User ID: \(appleUsername), \n  password: \(applePassword)"
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
-            controller.isFromAppleSignin = true
-            self.navigationController?.pushViewController(controller, animated: true)
+//
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
+//            controller.isFromAppleSignin = true
+//            self.navigationController?.pushViewController(controller, animated: true)
 
             //Utility.showAlertWithOkButton(withMessage: message)
             //self.showCompleteProfileScreen(strFirstName: "" , strLastName: "" , strEmail: "", strPhone: "", strBirthdate: "")
@@ -213,18 +246,29 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             break
         }
     }
-}
+    
+    
+    private func saveUserInKeychain(_ userIdentifier: String) {
+           do {
+               try KeychainItem(service: "com.seawindsolution.PODUser", account: "userIdentifier").saveItem(userIdentifier)
+           } catch {
+               print("Unable to save userIdentifier to keychain.")
+           }
+       }
     
 
-@available(iOS 13.0, *)
-func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-    print("authorizationController error: \(error.localizedDescription)")
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("authorizationController error: \(error.localizedDescription)")
+    }
+
 }
+    
 
 
 // MARK:- ASAuthorizationControllerPresentationContextProviding
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
-    
+    /// - Tag: provide_presentation_anchor
     @available(iOS 13.0, *)
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
