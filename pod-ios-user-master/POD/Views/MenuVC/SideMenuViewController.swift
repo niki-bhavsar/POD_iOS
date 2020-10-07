@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -44,20 +45,34 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
             lblProfileName.text = account?.name
 //         }
 //        if let imgURL = userInfo?["ProfileImage"]{
-        let imgURL = account?.profileImage
-        let imageUrl:NSURL = NSURL(string:  (imgURL!))!
-            if(imageUrl.absoluteString?.count != 0){
-             DispatchQueue.global(qos: .default).async {
-             let imageData:NSData? = NSData(contentsOf: imageUrl as URL) ?? nil
-                 DispatchQueue.main.async {
-                    if(imageData != nil){
-                        let image = UIImage(data: imageData! as Data)
-                    self.profileImage.image = image
-                    self.profileImage.contentMode = UIView.ContentMode.scaleAspectFit
-                    }
-                  }
-                }
-            }
+        
+        if let url  = URL(string: account?.profileImage ?? "") {
+                       profileImage.kf.indicatorType = .activity
+                       
+                       profileImage.kf.setImage(
+                           with: url,
+                           placeholder: UIImage.init(named: "user"),
+                           options: nil)
+                       profileImage.layer.cornerRadius = profileImage.frame.width / 2
+                 
+                   }
+              profileImage.clipsToBounds = true
+        
+        
+//        let imgURL = account?.profileImage
+//        let imageUrl:NSURL = NSURL(string:  (imgURL!))!
+//            if(imageUrl.absoluteString?.count != 0){
+//             DispatchQueue.global(qos: .default).async {
+//             let imageData:NSData? = NSData(contentsOf: imageUrl as URL) ?? nil
+//                 DispatchQueue.main.async {
+//                    if(imageData != nil){
+//                        let image = UIImage(data: imageData! as Data)
+//                    self.profileImage.image = image
+//                    self.profileImage.contentMode = UIView.ContentMode.scaleAspectFit
+//                    }
+//                  }
+//                }
+//            }
 //         }
     }
     

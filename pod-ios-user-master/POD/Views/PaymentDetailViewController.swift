@@ -16,7 +16,7 @@ class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
     @IBOutlet var mapView:MKMapView!
     @IBOutlet weak var lblCategory: UILabel!
     @IBOutlet weak var lblTotal: UILabel!
-    @IBOutlet weak var lblVisitingCost: UILabel!
+    @IBOutlet weak var lblDistanceCost: UILabel!
     @IBOutlet weak var lblShootCost: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()

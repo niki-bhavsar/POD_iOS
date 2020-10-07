@@ -8,13 +8,17 @@
 
 import UIKit
 import NotificationBannerSwift
-protocol OrderDetailDelegate{
-    func ExtendButtonTapped(at index:IndexPath,sender:UIButton)
-    func ViewReceiptTapped(total:String,visit:String,method:String,amount:String,extAmount:String,extMethod:String)
-    func HelpTapped(at index:IndexPath)
-}
-class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
+
+//protocol OrderDetailDelegate{
+//    func ExtendButtonTapped(at index:IndexPath,sender:UIButton)
+//    func ViewReceiptTapped(total:String,visit:String,method:String,amount:String,extAmount:String,extMethod:String)
+//    func HelpTapped(at index:IndexPath)
+//}
+
+class OrderDetailTableViewCell: UITableViewCell {
+    @IBOutlet weak var btnGetHelp: UIButton!
     
+    @IBOutlet weak var btnViewReceipt: UIButton!
     @IBOutlet public var lblOrderNo:UILabel!
     @IBOutlet public var lblOrderDate:UILabel!
     @IBOutlet public var lblOrderTime:UILabel!
@@ -29,24 +33,24 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
     @IBOutlet public var lblAmount:UILabel!
     @IBOutlet public var lblPayment:UILabel!
     @IBOutlet public var lblRemainingTime:UILabel!
-    @IBOutlet public var heightConstraing:NSLayoutConstraint!
+    //    @IBOutlet public var heightConstraing:NSLayoutConstraint!
     @IBOutlet public var TimeheightConstraing:NSLayoutConstraint!
     @IBOutlet public var SendDetailHeightConstraing:NSLayoutConstraint!
     @IBOutlet public var widthExtend:NSLayoutConstraint!
-    @IBOutlet public var addHeightConstraing:NSLayoutConstraint!
-    @IBOutlet public var heightConentView:NSLayoutConstraint!
+    @IBOutlet weak var addHeightConstraing: NSLayoutConstraint!
+    
+    //    @IBOutlet public var heightConentView:NSLayoutConstraint!
     @IBOutlet public var btnChat:UIButton!
     @IBOutlet public var btnSend:UIButton!
-    @IBOutlet public var lblMessage:UILabel!
     @IBOutlet public var lblPhotographerSatus:UILabel!
     @IBOutlet public var lblExtTime:UILabel!
     @IBOutlet public var lblExtHrs:UILabel!
     @IBOutlet public var ExtTimeHeightConstraing:NSLayoutConstraint!
     @IBOutlet public var ExthrsheightConentView:NSLayoutConstraint!
-    @IBOutlet public var viewInside:UIView!
+    //    @IBOutlet public var viewInside:UIView!
     
-    var indexPath:IndexPath!
-    var delegate:OrderDetailDelegate!
+    //    var indexPath:IndexPath!
+    //    var delegate:OrderDetailDelegate!
     var total:String?
     var amount:String?
     var visit:String?
@@ -55,6 +59,7 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
     var extAmount:String?
     var dicObj = [String:Any]()
     public var vc:OrderDetailViewController?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -72,50 +77,51 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
     }
     
     @IBAction func btnViewReceipt_Click(){
-        delegate.ViewReceiptTapped(total: self.total!, visit: self.visit!, method: self.paymentMehod!, amount: self.amount!, extAmount: self.extAmount!,extMethod: self.ExtpaymentMehod!)
+        //        delegate.ViewReceiptTapped(total: self.total!, visit: self.visit!, method: self.paymentMehod!, amount: self.amount!, extAmount: self.extAmount!,extMethod: self.ExtpaymentMehod!)
     }
     
-    @IBAction func btnSend_Click(){
-        if let photographFile = dicObj["photographFile"]{
-            if((photographFile as AnyObject).length == 0){
-                Constant.OrderDic = [String:Any]()
-                Constant.OrderDic["Name"] =  dicObj["Name"]
-                Constant.OrderDic["Email"] =  dicObj["Email"]
-                let controller = self.vc?.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
-                controller.totalAmount = "199"
-                controller.del = self; self.vc?.navigationController!.pushViewController(controller, animated: true)
-            }
-            else{
-                let url = NSURL(string: photographFile as! String)!
-                UIApplication.shared.openURL(url as URL)
-            }
-        }
-    }
+    //    @IBAction func btnSend_Click(){
+    //        if let photographFile = dicObj["photographFile"]{
+    //            if((photographFile as AnyObject).length == 0){
+    //                Constant.OrderDic = [String:Any]()
+    //                Constant.OrderDic["Name"] =  dicObj["Name"]
+    //                Constant.OrderDic["Email"] =  dicObj["Email"]
+    //                let controller = self.vc?.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
+    //                controller.totalAmount = "199"
+    //                controller.del = self
+    //                self.vc?.navigationController!.pushViewController(controller, animated: true)
+    //            }
+    //            else{
+    //                let url = NSURL(string: photographFile as! String)!
+    //                UIApplication.shared.openURL(url as URL)
+    //            }
+    //        }
+    //    }
     
-    @IBAction func btnChatClick(sender:UIButton){
-        let dicObj = MyOrderController.listOrderDetails![indexPath.row]
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-        controller.dicObj = dicObj as [String : AnyObject];
-        vc!.navigationController?.pushViewController(controller, animated: true)
-    }
+    //    @IBAction func btnChatClick(sender:UIButton){
+    //        let dicObj = MyOrderController.listOrderDetails![indexPath.row]
+    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    //        let controller = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+    //        controller.dicObj = dicObj as [String : AnyObject];
+    //        vc!.navigationController?.pushViewController(controller, animated: true)
+    //    }
     
     
-    @IBAction func btnGetHelp_Click(){
-        delegate.HelpTapped(at: indexPath)
-    }
-    
-    @IBAction func btnExtend_Click(sender:UIButton){
-        delegate.ExtendButtonTapped(at: indexPath, sender: sender)
-    }
+    //    @IBAction func btnGetHelp_Click(){
+    ////        delegate.HelpTapped(at: indexPath)
+    //    }
+    //
+    //    @IBAction func btnExtend_Click(sender:UIButton){
+    ////        delegate.ExtendButtonTapped(at: indexPath, sender: sender)
+    //    }
     
     
     
     func SetOrderDetailData(dic:[String:Any]){
-        self.widthExtend.constant = 0;
-        self.SendDetailHeightConstraing.constant = 0;
-        self.ExthrsheightConentView.constant = 0;
-        self.ExtTimeHeightConstraing.constant = 0;
+        self.widthExtend.constant = 0
+        self.SendDetailHeightConstraing.constant = 0
+        self.ExthrsheightConentView.constant = 0
+        self.ExtTimeHeightConstraing.constant = 0
         
         self.btnSend.isHidden = true;
         if let OrderNo = dic["OrderNo"]{
@@ -136,15 +142,15 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
             self.lblOrderTime.halfTextColorChange(fullText: self.lblOrderTime.text!, changeText: (Helper.ConvertDateToTime(dateStr: EntDt as! String,timeFormat: "HH:mm:ss")), color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
         }
         
-        if let ShotingStartTime = dic["ShotingStartTime"]{
+        if let ShotingStartTime = dic["ShootingStartTime"]{
             
             self.lblStartTime!.text = "Start Time:  \(Helper.ConvertDateToTime(dateStr: ShotingStartTime as! String,timeFormat: "HH:mm"))"
             self.lblStartTime.halfTextColorChange(fullText: self.lblStartTime.text!, changeText: (Helper.ConvertDateToTime(dateStr: ShotingStartTime as! String,timeFormat: "HH:mm")), color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
             let remainingTime = Helper.TimeDifference(dateStr: "\(dic["ShootingDate"] as! String) \(ShotingStartTime):00", timeFormat: "yyyy-MM-dd HH:mm:ss")
-            self.lblRemainingTime.text = "Remaining Time:\(remainingTime)";
+            self.lblRemainingTime.text = "Remaining Time:\(remainingTime)"
             
         }
-        if let ShotingeEndTime = dic["ShotingeEndTime"]{
+        if let ShotingeEndTime = dic["ShootingEndTime"]{
             
             self.lblEndTime!.text = "End Time:  \(Helper.ConvertDateToTime(dateStr: ShotingeEndTime as! String,timeFormat: "HH:mm"))"
             self.lblEndTime.halfTextColorChange(fullText: self.lblEndTime.text!, changeText: (Helper.ConvertDateToTime(dateStr: ShotingeEndTime as! String,timeFormat: "HH:mm")), color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
@@ -205,20 +211,13 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
             if(Status as! String == "2" || Status as! String == "3" || Status as! String == "5" || Status as! String == "6"){
                 
                 self.lblStatus.halfTextColorChange(fullText: self.lblStatus.text!, changeText: statusName, color: UIColor.init(hexString: "#81C283"))
-                if(Status as! String == "6"){
-                    self.SendDetailHeightConstraing.constant = 250;
-                    self.btnSend.isHidden = false;
-                }else{
-                    self.SendDetailHeightConstraing.constant = 0;
-                    self.btnSend.isHidden = true;
-                }
+               
                 
             }
             if(Status as! String == "1" || Status as! String == "6" || Status as! String == "4" || Status as! String == "5"){
-                self.btnChat.isHidden = true;
-            }
-            else{
-                self.btnChat.isHidden = false;
+                self.btnChat.isHidden = true
+            } else{
+                self.btnChat.isHidden = false
             }
         }
         
@@ -250,16 +249,18 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
             if(ExtStatus as! String == "2" || ExtStatus as! String == "3" || ExtStatus as! String == "5" || ExtStatus as! String == "6" || ExtStatus as! String == "4"){
                 self.lblStatus.halfTextColorChange(fullText: self.lblStatus.text!, changeText: statusName, color: UIColor.init(hexString: "#81C283"))
                 if(ExtStatus as! String == "4"){
-                    self.ExthrsheightConentView.constant = 22;
-                    self.ExtTimeHeightConstraing.constant = 22;
+                    self.ExthrsheightConentView.constant = 25
+                    
+                    self.ExtTimeHeightConstraing.constant = 25
+                    
                     if let ExxtEndTime = dic["ExtEndTime"]{
                         self.lblExtTime.text = "Ext End Time: \(ExxtEndTime)"
                     }
                     if let ExtHours = dic["ExtHours"]{
                         self.lblExtHrs.text = "Extented Hrs: \(ExtHours)"
                     }
-                    self.TimeheightConstraing.constant = 25;
-                    self.btnExtend.isHidden = true;
+                    self.TimeheightConstraing.constant = 25
+                    self.btnExtend.isHidden = true
                 }
             }
             if(dic["Status"] as! String == "6"){
@@ -293,32 +294,40 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
             self.lblAssitantID.halfTextColorChange(fullText: self.lblAssitantID.text!, changeText: "#PODPH\(PhotographerId)" , color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
         }
         
-        if let invoiceFile = dic["InVoiceFile"]{
-            if((invoiceFile as AnyObject).length == 0){
-                vc?.btnDownload.isHidden = true;
-                vc?.btnExtPopupDownload.isHidden = true;
-            } else{
-                vc?.btnDownload.isHidden = false;
-                vc?.btnExtPopupDownload.isHidden = false;
+        //        if let invoiceFile = dic["InVoiceFile"]{
+        //            if((invoiceFile as AnyObject).length == 0){
+        //                vc?.btnDownload.isHidden = true;
+        //                vc?.btnExtPopupDownload.isHidden = true;
+        //            } else{
+        //                vc?.btnDownload.isHidden = false;
+        //                vc?.btnExtPopupDownload.isHidden = false;
+        //            }
+        //        }
+        
+        
+        
+        if let pStatus = dic["pStatus"]{
+            let statusName = Helper.GetPhotoGrapherStatusName(index:Int(pStatus as! String)!)
+            self.lblPhotographerSatus.text = statusName
+            self.lblPhotographerSatus.halfTextColorChange(fullText: statusName, changeText: statusName , color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
+            if(pStatus as! String == "6"){
+                self.SendDetailHeightConstraing.constant = 250
+                self.btnSend.isHidden = false
+            }else{
+                self.SendDetailHeightConstraing.constant = 0
+                self.btnSend.isHidden = true
             }
         }
         
         if let photographFile = dicObj["photographFile"]{
             if((photographFile as AnyObject).length > 0){
                 btnSend.setTitle(" Pay:  "+(photographFile as! String), for: UIControl.State.normal)
-                self.SendDetailHeightConstraing.constant = 250;
+                btnSend.isHidden = false
+                //                self.SendDetailHeightConstraing.constant = 250
+            }else{
+                btnSend.isHidden = true
+                //                self.SendDetailHeightConstraing.constant = 0
             }
-            else{
-                self.SendDetailHeightConstraing.constant = 0;
-            }
-        }
-        
-        if let pStatus = dic["pStatus"]{
-            let statusName = Helper.GetPhotoGrapherStatusName(index:Int(pStatus as! String)!)
-            self.lblPhotographerSatus.text = statusName
-            self.lblPhotographerSatus.halfTextColorChange(fullText: statusName, changeText: statusName , color: UIColor.init(red: 19/255, green: 57/255, blue: 145/255, alpha: 1))
-            
-            
         }
         
         self.addHeightConstraing.constant = self.txtAdd.contentSize.height+10
@@ -332,25 +341,25 @@ class OrderDetailTableViewCell: UITableViewCell,OnlinePaymentProtocal {
         //self.TimeheightConstraing.constant = 25;
     }
     
-    ///
-    func GetTransactionId(transactionID: String, status: Bool) {
-        if(transactionID.count != 0){
-            if(status == true){
-                self.SubmitPhotographerRequest()
-            }
-            else{
-                Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: vc!,title:"Failed",bannerStyle: BannerStyle.danger)
-            }
-        }
-    }
-    
-    func SubmitPhotographerRequest(){
-        var dic = [String:Any]()
-        dic["OrderId"] = dicObj["Id"]
-        dic["PaymentMethod"] = "Online"
-        dic["PaymentStatus"] = "1"
-        dic["Amount"] = "199"
-        dic["CustomerId"] = dicObj["CustomerId"]
-        //MyOrderController.photographOrderPayment(vc: vc!, orderInfo: dic);
-    }
+    //    ///
+    //    func GetTransactionId(transactionID: String, status: Bool) {
+    //        if(transactionID.count != 0){
+    //            if(status == true){
+    //                self.SubmitPhotographerRequest()
+    //            }
+    //            else{
+    //                Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: vc!,title:"Failed",bannerStyle: BannerStyle.danger)
+    //            }
+    //        }
+    //    }
+    //
+    //    func SubmitPhotographerRequest(){
+    //        var dic = [String:Any]()
+    //        dic["OrderId"] = dicObj["Id"]
+    //        dic["PaymentMethod"] = "Online"
+    //        dic["PaymentStatus"] = "1"
+    //        dic["Amount"] = "199"
+    //        dic["CustomerId"] = dicObj["CustomerId"]
+    //        //MyOrderController.photographOrderPayment(vc: vc!, orderInfo: dic);
+    //    }
 }

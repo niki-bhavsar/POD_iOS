@@ -62,9 +62,14 @@ class MyOrderController: NSObject {
                 let msg =  JSON.dictionary?["Message"]
                 listOrderDetails = [[String:Any]]()
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    let dicObjOrder = ((JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]])
+                    let dicObjOrder : [[String:Any]] = JSON.dictionaryObject!["ResponseData"] as! [[String : Any]]
 //                    print(dicObjOrder)
-                    listOrderDetails = dicObjOrder;
+                    listOrderDetails = dicObjOrder
+                    
+                    if(dicObjOrder.count > 0){
+                      vc.orderInfoDetail = dicObjOrder[0]
+                    }
+                    
                     vc.tblOrderDetails.reloadData()
                     
                 }
@@ -100,21 +105,26 @@ class MyOrderController: NSObject {
                     else if let transportation = dicObjOrder?["TransportationCharge"] as? String {
                         Constant.TrasportationCharges = Double(transportation)!
                     }
-                    vc.lblVisitingCost.text = Constant.TrasportationCharges.description;
+                    vc.lblDistanceCost.text = Constant.TrasportationCharges.description;
+                    
                     let p = Double(Constant.SelectedCategory["Price"] as! String)!
                     let h = Double(Constant.OrderDic["ShootingHours"]! as! String)!
                     let price = (p*h)
-                    let gst = ((price*18)/100)
-                    let total = (Double(vc.lblVisitingCost.text!)! + Double(price)+gst)
                     
                     vc.lblShootCost.text = price.description
+                    
+                    let trans = Double(Constant.TrasportationCharges)
+                    
+                    let gst = (((price + trans)*18)/100)
+                    
+                    let total = (Double(vc.lblDistanceCost.text!)! + Double(price)+gst)
+                    
                     vc.lblTotal.text = String(format: "%.2f", total);
                     Constant.OrderDic["GST"] = gst
-                    Constant.OrderDic["Transportation"] = vc.lblVisitingCost.text
+                    Constant.OrderDic["Transportation"] = vc.lblDistanceCost.text
                     Constant.OrderDic["SubTotal"] = vc.lblShootCost.text
                     Constant.OrderDic["Total"] = vc.lblTotal.text
-                }
-                else{
+                } else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
                 vc.removeSpinner()

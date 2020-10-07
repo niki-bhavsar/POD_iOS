@@ -77,13 +77,13 @@ class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicat
         
         var otpDic = [String : Any]()
         otpDic["Id"] = account.user_id
-        otpDic["Name"] = account.name
-        otpDic["Address"] = account
-        otpDic["Phone"] = account.phone
-        otpDic["Gender"] = account.gender
-        otpDic["DOB"] = account.dob
+//        otpDic["Name"] = account.name
+//        otpDic["Address"] = account
+//        otpDic["Phone"] = account.phone
+//        otpDic["Gender"] = account.gender
+//        otpDic["DOB"] = account.dob
         otpDic["TermsCondition"] = "1"
-        otpDic["ProfileImage"] = nil
+//        otpDic["ProfileImage"] = nil
         otpDic["ProfileImage"] = profileImage.jpegData(compressionQuality: 0.5)
         
         startAnimating()

@@ -122,7 +122,7 @@ extension LoginViewController {
         userInfo["Name"] = fullName
         userInfo["Email"] = email
         userInfo["Phone"] = ""
-//        userInfo["Address"] = ""
+        //        userInfo["Address"] = ""
         userInfo["OTP"] = "1234"
         userInfo["Password"] = idToken
         userInfo["SignBy"] = "3"
@@ -145,103 +145,108 @@ extension LoginViewController {
 extension LoginViewController: ASAuthorizationControllerDelegate {
     
     @available(iOS 13.0, *)
-//    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-//    if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
-//    let userIdentifier = appleIDCredential.user
-//    let fullName = appleIDCredential.fullName
-//    let email = appleIDCredential.email
-//    print("User id is \(userIdentifier) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))") }
-//    }
+    //    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    //    if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+    //    let userIdentifier = appleIDCredential.user
+    //    let fullName = appleIDCredential.fullName
+    //    let email = appleIDCredential.email
+    //    print("User id is \(userIdentifier) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))") }
+    //    }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let credentials as ASAuthorizationAppleIDCredential:
-
+            
             let appleId = credentials.user
-//            credentials.identityToken
-//            credentials.authorizationCode
-//            credentials.authorizedScopes
-//            credentials.realUserStatus
-
+            //            credentials.identityToken
+            //            credentials.authorizationCode
+            //            credentials.authorizedScopes
+            //            credentials.realUserStatus
+            
             var appleUserFirstName: String = credentials.fullName?.givenName ?? ""
-
+            
             var appleUserLastName: String = credentials.fullName?.familyName ?? ""
-
+            
             var appleUserEmail: String = credentials.email ?? ""
-
+            
+            
+            
             print("Email : \(appleUserEmail)")
-
+            
             print("Id : \(appleId)")
-
+            
             print("Firstname : \(appleUserFirstName)")
-
-//            print("Full NME : \(credentials.fullName)")
+            
+            print("User : \(credentials.user)")
+            
+            //            print("Full NME : \(credentials.fullName)")
             
             self.saveUserInKeychain(appleId)
             
             
             //Niki
             
+            
+            
             if let identityTokenData = credentials.identityToken,
-               let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
-               print("Identity Token \(identityTokenString)")
-               do {
-                  let jwt = try decode(jwt: identityTokenString)
-                  let decodedBody = jwt.body as Dictionary
-                  print(decodedBody)
-                  print("Decoded email: "+(decodedBody["email"] as? String ?? "n/a")   )
-                appleUserEmail = decodedBody["email"] as? String ?? "n/a"
-                appleUserFirstName = ""
-                appleUserLastName = ""
-               } catch {
-                  print("decoding failed")
-               }
+                let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
+                print("Identity Token \(identityTokenString)")
+                do {
+                    let jwt = try decode(jwt: identityTokenString)
+                    let decodedBody = jwt.body as Dictionary
+                    print(decodedBody)
+                    print("Decoded email: "+(decodedBody["email"] as? String ?? "n/a")   )
+                    appleUserEmail = decodedBody["email"] as? String ?? "n/a"
+                    appleUserFirstName = ""
+                    appleUserLastName = ""
+                } catch {
+                    print("decoding failed")
+                }
             }
             
             
-            
-             var userInfo:[String:Any] = [String:Any]()
+            var userInfo:[String:Any] = [String:Any]()
             userInfo["ProfileImage"] = Data.init()
-                    
-                    userInfo["Name"] = "\(appleUserFirstName) \(appleUserLastName)"
-                    userInfo["Email"] = appleUserEmail
-                    userInfo["Phone"] = ""
+            
+            userInfo["Name"] = "\(appleUserFirstName) \(appleUserLastName)"
+            userInfo["Email"] = appleUserEmail
+            userInfo["Phone"] = ""
             //        userInfo["Address"] = ""
-                    userInfo["OTP"] = "1234"
-                    userInfo["Password"] = appleId
-                    userInfo["SignBy"] = "3"
-                    userInfo["SocialId"] = "3"
-                    userInfo["Gender"] = ""
-                    userInfo["DOB"] = ""
-                    userInfo["ProfileImageUrl"] = ""
-                    userInfo["TermsCondition"] = "0"
-                    LoginController.FacebookRegistration(vc: self, dicObj: userInfo)
+            userInfo["OTP"] = "1234"
+            userInfo["Password"] = appleId
+            userInfo["SignBy"] = "3"
+            userInfo["SocialId"] = "3"
+            userInfo["Gender"] = ""
+            userInfo["DOB"] = ""
+            userInfo["ProfileImageUrl"] = ""
+            userInfo["TermsCondition"] = "0"
+            LoginController.FacebookRegistration(vc: self, dicObj: userInfo)
             
             
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
-//            controller.isFromAppleSignin = true
-//            controller.strName = "\(appleUserFirstName) \(appleUserLastName)"
-//            controller.strEmail = appleUserEmail
-//            self.navigationController?.pushViewController(controller, animated: true)
-
+            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
+            //            controller.isFromAppleSignin = true
+            //            controller.strName = "\(appleUserFirstName) \(appleUserLastName)"
+            //            controller.strEmail = appleUserEmail
+            //            self.navigationController?.pushViewController(controller, animated: true)
+            
             //self.showCompleteProfileScreen(strFirstName: appleUserFirstName , strLastName: appleUserLastName , strEmail: appleUserEmail, strPhone: "", strBirthdate: "")
-
+            
         case let passwordCredentials as ASPasswordCredential:
             let appleUsername = passwordCredentials.user
-
+            
             let applePassword: String = passwordCredentials.password
-
+            
             let message: String  = "Apple User ID: \(appleUsername), \n  password: \(applePassword)"
-//
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
-//            controller.isFromAppleSignin = true
-//            self.navigationController?.pushViewController(controller, animated: true)
-
+            //
+            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //            let controller = storyboard.instantiateViewController(withIdentifier: "SIgnUpViewController") as! SIgnUpViewController
+            //            controller.isFromAppleSignin = true
+            //            self.navigationController?.pushViewController(controller, animated: true)
+            
             //Utility.showAlertWithOkButton(withMessage: message)
             //self.showCompleteProfileScreen(strFirstName: "" , strLastName: "" , strEmail: "", strPhone: "", strBirthdate: "")
-
+            
         default:
             break
         }
@@ -249,21 +254,21 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     
     
     private func saveUserInKeychain(_ userIdentifier: String) {
-           do {
-               try KeychainItem(service: "com.seawindsolution.PODUser", account: "userIdentifier").saveItem(userIdentifier)
-           } catch {
-               print("Unable to save userIdentifier to keychain.")
-           }
-       }
+        do {
+            try KeychainItem(service: "com.seawindsolution.PODUser", account: "userIdentifier").saveItem(userIdentifier)
+        } catch {
+            print("Unable to save userIdentifier to keychain.")
+        }
+    }
     
-
+    
     @available(iOS 13.0, *)
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("authorizationController error: \(error.localizedDescription)")
     }
-
-}
     
+}
+
 
 
 // MARK:- ASAuthorizationControllerPresentationContextProviding

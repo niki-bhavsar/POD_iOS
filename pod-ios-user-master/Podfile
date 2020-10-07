@@ -18,6 +18,7 @@ target 'POD' do
   pod 'ActionSheetPicker-3.0'
   pod 'SwiftDate'
   pod 'JWTDecode'
+   pod 'Kingfisher'
   #  pod 'GoogleMaps'
   #  pod 'GooglePlaces'
   

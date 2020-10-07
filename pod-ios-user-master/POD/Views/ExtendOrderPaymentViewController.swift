@@ -16,6 +16,8 @@ class ExtendOrderPaymentViewController: BaseViewController ,OnlinePaymentProtoca
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblVisitingCost: UILabel!
     @IBOutlet weak var lblShootCost: UILabel!
+    
+    
     var dicOrder = [String:Any]()
     var prodcutPrice:Double = 0;
     var extHours:Int = 0;

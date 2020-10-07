@@ -128,7 +128,7 @@ extension MyOrderViewController {
     
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-            controller.orderID = OrderId as? String
+            controller.orderID = OrderId as! String
                Helper.rootNavigation?.pushViewController(controller, animated: true)
         }
     }

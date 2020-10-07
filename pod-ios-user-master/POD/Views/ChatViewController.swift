@@ -13,6 +13,7 @@ class ChatViewController: BaseViewController {
     @IBOutlet var tblChat:UITableView!
     @IBOutlet var txtChatMsg:UITextField!
     public var dicObj = [String:Any]()
+    
     public let refreshControl = UIRefreshControl()
     var refreshTimer:Timer?
     
@@ -26,16 +27,19 @@ class ChatViewController: BaseViewController {
             // Fallback on earlier versions
         }
         self.KeyBoardNotificationObserver()
-        self.tblChat.estimatedRowHeight = 60;
+        
+        self.tblChat.estimatedRowHeight = 60
         self.tblChat.rowHeight = UITableView.automaticDimension
-//        if let Id = userInfo!["Id"]{
+        
+
         ChatController.GetChatMessage(vc: self, senderID: (dicObj["PhotographerId"] as! String), receiverID: account.user_id, OrderID: (dicObj["Id"] as! String))
-//        }
+
         if #available(iOS 10.0, *) {
             tblChat.refreshControl = refreshControl
         } else {
             tblChat.addSubview(refreshControl)
         }
+        
          refreshControl.addTarget(self, action: #selector(refreshOrderData(_:)), for: .valueChanged)
         // Do any additional setup after loading the view.
         refreshTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ChatViewController.refreshOrderDataWithTimeInterval), userInfo:nil, repeats: true)
@@ -61,9 +65,9 @@ class ChatViewController: BaseViewController {
         dic["uType"] = "p"
         dic["isLocation"] = true
         dic["Sender"] = account.user_id
-        dic["Receiver"] = (dicObj["PhotographerId"] as! String)
+        dic["Receiver"] = dicObj["PhotographerId"]
         dic["Message"] = currLocation
-        dic["orderId"] = (dicObj["Id"] as! String)
+        dic["orderId"] = dicObj["Id"]
         ChatController.SendMessage(vc: self, dicObj: dic)
     }
     
@@ -76,7 +80,7 @@ class ChatViewController: BaseViewController {
         dic["uType"] = "p"
         dic["isLocation"] = true
         dic["Sender"] = account.user_id
-        dic["Receiver"] = (dicObj["PhotographerId"] as! String)
+        dic["Receiver"] = dicObj["PhotographerId"]
         dic["Message"] = txtChatMsg.text
         ChatController.SendMessage(vc: self, dicObj: dic)
         
@@ -86,6 +90,7 @@ class ChatViewController: BaseViewController {
     func KeyBoardNotificationObserver(){
         NotificationCenter.default.addObserver(self, selector: #selector(self.KeyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil); NotificationCenter.default.addObserver(self, selector: #selector(self.KeyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
     @objc func KeyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
@@ -94,6 +99,7 @@ class ChatViewController: BaseViewController {
             self.view.frame.origin.y -= (keyboardFrame.height)
         }
     }
+    
     @objc func KeyboardWillHide(notification: NSNotification) {
         guard let userInfo = notification.userInfo else {return}
          guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}

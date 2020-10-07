@@ -21,7 +21,8 @@ class ChatController: NSObject {
             ApiManager.sharedInstance.requestGETURL("\(Constant.getMessageURL)\(senderID)/\(receiverID)/\(OrderID)", success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    listChat = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
+                    listChat = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]]
+                    
                     listChat = listChat!.sorted { personSort(p1:$0 as [String : AnyObject], p2:$1 as [String : AnyObject]) }
 //                    print(listChat as Any)
                 }

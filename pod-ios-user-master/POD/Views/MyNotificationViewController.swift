@@ -94,7 +94,7 @@ extension MyNotificationViewController {
         if let generalId = orderOBj!["generalId"]{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-            controller.orderID = generalId as? String
+            controller.orderID = generalId as! String
             self.navigationController?.pushViewController(controller, animated: true)
         }
         

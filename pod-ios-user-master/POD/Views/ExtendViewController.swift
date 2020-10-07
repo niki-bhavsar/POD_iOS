@@ -16,6 +16,7 @@ class ExtendViewController: BaseViewController {
     public var OrderInfo = [String:Any]()
     
     var vc:OrderDetailViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {

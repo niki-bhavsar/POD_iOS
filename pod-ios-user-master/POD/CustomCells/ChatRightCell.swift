@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ChatRightCell: UITableViewCell {
 
@@ -31,19 +32,34 @@ class ChatRightCell: UITableViewCell {
         lblTitle.text = "You"
         lblMSg.text = dic["Message"] as? String
         
-        let imageUrl:NSURL = NSURL(string: account.profileImage)!
-        if(imageUrl.absoluteString?.count != 0){
-            DispatchQueue.global(qos: .default).async {
-                
-                let imageData:NSData = NSData(contentsOf: imageUrl as URL)!
-                DispatchQueue.main.async {
-                    let image = UIImage(data: imageData as Data)
-                    self.imgUser.image = image
-                    self.imgUser.contentMode = UIView.ContentMode.scaleAspectFit
-                    
-                }
-            }
-        }
+        
+        if let url  = URL(string: account.profileImage) {
+                      imgUser.kf.indicatorType = .activity
+                      
+                      imgUser.kf.setImage(
+                          with: url,
+                          placeholder: UIImage.init(named: "user"),
+                          options: nil)
+                      imgUser.layer.cornerRadius = imgUser.frame.width / 2
+                 
+                  }
+             imgUser.clipsToBounds = true
+        
+        
+        
+//        let imageUrl:NSURL = NSURL(string: account.profileImage)!
+//        if(imageUrl.absoluteString?.count != 0){
+//            DispatchQueue.global(qos: .default).async {
+//
+//                let imageData:NSData = NSData(contentsOf: imageUrl as URL)!
+//                DispatchQueue.main.async {
+//                    let image = UIImage(data: imageData as Data)
+//                    self.imgUser.image = image
+//                    self.imgUser.contentMode = UIView.ContentMode.scaleAspectFit
+//
+//                }
+//            }
+//        }
         
         
     }

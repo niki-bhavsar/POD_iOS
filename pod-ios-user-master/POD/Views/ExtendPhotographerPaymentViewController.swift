@@ -8,28 +8,45 @@
 
 import UIKit
 import NotificationBannerSwift
-class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePaymentProtocal {
+class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLSessionDownloadDelegate, UIDocumentInteractionControllerDelegate {
     
+    @IBOutlet weak var btnDownloadInvoice: UIButton!
     @IBOutlet var lblOrderID:UILabel!
     @IBOutlet var lblDate:UILabel!
     @IBOutlet var lblStartTime:UILabel!
-//    @IBOutlet var lblEndTime:UILabel!
+    //    @IBOutlet var lblEndTime:UILabel!
     @IBOutlet var lblcategory:UILabel!
     @IBOutlet var lblVisiting:UILabel!
     @IBOutlet var lblTotal:UILabel!
-//    @IBOutlet var lblExtendedTime:UILabel!
+    //    @IBOutlet var lblExtendedTime:UILabel!
     @IBOutlet weak var lblCGST: UILabel!
-     @IBOutlet weak var lblSGST: UILabel!
+    @IBOutlet weak var lblSGST: UILabel!
     @IBOutlet var lblShootingAmount:UILabel!
     @IBOutlet var lblExtShootingAmount:UILabel!
-    public var dicOrder:[String:Any]!
+    public var dicOrder = [String:Any]()
+    
+    var downloadTask: URLSessionDownloadTask!
+    var backgroundSession: URLSession!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        var shootingamt:Double = 0.0
-//        var extamt:Double = 0.0
+        
+        let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
+        backgroundSession = Foundation.URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
+        
+        //        var shootingamt:Double = 0.0
+        //        var extamt:Double = 0.0
         
         if(dicOrder != nil){
+            if let invoiceFile = dicOrder["InVoiceFile"]{
+                if((invoiceFile as AnyObject).length == 0){
+                    btnDownloadInvoice.isHidden = true
+                    
+                } else{
+                    btnDownloadInvoice.isHidden = false
+                }
+            }
+            
             if let category = dicOrder["ProductTitle"]{
                 lblcategory.text = (category as! String);
             }
@@ -55,27 +72,29 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
             var subTotalVal : Double = 0.0
             var extendedVal : Double = 0.0
             var totlaVal : Double = 0.0
+            var transVal : Double = 0.0
             
-            if let SubTotal : String = dicOrder!["SubTotal"] as? String{
+            if let SubTotal : String = dicOrder["SubTotal"] as? String{
                 lblShootingAmount.text = SubTotal
                 subTotalVal = Double(SubTotal) ?? 0.0
             }
             
-            if let productPrice : String = dicOrder!["ProductPrice"] as? String{
+            if let productPrice : String = dicOrder["ProductPrice"] as? String{
                 let prodPrice : Int = Int(productPrice) ?? 0
-                let extHours : String = dicOrder!["ExtHours"] as! String
+                let extHours : String = dicOrder["ExtHours"] as! String
                 let extHoursInt : Int = Int(extHours) ?? 0
                 
                 lblExtShootingAmount.text = "\(prodPrice * extHoursInt)"
                 extendedVal = Double(prodPrice * extHoursInt)
             }
             
-            if let visiting = dicOrder["Transportation"]{
-                lblVisiting.text = (visiting as! String);
+            if let trasportation : String = dicOrder["Transportation"] as? String{
+                lblVisiting.text = trasportation
+                transVal = Double(trasportation) ?? 0.0
             }
             
-            if let totalStr : String = dicOrder!["Total"] as? String{
-                let extAMTStr : String = dicOrder!["ExtAmount"] as! String
+            if let totalStr : String = dicOrder["Total"] as? String{
+                let extAMTStr : String = dicOrder["ExtAmount"] as! String
                 let extAMT : Double = Double(extAMTStr) ?? 0.0
                 
                 let total : Double = Double(totalStr) ?? 0.0
@@ -84,7 +103,7 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
             }
             
             var gstVal : Double = 0.0
-            gstVal = subTotalVal + extendedVal
+            gstVal = subTotalVal + extendedVal + transVal
             
             let cGST : Double = (totlaVal - gstVal) / 2
             let sGST : Double = (totlaVal - gstVal) / 2
@@ -96,13 +115,21 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
         }
         
         
-      
+        
         
         
         
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func downloadInvoiceClicked(_ sender: Any) {
+        self.showSpinner()
+        let invoiceFile : String = dicOrder["InVoiceFile"] as! String
+        
+        let url = URL(string:invoiceFile)
+        downloadTask = backgroundSession.downloadTask(with: url!)
+        downloadTask.resume()
+    }
     
     @IBAction func btnPayClick(){
         
@@ -133,4 +160,66 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
         dic["CustomerId"] = dicOrder["ExtCustomerId"]
         MyOrderController.ExtendedRemainPhotoGrapherOrderPayment(vc: self, orderInfo: dic);
     }
+    
+    //MARK: URLSessionDownloadDelegate
+    func urlSession(_ session: URLSession,
+                    downloadTask: URLSessionDownloadTask,
+                    didFinishDownloadingTo location: URL){
+        
+        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let documentDirectoryPath:String = path[0]
+        let fileManager = FileManager()
+        let destinationURLForFile = URL(fileURLWithPath: documentDirectoryPath.appendingFormat("/file.pdf"))
+        
+        if fileManager.fileExists(atPath: destinationURLForFile.path){
+            showFileWithPath(path: destinationURLForFile.path)
+        }
+        else{
+            do {
+                try fileManager.moveItem(at: location, to: destinationURLForFile)
+                // show file
+                showFileWithPath(path: destinationURLForFile.path)
+            }catch{
+                Helper.ShowAlertMessage(message:"An error occurred while moving file to destination url" , vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+            }
+        }
+    }
+    
+    func urlSession(_ session: URLSession,
+                    downloadTask: URLSessionDownloadTask,
+                    didWriteData bytesWritten: Int64,
+                    totalBytesWritten: Int64,
+                    totalBytesExpectedToWrite: Int64){
+        
+    }
+    
+    func showFileWithPath(path: String){
+        let isFileFound:Bool? = FileManager.default.fileExists(atPath: path)
+        if isFileFound == true{
+            let viewer = UIDocumentInteractionController(url: URL(fileURLWithPath: path))
+            viewer.delegate = self
+            viewer.presentPreview(animated: true)
+        }
+        self.removeSpinner()
+    }
+    
+    //MARK: URLSessionTaskDelegate
+    func urlSession(_ session: URLSession,
+                    task: URLSessionTask,
+                    didCompleteWithError error: Error?){
+        downloadTask = nil
+        if (error != nil) {
+            print(error!.localizedDescription)
+        }else{
+            Helper.ShowAlertMessage(message:"File downloaded successfully." , vc: self,title:"Success",bannerStyle: BannerStyle.success)
+            print("The task finished transferring data successfully")
+        }
+        self.removeSpinner()
+    }
+    
+    //MARK: UIDocumentInteractionControllerDelegate
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController{
+        return self
+    }
+    
 }
