@@ -157,14 +157,14 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     @IBAction func sendClicked(sender:UIButton){
         if let photographFile : String = orderInfoDetail["photographFile"] as? String{
             if(photographFile.count == 0){
-                Constant.OrderDic = [String:Any]()
-                Constant.OrderDic["Name"] =  orderInfoDetail["Name"]
-                Constant.OrderDic["Email"] =  orderInfoDetail["Email"]
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
-                controller.totalAmount = "199"
-                controller.del = self
-                self.navigationController!.pushViewController(controller, animated: true)
+//                Constant.OrderDic = [String:Any]()
+//                Constant.OrderDic["Name"] =  orderInfoDetail["Name"]
+//                Constant.OrderDic["Email"] =  orderInfoDetail["Email"]
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let controller = storyboard.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
+//                controller.totalAmount = "199"
+//                controller.del = self
+//                self.navigationController!.pushViewController(controller, animated: true)
             } else{
                 if let url = URL(string: photographFile) {
                     UIApplication.shared.open(url)

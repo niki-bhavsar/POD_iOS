@@ -75,42 +75,17 @@ class SelectSubCategoryViewController: BaseViewController, UICollectionViewDeleg
     // MARK: - UICollectionViewDelegate protocol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         Helper.ISParentCategorySelected = true;
-        let obj  = listSubCategory[indexPath.row]
-        Constant.SelectedCategory = obj as [String : AnyObject];
+        let obj : [String : Any] = listSubCategory[indexPath.row]
+        Constant.SelectedCategory = obj
         print("Constant.SelectedCategory-:\(Constant.SelectedCategory)")
         
         
         if(obj["isVariable"] as! String == "1"){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "SelectSubCategoryViewController") as! SelectSubCategoryViewController
-            controller.categoryId = obj["Id"] as? String
-//            if(Constant.FirstSubcategoryId == ""){
-//                Constant.FirstSubcategoryId =  controller.categoryId!
-//            };
-//            if(Constant.FirstSubcategoryId == "")
-//            {
-//                Constant.FirstSubcategory =  (obj["Title"] as? String)!
-//            }
-//            if(Constant.AllSubcategoryId == ""){
-//                Constant.AllSubcategoryId =  controller.categoryId!
-//                Constant.AllSubcategory =  (obj["Title"] as? String)!
-//            }
-//            else{
-//                if Constant.AllSubcategoryId.contains(controller.categoryId!) {
-//                    print("exists")
-//                }
-//                else{
-//                    Constant.AllSubcategoryId = "\(Constant.AllSubcategoryId),\(controller.categoryId ?? "")"
-//                }
-//                if Constant.AllSubcategoryId.contains(((obj["Title"] as? String) ?? "")) {
-//                    print("exists")
-//                }
-//                else{
-//                    Constant.AllSubcategory = "\(Constant.AllSubcategory),\((obj["Title"] as? String) ?? "")"
-//                }
-//            }
-//
-            categoryIndex = Constant.AllSubcategoryArr.count;
+            let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
+            controller.categoryId = obj["Id"] as! String
+            controller.desc = obj["Content"] as! String
+            categoryIndex = Constant.AllSubcategoryArr.count
             Constant.AllSubcategoryArr.append(obj["Title"] as! String)
             Constant.AllSubcategoryIdArr.append(obj["Id"] as! String)
             
@@ -125,46 +100,12 @@ class SelectSubCategoryViewController: BaseViewController, UICollectionViewDeleg
             print(Constant.AllSubcategoryArr)
             print(Constant.AllSubcategoryIdArr)
             print("-----------")
-            IsSelected = true;
+            IsSelected = true
             self.navigationController?.pushViewController(controller, animated: true)
-        }
-        else{
+        } else{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "BookingDetailViewController") as! BookingDetailViewController
-//            if(Constant.FirstSubcategoryId == ""){
-//                Constant.FirstSubcategoryId = obj["Id"] as! String
-//                Constant.FirstSubcategory =  (obj["Title"] as? String)!
-//            }
-//            else{
-//                if Constant.FirstSubcategory.contains(((obj["Title"] as? String) ?? "")) {
-//                    print("exists")
-//                }
-//                else{
-//                    Constant.FirstSubcategory =  "\(Constant.FirstSubcategory),\((obj["Title"] as? String) ?? "")"
-//                }
-//
-//            }
-//            if(Constant.AllSubcategoryId == ""){
-//                Constant.AllSubcategoryId =  obj["Id"] as! String
-//                Constant.AllSubcategory =  (obj["Title"] as? String)!
-//            }
-//            else{
-//                if Constant.AllSubcategory.contains(((obj["Title"] as? String) ?? "")) {
-//                    print("exists")
-//                }
-//                else{
-//                    Constant.AllSubcategory = "\(Constant.AllSubcategory),\((obj["Title"] as? String) ?? "")"
-//                }
-//
-//                if Constant.AllSubcategoryId.contains((obj["Id"] as! String)) {
-//                    print("exists")
-//                }
-//                else{
-//                    Constant.AllSubcategoryId =  "\(Constant.AllSubcategoryId),\(obj["Id"] as! String)"
-//                }
-//            }
-//
-            categoryIndex = Constant.AllSubcategoryArr.count;
+            categoryIndex = Constant.AllSubcategoryArr.count
             Constant.AllSubcategoryArr.append(obj["Title"] as! String)
             Constant.AllSubcategoryIdArr.append(obj["Id"] as! String)
             
@@ -180,7 +121,7 @@ class SelectSubCategoryViewController: BaseViewController, UICollectionViewDeleg
             print(Constant.AllSubcategoryIdArr)
             print("-----------")
             
-            IsSelected = true;
+            IsSelected = true
             controller.Multiplier = obj["Multiplier"] as? String
             self.navigationController?.pushViewController(controller, animated: true)
         }
@@ -194,9 +135,10 @@ class SelectSubCategoryViewController: BaseViewController, UICollectionViewDeleg
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
             controller.desc = (obj["Content"] as! String)
-            controller.modalPresentationStyle = .overCurrentContext
-            controller.modalTransitionStyle = .crossDissolve
-            present(controller, animated: true, completion: nil)
+             self.navigationController?.pushViewController(controller, animated: true)
+//            controller.modalPresentationStyle = .overCurrentContext
+//            controller.modalTransitionStyle = .crossDissolve
+//            present(controller, animated: true, completion: nil)
         }
         }
     }

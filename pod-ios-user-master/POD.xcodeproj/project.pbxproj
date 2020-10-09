@@ -119,7 +119,6 @@
 		187D50CC2392F46D00B09E7C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D50CB2392F46D00B09E7C /* ProfileViewController.swift */; };
 		188060BB23BF4799007FB508 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188060BA23BF4799007FB508 /* ChatViewController.swift */; };
 		188567F623F6B417002DDF10 /* ExtendOrderPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188567F523F6B417002DDF10 /* ExtendOrderPaymentViewController.swift */; };
-		188979F92519D3160044864A /* AddAddressNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188979F82519D3160044864A /* AddAddressNewViewController.swift */; };
 		188D1EE523F410650001D4C8 /* NotificationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188D1EE423F410650001D4C8 /* NotificationTableCell.swift */; };
 		188DD65524BDCACB004C36CB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188DD65424BDCACB004C36CB /* AVFoundation.framework */; };
 		188E5B4D23991F6D00263636 /* SelectGategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E5B4C23991F6D00263636 /* SelectGategoryViewController.swift */; };
@@ -266,7 +265,6 @@
 		187D50CB2392F46D00B09E7C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		188060BA23BF4799007FB508 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		188567F523F6B417002DDF10 /* ExtendOrderPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendOrderPaymentViewController.swift; sourceTree = "<group>"; };
-		188979F82519D3160044864A /* AddAddressNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressNewViewController.swift; sourceTree = "<group>"; };
 		188D1EE423F410650001D4C8 /* NotificationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableCell.swift; sourceTree = "<group>"; };
 		188DD65424BDCACB004C36CB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		188E5B4C23991F6D00263636 /* SelectGategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGategoryViewController.swift; sourceTree = "<group>"; };
@@ -554,7 +552,6 @@
 				18520EB324B7268B004B740A /* ExtendPhotographerPaymentViewController.swift */,
 				187CB54F24FE70FF00A01F69 /* UpdateAppViewController.swift */,
 				184C3857251477BA007D1BD9 /* UpdateTermsAndConditionViewController.swift */,
-				188979F82519D3160044864A /* AddAddressNewViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -847,7 +844,6 @@
 				185CED9423A15F7800DAB091 /* SignupController.swift in Sources */,
 				1863E60B23B1F1F40066E33A /* ExtendViewController.swift in Sources */,
 				1862970E239AFC2A00E57243 /* MeetinPonitLocationViewController.swift in Sources */,
-				188979F92519D3160044864A /* AddAddressNewViewController.swift in Sources */,
 				18611801239C1A8400736D4D /* InqueryCategoryViewController.swift in Sources */,
 				187CAA67250FA0C10002CE62 /* NVActivityIndicatorAnimationBallScale.swift in Sources */,
 				188E5B5123993CF200263636 /* CategoryController.swift in Sources */,
@@ -1006,7 +1002,7 @@
 				CODE_SIGN_ENTITLEMENTS = POD/POD.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 1.6;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2A53RWCCV7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1088,7 +1084,7 @@
 				CODE_SIGN_ENTITLEMENTS = POD/POD.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 1.6;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2A53RWCCV7;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -176,9 +176,10 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
             controller.desc = (content as! String)
-            controller.modalPresentationStyle = .overCurrentContext
-            controller.modalTransitionStyle = .crossDissolve
-            present(controller, animated: true, completion: nil)
+             self.navigationController?.pushViewController(controller, animated: true)
+//            controller.modalPresentationStyle = .overCurrentContext
+//            controller.modalTransitionStyle = .crossDissolve
+//            present(controller, animated: true, completion: nil)
         }
     }
     

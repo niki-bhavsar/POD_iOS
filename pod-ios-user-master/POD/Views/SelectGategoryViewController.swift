@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectGategoryViewController : BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, CategoryActionButtonDelegate {
+class SelectGategoryViewController : BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     public  var listCategory:[[String:Any]] = [[String:Any]]()
     public var categoryIndex:Int = 0;
@@ -69,7 +69,7 @@ class SelectGategoryViewController : BaseViewController, UICollectionViewDelegat
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath as IndexPath) as! CategoryCollectionCellCollectionViewCell
         cell.indexPath = indexPath
-        cell.delegate = self;
+//        cell.delegate = self
         cell.SetData(dic: listCategory[indexPath.row])
         return cell
     }
@@ -77,7 +77,7 @@ class SelectGategoryViewController : BaseViewController, UICollectionViewDelegat
     // MARK: - UICollectionViewDelegate protocol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        Helper.ISParentCategorySelected = true;
+        Helper.ISParentCategorySelected = true
         let obj  = listCategory[indexPath.row]
         if(obj["isVariable"] as! String == "1"){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -157,21 +157,22 @@ class SelectGategoryViewController : BaseViewController, UICollectionViewDelegat
     
     
     
-    func InfoTapped(at index: IndexPath) {
-        if(listCategory.count>index.row){
-        let obj  = listCategory[index.row]
-        if(obj["Content"] != nil){
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
-            controller.desc = (obj["Content"] as! String)
-            controller.modalPresentationStyle = .overCurrentContext
-            controller.modalTransitionStyle = .crossDissolve
-            present(controller, animated: true, completion: nil)
-        }
-        }
-        
-    }
+//    func InfoTapped(at index: IndexPath) {
+//        if(listCategory.count>index.row){
+//        let obj  = listCategory[index.row]
+//        if(obj["Content"] != nil){
+//
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
+//            controller.desc = (obj["Content"] as! String)
+//            self.navigationController?.pushViewController(controller, animated: true)
+////            controller.modalPresentationStyle = .overCurrentContext
+////            controller.modalTransitionStyle = .crossDissolve
+////            present(controller, animated: true, completion: nil)
+//        }
+//        }
+//
+//    }
     
 
 }

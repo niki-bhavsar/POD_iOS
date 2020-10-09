@@ -8,11 +8,11 @@
 
 import UIKit
 
-class BookingAddressViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, ActionButtonDelegate {
+class BookingAddressViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tblAdd:UITableView!
     public let refreshControl = UIRefreshControl()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -34,7 +34,7 @@ class BookingAddressViewController: BaseViewController, UITableViewDelegate, UIT
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-         self.getAddressList()
+        self.getAddressList()
     }
     
     @objc private func refreshAddressData(_ sender: Any) {
@@ -44,22 +44,21 @@ class BookingAddressViewController: BaseViewController, UITableViewDelegate, UIT
     
     func getAddressList(){
         let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-//        if let Id = userInfo!["Id"]{
+        //        if let Id = userInfo!["Id"]{
         AddressController.GetAddressList(userID: account.user_id, vc: self)
-//        }
+        //        }
     }
-
+    
 }
 
-extension BookingAddressViewController
-{
+extension BookingAddressViewController {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if(AddressController.listAddress != nil){
-            return AddressController.listAddress!.count
-        }
-        else{
-            return 0;
+        if(AddressController.listAddress.count != 0){
+            return AddressController.listAddress.count
+        } else{
+            return 0
         }
     }
     
@@ -69,30 +68,41 @@ extension BookingAddressViewController
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as! AddressTableCustomCell
-        cell.delegate = self
-        cell.indexPath = indexPath
-        let objAdd = AddressController.listAddress?[indexPath.row]
-        if let address = objAdd!["Address"]{
-            cell.lblAddress?.text = address as! String
-        }
-        if let addressIcon = objAdd!["Title"]{
-            if((addressIcon as! String) == "Home"){
-                cell.imgType?.image = UIImage.init(named: "HomeAddICon")
-            }
-            else if((addressIcon as! String) == "Work"){
-                cell.imgType?.image = UIImage.init(named: "OfficeAddIcon")
-            }
-            else if((addressIcon as! String) != "Work" && (addressIcon as! String) != "Home"){
-                cell.imgType?.image = UIImage.init(named: "LocationAddIcon")
-            }
-        }
-        return cell;
+        //        cell.delegate = self
+        //        cell.indexPath = indexPath
+        
+        let objAdd  : [String : Any] = AddressController.listAddress[indexPath.row]
+        
+        cell.setData(dict: objAdd)
+        cell.btnEdit.tag = indexPath.row
+        cell.btnDelete.tag = indexPath.row
+        cell.btnEdit.addTarget(self, action: #selector(editClicked(_:)), for: .touchUpInside)
+        
+        cell.btnDelete.addTarget(self, action: #selector(deleteClicked), for: .touchUpInside)
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var dicAddObj = AddressController.listAddress![indexPath.row];
-        if let Address = dicAddObj["Address"]{
-            Constant.OrderDic["ShootingAddress"] = Address
+        let dicAddObj = AddressController.listAddress[indexPath.row]
+        
+        if let address : String = dicAddObj["Address"] as! String{
+            let addArray : [String] = address.components(separatedBy: "--")
+            var strAddress = String()
+            if(addArray.count > 0){
+                strAddress = addArray[0]
+            }
+            if(addArray.count == 2){
+                strAddress = addArray[0]
+                strAddress = "\(strAddress), \(addArray[1])"
+            }
+            
+            if(addArray.count == 3){
+                strAddress = addArray[0]
+                strAddress = "\(strAddress), \(addArray[1])"
+                strAddress = "\(strAddress), \(addArray[2])"
+            }
+            Constant.OrderDic["ShootingAddress"] = strAddress
         }
         if let lat = dicAddObj["Lat"]{
             Constant.OrderDic["ShootingLat"] = lat
@@ -100,29 +110,22 @@ extension BookingAddressViewController
         if let lng = dicAddObj["Lng"]{
             Constant.OrderDic["ShootingLng"] = lng
         }
-     
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "MeetinPonitLocationViewController") as! MeetinPonitLocationViewController
-         self.navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    @IBAction func btnAddNewAddress_Click(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "AddAddressViewController") as! AddAddressViewController
-        controller.IsEdit = false;
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    func EditTapped(at index: IndexPath) {
-        let dicAddObj = AddressController.listAddress![index.row]
+    @objc func editClicked(_ sender: UIButton) {
+        let dicAddObj : [String : Any] = AddressController.listAddress[sender.tag]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "AddAddressViewController") as! AddAddressViewController
-        controller.IsEdit = true;
-        controller.editDic = dicAddObj as [String : AnyObject];
+        controller.IsEdit = true
+        controller.editDic = dicAddObj 
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    func DeleteTapped(at index: IndexPath) {
+    @objc func deleteClicked(_ sender: UIButton) {
         let deleteAlert = UIAlertController(title: "Delete", message: "Are you sure you want to delete?", preferredStyle: UIAlertController.Style.alert)
         if #available(iOS 13.0, *) {
             deleteAlert.overrideUserInterfaceStyle = .light
@@ -130,14 +133,14 @@ extension BookingAddressViewController
             // Fallback on earlier versions
         }
         deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-            let dicAddObj = AddressController.listAddress![index.row]
+            let dicAddObj : [String : Any] = AddressController.listAddress[sender.tag]
             var dicObj = [String:Any]()
             
             if let customarID = dicAddObj["CustomerId"]{
-                dicObj["CustomerId"] = customarID as AnyObject
+                dicObj["CustomerId"] = customarID
             }
             if let Id = dicAddObj["Id"]{
-                dicObj["Id"] = Id as AnyObject
+                dicObj["Id"] = Id
             }
             AddressController.DeleteAddress(vc: self, dicObj: dicObj)
         }))
@@ -148,6 +151,50 @@ extension BookingAddressViewController
         
         present(deleteAlert, animated: true, completion: nil)
     }
+    
+    
+    @IBAction func btnAddNewAddress_Click(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "AddAddressViewController") as! AddAddressViewController
+        controller.IsEdit = false
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    //    func EditTapped(at index: IndexPath) {
+    //        let dicAddObj = AddressController.listAddress![index.row]
+    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    //        let controller = storyboard.instantiateViewController(withIdentifier: "AddAddressViewController") as! AddAddressViewController
+    //        controller.IsEdit = true;
+    //        controller.editDic = dicAddObj as [String : AnyObject];
+    //        self.navigationController?.pushViewController(controller, animated: true)
+    //    }
+    
+    //    func DeleteTapped(at index: IndexPath) {
+    //        let deleteAlert = UIAlertController(title: "Delete", message: "Are you sure you want to delete?", preferredStyle: UIAlertController.Style.alert)
+    //        if #available(iOS 13.0, *) {
+    //            deleteAlert.overrideUserInterfaceStyle = .light
+    //        } else {
+    //            // Fallback on earlier versions
+    //        }
+    //        deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+    //            let dicAddObj = AddressController.listAddress![index.row]
+    //            var dicObj = [String:Any]()
+    //
+    //            if let customarID = dicAddObj["CustomerId"]{
+    //                dicObj["CustomerId"] = customarID as AnyObject
+    //            }
+    //            if let Id = dicAddObj["Id"]{
+    //                dicObj["Id"] = Id as AnyObject
+    //            }
+    //            AddressController.DeleteAddress(vc: self, dicObj: dicObj)
+    //        }))
+    //
+    //        deleteAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+    //            print("Handle Cancel Logic here")
+    //        }))
+    //
+    //        present(deleteAlert, animated: true, completion: nil)
+    //    }
     
     
 }

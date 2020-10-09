@@ -11,6 +11,7 @@ import MapKit
 import NotificationBannerSwift
 class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
     
+    @IBOutlet weak var txtAddress: UITextView!
     @IBOutlet var btnPAS:UIButton!
     @IBOutlet var btnOnline:UIButton!
     @IBOutlet var mapView:MKMapView!
@@ -18,6 +19,8 @@ class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblDistanceCost: UILabel!
     @IBOutlet weak var lblShootCost: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -35,12 +38,27 @@ class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
         btnPAS.isSelected = true
         Constant.OrderDic["PaymentMethod"] = "PAS"
         Constant.OrderDic["PaymentStatus"] = "2"
-        let annotation = MKPointAnnotation()
-        annotation.title = title
-        annotation.coordinate = CLLocationCoordinate2DMake(Double(Constant.OrderDic["ShootingLat"]! as! String)! , Double(Constant.OrderDic["ShootingLng"]! as! String)!)
         
-        mapView!.addAnnotation(annotation)
-        mapView?.setRegion(MKCoordinateRegion.init(center: CLLocationCoordinate2DMake(Double(Constant.OrderDic["ShootingLat"]! as! String)! , Double(Constant.OrderDic["ShootingLng"]! as! String)!), span: MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)), animated: true)
+        let lat : Double = Double(Constant.OrderDic["ShootingLat"]! as! String)!
+         let lng : Double = Double(Constant.OrderDic["ShootingLng"]! as! String)!
+        
+        if(lat == 0.0 || lng == 0.0){
+            mapView.isHidden = true
+            txtAddress.isHidden = false
+            txtAddress.text = Constant.OrderDic["ShootingAddress"] as? String
+            
+        } else {
+            mapView.isHidden = false
+            txtAddress.isHidden = true
+            let annotation = MKPointAnnotation()
+                   annotation.title = title
+                   annotation.coordinate = CLLocationCoordinate2DMake(Double(Constant.OrderDic["ShootingLat"]! as! String)! , Double(Constant.OrderDic["ShootingLng"]! as! String)!)
+                   
+                   mapView!.addAnnotation(annotation)
+                   mapView?.setRegion(MKCoordinateRegion.init(center: CLLocationCoordinate2DMake(Double(Constant.OrderDic["ShootingLat"]! as! String)! , Double(Constant.OrderDic["ShootingLng"]! as! String)!), span: MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)), animated: true)
+        }
+        
+       
         
         MyOrderController.GetTransportationCharges(lat: (Constant.OrderDic["ShootingLat"]! as! String), lng: (Constant.OrderDic["ShootingLng"]! as! String), vc: self)
         
