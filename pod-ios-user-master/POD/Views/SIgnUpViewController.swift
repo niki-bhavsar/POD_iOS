@@ -13,6 +13,7 @@ import AuthenticationServices
 
 class SIgnUpViewController: BaseViewController {
     
+    @IBOutlet weak var txtRefferCode: SkyFloatingLabelTextField!
     @IBOutlet weak var btnTerms: UIButton!
     @IBOutlet weak var lblTerms: UILabel!
     @IBOutlet var profileImg:UIImageView!
@@ -168,7 +169,12 @@ class SIgnUpViewController: BaseViewController {
         } else if(btnFemale.isSelected){
             userInfo["Gender"] = "Female"
         }
+        
         userInfo["TermsCondition"] = "1"
+        if((txtRefferCode.text?.trimmingCharacters(in: .whitespaces).count)! > 0){
+            userInfo["Referral_Code"] = txtRefferCode.text
+        }
+        
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SignUpOTPViewController") as! SignUpOTPViewController

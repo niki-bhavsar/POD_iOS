@@ -75,6 +75,39 @@ class ApiManager: NSObject {
         //        }
     }
     
+    //withoutImageData
+        
+        func requestPOSTMultiPartURL(endUrl: String, parameters: [String : Any], success: @escaping (JSON) -> Void, failure: @escaping (Error) -> Void){
+             
+             let headers: HTTPHeaders = [
+                 "x-api-key": Constant.APIKey,
+                 "Content-type": "multipart/form-data"
+             ]
+             
+             AF.upload(
+                 multipartFormData: { multipartFormData in
+                     for (key, value) in parameters {
+                         if(key != "ProfileImage" || key != "Image"){
+                             multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+                         }
+                     }
+    //                 if let data = imageData{
+    //                     multipartFormData.append(data, withName: "ProfileImage", fileName: "image.png", mimeType: "image/png")
+    //                 }
+                    
+             },
+                 to: endUrl, method: .post , headers: headers)
+                 .response { resp in
+                     if(resp.error==nil){
+                         let str = String(decoding: resp.data!, as: UTF8.self)
+                         success(JSON(str))
+                     }
+                     else{
+                         failure(resp.error as! Error)
+                     }
+             }
+         }
+    
     
     func requestPOSTMultiPartURL(endUrl: String, imageData: Data?, parameters: [String : Any], success: @escaping (JSON) -> Void, failure: @escaping (Error) -> Void){
         

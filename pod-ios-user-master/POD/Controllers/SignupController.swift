@@ -71,16 +71,15 @@ static func UserRegistration(vc:SignUpOTPViewController, dicObj : [String : Any]
             let msg =  result!["Message"]
             if(((result!["IsSuccess"]) as! Bool) != false){
                 let callActionHandler = { () -> Void in
-                                       for controller in vc.navigationController!.viewControllers as Array {
-                                           if controller.isKind(of: LoginViewController.self) {
-                                               vc.navigationController!.popToViewController(controller, animated: true)
-                                               break
-                                           }
-                                       }
-                                   }
+                    for controller in vc.navigationController!.viewControllers as Array {
+                        if controller.isKind(of: LoginViewController.self) {
+                            vc.navigationController!.popToViewController(controller, animated: true)
+                            break
+                        }
+                    }
+                }
                 Helper.ShowAlertMessageWithHandlesr(message:"Thanks For Your Register" , vc: vc,action:callActionHandler)
-            }
-            else{
+            } else{
                 Helper.ShowAlertMessage(message:msg as! String , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
             }
             vc.removeSpinner()

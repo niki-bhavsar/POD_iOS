@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import NotificationBannerSwift
+
 class SplashViewController: UIViewController {
     
     @IBOutlet var imglogo1:UIImageView!
@@ -89,20 +91,18 @@ class SplashViewController: UIViewController {
     
     @objc func MoveToLogin(){
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         
         //        let isUserExist = Helper.UnArchivedUserDefaultObject(key: "UserInfo")
         
         if (AccountManager.instance().activeAccount != nil) {
             let acc : Account = AccountManager.instance().activeAccount!
-            if(acc.termsCondition == "1"){
-                let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-                self.navigationController?.pushViewController(controller, animated: true)
-            } else {
-                let controller = storyboard.instantiateViewController(withIdentifier: "UpdateTermsAndConditionViewController") as! UpdateTermsAndConditionViewController
-                self.navigationController?.pushViewController(controller, animated: true)
-            }
+            
+            GetCustomerProfile(userID: acc.user_id, account: acc)
+            
+            
         } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             self.navigationController?.pushViewController(controller, animated: true)
         }
@@ -122,6 +122,28 @@ class SplashViewController: UIViewController {
         //            let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
         //            self.navigationController?.pushViewController(controller, animated: true)
         //        }
+    }
+    
+    func GetCustomerProfile(userID:String, account : Account){
+        ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
+            let msg =  JSON.dictionary?["Message"]
+            if((JSON.dictionary?["IsSuccess"]) != false){
+                account.parseUserDict(userDict: JSON.dictionaryObject!["ResponseData"] as! NSDictionary, account: account)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if(account.termsCondition == "1"){
+                    let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                    self.navigationController?.pushViewController(controller, animated: true)
+                } else {
+                    let controller = storyboard.instantiateViewController(withIdentifier: "UpdateTermsAndConditionViewController") as! UpdateTermsAndConditionViewController
+                    self.navigationController?.pushViewController(controller, animated: true)
+                }
+                
+            } else{
+                Helper.ShowAlertMessage(message:msg!.description , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+            }
+        }) { (Error) in
+            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+        }
     }
     
 }

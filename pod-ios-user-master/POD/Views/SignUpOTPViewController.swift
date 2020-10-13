@@ -123,7 +123,6 @@ class SignUpOTPViewController: BaseViewController {
     @IBAction func btnResend_Click(){
         txtPassword.resignFirstResponder()
         txtOTP.resignFirstResponder()
-        
         var otpDic = [String : Any]()
         otpDic["Name"] = lblName.text
         otpDic["Email"] = lblEmail.text

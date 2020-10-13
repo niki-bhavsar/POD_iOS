@@ -34,20 +34,20 @@ class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicat
         
         
    
-            let imageUrl:NSURL = NSURL(string:  account.profileImage)!
-                      if(imageUrl.absoluteString?.count != 0){
-                          DispatchQueue.global(qos: .default).async {
-                              if(imageUrl != nil){
-                                  let imageData:NSData = NSData(contentsOf: imageUrl as URL)!
-                                  DispatchQueue.main.async {
-                                      let image = UIImage(data: imageData as Data)
-                                    self.profileImage = image!
-                                  }
-                              }
-                          }
-                      }
-                      else{
-                      }
+//            let imageUrl:NSURL = NSURL(string:  account.profileImage)!
+//                      if(imageUrl.absoluteString?.count != 0){
+//                          DispatchQueue.global(qos: .default).async {
+//                              if(imageUrl != nil){
+//                                  let imageData:NSData = NSData(contentsOf: imageUrl as URL)!
+//                                  DispatchQueue.main.async {
+//                                      let image = UIImage(data: imageData as Data)
+//                                    self.profileImage = image!
+//                                  }
+//                              }
+//                          }
+//                      }
+//                      else{
+//                      }
                   
                   
         
@@ -84,10 +84,10 @@ class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicat
 //        otpDic["DOB"] = account.dob
         otpDic["TermsCondition"] = "1"
 //        otpDic["ProfileImage"] = nil
-        otpDic["ProfileImage"] = profileImage.jpegData(compressionQuality: 0.5)
+//        otpDic["ProfileImage"] = profileImage.jpegData(compressionQuality: 0.5)
         
         startAnimating()
-        ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.updateCustomerProfileURL, imageData: otpDic["ProfileImage"] as? Data, parameters: otpDic, success: { (JSON) in
+        ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.updateCustomerProfileURL, parameters: otpDic, success: { (JSON) in
             let result = JSON.string?.parseJSONString!
             let msg =  result!["Message"]
             if(((result!["IsSuccess"]) as! Bool) != false){

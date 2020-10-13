@@ -30,6 +30,7 @@ class AddAddressViewController: BaseViewController {//, MKMapViewDelegate {
     var editDic = [String:Any]()
     public var IsEdit = Bool()
     var isCurrentLocation = Bool()
+    var currentLocationAddress = String()
     
     override func viewDidLoad() {
         
@@ -76,7 +77,14 @@ class AddAddressViewController: BaseViewController {//, MKMapViewDelegate {
     @IBAction func btnUseCurrentLocation(_ sender: Any) {
         isCurrentLocation = true
         Helper.getAddressFromLatLon(pdblLatitude: Constant.currLat.description, withLongitude: Constant.currLng.description,txt: self.txtQuery)
-        txtQuery.isUserInteractionEnabled = false
+       
+//        txtQuery.isUserInteractionEnabled = false
+    }
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if(isCurrentLocation == true){
+             currentLocationAddress = txtQuery.text
+        }
+        return true
     }
     
     
@@ -124,12 +132,14 @@ class AddAddressViewController: BaseViewController {//, MKMapViewDelegate {
         addDict = dict
         CLGeocoder().geocodeAddressString(address, completionHandler: { placemarks, error in
             if (error != nil) {
-                if(self.IsEdit == false){
-                    AddressController.AddAddress(vc: self, dicObj: addDict)
-                } else {
-                    AddressController.EditAddress(vc: self, dicObj: addDict)
-                }
+                Helper.ShowAlertMessage(message: "Please enter valid Address", vc: self)
                 return
+//                if(self.IsEdit == false){
+//                    AddressController.AddAddress(vc: self, dicObj: addDict)
+//                } else {
+//                    AddressController.EditAddress(vc: self, dicObj: addDict)
+//                }
+//                return
             }
             
             if let placemark = placemarks?[0]  {
@@ -137,8 +147,8 @@ class AddAddressViewController: BaseViewController {//, MKMapViewDelegate {
                 let latti = String(format: "%.04f", (placemark.location?.coordinate.latitude ?? 0.0)!)
                 let name = placemark.name!
                 let country = placemark.country!
-                let region = placemark.administrativeArea!
-                print("\(latti),\(longi)\n\(name),\(region) \(country)")
+//                let region = placemark.administrativeArea!
+                print("\(latti),\(longi)\n\(name), \(country)")
                 
                 addDict["Lat"] = latti
                 addDict["Lng"] = longi
@@ -153,7 +163,10 @@ class AddAddressViewController: BaseViewController {//, MKMapViewDelegate {
     
     
     @IBAction func btnContinue_Click(){
-        if(selectedType == 3){
+        if(txtQuery.text == "Type here"){
+            Helper.ShowAlertMessage(message: "Please enter address.", vc: self)
+            return
+        } else if(selectedType == 3){
             if(btnOther.titleLabel!.text == "Other"){
                 Helper.ShowAlertMessage(message: "Please enter other title.", vc: self)
                 return
@@ -194,10 +207,15 @@ class AddAddressViewController: BaseViewController {//, MKMapViewDelegate {
         
         otpDic["Address"] = add
         if(isCurrentLocation == true){
-            otpDic["Lat"] = self.lat.description
-            otpDic["Lng"] = self.lng.description
-            self.showSpinner()
-            AddressController.AddAddress(vc: self, dicObj: otpDic)
+            if(currentLocationAddress == txtQuery.text){
+                otpDic["Lat"] = self.lat.description
+                otpDic["Lng"] = self.lng.description
+                self.showSpinner()
+                AddressController.AddAddress(vc: self, dicObj: otpDic)
+            } else {
+                self.showSpinner()
+                getLatLongFromAddress(address: txtQuery.text.trimmingCharacters(in: .whitespaces), dict: otpDic)
+            }
         } else {
             //            otpDic["Lat"] = "0.0"
             //            otpDic["Lng"] = "0.0"
@@ -234,17 +252,22 @@ class AddAddressViewController: BaseViewController {//, MKMapViewDelegate {
         
         otpDic["Address"] = add
         if(isCurrentLocation == true){
-            otpDic["Lat"] = self.lat.description
-            otpDic["Lng"] = self.lng.description
-            self.showSpinner()
-            AddressController.EditAddress(vc: self, dicObj: otpDic)
+            if(currentLocationAddress == txtQuery.text){
+                otpDic["Lat"] = self.lat.description
+                otpDic["Lng"] = self.lng.description
+                self.showSpinner()
+                AddressController.EditAddress(vc: self, dicObj: otpDic)
+            } else {
+                self.showSpinner()
+                getLatLongFromAddress(address: txtQuery.text.trimmingCharacters(in: .whitespaces), dict: otpDic)
+            }
         } else {
             //            otpDic["Lat"] = "0.0"
             //            otpDic["Lng"] = "0.0"
             self.showSpinner()
             getLatLongFromAddress(address: txtQuery.text, dict: otpDic)
         }
-        
+       
     }
     
     func SetEditInfo(){
