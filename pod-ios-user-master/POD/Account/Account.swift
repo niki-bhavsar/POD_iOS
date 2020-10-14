@@ -14,7 +14,11 @@ class Account: NSObject ,NSCoding {
     var dob : String = ""
     var profileImage : String = ""
     var termsCondition : String = ""
-     var address : String = ""
+    var address : String = ""
+    var signBy : String = ""
+    var referralPoint : String = ""
+    var redemLimit : String = ""
+    var referralCode : String = ""
     
     
     var loginToken : String = ""
@@ -35,7 +39,11 @@ class Account: NSObject ,NSCoding {
         aCoder.encode(dob, forKey: "dob")
         aCoder.encode(profileImage, forKey: "profileImage")
         aCoder.encode(termsCondition, forKey: "termsCondition")
-         aCoder.encode(address, forKey: "address")
+        aCoder.encode(address, forKey: "address")
+        aCoder.encode(signBy, forKey: "signBy")
+        aCoder.encode(referralPoint, forKey: "referralPoint")
+        aCoder.encode(redemLimit, forKey: "redemLimit")
+        aCoder.encode(referralCode, forKey: "referralCode")
         
     }
     
@@ -50,7 +58,10 @@ class Account: NSObject ,NSCoding {
             profileImage = aDecoder.decodeObject(forKey: "profileImage") as! String
             termsCondition = aDecoder.decodeObject(forKey: "termsCondition") as! String
             address = aDecoder.decodeObject(forKey: "address") as! String
-            
+            signBy = aDecoder.decodeObject(forKey: "signBy") as! String
+            referralPoint = aDecoder.decodeObject(forKey: "referralPoint") as! String
+            redemLimit = aDecoder.decodeObject(forKey: "redemLimit") as! String
+            referralCode = aDecoder.decodeObject(forKey: "referralCode") as! String
         }
     }
     
@@ -82,8 +93,19 @@ class Account: NSObject ,NSCoding {
         if let str = userDict.value(forKey: "Address") as? String{
             account.address = str
         }
+        if let str = userDict.value(forKey: "SignBy") as? String{
+            account.signBy = str
+        }
+        if let str = userDict.value(forKey: "ReferralPoint") as? String{
+            account.referralPoint = str
+        }
+        if let str = userDict.value(forKey: "RedemLimit") as? String{
+            account.redemLimit = str
+        }
+        if let str = userDict.value(forKey: "ReferralCode") as? String{
+            account.referralCode = str
+        }
         AccountManager.instance().activeAccount = account
     }
-    
     
 }

@@ -11,13 +11,13 @@ import UIKit
 class MenuController: NSObject {
 
     public static var menuList:[Menu] = [Menu]()
-    static func GetMenuList()
-    {
+    static func GetMenuList() {
         NotificationCenter.default.removeObserver(self);
         menuList.removeAll()
         menuList.append(Menu.init(name: "Home", icon: "Home"))
         menuList.append(Menu.init(name: "My Profile", icon: "ic_edit_profile"))
-         menuList.append(Menu.init(name: "My Notification", icon: "Notification"))
+        menuList.append(Menu.init(name: "Refer and Earn", icon: "ic_edit_profile"))
+        menuList.append(Menu.init(name: "My Notification", icon: "Notification"))
         menuList.append(Menu.init(name: "My Booking", icon: "ic_booking"))
         menuList.append(Menu.init(name: "My Inquiry", icon: "Inquiry"))
         menuList.append(Menu.init(name: "Reset Password", icon: "ic_forgot_password"))
@@ -35,62 +35,68 @@ class MenuController: NSObject {
                                                selector: #selector(showProfile),
                                                name: NSNotification.Name("ShowProfile"),
                                                object: nil)
-       
-        NotificationCenter.default.addObserver(self,
-                                                      selector: #selector(showOrders),
-                                                      name: NSNotification.Name("ShowOrders"),
-                                                      object: nil)
         
         
         NotificationCenter.default.addObserver(self,
-        selector: #selector(showAboutUs),
-        name: NSNotification.Name("ShowAboutUs"),
-        object: nil)
+                                               selector: #selector(showReferAndEarn),
+                                               name: NSNotification.Name("showReferAndEarn"),
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showOrders),
+                                               name: NSNotification.Name("ShowOrders"),
+                                               object: nil)
         
         
         NotificationCenter.default.addObserver(self,
-               selector: #selector(showResetPassword),
-               name: NSNotification.Name("ShowResetPassword"),
-               object: nil)
-        
-       
-        NotificationCenter.default.addObserver(self,
-        selector: #selector(showTC),
-        name: NSNotification.Name("ShowTC"),
-        object: nil)
-        
-       
-        NotificationCenter.default.addObserver(self,
-        selector: #selector(showPrivacyPolicy),
-        name: NSNotification.Name("ShowPivacyPolicy"),
-        object: nil)
+                                               selector: #selector(showAboutUs),
+                                               name: NSNotification.Name("ShowAboutUs"),
+                                               object: nil)
         
         
         NotificationCenter.default.addObserver(self,
-        selector: #selector(showContactUs),
-        name: NSNotification.Name("ShowContactUs"),
-        object: nil)
+                                               selector: #selector(showResetPassword),
+                                               name: NSNotification.Name("ShowResetPassword"),
+                                               object: nil)
+        
         
         NotificationCenter.default.addObserver(self,
-               selector: #selector(showhelpDesk),
-               name: NSNotification.Name("ShowHelpDesk"),
-               object: nil)
+                                               selector: #selector(showTC),
+                                               name: NSNotification.Name("ShowTC"),
+                                               object: nil)
+        
         
         NotificationCenter.default.addObserver(self,
-        selector: #selector(showNotification),
-        name: NSNotification.Name("ShowNotification"),
-        object: nil)
+                                               selector: #selector(showPrivacyPolicy),
+                                               name: NSNotification.Name("ShowPivacyPolicy"),
+                                               object: nil)
+        
         
         NotificationCenter.default.addObserver(self,
-        selector: #selector(showFAQ),
-        name: NSNotification.Name("ShowFAQ"),
-        object: nil)
+                                               selector: #selector(showContactUs),
+                                               name: NSNotification.Name("ShowContactUs"),
+                                               object: nil)
         
         NotificationCenter.default.addObserver(self,
-        selector: #selector(showInquiry),
-        name: NSNotification.Name("ShowInquiry"),
-        object: nil)
-       
+                                               selector: #selector(showhelpDesk),
+                                               name: NSNotification.Name("ShowHelpDesk"),
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showNotification),
+                                               name: NSNotification.Name("ShowNotification"),
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showFAQ),
+                                               name: NSNotification.Name("ShowFAQ"),
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showInquiry),
+                                               name: NSNotification.Name("ShowInquiry"),
+                                               object: nil)
+        
     }
     
     
@@ -100,6 +106,13 @@ class MenuController: NSObject {
         Helper.rootNavigation?.pushViewController(controller, animated: true)
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
     }
+    
+    @objc static func showReferAndEarn() {
+           let storyboard = UIStoryboard(name: "Main", bundle: nil)
+           let controller = storyboard.instantiateViewController(withIdentifier: "ReferAndEarnViewController") as! ReferAndEarnViewController
+           Helper.rootNavigation?.pushViewController(controller, animated: true)
+           NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
+       }
     
     @objc static func showOrders() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

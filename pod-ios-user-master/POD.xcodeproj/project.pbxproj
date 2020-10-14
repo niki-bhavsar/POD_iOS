@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1805E7452536B88E00C3D48E /* ReferCodePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805E7442536B88E00C3D48E /* ReferCodePopup.swift */; };
 		180CEF6A23AD005100FDD23F /* InfoPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CEF6923AD005100FDD23F /* InfoPopupViewController.swift */; };
 		180D858E2522FFF500756BC9 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D858D2522FFF500756BC9 /* KeychainItem.swift */; };
 		1813F12A24D0A2670090E1FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1813F12924D0A2660090E1FD /* GoogleService-Info.plist */; };
@@ -76,6 +77,7 @@
 		18720BE223C61B0B00C1DE40 /* AvenirNext-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18720BDF23C61B0A00C1DE40 /* AvenirNext-Medium.ttf */; };
 		187731D823BF5564002FE60B /* ChatLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187731D723BF5564002FE60B /* ChatLeftCell.swift */; };
 		187731DA23BF5590002FE60B /* ChatRightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187731D923BF5590002FE60B /* ChatRightCell.swift */; };
+		18798AB82535E60C004816CC /* ReferAndEarnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18798AB72535E60C004816CC /* ReferAndEarnViewController.swift */; };
 		187CAA59250FA0C10002CE62 /* NVActivityIndicatorAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CAA30250FA0C10002CE62 /* NVActivityIndicatorAnimationDelegate.swift */; };
 		187CAA5A250FA0C10002CE62 /* NVActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CAA32250FA0C10002CE62 /* NVActivityIndicatorPresenter.swift */; };
 		187CAA5B250FA0C10002CE62 /* NVActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CAA33250FA0C10002CE62 /* NVActivityIndicatorViewable.swift */; };
@@ -151,6 +153,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1805E7442536B88E00C3D48E /* ReferCodePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferCodePopup.swift; sourceTree = "<group>"; };
 		180CEF6923AD005100FDD23F /* InfoPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupViewController.swift; sourceTree = "<group>"; };
 		180D858D2522FFF500756BC9 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		1813F12924D0A2660090E1FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 		18720BDF23C61B0A00C1DE40 /* AvenirNext-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNext-Medium.ttf"; sourceTree = "<group>"; };
 		187731D723BF5564002FE60B /* ChatLeftCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLeftCell.swift; sourceTree = "<group>"; };
 		187731D923BF5590002FE60B /* ChatRightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRightCell.swift; sourceTree = "<group>"; };
+		18798AB72535E60C004816CC /* ReferAndEarnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferAndEarnViewController.swift; sourceTree = "<group>"; };
 		187CAA30250FA0C10002CE62 /* NVActivityIndicatorAnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationDelegate.swift; sourceTree = "<group>"; };
 		187CAA32250FA0C10002CE62 /* NVActivityIndicatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorPresenter.swift; sourceTree = "<group>"; };
 		187CAA33250FA0C10002CE62 /* NVActivityIndicatorViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorViewable.swift; sourceTree = "<group>"; };
@@ -552,6 +556,8 @@
 				18520EB324B7268B004B740A /* ExtendPhotographerPaymentViewController.swift */,
 				187CB54F24FE70FF00A01F69 /* UpdateAppViewController.swift */,
 				184C3857251477BA007D1BD9 /* UpdateTermsAndConditionViewController.swift */,
+				18798AB72535E60C004816CC /* ReferAndEarnViewController.swift */,
+				1805E7442536B88E00C3D48E /* ReferCodePopup.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -750,6 +756,7 @@
 				187CAA66250FA0C10002CE62 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
 				187CAA7C250FA0C20002CE62 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
 				189FA6E723905EEB008EBD79 /* Helper.swift in Sources */,
+				18798AB82535E60C004816CC /* ReferAndEarnViewController.swift in Sources */,
 				184C22DF2391B75A002D6866 /* MenuCell.swift in Sources */,
 				189FA6E223904EC3008EBD79 /* SIgnUpViewController.swift in Sources */,
 				187CAA6F250FA0C10002CE62 /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
@@ -770,6 +777,7 @@
 				1855C54823AA9B4200ED8141 /* MyOrderController.swift in Sources */,
 				18E585082397BB0D009D1B98 /* SplashViewController.swift in Sources */,
 				1826066E2394499400DC795F /* SubmitRequestViewController.swift in Sources */,
+				1805E7452536B88E00C3D48E /* ReferCodePopup.swift in Sources */,
 				1857347623C0AE49002CBAE7 /* ChatController.swift in Sources */,
 				187CAA7F250FA0C20002CE62 /* NVActivityIndicatorAnimationOrbit.swift in Sources */,
 				187CAA75250FA0C20002CE62 /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,

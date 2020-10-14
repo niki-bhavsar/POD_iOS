@@ -69,7 +69,10 @@ class Constant{
     public static var getUnPaidOrderByCustomerIdURL:String = Constant.serverURL+"/getUnPaidOrderByCustomerId/"
     public static var PASOrderPaymentdURL:String = Constant.serverURL+"/PASOrderPayment"
     public static var getSuccessResponseURL:String = Constant.serverURL+"/getSuccessResponse"
-     public static var getAppVersionURL:String = Constant.serverURL+"/GetAppVersion/1"
+    public static var getAppVersionURL:String = Constant.serverURL+"/GetAppVersion/1"
+    public static var getCheckValidReferCodeURL:String = Constant.serverURL+"/getCheckValidReferCode/"
+    
+    
     
     public static var currLat: Double = 0.0
     public static var currLng: Double = 0.0
@@ -174,6 +177,36 @@ class Helper: NSObject {
           alertView.showSuccess(title, subTitle: message)
     
       }
+    
+    public static func ShowAlertWithTextFieldWithHandlesr(message:String,buttonTitle:String = "OK",title:String="",vc:UIViewController,actionOK:@escaping () -> Void,actionCancel:@escaping () -> Void,result:@escaping (_ txt:String) -> Void ) {
+          
+          let appearance = SCLAlertView.SCLAppearance(
+              kTitleFont: UIFont(name: "AvenirNext-Regular", size: 20)!,
+              kTextFont: UIFont(name: "AvenirNext-Regular", size: 14)!,
+              kButtonFont: UIFont(name: "AvenirNext-Medium", size: 14)!,
+              showCloseButton: false,
+              showCircularIcon: false
+//            ,
+//              circleBackgroundColor: UIColor.init(hexString: "#FBAF40")
+              )
+          let alertView = SCLAlertView(appearance: appearance)
+          let textField = alertView.addTextField()
+//          textView.text = oldText;
+          alertView.addButton("OK",backgroundColor:UIColor.init(hexString: "#FBAF40") ,action: {() -> Void in
+                result(textField.text ?? "")
+                alertView.dismiss(animated: true, completion: nil)
+            
+        })
+        alertView.addButton("Cancel",backgroundColor:UIColor.init(hexString: "#FBAF40") ,action: {() -> Void in
+            actionCancel()
+            alertView.dismiss(animated: true, completion: nil)
+            
+        })
+        textField.becomeFirstResponder()
+        alertView.showEdit(title, subTitle: message)
+//        alertView.showEdit(title, subTitle: message,circleIconImage: UIImage(named: "Pin"))
+      }
+
     
     public static func ShowAlertWithTextViewWithHandlesr(message:String,buttonTitle:String = "OK",title:String="",vc:UIViewController,actionOK:@escaping () -> Void,actionCancel:@escaping () -> Void,result:@escaping (_ txt:String) -> Void,oldText:String){
           
@@ -703,12 +736,13 @@ extension UIColor {
                       height: size.height + topInset + bottomInset)
     }
 }
-extension String
-{
+extension String {
     func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat
     {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
         let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
         return boundingBox.height
     }
+    
+   
 }

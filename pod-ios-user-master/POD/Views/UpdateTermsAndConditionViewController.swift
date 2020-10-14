@@ -9,11 +9,11 @@
 import UIKit
 import NotificationBannerSwift
 
-class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicatorViewable {
+class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicatorViewable , ReferCodePopupDelegate {
     
     @IBOutlet weak var lblMessage: UILabel!
     
-     let account : Account = AccountManager.instance().activeAccount!
+    let account : Account = AccountManager.instance().activeAccount!
     var profileImage = UIImage()
     
     override func viewDidLoad() {
@@ -33,23 +33,23 @@ class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicat
         lblMessage.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(tapLabel(gesture:))))
         
         
-   
-//            let imageUrl:NSURL = NSURL(string:  account.profileImage)!
-//                      if(imageUrl.absoluteString?.count != 0){
-//                          DispatchQueue.global(qos: .default).async {
-//                              if(imageUrl != nil){
-//                                  let imageData:NSData = NSData(contentsOf: imageUrl as URL)!
-//                                  DispatchQueue.main.async {
-//                                      let image = UIImage(data: imageData as Data)
-//                                    self.profileImage = image!
-//                                  }
-//                              }
-//                          }
-//                      }
-//                      else{
-//                      }
-                  
-                  
+        
+        //            let imageUrl:NSURL = NSURL(string:  account.profileImage)!
+        //                      if(imageUrl.absoluteString?.count != 0){
+        //                          DispatchQueue.global(qos: .default).async {
+        //                              if(imageUrl != nil){
+        //                                  let imageData:NSData = NSData(contentsOf: imageUrl as URL)!
+        //                                  DispatchQueue.main.async {
+        //                                      let image = UIImage(data: imageData as Data)
+        //                                    self.profileImage = image!
+        //                                  }
+        //                              }
+        //                          }
+        //                      }
+        //                      else{
+        //                      }
+        
+        
         
     }
     
@@ -69,22 +69,59 @@ class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicat
         }
     }
     
+    func showRefercodeAlert(){
+        
+        let alert = UIAlertController(title:"Referral code", message: "Do you have any referral code?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { _ in
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ReferCodePopup") as! ReferCodePopup
+            controller.delegate = self
+            controller.modalPresentationStyle = .overCurrentContext
+            controller.modalTransitionStyle = .crossDissolve
+            self.present(controller, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: {(_: UIAlertAction!) in
+            self.updateCustomerProfile(referral_Code: "")
+        }))
+        Helper.getTopViewController().present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    func applyClicked(code: String) {
+        updateCustomerProfile(referral_Code: code)
+    }
+    
+    func cancleClicked() {
+        updateCustomerProfile(referral_Code: "")
+    }
+    
+    
+    
     
     @IBAction func submitclicked(_ sender: Any) {
-       
-//        let userInfo : [String : Any] = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as! [String : Any]
-     
-        
+        if(account.signBy != "1"){
+            showRefercodeAlert()
+        } else {
+            updateCustomerProfile(referral_Code: "")
+        }
+    }
+    
+    func updateCustomerProfile(referral_Code : String){
         var otpDic = [String : Any]()
         otpDic["Id"] = account.user_id
-//        otpDic["Name"] = account.name
-//        otpDic["Address"] = account
-//        otpDic["Phone"] = account.phone
-//        otpDic["Gender"] = account.gender
-//        otpDic["DOB"] = account.dob
+        //        otpDic["Name"] = account.name
+        //        otpDic["Address"] = account
+        //        otpDic["Phone"] = account.phone
+        //        otpDic["Gender"] = account.gender
+        if(referral_Code.count > 0){
+            otpDic["Referral_Code"] = referral_Code
+        }
+        
         otpDic["TermsCondition"] = "1"
-//        otpDic["ProfileImage"] = nil
-//        otpDic["ProfileImage"] = profileImage.jpegData(compressionQuality: 0.5)
+        //        otpDic["ProfileImage"] = nil
+        //        otpDic["ProfileImage"] = profileImage.jpegData(compressionQuality: 0.5)
         
         startAnimating()
         ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.updateCustomerProfileURL, parameters: otpDic, success: { (JSON) in
@@ -111,10 +148,9 @@ class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicat
             if((JSON.dictionary?["IsSuccess"]) != false){
                 self.stopAnimating()
                 account.parseUserDict(userDict: JSON.dictionaryObject!["ResponseData"] as! NSDictionary, account: account)
-//                Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-                               self.navigationController?.pushViewController(controller, animated: true)
+                self.navigationController?.pushViewController(controller, animated: true)
                 
             } else{
                 self.stopAnimating()

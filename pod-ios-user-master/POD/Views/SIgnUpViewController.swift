@@ -134,6 +134,9 @@ class SIgnUpViewController: BaseViewController {
         } else if(txtEmail.text?.count == 0){
             Helper.ShowAlertMessage(message:"Please enter email" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return;
+        }else if(txtEmail.text!.isEmail() == false){
+            Helper.ShowAlertMessage(message:"Please enter valid email." , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
+            return
         } else if(txtPhoneNo.text?.count == 0){
             Helper.ShowAlertMessage(message:"Please enter mobile no" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return;
@@ -172,16 +175,37 @@ class SIgnUpViewController: BaseViewController {
         
         userInfo["TermsCondition"] = "1"
         if((txtRefferCode.text?.trimmingCharacters(in: .whitespaces).count)! > 0){
-            userInfo["Referral_Code"] = txtRefferCode.text
+            checkValidReferCode(userInfo:userInfo)
+        } else{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "SignUpOTPViewController") as! SignUpOTPViewController
+            controller.userInfo = userInfo
+            self.navigationController!.pushViewController(controller, animated: true)
         }
-        
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "SignUpOTPViewController") as! SignUpOTPViewController
-        controller.userInfo = userInfo
-        self.navigationController!.pushViewController(controller, animated: true)
-        
     }
+    
+    func checkValidReferCode(userInfo : [String : Any]){
+        startAnimating()
+        ApiManager.sharedInstance.requestGETURL("\(Constant.getCheckValidReferCodeURL)\(txtRefferCode.text ?? "")", success: { (JSON) in
+            let msg =  JSON.dictionary?["Message"]
+            if((JSON.dictionary?["IsSuccess"]) != false){
+                self.stopAnimating()
+                var dict : [String : Any] = userInfo
+                dict["Referral_Code"] = self.txtRefferCode.text
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "SignUpOTPViewController") as! SignUpOTPViewController
+                controller.userInfo = dict
+                self.navigationController!.pushViewController(controller, animated: true)
+            } else{
+                self.stopAnimating()
+                Helper.ShowAlertMessage(message:msg!.description , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+            }
+        }) { (Error) in
+            self.stopAnimating()
+            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+        }
+    }
+
     
 }
 

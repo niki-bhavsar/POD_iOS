@@ -40,11 +40,8 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
             // Fallback on earlier versions
         }
         let account = AccountManager.instance().activeAccount
-//        let userInfo = Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-//         if let name = userInfo!["Name"]{
             lblProfileName.text = account?.name
-//         }
-//        if let imgURL = userInfo?["ProfileImage"]{
+
         
         if let url  = URL(string: account?.profileImage ?? "") {
                        profileImage.kf.indicatorType = .activity
@@ -57,23 +54,6 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
                  
                    }
               profileImage.clipsToBounds = true
-        
-        
-//        let imgURL = account?.profileImage
-//        let imageUrl:NSURL = NSURL(string:  (imgURL!))!
-//            if(imageUrl.absoluteString?.count != 0){
-//             DispatchQueue.global(qos: .default).async {
-//             let imageData:NSData? = NSData(contentsOf: imageUrl as URL) ?? nil
-//                 DispatchQueue.main.async {
-//                    if(imageData != nil){
-//                        let image = UIImage(data: imageData! as Data)
-//                    self.profileImage.image = image
-//                    self.profileImage.contentMode = UIView.ContentMode.scaleAspectFit
-//                    }
-//                  }
-//                }
-//            }
-//         }
     }
     
     deinit {
@@ -85,9 +65,10 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
 extension SideMenuViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(MenuController.menuList.count);
+        print(MenuController.menuList.count)
         return MenuController.menuList.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
@@ -98,8 +79,13 @@ extension SideMenuViewController {
             cell.contentView.backgroundColor = UIColor.init(hexString: "#F2F2F7")
         }
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        UIColor.init(hexString: "MenuCell");
-        return cell;
+        if(indexPath.row == 2){
+            cell.lblTitle.blink()
+        }
+        
+        UIColor.init(hexString: "MenuCell")
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -108,38 +94,29 @@ extension SideMenuViewController {
             Constant.IsOpenMenu = false;
             Constant.homeVC!.RemoveOverlay();
             NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
-        }
-        else if(indexPath.row == 1){
-                NotificationCenter.default.post(name: NSNotification.Name("ShowProfile"), object: nil)
-        }
-        else if(indexPath.row == 2){
+        } else if(indexPath.row == 1){
+            NotificationCenter.default.post(name: NSNotification.Name("ShowProfile"), object: nil)
+        } else if(indexPath.row == 2){
+            NotificationCenter.default.post(name: NSNotification.Name("showReferAndEarn"), object: nil)
+        } else if(indexPath.row == 3){
             NotificationCenter.default.post(name: NSNotification.Name("ShowNotification"), object: nil)
-        }
-        else if(indexPath.row == 3){
+        } else if(indexPath.row == 4){
             NotificationCenter.default.post(name: NSNotification.Name("ShowOrders"), object: nil)
-        }
-            else if(indexPath.row == 4){
-                NotificationCenter.default.post(name: NSNotification.Name("ShowInquiry"), object: nil)
-            }
-        else if(indexPath.row == 5){
+        } else if(indexPath.row == 5){
+            NotificationCenter.default.post(name: NSNotification.Name("ShowInquiry"), object: nil)
+        } else if(indexPath.row == 6){
             NotificationCenter.default.post(name: NSNotification.Name("ShowResetPassword"), object: nil)
-        }
-        else if(indexPath.row == 6){
+        } else if(indexPath.row == 7){
             NotificationCenter.default.post(name: NSNotification.Name("ShowAboutUs"), object: nil)
-        }
-            else if(indexPath.row == 7){
-                NotificationCenter.default.post(name: NSNotification.Name("ShowFAQ"), object: nil)
-            }
-        else if(indexPath.row == 8){
+        } else if(indexPath.row == 8){
+            NotificationCenter.default.post(name: NSNotification.Name("ShowFAQ"), object: nil)
+        } else if(indexPath.row == 9){
             NotificationCenter.default.post(name: NSNotification.Name("ShowTC"), object: nil)
-        }
-        else if(indexPath.row == 9){
+        } else if(indexPath.row == 10){
             NotificationCenter.default.post(name: NSNotification.Name("ShowPivacyPolicy"), object: nil)
-        }
-//        else if(indexPath.row == 7){
-//            NotificationCenter.default.post(name: NSNotification.Name("ShowContactUs"), object: nil)
-//        }
-        else if(indexPath.row == 11){
+        } else if(indexPath.row == 11){
+            NotificationCenter.default.post(name: NSNotification.Name("ShowHelpDesk"), object: nil)
+        } else if(indexPath.row == 12){
             
             UserDefaults.standard.removeObject(forKey: "UserInfo")
             UserDefaults.standard.synchronize()
@@ -168,10 +145,18 @@ extension SideMenuViewController {
             }
             
         }
-        else if(indexPath.row == 10){
-            NotificationCenter.default.post(name: NSNotification.Name("ShowHelpDesk"), object: nil)
-        }
         
         
     }
+}
+extension UILabel {
+    func blink() {
+        self.alpha = 0.0;
+        UIView.animate(withDuration: 0.2, //Time duration you want,
+            delay: 0.0,
+            options: [.curveEaseInOut, .autoreverse, .repeat],
+            animations: { [weak self] in self?.alpha = 1.0 },
+            completion: { [weak self] _ in self?.alpha = 0.0 })
+    }
+
 }
