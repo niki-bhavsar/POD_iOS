@@ -130,6 +130,7 @@
 		1895EC62239EC46500F2B79D /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862970F239B02B300E57243 /* AddAddressViewController.swift */; };
 		1895EC65239EF48E00F2B79D /* UITextViewWorkaround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895EC63239EF38200F2B79D /* UITextViewWorkaround.swift */; };
 		189CA125239B894F00FE9BC9 /* PaymentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CA124239B894F00FE9BC9 /* PaymentDetailViewController.swift */; };
+		189D594A253702EF00D947AB /* SSBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D5949253702EF00D947AB /* SSBadgeButton.swift */; };
 		189FA6AB23904C4F008EBD79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FA6AA23904C4F008EBD79 /* AppDelegate.swift */; };
 		189FA6AF23904C4F008EBD79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FA6AE23904C4F008EBD79 /* ViewController.swift */; };
 		189FA6B223904C4F008EBD79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189FA6B023904C4F008EBD79 /* Main.storyboard */; };
@@ -277,6 +278,7 @@
 		188EB07C23B0A78500E580B1 /* InfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoController.swift; sourceTree = "<group>"; };
 		1895EC63239EF38200F2B79D /* UITextViewWorkaround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewWorkaround.swift; sourceTree = "<group>"; };
 		189CA124239B894F00FE9BC9 /* PaymentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailViewController.swift; sourceTree = "<group>"; };
+		189D5949253702EF00D947AB /* SSBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSBadgeButton.swift; sourceTree = "<group>"; };
 		189FA6A723904C4F008EBD79 /* POD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		189FA6AA23904C4F008EBD79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		189FA6AE23904C4F008EBD79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 		189FA6E523905E64008EBD79 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				189D5949253702EF00D947AB /* SSBadgeButton.swift */,
 				180D858D2522FFF500756BC9 /* KeychainItem.swift */,
 				187CAA2F250FA0C10002CE62 /* NVActivityIndicatorView */,
 				189FA6E623905EEB008EBD79 /* Helper.swift */,
@@ -763,6 +766,7 @@
 				187D50CC2392F46D00B09E7C /* ProfileViewController.swift in Sources */,
 				187CAA5B250FA0C10002CE62 /* NVActivityIndicatorViewable.swift in Sources */,
 				184985A623A808B6000ECC8A /* AddressController.swift in Sources */,
+				189D594A253702EF00D947AB /* SSBadgeButton.swift in Sources */,
 				18FE8B002412C5A6004C77AC /* MyInquiryViewController.swift in Sources */,
 				184C22D22391A480002D6866 /* ContainerViewController.swift in Sources */,
 				1862970C239AEF4900E57243 /* AddressTableCustomCell.swift in Sources */,

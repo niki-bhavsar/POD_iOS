@@ -2081,7 +2081,7 @@ Regards, Team POD :)</string>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGHeader" translatesAutoresizingMaskIntoConstraints="NO" id="6t7-D3-N91">
-                                <rect key="frame" x="0.0" y="30" width="165" height="68"/>
+                                <rect key="frame" x="0.0" y="60" width="165" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="Xu7-ja-spF"/>
                                     <constraint firstAttribute="width" constant="165" id="efr-Kl-YKj"/>
@@ -2199,7 +2199,7 @@ Regards, Team POD :)</string>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARs-z1-CHg">
-                                <rect key="frame" x="10" y="20" width="40" height="40"/>
+                                <rect key="frame" x="10" y="30" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="bfH-og-G5V"/>
                                     <constraint firstAttribute="height" constant="40" id="hSa-MI-sX6"/>
@@ -2210,47 +2210,17 @@ Regards, Team POD :)</string>
                                     <action selector="btn_MenuTapped" destination="LwP-6T-Ao5" eventType="touchUpInside" id="PYu-3O-MMj"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adf-xJ-wne">
-                                <rect key="frame" x="240" y="20" width="75" height="75"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LK-Wb-mCy">
-                                        <rect key="frame" x="14" y="20" width="48" height="47"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="Alarm"/>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVf-xX-v4L">
-                                        <rect key="frame" x="38" y="8" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="CornerRadius">
-                                                <real key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="BorderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="BorderWidth">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ilJ-h2-e0E">
-                                        <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <connections>
-                                            <action selector="btnShowNotificationWithSender:" destination="LwP-6T-Ao5" eventType="touchUpInside" id="YXn-hV-bAh"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LK-Wb-mCy" customClass="SSBadgeButton" customModule="POD" customModuleProvider="target">
+                                <rect key="frame" x="240" y="30" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="EC7-Il-uC4"/>
-                                    <constraint firstAttribute="height" constant="75" id="M6Z-ZM-FCq"/>
+                                    <constraint firstAttribute="height" constant="50" id="1Aq-Kd-E2W"/>
+                                    <constraint firstAttribute="width" constant="50" id="ozV-BT-ecG"/>
                                 </constraints>
-                            </view>
+                                <state key="normal" image="Alarm"/>
+                                <connections>
+                                    <action selector="btnShowNotificationWithSender:" destination="LwP-6T-Ao5" eventType="touchUpInside" id="80P-A0-m2I"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SB6-aH-rw4">
                                 <rect key="frame" x="0.0" y="418" width="320" height="150"/>
                                 <subviews>
@@ -2286,11 +2256,10 @@ Regards, Team POD :)</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="m0g-to-qfV" firstAttribute="trailing" secondItem="adf-xJ-wne" secondAttribute="trailing" constant="5" id="0ui-ND-flJ"/>
                             <constraint firstItem="Juh-5c-6cp" firstAttribute="top" secondItem="4Pr-8O-fO1" secondAttribute="top" id="2dc-j1-lse"/>
                             <constraint firstItem="ARs-z1-CHg" firstAttribute="leading" secondItem="m0g-to-qfV" secondAttribute="leading" constant="10" id="2vM-DJ-ass"/>
                             <constraint firstItem="B7c-o6-XVU" firstAttribute="leading" secondItem="m0g-to-qfV" secondAttribute="leading" id="4Lu-o4-jfX"/>
-                            <constraint firstItem="ARs-z1-CHg" firstAttribute="top" secondItem="4Pr-8O-fO1" secondAttribute="top" constant="20" id="7rI-yQ-1h8"/>
+                            <constraint firstItem="ARs-z1-CHg" firstAttribute="top" secondItem="4Pr-8O-fO1" secondAttribute="top" constant="30" id="7rI-yQ-1h8"/>
                             <constraint firstItem="FeD-Ro-rLs" firstAttribute="trailing" secondItem="m0g-to-qfV" secondAttribute="trailing" id="Gda-jn-e3G"/>
                             <constraint firstItem="FIb-4r-WF1" firstAttribute="centerY" secondItem="4Pr-8O-fO1" secondAttribute="centerY" id="IPw-Kv-m2g"/>
                             <constraint firstItem="Juh-5c-6cp" firstAttribute="trailing" secondItem="m0g-to-qfV" secondAttribute="trailing" id="JIc-Ev-c1g"/>
@@ -2300,22 +2269,23 @@ Regards, Team POD :)</string>
                             <constraint firstItem="WIj-fh-bvn" firstAttribute="top" secondItem="4Pr-8O-fO1" secondAttribute="top" id="X5c-Bs-Ftb"/>
                             <constraint firstItem="SB6-aH-rw4" firstAttribute="leading" secondItem="m0g-to-qfV" secondAttribute="leading" id="YIJ-Nd-o6e"/>
                             <constraint firstItem="Juh-5c-6cp" firstAttribute="leading" secondItem="m0g-to-qfV" secondAttribute="leading" id="Ywe-tv-4aA"/>
-                            <constraint firstItem="6t7-D3-N91" firstAttribute="top" secondItem="m0g-to-qfV" secondAttribute="top" constant="30" id="Z3F-AH-12d"/>
+                            <constraint firstItem="6t7-D3-N91" firstAttribute="top" secondItem="4Pr-8O-fO1" secondAttribute="top" constant="60" id="Z3F-AH-12d"/>
+                            <constraint firstItem="m0g-to-qfV" firstAttribute="trailing" secondItem="3LK-Wb-mCy" secondAttribute="trailing" constant="30" id="dnZ-WD-yWH"/>
                             <constraint firstItem="m0g-to-qfV" firstAttribute="bottom" secondItem="FeD-Ro-rLs" secondAttribute="bottom" constant="8" id="h8A-Hb-cNM"/>
                             <constraint firstItem="WIj-fh-bvn" firstAttribute="trailing" secondItem="m0g-to-qfV" secondAttribute="trailing" id="hZ3-as-ukC"/>
                             <constraint firstItem="SB6-aH-rw4" firstAttribute="trailing" secondItem="m0g-to-qfV" secondAttribute="trailing" id="jOL-BG-K7O"/>
                             <constraint firstItem="6t7-D3-N91" firstAttribute="leading" secondItem="m0g-to-qfV" secondAttribute="leading" id="jSU-Ad-gvO"/>
                             <constraint firstItem="B7c-o6-XVU" firstAttribute="trailing" secondItem="m0g-to-qfV" secondAttribute="trailing" id="kdY-aM-nJl"/>
+                            <constraint firstItem="3LK-Wb-mCy" firstAttribute="top" secondItem="4Pr-8O-fO1" secondAttribute="top" constant="30" id="sFs-eB-uN4"/>
                             <constraint firstItem="WIj-fh-bvn" firstAttribute="bottom" secondItem="4Pr-8O-fO1" secondAttribute="bottom" id="sIM-P5-iR3"/>
                             <constraint firstItem="WIj-fh-bvn" firstAttribute="leading" secondItem="m0g-to-qfV" secondAttribute="leading" id="v0S-wc-nGr"/>
                             <constraint firstItem="FIb-4r-WF1" firstAttribute="centerX" secondItem="4Pr-8O-fO1" secondAttribute="centerX" id="vrb-sq-vS2"/>
-                            <constraint firstItem="adf-xJ-wne" firstAttribute="top" secondItem="ARs-z1-CHg" secondAttribute="top" id="yhZ-Pe-qfO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m0g-to-qfV"/>
                     </view>
                     <navigationItem key="navigationItem" id="01Q-de-YUp"/>
                     <connections>
-                        <outlet property="lblNotificationCount" destination="mVf-xX-v4L" id="meW-OK-S96"/>
+                        <outlet property="btnNotification" destination="3LK-Wb-mCy" id="67J-Gv-Q9D"/>
                         <outlet property="pageControler" destination="70G-HO-9pz" id="PWb-5P-2nx"/>
                         <outlet property="sv" destination="kpv-1k-ovQ" id="268-KF-Q2g"/>
                         <outlet property="viewBanner" destination="SB6-aH-rw4" id="VoS-rc-Bc5"/>
@@ -8396,7 +8366,7 @@ Regards, Team POD :)</string>
                                         <rect key="frame" x="0.0" y="28" width="302" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tjx-3G-v49" id="KWL-G8-AHA">
-                                            <rect key="frame" x="0.0" y="2" width="302" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="302" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKa-fa-inQ">
@@ -9190,7 +9160,7 @@ Regards, Team POD :)</string>
                                         <rect key="frame" x="0.0" y="28" width="302" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zyg-R3-9bk" id="Yat-Xa-geN">
-                                            <rect key="frame" x="0.0" y="2" width="302" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="302" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHF-KE-pTv">

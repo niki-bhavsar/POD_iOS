@@ -369,10 +369,10 @@ class LoginController: NSObject {
                         let listNotification = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
 //                        print(listNotification as Any)
                         Constant.notificationCount = listNotification!.count;
-                        vc.lblNotificationCount.text = Constant.notificationCount.description;
+                        vc.btnNotification.badge = Constant.notificationCount.description
                     }
                     else{
-                        vc.lblNotificationCount.text = "0";
+                        vc.btnNotification.badge = "0"
                         //let orderDetail  = ((JSON.dictionaryObject!["ResponseData"]) as? [String:Any])!;
                         
                     }
