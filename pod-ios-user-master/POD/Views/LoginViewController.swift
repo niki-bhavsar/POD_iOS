@@ -12,7 +12,9 @@ import  NotificationBannerSwift
 import AuthenticationServices
 import JWTDecode
 
-class LoginViewController: BaseViewController,GIDSignInDelegate {
+class LoginViewController: BaseViewController,GIDSignInDelegate, ReferCodePopupDelegate {
+    
+    
     
     @IBOutlet var txtEmail:UITextField!
     @IBOutlet var txtPassword:UITextField!
@@ -83,6 +85,8 @@ class LoginViewController: BaseViewController,GIDSignInDelegate {
         }
     }
     
+    
+    
     @IBAction func btnFacebook_Click(){
         LoginController.LoginWithFaceBook(vc:self)
     }
@@ -90,6 +94,61 @@ class LoginViewController: BaseViewController,GIDSignInDelegate {
     @IBAction func btnGoogle_Click(){
         LoginController.LoginWithGoogle(vc:self)
     }
+    
+    func showRefercodeAlert(userId: String){
+        
+        let alert = UIAlertController(title:"Referral code", message: "Do you have any referral code?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { _ in
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ReferCodePopup") as! ReferCodePopup
+            controller.delegate = self
+            controller.userId = userId
+            controller.modalPresentationStyle = .overCurrentContext
+            controller.modalTransitionStyle = .crossDissolve
+            self.present(controller, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: {(_: UIAlertAction!) in
+            let account = Account()
+            LoginController.GetCustomerProfile(vc: self, userID: userId, IsBack: false, account: account)
+        }))
+        Helper.getTopViewController().present(alert, animated: true, completion: nil)
+    }
+    
+//    ReferCodePopupDelegate
+    func applyClicked(code: String, userID : String) {
+        var otpDic = [String : Any]()
+        otpDic["Id"] = userID
+       
+        if(code.count > 0){
+            otpDic["Referral_Code"] = code
+        }
+        
+        startAnimating()
+        ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.updateCustomerProfileURL, parameters: otpDic, success: { (JSON) in
+            let result = JSON.string?.parseJSONString!
+            let msg =  result!["Message"]
+            if(((result!["IsSuccess"]) as! Bool) != false){
+                let account = Account()
+                LoginController.GetCustomerProfile(vc: self, userID: otpDic["Id"] as! String, IsBack: false, account: account)
+            } else{
+                self.stopAnimating()
+                Helper.ShowAlertMessage(message:msg as! String , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+            }
+            
+        }, failure:{ (Error) in
+            self.stopAnimating()
+            Helper.ShowAlertMessage(message:Error.localizedDescription , vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+            
+        })
+    }
+    
+    func cancleClicked(userID : String) {
+        let account = Account()
+        LoginController.GetCustomerProfile(vc: self, userID: userID, IsBack: false, account: account)
+    }
+    
+    
 }
 
 extension LoginViewController {

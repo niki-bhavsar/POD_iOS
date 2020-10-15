@@ -10,14 +10,15 @@ import UIKit
 import NotificationBannerSwift
 
 protocol ReferCodePopupDelegate{
-    func applyClicked(code : String)
-    func cancleClicked()
+    func applyClicked(code : String, userID : String)
+    func cancleClicked(userID : String)
 }
 
 class ReferCodePopup: BaseViewController {
 
     @IBOutlet weak var txtRefercode: UITextField!
      var delegate:ReferCodePopupDelegate!
+    var userId = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class ReferCodePopup: BaseViewController {
     @IBAction func cancleClicked(_ sender: Any) {
           if(self.delegate != nil){
                           self.dismiss(animated: true) {
-                              self.delegate.cancleClicked()
+                            self.delegate.cancleClicked(userID: self.userId)
                           }
                       }
     }
@@ -48,7 +49,7 @@ class ReferCodePopup: BaseViewController {
                 self.stopAnimating()
                 if(self.delegate != nil){
                     self.dismiss(animated: true) {
-                        self.delegate.applyClicked(code: self.txtRefercode.text ?? "")
+                        self.delegate.applyClicked(code: self.txtRefercode.text ?? "", userID: self.userId)
                     }
                 }
             } else{

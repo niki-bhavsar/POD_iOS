@@ -162,6 +162,7 @@ class HomeViewController: BaseViewController {
         Constant.OrderDic["CustomerId"] = account.user_id
         Constant.OrderDic["Name"] = account.name
         Constant.OrderDic["Email"] = account.email
+        Constant.OrderDic["OrderType"] = "1"
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SelectGategoryViewController") as! SelectGategoryViewController

@@ -9,7 +9,7 @@
 import UIKit
 import NotificationBannerSwift
 
-class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicatorViewable , ReferCodePopupDelegate {
+class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicatorViewable  {
     
     @IBOutlet weak var lblMessage: UILabel!
     
@@ -31,26 +31,6 @@ class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicat
         lblMessage.attributedText = underlineAttriString
         lblMessage.isUserInteractionEnabled = true
         lblMessage.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(tapLabel(gesture:))))
-        
-        
-        
-        //            let imageUrl:NSURL = NSURL(string:  account.profileImage)!
-        //                      if(imageUrl.absoluteString?.count != 0){
-        //                          DispatchQueue.global(qos: .default).async {
-        //                              if(imageUrl != nil){
-        //                                  let imageData:NSData = NSData(contentsOf: imageUrl as URL)!
-        //                                  DispatchQueue.main.async {
-        //                                      let image = UIImage(data: imageData as Data)
-        //                                    self.profileImage = image!
-        //                                  }
-        //                              }
-        //                          }
-        //                      }
-        //                      else{
-        //                      }
-        
-        
-        
     }
     
     @IBAction func tapLabel(gesture: UITapGestureRecognizer) {
@@ -69,60 +49,41 @@ class UpdateTermsAndConditionViewController: UIViewController, NVActivityIndicat
         }
     }
     
-    func showRefercodeAlert(){
-        
-        let alert = UIAlertController(title:"Referral code", message: "Do you have any referral code?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { _ in
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "ReferCodePopup") as! ReferCodePopup
-            controller.delegate = self
-            controller.modalPresentationStyle = .overCurrentContext
-            controller.modalTransitionStyle = .crossDissolve
-            self.present(controller, animated: true, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: .default, handler: {(_: UIAlertAction!) in
-            self.updateCustomerProfile(referral_Code: "")
-        }))
-        Helper.getTopViewController().present(alert, animated: true, completion: nil)
-        
-        
-    }
+//    func showRefercodeAlert(){
+//
+//        let alert = UIAlertController(title:"Referral code", message: "Do you have any referral code?", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { _ in
+//
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let controller = storyboard.instantiateViewController(withIdentifier: "ReferCodePopup") as! ReferCodePopup
+//            controller.delegate = self
+//            controller.modalPresentationStyle = .overCurrentContext
+//            controller.modalTransitionStyle = .crossDissolve
+//            self.present(controller, animated: true, completion: nil)
+//        }))
+//        alert.addAction(UIAlertAction(title: "No", style: .default, handler: {(_: UIAlertAction!) in
+//            self.updateCustomerProfile(referral_Code: "")
+//        }))
+//        Helper.getTopViewController().present(alert, animated: true, completion: nil)
+//
+//
+//    }
     
-    func applyClicked(code: String) {
-        updateCustomerProfile(referral_Code: code)
-    }
-    
-    func cancleClicked() {
-        updateCustomerProfile(referral_Code: "")
-    }
+//    func applyClicked(code: String) {
+//        updateCustomerProfile(referral_Code: code)
+//    }
+//
+//    func cancleClicked() {
+//        updateCustomerProfile(referral_Code: "")
+//    }
     
     
     
     
     @IBAction func submitclicked(_ sender: Any) {
-        if(account.signBy != "1"){
-            showRefercodeAlert()
-        } else {
-            updateCustomerProfile(referral_Code: "")
-        }
-    }
-    
-    func updateCustomerProfile(referral_Code : String){
         var otpDic = [String : Any]()
         otpDic["Id"] = account.user_id
-        //        otpDic["Name"] = account.name
-        //        otpDic["Address"] = account
-        //        otpDic["Phone"] = account.phone
-        //        otpDic["Gender"] = account.gender
-        if(referral_Code.count > 0){
-            otpDic["Referral_Code"] = referral_Code
-        }
-        
         otpDic["TermsCondition"] = "1"
-        //        otpDic["ProfileImage"] = nil
-        //        otpDic["ProfileImage"] = profileImage.jpegData(compressionQuality: 0.5)
-        
         startAnimating()
         ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.updateCustomerProfileURL, parameters: otpDic, success: { (JSON) in
             let result = JSON.string?.parseJSONString!

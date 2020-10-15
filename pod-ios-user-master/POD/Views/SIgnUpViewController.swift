@@ -174,6 +174,7 @@ class SIgnUpViewController: BaseViewController {
         }
         
         userInfo["TermsCondition"] = "1"
+        
         if((txtRefferCode.text?.trimmingCharacters(in: .whitespaces).count)! > 0){
             checkValidReferCode(userInfo:userInfo)
         } else{

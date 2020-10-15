@@ -198,16 +198,18 @@ class LoginController: NSObject {
         do{
             
             ApiManager.sharedInstance.requestPOSTMultiPartURL(endUrl: Constant.signUpUrl, imageData: dicObj["ProfileImage"] as? Data, parameters: dicObj, success: { (JSON) in
-                let result = JSON.string?.parseJSONString!
+                let result : [String : Any] = JSON.string?.parseJSONString as! [String : Any]
                 vc.removeSpinner()
-                let msg =  result!["Message"]
-                if(((result!["IsSuccess"]) as! Bool) != false){
-                    var data =  (result!["ResponseData"]!)!
-                    let account = Account()
-//                    print((((result!["ResponseData"]!)! as! [String:AnyObject])["Id"])!)
-                    self.GetCustomerProfile(vc: vc, userID: (((result!["ResponseData"]!)! as! [String:Any])["Id"] as! String), IsBack: false, account: account)
-                    
-//                    self.GetCustomerProfile(vc: vc, userID: (((result!["ResponseData"]!)! as! [String:Any])["Id"])! as! String,IsBack: false)
+                let msg =  result["Message"]
+                if(((result["IsSuccess"]) as! Bool) != false){
+                    let dataDict  : [String :Any] =  result["ResponseData"] as! [String : Any]
+                    let IsExsit : Bool = (dataDict["IsExsit"] != nil)
+                    if(IsExsit == true){
+                        let account = Account()
+                        self.GetCustomerProfile(vc: vc, userID: dataDict["Id"] as! String, IsBack: false, account: account)
+                    } else {
+                        vc.showRefercodeAlert(userId: dataDict["Id"] as! String)
+                    }
                 }
                 else{
                     Helper.ShowAlertMessage(message:msg as! String , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
@@ -222,8 +224,8 @@ class LoginController: NSObject {
             Helper.ShowAlertMessage(message: error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
             vc.removeSpinner()
         }
-        
     }
+    
     static func GetCustomerProfile(vc:LoginViewController,userID:String, IsBack:Bool, account: Account){
          do{
              try
