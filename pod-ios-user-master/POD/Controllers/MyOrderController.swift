@@ -117,13 +117,33 @@ class MyOrderController: NSObject {
                     
                     let gst = (((price + trans)*18)/100)
                     
-                    let total = (Double(vc.lblDistanceCost.text!)! + Double(price)+gst)
+                    var total = (Double(vc.lblDistanceCost.text!)! + Double(price)+gst)
                     
-                    vc.lblTotal.text = String(format: "%.2f", total);
+                    
+                    
                     Constant.OrderDic["GST"] = gst
                     Constant.OrderDic["Transportation"] = vc.lblDistanceCost.text
                     Constant.OrderDic["SubTotal"] = vc.lblShootCost.text
-                    Constant.OrderDic["Total"] = vc.lblTotal.text
+                    var redeemPoint : Double = Double(AccountManager.instance().activeAccount?.referralPoint ?? "") ?? 0.0
+                    let orderType : Int = Constant.OrderDic["OrderType"] as! Int
+                    vc.lblRedeemPointTitle.text = ""
+                     vc.lblRedemPointValue.text = ""
+                    if(orderType == 1){
+                        if(total > redeemPoint){
+                             total = total - redeemPoint
+                        } else {
+                            
+                            redeemPoint = total
+                             Constant.OrderDic["RedeemPoint"] = String(format: "%.2f", redeemPoint)
+                            total = 0.0
+                        }
+                       
+                        vc.lblRedeemPointTitle.text = "Redeem Points"
+                         vc.lblRedemPointValue.text = String(format: "-%.2f", redeemPoint)
+                    }
+                     vc.lblTotal.text = String(format: "%.2f", total)
+                     Constant.OrderDic["Total"] = vc.lblTotal.text
+                   
                 } else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }

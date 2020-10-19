@@ -4711,11 +4711,11 @@ Regards, Team POD :)</string>
             <objects>
                 <viewController storyboardIdentifier="BookingDetailViewController" id="Psh-Lm-eNf" customClass="BookingDetailViewController" customModule="POD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="U2N-Jg-kHm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_form_bg" translatesAutoresizingMaskIntoConstraints="NO" id="mGA-cT-O3J">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeaderABG" translatesAutoresizingMaskIntoConstraints="NO" id="p1Z-KY-bPb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
@@ -4742,7 +4742,7 @@ Regards, Team POD :)</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lef-mb-JSv">
-                                <rect key="frame" x="20" y="77" width="280" height="471"/>
+                                <rect key="frame" x="20" y="77" width="280" height="503"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ronak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PC9-lv-JvM">
                                         <rect key="frame" x="10" y="30" width="260" height="25"/>
@@ -4946,7 +4946,7 @@ Regards, Team POD :)</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TP6-8k-hNr">
-                                        <rect key="frame" x="10" y="397.5" width="260" height="60"/>
+                                        <rect key="frame" x="10" y="442.5" width="260" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="8KX-ub-eda"/>
                                         </constraints>
@@ -4958,6 +4958,27 @@ Regards, Team POD :)</string>
                                             <action selector="btnContinue_Click" destination="Psh-Lm-eNf" eventType="touchUpInside" id="hJJ-3C-nHo"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="Redeem your points" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIn-AH-VXB">
+                                        <rect key="frame" x="45" y="410" width="225" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
+                                        <color key="textColor" red="0.27450980390000002" green="0.33333333329999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-pu-UfQ">
+                                        <rect key="frame" x="10" y="407.5" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="4RT-cM-HU9"/>
+                                            <constraint firstAttribute="height" constant="25" id="KfA-pl-N0F"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
+                                        <state key="normal" image="uncheck">
+                                            <color key="titleColor" red="0.074509803921568626" green="0.22352941176470587" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="selected" image="check"/>
+                                        <connections>
+                                            <action selector="checkClicked:" destination="Psh-Lm-eNf" eventType="touchUpInside" id="maB-vg-9O3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -4966,9 +4987,11 @@ Regards, Team POD :)</string>
                                     <constraint firstItem="l4x-0e-wVZ" firstAttribute="top" secondItem="ls7-OP-Wkp" secondAttribute="bottom" constant="10" id="664-Ln-kH4"/>
                                     <constraint firstItem="OkO-RI-N5T" firstAttribute="top" secondItem="O7f-AM-6pr" secondAttribute="bottom" constant="10" id="6cy-pW-egP"/>
                                     <constraint firstAttribute="trailing" secondItem="l4x-0e-wVZ" secondAttribute="trailing" constant="10" id="8BH-Bx-gj9"/>
+                                    <constraint firstItem="cdk-pu-UfQ" firstAttribute="top" secondItem="QFr-KK-w23" secondAttribute="bottom" constant="20" id="ACV-Uh-jwk"/>
                                     <constraint firstItem="cMV-3s-Wgr" firstAttribute="top" secondItem="O7f-AM-6pr" secondAttribute="bottom" constant="10" id="BO8-Ic-mRs"/>
                                     <constraint firstAttribute="trailing" secondItem="O7f-AM-6pr" secondAttribute="trailing" constant="10" id="CCH-E9-Osf"/>
                                     <constraint firstItem="OkO-RI-N5T" firstAttribute="leading" secondItem="lef-mb-JSv" secondAttribute="leading" constant="10" id="EwM-JU-yZl"/>
+                                    <constraint firstItem="cdk-pu-UfQ" firstAttribute="leading" secondItem="lef-mb-JSv" secondAttribute="leading" constant="10" id="IWw-2a-kEj"/>
                                     <constraint firstAttribute="trailing" secondItem="QFr-KK-w23" secondAttribute="trailing" constant="10" id="KQg-S2-309"/>
                                     <constraint firstItem="ls7-OP-Wkp" firstAttribute="leading" secondItem="lef-mb-JSv" secondAttribute="leading" constant="10" id="KYA-0c-cgO"/>
                                     <constraint firstAttribute="trailing" secondItem="PC9-lv-JvM" secondAttribute="trailing" constant="10" id="LBn-0C-QHX"/>
@@ -4976,20 +4999,23 @@ Regards, Team POD :)</string>
                                     <constraint firstItem="PC9-lv-JvM" firstAttribute="top" secondItem="lef-mb-JSv" secondAttribute="top" constant="30" id="R9b-It-WwS"/>
                                     <constraint firstItem="cMV-3s-Wgr" firstAttribute="width" secondItem="OkO-RI-N5T" secondAttribute="width" id="Wgi-nN-1Rf"/>
                                     <constraint firstItem="oTw-TZ-e3l" firstAttribute="top" secondItem="l4x-0e-wVZ" secondAttribute="bottom" constant="5" id="XMh-Mb-mob"/>
+                                    <constraint firstAttribute="trailing" secondItem="OIn-AH-VXB" secondAttribute="trailing" constant="10" id="XZt-ZV-Xbr"/>
+                                    <constraint firstItem="TP6-8k-hNr" firstAttribute="top" secondItem="cdk-pu-UfQ" secondAttribute="bottom" constant="10" id="Y4J-1r-rPL"/>
                                     <constraint firstAttribute="trailing" secondItem="hHg-b4-y7j" secondAttribute="trailing" constant="10" id="b8z-yY-leW"/>
                                     <constraint firstItem="QFr-KK-w23" firstAttribute="leading" secondItem="lef-mb-JSv" secondAttribute="leading" constant="10" id="cLR-hQ-p2e"/>
-                                    <constraint firstItem="TP6-8k-hNr" firstAttribute="top" secondItem="QFr-KK-w23" secondAttribute="bottom" constant="10" id="cgT-4x-HHR"/>
                                     <constraint firstItem="hHg-b4-y7j" firstAttribute="leading" secondItem="oTw-TZ-e3l" secondAttribute="trailing" constant="5" id="hCh-WZ-ZtH"/>
                                     <constraint firstItem="O7f-AM-6pr" firstAttribute="top" secondItem="oTw-TZ-e3l" secondAttribute="bottom" constant="10" id="hDP-V9-dqA"/>
                                     <constraint firstItem="cMV-3s-Wgr" firstAttribute="leading" secondItem="OkO-RI-N5T" secondAttribute="trailing" constant="30" id="heL-qL-dd3"/>
                                     <constraint firstItem="hHg-b4-y7j" firstAttribute="top" secondItem="oTw-TZ-e3l" secondAttribute="top" id="hh8-5W-6QI"/>
                                     <constraint firstItem="oTw-TZ-e3l" firstAttribute="leading" secondItem="lef-mb-JSv" secondAttribute="leading" constant="10" id="j1o-IJ-HLn"/>
                                     <constraint firstItem="l4x-0e-wVZ" firstAttribute="leading" secondItem="lef-mb-JSv" secondAttribute="leading" constant="10" id="lfg-az-hWx"/>
+                                    <constraint firstItem="OIn-AH-VXB" firstAttribute="centerY" secondItem="cdk-pu-UfQ" secondAttribute="centerY" id="m8A-KP-26b"/>
                                     <constraint firstItem="O7f-AM-6pr" firstAttribute="leading" secondItem="lef-mb-JSv" secondAttribute="leading" constant="10" id="msK-lJ-vXE"/>
                                     <constraint firstAttribute="trailing" secondItem="cMV-3s-Wgr" secondAttribute="trailing" constant="10" id="nHZ-ys-xcb"/>
                                     <constraint firstItem="QFr-KK-w23" firstAttribute="top" secondItem="OkO-RI-N5T" secondAttribute="bottom" constant="10" id="oSj-BX-R7x"/>
                                     <constraint firstItem="TP6-8k-hNr" firstAttribute="leading" secondItem="lef-mb-JSv" secondAttribute="leading" constant="10" id="p7c-3l-OvH"/>
                                     <constraint firstItem="ls7-OP-Wkp" firstAttribute="top" secondItem="PC9-lv-JvM" secondAttribute="bottom" constant="20" id="vIX-ah-2E7"/>
+                                    <constraint firstItem="OIn-AH-VXB" firstAttribute="leading" secondItem="cdk-pu-UfQ" secondAttribute="trailing" constant="10" id="xfI-S9-kDs"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="CornerRadius">
@@ -5020,10 +5046,14 @@ Regards, Team POD :)</string>
                         <viewLayoutGuide key="safeArea" id="ocW-AK-eVN"/>
                     </view>
                     <navigationItem key="navigationItem" id="jda-Ma-aCy"/>
+                    <size key="freeformSize" width="320" height="600"/>
                     <connections>
+                        <outlet property="btnCheck" destination="cdk-pu-UfQ" id="Ixr-76-QJq"/>
+                        <outlet property="btnCheckHeigh" destination="KfA-pl-N0F" id="lMD-dk-1JS"/>
                         <outlet property="lblHeaderTitle" destination="zLi-t1-Dhg" id="sEa-C6-84r"/>
                         <outlet property="lblName" destination="PC9-lv-JvM" id="dVJ-Hv-nkp"/>
                         <outlet property="lblPriceInfo" destination="epT-Ci-uOt" id="TIV-Bj-OTx"/>
+                        <outlet property="lblRedeemPoints" destination="OIn-AH-VXB" id="3nG-sG-1gV"/>
                         <outlet property="lblemail" destination="ls7-OP-Wkp" id="qbC-FJ-Kgr"/>
                         <outlet property="txtContact" destination="l4x-0e-wVZ" id="cDu-xe-wqy"/>
                         <outlet property="txtDate" destination="O7f-AM-6pr" id="4uE-j7-jmz"/>
@@ -5575,11 +5605,11 @@ Regards, Team POD :)</string>
             <objects>
                 <viewController storyboardIdentifier="PaymentDetailViewController" id="49U-G0-ZPn" customClass="PaymentDetailViewController" customModule="POD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="Itn-76-QWy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_form_bg" translatesAutoresizingMaskIntoConstraints="NO" id="qwn-N6-y1T">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeaderABG" translatesAutoresizingMaskIntoConstraints="NO" id="Ual-gc-Qiv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
@@ -5606,7 +5636,7 @@ Regards, Team POD :)</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9Q-hy-ohL">
-                                <rect key="frame" x="10" y="77" width="300" height="481"/>
+                                <rect key="frame" x="10" y="77" width="300" height="513"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gjb-XL-uL6">
                                         <rect key="frame" x="5" y="15" width="290" height="40"/>
@@ -5651,7 +5681,7 @@ Regards, Team POD :)</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7U-uf-orE">
-                                        <rect key="frame" x="5" y="409" width="290" height="30"/>
+                                        <rect key="frame" x="5" y="434" width="290" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Mlk-Am-2Ke"/>
                                         </constraints>
@@ -5665,7 +5695,7 @@ Regards, Team POD :)</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pc9-0j-S3n">
-                                        <rect key="frame" x="5" y="374" width="290" height="30"/>
+                                        <rect key="frame" x="5" y="399" width="290" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ST3-6z-PCW"/>
                                         </constraints>
@@ -5679,7 +5709,7 @@ Regards, Team POD :)</string>
                                         </connections>
                                     </button>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="taM-LW-Px2">
-                                        <rect key="frame" x="5" y="217" width="290" height="115"/>
+                                        <rect key="frame" x="5" y="217" width="290" height="140"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shoot Cost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9U-xp-ai1">
                                                 <rect key="frame" x="5" y="5" width="80" height="21"/>
@@ -5688,7 +5718,7 @@ Regards, Team POD :)</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xw5-2X-9NU">
-                                                <rect key="frame" x="160" y="5" width="120" height="20"/>
+                                                <rect key="frame" x="160" y="5" width="120" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="D9H-fb-JXc"/>
                                                 </constraints>
@@ -5703,7 +5733,7 @@ Regards, Team POD :)</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dve-1x-rMA">
-                                                <rect key="frame" x="-1" y="68" width="292" height="0.0"/>
+                                                <rect key="frame" x="-1" y="83" width="292" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -5711,7 +5741,7 @@ Regards, Team POD :)</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsD-LN-iaE">
-                                                <rect key="frame" x="160" y="27" width="120" height="20.5"/>
+                                                <rect key="frame" x="160" y="27.5" width="120" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="lEd-Ln-AYs"/>
                                                 </constraints>
@@ -5720,18 +5750,19 @@ Regards, Team POD :)</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3X-lj-WS5">
-                                                <rect key="frame" x="0.0" y="75" width="290" height="40"/>
+                                                <rect key="frame" x="0.0" y="100" width="290" height="40"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfd-bd-ShD">
-                                                        <rect key="frame" x="7" y="11" width="124" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfd-bd-ShD">
+                                                        <rect key="frame" x="5" y="11.5" width="32" height="17"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8O-Uc-wZG">
-                                                        <rect key="frame" x="160" y="11" width="116" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8O-Uc-wZG">
+                                                        <rect key="frame" x="160" y="11.5" width="120" height="17.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="120" id="hJp-oh-rXL"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                         <color key="textColor" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -5740,6 +5771,10 @@ Regards, Team POD :)</string>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="4bW-yN-zgi"/>
+                                                    <constraint firstItem="gfd-bd-ShD" firstAttribute="centerY" secondItem="j3X-lj-WS5" secondAttribute="centerY" id="K02-OG-rtH"/>
+                                                    <constraint firstItem="gfd-bd-ShD" firstAttribute="leading" secondItem="j3X-lj-WS5" secondAttribute="leading" constant="5" id="NIo-Wb-xX1"/>
+                                                    <constraint firstItem="x8O-Uc-wZG" firstAttribute="centerY" secondItem="j3X-lj-WS5" secondAttribute="centerY" id="bty-Sz-tWk"/>
+                                                    <constraint firstAttribute="trailing" secondItem="x8O-Uc-wZG" secondAttribute="trailing" constant="10" id="qx2-pu-Fgl"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQK-sU-Rvl">
@@ -5749,9 +5784,24 @@ Regards, Team POD :)</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18%" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktv-dQ-GzK">
-                                                <rect key="frame" x="160" y="49.5" width="120" height="20.5"/>
+                                                <rect key="frame" x="160" y="50" width="120" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="kYM-tK-wDh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                <color key="textColor" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Redeem Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUt-bd-qGR">
+                                                <rect key="frame" x="5" y="73" width="102" height="20"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwB-tK-ri4">
+                                                <rect key="frame" x="160" y="72.5" width="120" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="Nu1-PD-c54"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                 <color key="textColor" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5760,21 +5810,24 @@ Regards, Team POD :)</string>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="115" id="0wy-Xw-vY7"/>
+                                            <constraint firstAttribute="height" constant="140" id="0wy-Xw-vY7"/>
                                             <constraint firstItem="gmy-OK-gBv" firstAttribute="leading" secondItem="taM-LW-Px2" secondAttribute="leading" constant="5" id="3hW-YC-ucX"/>
                                             <constraint firstItem="gmy-OK-gBv" firstAttribute="top" secondItem="Q9U-xp-ai1" secondAttribute="bottom" constant="2" id="61t-hk-ydp"/>
+                                            <constraint firstItem="IwB-tK-ri4" firstAttribute="top" secondItem="ktv-dQ-GzK" secondAttribute="bottom" constant="2" id="B0C-4F-6HS"/>
                                             <constraint firstItem="Q9U-xp-ai1" firstAttribute="leading" secondItem="taM-LW-Px2" secondAttribute="leading" constant="5" id="CEE-ye-14F"/>
                                             <constraint firstItem="j3X-lj-WS5" firstAttribute="leading" secondItem="taM-LW-Px2" secondAttribute="leading" id="DAX-1c-F7T"/>
                                             <constraint firstItem="Xw5-2X-9NU" firstAttribute="top" secondItem="taM-LW-Px2" secondAttribute="top" constant="5" id="FuV-s0-lgu"/>
                                             <constraint firstItem="Q9U-xp-ai1" firstAttribute="top" secondItem="taM-LW-Px2" secondAttribute="top" constant="5" id="KSR-mk-ZfG"/>
                                             <constraint firstAttribute="trailing" secondItem="Xw5-2X-9NU" secondAttribute="trailing" constant="10" id="LFw-aK-J9O"/>
                                             <constraint firstAttribute="trailing" secondItem="j3X-lj-WS5" secondAttribute="trailing" id="LrU-o2-lnu"/>
-                                            <constraint firstItem="j3X-lj-WS5" firstAttribute="top" secondItem="ktv-dQ-GzK" secondAttribute="bottom" constant="5" id="M4F-1T-yzq"/>
                                             <constraint firstAttribute="bottom" secondItem="j3X-lj-WS5" secondAttribute="bottom" id="N1T-Ho-jbS"/>
                                             <constraint firstAttribute="trailing" secondItem="ktv-dQ-GzK" secondAttribute="trailing" constant="10" id="Qlx-4A-6VB"/>
+                                            <constraint firstAttribute="trailing" secondItem="IwB-tK-ri4" secondAttribute="trailing" constant="10" id="Tcb-jB-QKf"/>
                                             <constraint firstItem="fQK-sU-Rvl" firstAttribute="top" secondItem="gmy-OK-gBv" secondAttribute="bottom" constant="2" id="VyC-Om-Mkm"/>
                                             <constraint firstItem="ktv-dQ-GzK" firstAttribute="top" secondItem="nsD-LN-iaE" secondAttribute="bottom" constant="2" id="XNz-os-lXt"/>
                                             <constraint firstItem="fQK-sU-Rvl" firstAttribute="leading" secondItem="taM-LW-Px2" secondAttribute="leading" constant="5" id="dxK-OK-OFk"/>
+                                            <constraint firstItem="dUt-bd-qGR" firstAttribute="leading" secondItem="taM-LW-Px2" secondAttribute="leading" constant="5" id="fOh-FP-FQP"/>
+                                            <constraint firstItem="dUt-bd-qGR" firstAttribute="top" secondItem="fQK-sU-Rvl" secondAttribute="bottom" constant="2" id="kQT-L5-7OY"/>
                                             <constraint firstItem="nsD-LN-iaE" firstAttribute="top" secondItem="Xw5-2X-9NU" secondAttribute="bottom" constant="2" id="ri4-zJ-Gtx"/>
                                             <constraint firstAttribute="trailing" secondItem="nsD-LN-iaE" secondAttribute="trailing" constant="10" id="wxL-Sv-R9o"/>
                                         </constraints>
@@ -5797,7 +5850,7 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIa-ja-azo">
-                                        <rect key="frame" x="10" y="434" width="280" height="60"/>
+                                        <rect key="frame" x="10" y="459" width="280" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="TxZ-XZ-iKf"/>
                                         </constraints>
@@ -5810,7 +5863,7 @@ Regards, Team POD :)</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAH-m7-hFB">
-                                        <rect key="frame" x="5" y="342" width="290" height="22"/>
+                                        <rect key="frame" x="5" y="367" width="290" height="22"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -5915,11 +5968,14 @@ Regards, Team POD :)</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="M4l-8j-CSM"/>
                     </view>
+                    <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="btnOnline" destination="P7U-uf-orE" id="hI4-gU-i60"/>
                         <outlet property="btnPAS" destination="pc9-0j-S3n" id="0lR-pE-e6N"/>
                         <outlet property="lblCategory" destination="mFU-Oo-xxv" id="qx7-g8-maj"/>
                         <outlet property="lblDistanceCost" destination="nsD-LN-iaE" id="v2g-nn-huP"/>
+                        <outlet property="lblRedeemPointTitle" destination="dUt-bd-qGR" id="Jai-sC-8CW"/>
+                        <outlet property="lblRedemPointValue" destination="IwB-tK-ri4" id="g03-lf-pN9"/>
                         <outlet property="lblShootCost" destination="Xw5-2X-9NU" id="klB-65-mS7"/>
                         <outlet property="lblTotal" destination="x8O-Uc-wZG" id="0h6-11-Xdx"/>
                         <outlet property="mapView" destination="fgV-cA-sp6" id="S7X-aJ-SnK"/>
@@ -8268,10 +8324,10 @@ Regards, Team POD :)</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BUE-yV-m6R">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQ6-6f-q9A">
-                                        <rect key="frame" x="10" y="7" width="30" height="30"/>
+                                        <rect key="frame" x="10" y="37" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="PyR-Bk-iEu"/>
                                             <constraint firstAttribute="height" constant="30" id="rGD-vq-S09"/>
@@ -8283,7 +8339,7 @@ Regards, Team POD :)</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online Payment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oo-ZD-Llb">
-                                        <rect key="frame" x="94" y="9.5" width="132" height="25"/>
+                                        <rect key="frame" x="94" y="39.5" width="132" height="25"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -8292,15 +8348,14 @@ Regards, Team POD :)</string>
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.69803921570000005" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="NQ6-6f-q9A" firstAttribute="leading" secondItem="BUE-yV-m6R" secondAttribute="leading" constant="10" id="3F0-UJ-BAM"/>
-                                    <constraint firstAttribute="height" constant="50" id="X22-Xg-17F"/>
+                                    <constraint firstAttribute="height" constant="80" id="X22-Xg-17F"/>
                                     <constraint firstItem="7oo-ZD-Llb" firstAttribute="centerY" secondItem="NQ6-6f-q9A" secondAttribute="centerY" id="XcC-gW-v9G"/>
                                     <constraint firstItem="7oo-ZD-Llb" firstAttribute="centerX" secondItem="BUE-yV-m6R" secondAttribute="centerX" id="g39-Hp-cbS"/>
-                                    <constraint firstItem="NQ6-6f-q9A" firstAttribute="top" secondItem="BUE-yV-m6R" secondAttribute="top" constant="7" id="m49-wS-Hhb"/>
+                                    <constraint firstItem="NQ6-6f-q9A" firstAttribute="top" secondItem="BUE-yV-m6R" secondAttribute="top" constant="37" id="m49-wS-Hhb"/>
                                 </constraints>
                             </view>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-mr-Vib">
-                                <rect key="frame" x="0.0" y="52" width="320" height="516"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-mr-Vib">
+                                <rect key="frame" x="0.0" y="80" width="320" height="488"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="yY6-fR-RnY" id="4Q8-es-MA1"/>
@@ -8310,7 +8365,11 @@ Regards, Team POD :)</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BUE-yV-m6R" firstAttribute="trailing" secondItem="LSJ-eM-kjB" secondAttribute="trailing" id="7FO-gV-kWW"/>
-                            <constraint firstItem="BUE-yV-m6R" firstAttribute="top" secondItem="LSJ-eM-kjB" secondAttribute="top" id="Fei-Z9-Ax8"/>
+                            <constraint firstItem="BUE-yV-m6R" firstAttribute="top" secondItem="3o7-Mf-0dL" secondAttribute="top" id="Fei-Z9-Ax8"/>
+                            <constraint firstItem="hZ1-mr-Vib" firstAttribute="bottom" secondItem="LSJ-eM-kjB" secondAttribute="bottom" id="Oq4-nL-2Oj"/>
+                            <constraint firstItem="hZ1-mr-Vib" firstAttribute="trailing" secondItem="LSJ-eM-kjB" secondAttribute="trailing" id="Phc-wY-j6B"/>
+                            <constraint firstItem="hZ1-mr-Vib" firstAttribute="leading" secondItem="LSJ-eM-kjB" secondAttribute="leading" id="T3O-yD-yWG"/>
+                            <constraint firstItem="hZ1-mr-Vib" firstAttribute="top" secondItem="BUE-yV-m6R" secondAttribute="bottom" id="Y6N-9T-G4d"/>
                             <constraint firstItem="BUE-yV-m6R" firstAttribute="leading" secondItem="LSJ-eM-kjB" secondAttribute="leading" id="ZJt-Ks-k0a"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LSJ-eM-kjB"/>
@@ -8749,17 +8808,14 @@ Regards, Team POD :)</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_form_bg" translatesAutoresizingMaskIntoConstraints="NO" id="A43-2Q-1si">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeaderABG" translatesAutoresizingMaskIntoConstraints="NO" id="BKe-gg-ls9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeaderBG" translatesAutoresizingMaskIntoConstraints="NO" id="BKe-gg-ls9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="VkK-TG-FJe"/>
+                                    <constraint firstAttribute="height" constant="250" id="VkK-TG-FJe"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mib-VP-ebp">
-                                <rect key="frame" x="10" y="37" width="30" height="30"/>
+                                <rect key="frame" x="10" y="45" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="4t9-aM-gvR"/>
                                     <constraint firstAttribute="width" constant="30" id="csW-W6-NhM"/>
@@ -8770,21 +8826,139 @@ Regards, Team POD :)</string>
                                     <action selector="btnBack_Click" destination="XjE-xs-UQq" eventType="touchUpInside" id="WKh-8h-wRZ"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqW-AP-azp">
+                                <rect key="frame" x="10" y="83" width="100" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZi-0R-xsE">
+                                        <rect key="frame" x="2" y="20" width="96" height="28"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2d-Vb-w8W">
+                                        <rect key="frame" x="22" y="53" width="56" height="28"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="C2d-Vb-w8W" firstAttribute="centerX" secondItem="qqW-AP-azp" secondAttribute="centerX" id="429-DR-DdW"/>
+                                    <constraint firstAttribute="width" constant="100" id="KfM-2W-goB"/>
+                                    <constraint firstAttribute="trailing" secondItem="sZi-0R-xsE" secondAttribute="trailing" constant="2" id="P0i-65-60w"/>
+                                    <constraint firstAttribute="height" constant="100" id="To0-cN-bKt"/>
+                                    <constraint firstItem="C2d-Vb-w8W" firstAttribute="top" secondItem="sZi-0R-xsE" secondAttribute="bottom" constant="5" id="baA-aZ-C51"/>
+                                    <constraint firstItem="sZi-0R-xsE" firstAttribute="top" secondItem="qqW-AP-azp" secondAttribute="top" constant="20" id="d7u-3T-NWC"/>
+                                    <constraint firstItem="sZi-0R-xsE" firstAttribute="leading" secondItem="qqW-AP-azp" secondAttribute="leading" constant="2" id="saN-vc-GXW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refer &amp; Earn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyZ-Pr-qVE">
+                                <rect key="frame" x="99" y="46.5" width="122" height="27"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refer friends &amp; Earn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eV8-wg-prf">
+                                <rect key="frame" x="68.5" y="233" width="183" height="28"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR REFERRAL CODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdT-gt-kf7">
+                                <rect key="frame" x="50" y="347.5" width="220" height="28"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask your friends to signup with your referral codeand book his first order. Once done you have earn 100 points." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWU-Ft-5ss">
+                                <rect key="frame" x="10" y="271" width="300" height="61.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1B7-hH-bgl">
+                                <rect key="frame" x="20" y="385.5" width="280" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POD329033573280AHM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQO-js-89n">
+                                        <rect key="frame" x="20" y="14" width="188" height="22"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqn-mc-LSJ">
+                                        <rect key="frame" x="240" y="15" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Qwb-Zu-wau"/>
+                                            <constraint firstAttribute="width" constant="20" id="V5y-8F-c9e"/>
+                                        </constraints>
+                                        <state key="normal" image="copy"/>
+                                        <connections>
+                                            <action selector="copyClicked:" destination="XjE-xs-UQq" eventType="touchUpInside" id="MkO-5L-cmM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Fqn-mc-LSJ" secondAttribute="trailing" constant="20" id="EAy-Vr-SDm"/>
+                                    <constraint firstAttribute="height" constant="50" id="KZF-cq-XNR"/>
+                                    <constraint firstItem="DQO-js-89n" firstAttribute="centerY" secondItem="1B7-hH-bgl" secondAttribute="centerY" id="T3y-Q4-cn7"/>
+                                    <constraint firstItem="Fqn-mc-LSJ" firstAttribute="centerY" secondItem="1B7-hH-bgl" secondAttribute="centerY" id="YJC-EO-ywD"/>
+                                    <constraint firstItem="DQO-js-89n" firstAttribute="leading" secondItem="1B7-hH-bgl" secondAttribute="leading" constant="20" id="sSU-kr-laA"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7E-2k-Dym">
+                                <rect key="frame" x="10" y="475.5" width="300" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="kxM-v6-MgK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                <state key="normal" title="    Share" image="share" backgroundImage="FillButtonBG">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnContinue_Click" destination="jxy-oj-4Xe" eventType="touchUpInside" id="Jjs-g9-gvQ"/>
+                                    <action selector="shareclicked:" destination="XjE-xs-UQq" eventType="touchUpInside" id="Kzg-fH-5UB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="1B7-hH-bgl" firstAttribute="leading" secondItem="sT0-L1-cEH" secondAttribute="leading" constant="20" id="2aM-hI-aNS"/>
+                            <constraint firstItem="sT0-L1-cEH" firstAttribute="trailing" secondItem="1B7-hH-bgl" secondAttribute="trailing" constant="20" id="4aY-kf-NkD"/>
+                            <constraint firstItem="sT0-L1-cEH" firstAttribute="trailing" secondItem="K7E-2k-Dym" secondAttribute="trailing" constant="10" id="BQY-QU-l9x"/>
                             <constraint firstItem="BKe-gg-ls9" firstAttribute="top" secondItem="yaG-UQ-bdP" secondAttribute="top" id="DDa-gC-agw"/>
-                            <constraint firstItem="A43-2Q-1si" firstAttribute="top" secondItem="yaG-UQ-bdP" secondAttribute="top" id="EAY-44-kQJ"/>
-                            <constraint firstItem="A43-2Q-1si" firstAttribute="trailing" secondItem="yaG-UQ-bdP" secondAttribute="trailing" id="HgZ-4V-DxO"/>
+                            <constraint firstItem="EWU-Ft-5ss" firstAttribute="leading" secondItem="sT0-L1-cEH" secondAttribute="leading" constant="10" id="EEy-sJ-iTF"/>
+                            <constraint firstItem="qqW-AP-azp" firstAttribute="top" secondItem="mib-VP-ebp" secondAttribute="bottom" constant="8" id="EK8-ub-imI"/>
+                            <constraint firstItem="pyZ-Pr-qVE" firstAttribute="centerY" secondItem="mib-VP-ebp" secondAttribute="centerY" id="Gm2-H4-aJu"/>
+                            <constraint firstItem="sT0-L1-cEH" firstAttribute="trailing" secondItem="EWU-Ft-5ss" secondAttribute="trailing" constant="10" id="MRI-ML-w6O"/>
+                            <constraint firstItem="eV8-wg-prf" firstAttribute="top" secondItem="qqW-AP-azp" secondAttribute="bottom" constant="50" id="Mzk-2C-vtc"/>
                             <constraint firstAttribute="trailing" secondItem="BKe-gg-ls9" secondAttribute="trailing" id="NhE-pZ-wLr"/>
+                            <constraint firstItem="VdT-gt-kf7" firstAttribute="top" secondItem="EWU-Ft-5ss" secondAttribute="bottom" constant="15" id="QEu-qs-z5S"/>
                             <constraint firstItem="BKe-gg-ls9" firstAttribute="leading" secondItem="yaG-UQ-bdP" secondAttribute="leading" id="Rja-eT-cXr"/>
-                            <constraint firstItem="A43-2Q-1si" firstAttribute="bottom" secondItem="yaG-UQ-bdP" secondAttribute="bottom" id="TAL-8p-PTG"/>
-                            <constraint firstItem="A43-2Q-1si" firstAttribute="leading" secondItem="yaG-UQ-bdP" secondAttribute="leading" id="WNo-A5-s8Y"/>
+                            <constraint firstItem="K7E-2k-Dym" firstAttribute="leading" secondItem="sT0-L1-cEH" secondAttribute="leading" constant="10" id="Udj-Lb-7ec"/>
+                            <constraint firstItem="qqW-AP-azp" firstAttribute="leading" secondItem="sT0-L1-cEH" secondAttribute="leading" constant="10" id="a9S-ti-w3i"/>
+                            <constraint firstItem="K7E-2k-Dym" firstAttribute="top" secondItem="1B7-hH-bgl" secondAttribute="bottom" constant="40" id="esi-Rp-0Jm"/>
+                            <constraint firstItem="VdT-gt-kf7" firstAttribute="centerX" secondItem="yaG-UQ-bdP" secondAttribute="centerX" id="gOL-Kb-TR8"/>
                             <constraint firstItem="mib-VP-ebp" firstAttribute="leading" secondItem="yaG-UQ-bdP" secondAttribute="leading" constant="10" id="iEL-Oc-kSK"/>
-                            <constraint firstItem="mib-VP-ebp" firstAttribute="top" secondItem="yaG-UQ-bdP" secondAttribute="top" constant="37" id="ved-JU-lZb"/>
+                            <constraint firstItem="1B7-hH-bgl" firstAttribute="top" secondItem="VdT-gt-kf7" secondAttribute="bottom" constant="10" id="nwi-QQ-vKI"/>
+                            <constraint firstItem="pyZ-Pr-qVE" firstAttribute="centerX" secondItem="yaG-UQ-bdP" secondAttribute="centerX" id="qKd-82-ZjV"/>
+                            <constraint firstItem="eV8-wg-prf" firstAttribute="centerX" secondItem="yaG-UQ-bdP" secondAttribute="centerX" id="vbb-d9-lSt"/>
+                            <constraint firstItem="mib-VP-ebp" firstAttribute="top" secondItem="yaG-UQ-bdP" secondAttribute="top" constant="45" id="ved-JU-lZb"/>
+                            <constraint firstItem="EWU-Ft-5ss" firstAttribute="top" secondItem="eV8-wg-prf" secondAttribute="bottom" constant="10" id="zT2-Ne-OUR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sT0-L1-cEH"/>
                     </view>
+                    <connections>
+                        <outlet property="codeView" destination="1B7-hH-bgl" id="E0g-Pu-A0W"/>
+                        <outlet property="lblPoints" destination="sZi-0R-xsE" id="QJl-oL-mN6"/>
+                        <outlet property="lblReferalCode" destination="DQO-js-89n" id="KoV-MP-9aB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aYw-ib-Mg1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -8898,7 +9072,7 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i9W-cD-gcI">
-                                        <rect key="frame" x="10" y="392" width="130" height="19"/>
+                                        <rect key="frame" x="10" y="421.5" width="130" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="qZc-Zf-byk"/>
                                         </constraints>
@@ -8907,7 +9081,7 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GY-Yy-s85">
-                                        <rect key="frame" x="10" y="381" width="268" height="1"/>
+                                        <rect key="frame" x="10" y="410.5" width="268" height="1"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="VAV-fb-iAo"/>
@@ -8917,13 +9091,13 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zaK-tR-khO">
-                                        <rect key="frame" x="145" y="392" width="133" height="19.5"/>
+                                        <rect key="frame" x="145" y="421.5" width="133" height="19.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9% CGST" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9xP-n2-CAF">
-                                        <rect key="frame" x="10" y="312" width="130" height="19.5"/>
+                                        <rect key="frame" x="10" y="341.5" width="130" height="19.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="acq-yv-Zth"/>
                                         </constraints>
@@ -8932,19 +9106,19 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRE-h8-cml">
-                                        <rect key="frame" x="10" y="371" width="268" height="0.0"/>
+                                        <rect key="frame" x="10" y="400.5" width="268" height="0.0"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gHf-H1-BdP">
-                                        <rect key="frame" x="145" y="312" width="133" height="19.5"/>
+                                        <rect key="frame" x="145" y="341.5" width="133" height="19.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9% SGST" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="74C-rF-OUr">
-                                        <rect key="frame" x="10" y="341.5" width="130" height="19.5"/>
+                                        <rect key="frame" x="10" y="371" width="130" height="19.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="DOo-Pu-9GT"/>
                                         </constraints>
@@ -8953,7 +9127,7 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3fq-eh-foc">
-                                        <rect key="frame" x="145" y="341.5" width="133" height="19.5"/>
+                                        <rect key="frame" x="145" y="371" width="133" height="19.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -8970,7 +9144,6 @@ Regards, Team POD :)</string>
                                         </state>
                                         <connections>
                                             <action selector="btnPayClick" destination="naZ-57-I9L" eventType="touchUpInside" id="7kL-0c-dDL"/>
-                                            <action selector="btnPayClick" destination="urL-n6-hme" eventType="touchUpInside" id="84J-pu-TfA"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020-09-01 11:32:33" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="myp-He-ZRU">
@@ -8986,6 +9159,21 @@ Regards, Team POD :)</string>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Redeem Points" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9hK-Ny-qNB">
+                                        <rect key="frame" x="10" y="312" width="130" height="19.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="pk4-0B-Eob"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WFg-k3-1GW">
+                                        <rect key="frame" x="145" y="312" width="133" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -9023,12 +9211,17 @@ Regards, Team POD :)</string>
                                     <constraint firstItem="g5E-xT-Hq7" firstAttribute="leading" secondItem="LGD-iB-9Bn" secondAttribute="leading" constant="10" id="UZD-OD-zgk"/>
                                     <constraint firstAttribute="bottom" secondItem="zOL-aO-n6c" secondAttribute="bottom" id="VSh-yP-u9q"/>
                                     <constraint firstItem="i9W-cD-gcI" firstAttribute="top" secondItem="1GY-Yy-s85" secondAttribute="bottom" constant="10" id="WCg-7d-gbP"/>
+                                    <constraint firstItem="9hK-Ny-qNB" firstAttribute="leading" secondItem="LGD-iB-9Bn" secondAttribute="leading" constant="10" id="Wp0-2E-zsL"/>
                                     <constraint firstItem="74C-rF-OUr" firstAttribute="top" secondItem="9xP-n2-CAF" secondAttribute="bottom" constant="10" id="XmK-4e-B2d"/>
                                     <constraint firstItem="BHJ-Xz-fz4" firstAttribute="leading" secondItem="myp-He-ZRU" secondAttribute="leading" id="Xqf-1k-rlr"/>
                                     <constraint firstItem="74C-rF-OUr" firstAttribute="leading" secondItem="LGD-iB-9Bn" secondAttribute="leading" constant="10" id="ZPD-Jo-cOf"/>
+                                    <constraint firstItem="9hK-Ny-qNB" firstAttribute="top" secondItem="WFg-k3-1GW" secondAttribute="top" id="foW-YW-H4K"/>
                                     <constraint firstItem="kF9-i7-BSI" firstAttribute="leading" secondItem="LGD-iB-9Bn" secondAttribute="leading" constant="10" id="fuO-uh-C3c"/>
                                     <constraint firstItem="j87-eB-IBr" firstAttribute="leading" secondItem="LGD-iB-9Bn" secondAttribute="leading" constant="10" id="hTY-ln-nha"/>
+                                    <constraint firstItem="WFg-k3-1GW" firstAttribute="leading" secondItem="ZNT-Vi-ufQ" secondAttribute="leading" id="hqY-QG-GUg"/>
                                     <constraint firstAttribute="trailing" secondItem="aEa-91-6bK" secondAttribute="trailing" constant="10" id="iod-ga-PrJ"/>
+                                    <constraint firstItem="9xP-n2-CAF" firstAttribute="top" secondItem="9hK-Ny-qNB" secondAttribute="bottom" constant="10" id="k0u-pK-2VR"/>
+                                    <constraint firstItem="9hK-Ny-qNB" firstAttribute="top" secondItem="yIp-c4-Y9B" secondAttribute="bottom" constant="10" id="l11-8C-jfG"/>
                                     <constraint firstItem="aEa-91-6bK" firstAttribute="top" secondItem="p1d-7b-wo9" secondAttribute="bottom" constant="10" id="lFn-7L-RC8"/>
                                     <constraint firstItem="BHJ-Xz-fz4" firstAttribute="top" secondItem="myp-He-ZRU" secondAttribute="bottom" constant="10" id="lpp-9v-Wx4"/>
                                     <constraint firstItem="zaK-tR-khO" firstAttribute="trailing" secondItem="UZe-do-T9T" secondAttribute="trailing" id="nMp-vA-2em"/>
@@ -9038,12 +9231,12 @@ Regards, Team POD :)</string>
                                     <constraint firstItem="oL2-c9-CxH" firstAttribute="leading" secondItem="LGD-iB-9Bn" secondAttribute="leading" constant="10" id="oTc-6U-3ZD"/>
                                     <constraint firstAttribute="trailing" secondItem="p1d-7b-wo9" secondAttribute="trailing" constant="10" id="oV9-Ux-SMp"/>
                                     <constraint firstItem="p1d-7b-wo9" firstAttribute="leading" secondItem="oL2-c9-CxH" secondAttribute="trailing" constant="5" id="qEC-iM-etC"/>
+                                    <constraint firstItem="WFg-k3-1GW" firstAttribute="trailing" secondItem="ZNT-Vi-ufQ" secondAttribute="trailing" id="tPs-VW-IjY"/>
                                     <constraint firstItem="oL2-c9-CxH" firstAttribute="top" secondItem="LGD-iB-9Bn" secondAttribute="top" constant="20" id="uEV-XA-Scg"/>
                                     <constraint firstItem="yIp-c4-Y9B" firstAttribute="top" secondItem="kF9-i7-BSI" secondAttribute="bottom" constant="10" id="uGe-xv-PBw"/>
                                     <constraint firstItem="gHf-H1-BdP" firstAttribute="leading" secondItem="UZe-do-T9T" secondAttribute="leading" id="uIb-LM-wBe"/>
                                     <constraint firstItem="9xP-n2-CAF" firstAttribute="top" secondItem="gHf-H1-BdP" secondAttribute="top" id="vCM-SN-YtV"/>
                                     <constraint firstItem="ZNT-Vi-ufQ" firstAttribute="trailing" secondItem="UZe-do-T9T" secondAttribute="trailing" id="vaz-wj-4Sy"/>
-                                    <constraint firstItem="9xP-n2-CAF" firstAttribute="top" secondItem="yIp-c4-Y9B" secondAttribute="bottom" constant="10" id="wAn-qU-hU2"/>
                                     <constraint firstItem="UZe-do-T9T" firstAttribute="top" secondItem="BHJ-Xz-fz4" secondAttribute="bottom" constant="10" id="xSj-zJ-34s"/>
                                     <constraint firstAttribute="trailing" secondItem="ZRE-h8-cml" secondAttribute="trailing" constant="10" id="zAy-lm-lUV"/>
                                 </constraints>
@@ -9102,10 +9295,12 @@ Regards, Team POD :)</string>
                     <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="btnDownloadInvoice" destination="Kvu-WT-sj9" id="o2K-E6-wu7"/>
+                        <outlet property="btnPayment" destination="zOL-aO-n6c" id="PMu-56-PYR"/>
                         <outlet property="lblAmount" destination="UZe-do-T9T" id="NFd-nM-ohn"/>
                         <outlet property="lblCGST" destination="gHf-H1-BdP" id="Z35-kh-AaS"/>
                         <outlet property="lblDate" destination="aEa-91-6bK" id="1qy-jb-hAr"/>
                         <outlet property="lblOrderID" destination="p1d-7b-wo9" id="3FF-RJ-guL"/>
+                        <outlet property="lblRedeemPoint" destination="WFg-k3-1GW" id="PN4-G7-6df"/>
                         <outlet property="lblSGST" destination="3fq-eh-foc" id="Zz7-Ii-Lmb"/>
                         <outlet property="lblStartTime" destination="myp-He-ZRU" id="O1W-8c-7Cz"/>
                         <outlet property="lblTitle" destination="BHJ-Xz-fz4" id="a4i-UT-5GN"/>
@@ -9695,7 +9890,7 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="if2-Kd-Hu7">
-                                        <rect key="frame" x="10" y="392" width="130" height="19"/>
+                                        <rect key="frame" x="10" y="421.5" width="130" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="Tnn-fd-yLM"/>
                                         </constraints>
@@ -9704,7 +9899,7 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDv-g3-Dfp">
-                                        <rect key="frame" x="10" y="381" width="268" height="1"/>
+                                        <rect key="frame" x="10" y="410.5" width="268" height="1"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="KIH-2C-jAp"/>
@@ -9714,13 +9909,13 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oHq-Nt-e2m">
-                                        <rect key="frame" x="150" y="392" width="128" height="19.5"/>
+                                        <rect key="frame" x="150" y="421.5" width="128" height="19.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9% CGST" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Oyf-rU-GDs">
-                                        <rect key="frame" x="10" y="322" width="130" height="19.5"/>
+                                        <rect key="frame" x="10" y="351.5" width="130" height="19.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="gfY-MZ-jU0"/>
                                         </constraints>
@@ -9729,13 +9924,13 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wCg-j7-5tB">
-                                        <rect key="frame" x="150" y="322" width="128" height="19.5"/>
+                                        <rect key="frame" x="150" y="351.5" width="128" height="19.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9% SGST" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Dfy-DW-YLw">
-                                        <rect key="frame" x="10" y="351.5" width="130" height="19.5"/>
+                                        <rect key="frame" x="10" y="381" width="130" height="19.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="8oP-U0-dcx"/>
                                         </constraints>
@@ -9744,7 +9939,7 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1g0-Qw-0so">
-                                        <rect key="frame" x="150" y="351.5" width="128" height="19.5"/>
+                                        <rect key="frame" x="150" y="381" width="128" height="19.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -9784,11 +9979,28 @@ Regards, Team POD :)</string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Redeem Points" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DsR-EN-EyN">
+                                        <rect key="frame" x="10" y="322" width="130" height="19.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="vfj-jv-5d8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0K8-Oo-Lb4">
+                                        <rect key="frame" x="150" y="322" width="128" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="gJa-4g-V2b" firstAttribute="leading" secondItem="QC1-aS-hiY" secondAttribute="leading" constant="10" id="1FU-BX-R5t"/>
+                                    <constraint firstItem="0K8-Oo-Lb4" firstAttribute="trailing" secondItem="Zwg-gF-Wc9" secondAttribute="trailing" id="1Ji-eD-iIA"/>
                                     <constraint firstItem="oHq-Nt-e2m" firstAttribute="trailing" secondItem="Zwg-gF-Wc9" secondAttribute="trailing" id="2Px-cd-2C6"/>
+                                    <constraint firstItem="Oyf-rU-GDs" firstAttribute="top" secondItem="DsR-EN-EyN" secondAttribute="bottom" constant="10" id="2cO-2i-Fep"/>
                                     <constraint firstItem="oHq-Nt-e2m" firstAttribute="top" secondItem="vDv-g3-Dfp" secondAttribute="bottom" constant="10" id="3WW-yc-z5T"/>
                                     <constraint firstItem="WoO-Rg-mXD" firstAttribute="top" secondItem="Rgg-Bl-Pw8" secondAttribute="bottom" constant="10" id="6KI-m9-xE2"/>
                                     <constraint firstAttribute="trailing" secondItem="GqK-1U-bpz" secondAttribute="trailing" constant="10" id="7B6-Fb-ZCh"/>
@@ -9796,10 +10008,10 @@ Regards, Team POD :)</string>
                                     <constraint firstItem="wCg-j7-5tB" firstAttribute="trailing" secondItem="P6c-z9-4ZM" secondAttribute="trailing" id="918-2d-lZ9"/>
                                     <constraint firstItem="juN-vn-4im" firstAttribute="leading" secondItem="QC1-aS-hiY" secondAttribute="leading" constant="10" id="9F3-ez-g00"/>
                                     <constraint firstItem="xl5-5Y-Bb8" firstAttribute="leading" secondItem="QC1-aS-hiY" secondAttribute="leading" constant="10" id="AnX-44-Tyl"/>
+                                    <constraint firstItem="0K8-Oo-Lb4" firstAttribute="leading" secondItem="Zwg-gF-Wc9" secondAttribute="leading" id="Fts-d4-izZ"/>
                                     <constraint firstItem="xl5-5Y-Bb8" firstAttribute="top" secondItem="QC1-aS-hiY" secondAttribute="top" constant="20" id="Gw9-nr-peJ"/>
                                     <constraint firstItem="qy7-av-3Fd" firstAttribute="leading" secondItem="xl5-5Y-Bb8" secondAttribute="trailing" constant="10" id="HjW-lJ-X4m"/>
                                     <constraint firstItem="P6c-z9-4ZM" firstAttribute="leading" secondItem="WoO-Rg-mXD" secondAttribute="leading" id="Ixy-4J-5ok"/>
-                                    <constraint firstItem="Oyf-rU-GDs" firstAttribute="top" secondItem="y0L-ko-zBw" secondAttribute="bottom" constant="10" id="JSx-d2-RCP"/>
                                     <constraint firstItem="vDv-g3-Dfp" firstAttribute="top" secondItem="Dfy-DW-YLw" secondAttribute="bottom" constant="10" id="L5x-cf-hR3"/>
                                     <constraint firstItem="qy7-av-3Fd" firstAttribute="top" secondItem="QC1-aS-hiY" secondAttribute="top" constant="20" id="Lpg-wZ-LsD"/>
                                     <constraint firstItem="TMI-dx-PeC" firstAttribute="top" secondItem="Rgg-Bl-Pw8" secondAttribute="top" id="MGo-Lw-ZD2"/>
@@ -9821,10 +10033,13 @@ Regards, Team POD :)</string>
                                     <constraint firstItem="y0L-ko-zBw" firstAttribute="leading" secondItem="QC1-aS-hiY" secondAttribute="leading" constant="10" id="a3y-3h-fPc"/>
                                     <constraint firstItem="SlA-cI-6pj" firstAttribute="leading" secondItem="P6c-z9-4ZM" secondAttribute="leading" id="b99-fF-1pX"/>
                                     <constraint firstItem="GqK-1U-bpz" firstAttribute="leading" secondItem="qy7-av-3Fd" secondAttribute="leading" id="bSx-BQ-buJ"/>
+                                    <constraint firstItem="DsR-EN-EyN" firstAttribute="top" secondItem="0K8-Oo-Lb4" secondAttribute="top" id="dEe-iL-Xyf"/>
+                                    <constraint firstItem="DsR-EN-EyN" firstAttribute="top" secondItem="y0L-ko-zBw" secondAttribute="bottom" constant="10" id="eBN-4d-KcO"/>
                                     <constraint firstItem="TMI-dx-PeC" firstAttribute="leading" secondItem="QC1-aS-hiY" secondAttribute="leading" constant="10" id="eGz-a0-HJO"/>
                                     <constraint firstItem="Rgg-Bl-Pw8" firstAttribute="trailing" secondItem="GqK-1U-bpz" secondAttribute="trailing" id="eVJ-N7-Gho"/>
                                     <constraint firstItem="oHq-Nt-e2m" firstAttribute="leading" secondItem="Zwg-gF-Wc9" secondAttribute="leading" id="fY0-G6-47G"/>
                                     <constraint firstAttribute="trailing" secondItem="zeE-oe-rRG" secondAttribute="trailing" id="gEq-ix-E4Q"/>
+                                    <constraint firstItem="DsR-EN-EyN" firstAttribute="leading" secondItem="QC1-aS-hiY" secondAttribute="leading" constant="10" id="gvf-cG-HRC"/>
                                     <constraint firstItem="X7O-jq-MUR" firstAttribute="top" secondItem="P6c-z9-4ZM" secondAttribute="top" id="hGy-xs-zI8"/>
                                     <constraint firstAttribute="bottom" secondItem="zeE-oe-rRG" secondAttribute="bottom" id="hei-nC-inZ"/>
                                     <constraint firstItem="SlA-cI-6pj" firstAttribute="top" secondItem="P6c-z9-4ZM" secondAttribute="bottom" constant="10" id="hqh-U7-7Lh"/>
@@ -9894,10 +10109,12 @@ Regards, Team POD :)</string>
                     <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="btnDownloadInvoice" destination="aC9-Ef-TOd" id="3RS-zB-TF7"/>
+                        <outlet property="btnPayment" destination="zeE-oe-rRG" id="dJa-vo-LEX"/>
                         <outlet property="lblCGST" destination="wCg-j7-5tB" id="GUi-xz-3Ux"/>
                         <outlet property="lblDate" destination="GqK-1U-bpz" id="xGE-SM-uAX"/>
                         <outlet property="lblExtShootingAmount" destination="SlA-cI-6pj" id="loP-fg-b6f"/>
                         <outlet property="lblOrderID" destination="qy7-av-3Fd" id="1JM-9K-mQ8"/>
+                        <outlet property="lblRedeemPoints" destination="0K8-Oo-Lb4" id="KJS-CZ-Jni"/>
                         <outlet property="lblSGST" destination="1g0-Qw-0so" id="I4M-lb-hZR"/>
                         <outlet property="lblShootingAmount" destination="P6c-z9-4ZM" id="IyB-8g-5Nj"/>
                         <outlet property="lblStartTime" destination="Rgg-Bl-Pw8" id="gVP-qe-nzv"/>
@@ -10024,6 +10241,7 @@ Regards, Team POD :)</string>
         <image name="Work" width="30" height="30"/>
         <image name="background_slider" width="812" height="612"/>
         <image name="check" width="30" height="30"/>
+        <image name="copy" width="42.5" height="42.5"/>
         <image name="facebook" width="60" height="60"/>
         <image name="google" width="60" height="60"/>
         <image name="ic_back" width="12" height="20.5"/>
@@ -10036,6 +10254,7 @@ Regards, Team POD :)</string>
         <image name="locationsearch" width="59" height="62"/>
         <image name="menu" width="90" height="90"/>
         <image name="send" width="32" height="32"/>
+        <image name="share" width="20" height="20"/>
         <image name="signup_apple" width="60" height="60"/>
         <image name="sms" width="32" height="32"/>
         <image name="trash" width="30" height="30"/>

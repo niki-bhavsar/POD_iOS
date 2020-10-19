@@ -67,8 +67,7 @@ class ExtendOrderPaymentViewController: BaseViewController ,OnlinePaymentProtoca
         //MyOrderController.CreateOrder(vc: self, orderInfo: Constant.OrderDic!)
         if(btnPAS.isSelected == true){
              ExtendedOrderPayment(transactionID: "PAS")
-        }
-        else{
+        } else{
             let controller = storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
             controller.totalAmount = lblTotal.text!
             controller.del = self;

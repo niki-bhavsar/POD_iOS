@@ -10,6 +10,7 @@ import UIKit
 import NotificationBannerSwift
 class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLSessionDownloadDelegate, UIDocumentInteractionControllerDelegate {
     
+    @IBOutlet weak var lblRedeemPoints: UILabel!
     @IBOutlet weak var btnDownloadInvoice: UIButton!
     @IBOutlet var lblOrderID:UILabel!
     @IBOutlet var lblDate:UILabel!
@@ -27,6 +28,7 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
     
     var downloadTask: URLSessionDownloadTask!
     var backgroundSession: URLSession!
+    @IBOutlet weak var btnPayment: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,15 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
         //        var extamt:Double = 0.0
         
         if(dicOrder != nil){
+            
+            if let PaymentStatus : String = dicOrder["PaymentStatus"] as? String{
+                if(PaymentStatus != "1"){
+                    btnPayment.isHidden = false
+                }else {
+                    btnPayment.isHidden = true
+                }
+            }
+            
             if let invoiceFile = dicOrder["InVoiceFile"]{
                 if((invoiceFile as AnyObject).length == 0){
                     btnDownloadInvoice.isHidden = true
@@ -102,15 +113,28 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
                 totlaVal = total + extAMT
             }
             
-            var gstVal : Double = 0.0
-            gstVal = subTotalVal + extendedVal + transVal
             
-            let cGST : Double = (totlaVal - gstVal) / 2
-            let sGST : Double = (totlaVal - gstVal) / 2
+            if let RedeemPoint : String = dicOrder["RedeemPoint"] as? String {
+                self.lblRedeemPoints.text = RedeemPoint
+            }
             
-            lblCGST.text = String(format: "%.2f", cGST)
+            if let GST : String = dicOrder["GST"] as? String {
+                          let GSTVal : Double = Double(GST) ?? 0.0
+                          
+                          lblCGST.text = String(format: "%.2f", GSTVal / 2)
+                          lblSGST.text = String(format: "%.2f", GSTVal / 2)
+                          
+                      }
             
-            lblSGST.text = String(format: "%.2f", sGST)
+//            var gstVal : Double = 0.0
+//            gstVal = subTotalVal + extendedVal + transVal
+//
+//            let cGST : Double = (totlaVal - gstVal) / 2
+//            let sGST : Double = (totlaVal - gstVal) / 2
+//
+//            lblCGST.text = String(format: "%.2f", cGST)
+//
+//            lblSGST.text = String(format: "%.2f", sGST)
             
         }
         
@@ -138,13 +162,18 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
         Constant.OrderDic["Email"] =  dicOrder["Email"]
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
         controller.totalAmount =  lblTotal.text!
-        controller.del = self; self.navigationController?.pushViewController(controller, animated: true)
+        controller.del = self
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func GetTransactionId(transactionID: String, status: Bool) {
         if(transactionID.count != 0){
             if(status == true){
-                self.SubmitPhotographerPaymentRequest(transactionID: transactionID)
+                Constant.OrderDic = [String : Any]()
+                Constant.OrderDic["OrderId"] = dicOrder["Id"]
+                Constant.OrderDic["Transaction_id"] = transactionID
+                Constant.OrderDic["PaymentStatus"] = "1"
+                orderPaid()
             }
             else{
                 Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
@@ -152,14 +181,37 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
         }
     }
     
-    func SubmitPhotographerPaymentRequest(transactionID:String){
-        var dic = [String:Any]()
-        dic["OrderId"] = dicOrder["ExtOrderId"]
-        dic["TransactionId"] = transactionID
-        dic["ExtId"] = dicOrder["ExtId"]
-        dic["CustomerId"] = dicOrder["ExtCustomerId"]
-        MyOrderController.ExtendedRemainPhotoGrapherOrderPayment(vc: self, orderInfo: dic);
+    func orderPaid(){
+        startAnimating()
+        
+        ApiManager.sharedInstance.requestPOSTURL(Constant.updatePaymentStatusURL, params: Constant.OrderDic, success: {
+            (JSON) in
+            let msg =  JSON.dictionary?["Message"]
+            if((JSON.dictionary?["IsSuccess"]) != false){
+                let callActionHandler = { () -> Void in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: self,action:callActionHandler)
+            }
+            else{
+                Helper.ShowAlertMessage(message: msg!.description, vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+            }
+            self.stopAnimating()
+        }, failure: { (Error) in
+            self.stopAnimating()
+            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+        })
     }
+    
+    
+    //    func SubmitPhotographerPaymentRequest(transactionID:String){
+    //        var dic = [String:Any]()
+    //        dic["OrderId"] = dicOrder["ExtOrderId"]
+    //        dic["TransactionId"] = transactionID
+    //        dic["ExtId"] = dicOrder["ExtId"]
+    //        dic["CustomerId"] = dicOrder["ExtCustomerId"]
+    //        MyOrderController.ExtendedRemainPhotoGrapherOrderPayment(vc: self, orderInfo: dic);
+    //    }
     
     //MARK: URLSessionDownloadDelegate
     func urlSession(_ session: URLSession,

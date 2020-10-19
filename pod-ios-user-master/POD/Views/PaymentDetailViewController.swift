@@ -19,7 +19,8 @@ class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblDistanceCost: UILabel!
     @IBOutlet weak var lblShootCost: UILabel!
-    
+    @IBOutlet weak var lblRedemPointValue: UILabel!
+    @IBOutlet weak var lblRedeemPointTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,10 @@ class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
         } else {
             //Fallback on earlier versions
         }
-        self.btnPAS.isSelected = true;
+        self.btnPAS.isSelected = true
+        lblRedemPointValue.text = ""
+        lblRedeemPointTitle.text = ""
+        
         lblCategory.text = Constant.FirstSubcategory+","+Constant.AllSubcategory;
         SetLocationOnMap()
     }
@@ -80,9 +84,8 @@ class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
         if(btnPAS.isSelected == true){
             Constant.OrderDic["PaymentMethod"] = "PAS"
             Constant.OrderDic["PaymentStatus"] = "2"
-        }
-        else{
-            Constant.OrderDic["PaymentMethod"] = "Online"
+        } else{
+            Constant.OrderDic["PaymentMethod"] = "ONLINE"
             Constant.OrderDic["PaymentStatus"] = "1"
         }
     }
@@ -91,19 +94,19 @@ class PaymentDetailViewController: BaseViewController, OnlinePaymentProtocal {
         //MyOrderController.CreateOrder(vc: self, orderInfo: Constant.OrderDic!)
         if(btnPAS.isSelected == true){
             MyOrderController.CreateOrder(vc: self, orderInfo: Constant.OrderDic)
-        }
-        else{
+        } else{
             let controller = storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
             controller.totalAmount = lblTotal.text!
-            controller.del = self;
+            controller.del = self 
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
-    
+    //OnlinePaymentProtocal
     func GetTransactionId(transactionID: String, status: Bool) {
         if(transactionID.count != 0){
             if(status == true){
                 Constant.OrderDic["Transaction_id"] = transactionID
+                  Constant.OrderDic["PaymentStatus"] = "1"
                 MyOrderController.CreateOrder(vc: self, orderInfo: Constant.OrderDic)
             }
             else{

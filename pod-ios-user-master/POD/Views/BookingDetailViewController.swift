@@ -21,7 +21,10 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
     @IBOutlet var txtEH:UITextField!
     @IBOutlet var lblHeaderTitle:UILabel!
     @IBOutlet var txtNoOfPeople:UITextField!
+    @IBOutlet weak var btnCheck: UIButton!
+    @IBOutlet weak var btnCheckHeigh: NSLayoutConstraint!
     
+    @IBOutlet weak var lblRedeemPoints: UILabel!
     var selectedStartTime:Date?
     var temptxt:UITextField?
     var pickerView = UIPickerView()
@@ -45,7 +48,7 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
         
         self.txtDate.setInputViewDatePicker(target: self, selector: #selector(dateDone),IsPreviousDisable:true)
         
-         self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone), IsFutureDisable: true, selectedDate: selectedDate)
+        self.txtSH.setInputViewTimePicker(target: self, selector: #selector(timeDone), IsFutureDisable: true, selectedDate: selectedDate)
         
         //self.txtEH.setDismissToolBar(target: self)
         
@@ -64,18 +67,24 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
     }
     
     func SetInfo(){
-        let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
-//        if let name = userInfo!["Name"]{
+        let account = AccountManager.instance().activeAccount!//Helper
         lblName.text = account.name
-//        }
-//
-//        if let email = userInfo?["Email"]{
         lblemail.text = account.email
-//        }
-//
-//        if let mobileNo = userInfo?["Phone"]{
         txtContact.text = account.phone
-//        }
+        
+        let limit : Int = Int(account.redemLimit) ?? 0
+        let earnedPoints : Int = Int(account.referralPoint) ?? 0
+        
+        if(earnedPoints >= limit){
+            btnCheck.isHidden = false
+            btnCheckHeigh.constant = 25
+            lblRedeemPoints.text = "Redeem your points"
+        } else {
+            btnCheck.isHidden = true
+            btnCheckHeigh.constant = 0
+            lblRedeemPoints.text = ""
+        }
+        self.view.layoutIfNeeded()
         
         if(Constant.SelectedCategory != nil){
             lblPriceInfo.text =  "Hourly price for "+(Constant.AllSubcategory )+" session is ₹ "+(Constant.SelectedCategory["Price"] as! String)+" Price"
@@ -86,11 +95,11 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
             lblPriceInfo.text =  "Hourly price for N/A session is ₹N/A Price"
         }
         
-//        let readmoreFont = UIFont(name: "Avenir Next Medium", size: 14.0)
-//        let readmoreFontColor = UIColor.blue
-//        DispatchQueue.main.async {
-//           // self.lblPriceInfo.addTrailing(with: "... ", moreText: "Learnmore", moreTextFont: readmoreFont!, moreTextColor: readmoreFontColor)
-//        }
+        //        let readmoreFont = UIFont(name: "Avenir Next Medium", size: 14.0)
+        //        let readmoreFontColor = UIColor.blue
+        //        DispatchQueue.main.async {
+        //           // self.lblPriceInfo.addTrailing(with: "... ", moreText: "Learnmore", moreTextFont: readmoreFont!, moreTextColor: readmoreFontColor)
+        //        }
         if let categoryId = Constant.SelectedCategory["Id"] {
             Constant.OrderDic["ProductId"] = (categoryId as! String) as AnyObject;
         }
@@ -103,8 +112,8 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
     }
     
     @objc func showTC(){
-    let controller = storyboard!.instantiateViewController(withIdentifier: "TermsAndConditionViewController") as! TermsAndConditionViewController
-     controller.isFAQ = true; self.navigationController?.pushViewController(controller, animated: true)
+        let controller = storyboard!.instantiateViewController(withIdentifier: "TermsAndConditionViewController") as! TermsAndConditionViewController
+        controller.isFAQ = true; self.navigationController?.pushViewController(controller, animated: true)
         
     }
     
@@ -152,6 +161,13 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
         txtEH!.resignFirstResponder() // 2-5
     }
     
+    @IBAction func checkClicked(_ sender: UIButton) {
+        if(sender.isSelected == true){
+            sender.isSelected = false
+        } else{
+            sender.isSelected = true
+        }
+    }
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         temptxt = textField
         pickerView.reloadAllComponents()
@@ -162,12 +178,12 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-         if(textField != txtContact && textField != txtNoOfPeople ){
+        if(textField != txtContact && textField != txtNoOfPeople ){
             return false
-         }
-         else{
-             return true
-         }
+        }
+        else{
+            return true
+        }
     }
     
     @IBAction func btnShowInfo(){
@@ -176,10 +192,10 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
             controller.desc = (content as! String)
-             self.navigationController?.pushViewController(controller, animated: true)
-//            controller.modalPresentationStyle = .overCurrentContext
-//            controller.modalTransitionStyle = .crossDissolve
-//            present(controller, animated: true, completion: nil)
+            self.navigationController?.pushViewController(controller, animated: true)
+            //            controller.modalPresentationStyle = .overCurrentContext
+            //            controller.modalTransitionStyle = .crossDissolve
+            //            present(controller, animated: true, completion: nil)
         }
     }
     
@@ -223,7 +239,13 @@ class BookingDetailViewController: BaseViewController,UIPickerViewDelegate,UIPic
         Constant.OrderDic["ShootingDate"] = txtDate.text
         Constant.OrderDic["ShootingStartTime"] = txtSH.text
         Constant.OrderDic["ShootingHours"] = txtEH.text
-        Constant.OrderDic["NoOfPeople"] = txtNoOfPeople.text 
+        Constant.OrderDic["NoOfPeople"] = txtNoOfPeople.text
+        if(btnCheck.isSelected == true){
+            Constant.OrderDic["OrderType"] = 1
+            Constant.OrderDic["RedeemPoint"] = AccountManager.instance().activeAccount?.referralPoint
+        } else {
+            Constant.OrderDic["OrderType"] = 0
+        }
         let controller = storyboard.instantiateViewController(withIdentifier: "BookingAddressViewController") as! BookingAddressViewController;
         self.navigationController?.pushViewController(controller, animated: true)
     }
@@ -250,12 +272,12 @@ extension BookingDetailViewController{
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //txtEH.text = Int(hours[row]).description
-//        if(selectedStartTime != nil){
-//            let dateformatter = DateFormatter() // 2-2
-//            dateformatter.dateFormat = "HH:mm"
-//            let minutes = Int(txtEH.text!)!*60*60
-//            let endTime = dateformatter.string(from:(selectedStartTime!.addingTimeInterval(TimeInterval(minutes))))
-//        Constant.OrderDic!["ShootingEndTime"] = endTime as AnyObject;
-//        }
+        //        if(selectedStartTime != nil){
+        //            let dateformatter = DateFormatter() // 2-2
+        //            dateformatter.dateFormat = "HH:mm"
+        //            let minutes = Int(txtEH.text!)!*60*60
+        //            let endTime = dateformatter.string(from:(selectedStartTime!.addingTimeInterval(TimeInterval(minutes))))
+        //        Constant.OrderDic!["ShootingEndTime"] = endTime as AnyObject;
+        //        }
     }
 }

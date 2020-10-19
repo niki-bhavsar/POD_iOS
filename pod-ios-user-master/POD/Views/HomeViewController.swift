@@ -24,7 +24,8 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Constant.homeVC = self;
+        Constant.homeVC = self
+        
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         } else {
@@ -54,9 +55,12 @@ class HomeViewController: BaseViewController {
         if(Constant.InquiryDic != nil){
             Constant.InquiryDic.removeAll()
         }
-        self.viewlayer.isHidden = true;
-        Constant.IsOpenMenu = false;
-        self.CheckCompleteProfile()
+        self.viewlayer.isHidden = true
+        Constant.IsOpenMenu = false
+        if(account?.signBy != "4"){
+            self.CheckCompleteProfile()
+        }
+       
         pageControler.addTarget(self, action: #selector(self.changePage(sender:)), for: UIControl.Event.valueChanged)
         LoginController.GetBanners(vc: self);
         self.viewlayer.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(HomeViewController.CloseMenu)))
@@ -85,7 +89,7 @@ class HomeViewController: BaseViewController {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
         if(Constant.IsOpenMenu == false){
             Constant.IsOpenMenu = !Constant.IsOpenMenu
-            self.viewlayer.isHidden = false;
+            self.viewlayer.isHidden = false
         }
         else{
             Constant.IsOpenMenu = !Constant.IsOpenMenu
@@ -155,14 +159,13 @@ class HomeViewController: BaseViewController {
         Constant.OrderDic["Total"] = ""
         Constant.OrderDic["PaymentMethod"] = ""
         Constant.OrderDic["PaymentStatus"] = ""
-        Constant.OrderDic["Transaction_id"] = "POD"
+        Constant.OrderDic["Transaction_id"] = "PAS"
         Constant.OrderDic["ShootingLat"] = ""
         Constant.OrderDic["ShootingLng"] = ""
         Constant.OrderDic["ShootingMeetPoint"] = ""
         Constant.OrderDic["CustomerId"] = account.user_id
         Constant.OrderDic["Name"] = account.name
         Constant.OrderDic["Email"] = account.email
-        Constant.OrderDic["OrderType"] = "1"
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SelectGategoryViewController") as! SelectGategoryViewController

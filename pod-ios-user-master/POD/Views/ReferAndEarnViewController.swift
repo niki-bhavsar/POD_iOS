@@ -7,25 +7,82 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
 class ReferAndEarnViewController: BaseViewController {
-
+    
+    @IBOutlet weak var codeView: UIView!
+    @IBOutlet weak var lblPoints: UILabel!
+    @IBOutlet weak var lblReferalCode: UILabel!
+    var account = Account()
+    var strMessage = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        account = AccountManager.instance().activeAccount!
+        lblPoints.text = account.referralPoint
+        lblReferalCode.text = account.referralCode
+        GetCustomerProfile(userID: account.user_id, account: account)
     }
     
-
-   
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let yourViewBorder = CAShapeLayer()
+        yourViewBorder.strokeColor =   UIColor.init(hexString: "#FBAF40").cgColor
+        yourViewBorder.lineDashPattern = [5, 6]
+        yourViewBorder.frame = codeView.bounds
+        yourViewBorder.fillColor = nil
+        yourViewBorder.path = UIBezierPath(rect: codeView.bounds).cgPath
+        codeView.layer.addSublayer(yourViewBorder)
     }
-    */
-
+    
+    @IBAction func copyClicked(_ sender: Any) {
+        UIPasteboard.general.string = lblReferalCode.text
+        //        let content = UIPasteboard.general.string
+    }
+    
+    @IBAction func shareclicked(_ sender: Any) {
+        let items = [strMessage]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
+        
+    }
+    
+    func getReferCode(){
+        startAnimating()
+        ApiManager.sharedInstance.requestGETURL("\(Constant.getReferCodeURL)\(account.user_id)", success: { (JSON) in
+            let msg =  JSON.dictionary?["Message"]
+            if((JSON.dictionary?["IsSuccess"]) != false){
+                self.stopAnimating()
+                let ResponseData : [[String : Any]]  = ((JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]])!
+                
+                self.strMessage = ResponseData[0]["Message"] as! String
+                
+            } else{
+                self.stopAnimating()
+                Helper.ShowAlertMessage(message:msg!.description , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+            }
+        }) { (Error) in
+            self.stopAnimating()
+            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+        }
+    }
+    
+    func GetCustomerProfile(userID:String, account : Account){
+        ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
+            let msg =  JSON.dictionary?["Message"]
+            if((JSON.dictionary?["IsSuccess"]) != false){
+                account.parseUserDict(userDict: JSON.dictionaryObject!["ResponseData"] as! NSDictionary, account: account)
+                self.lblPoints.text = account.referralPoint
+                self.lblReferalCode.text = account.referralCode
+                self.getReferCode()
+                
+            } else{
+                Helper.ShowAlertMessage(message:msg!.description , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+            }
+        }) { (Error) in
+            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+        }
+    }
+    
 }

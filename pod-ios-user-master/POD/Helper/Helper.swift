@@ -71,6 +71,8 @@ class Constant{
     public static var getSuccessResponseURL:String = Constant.serverURL+"/getSuccessResponse"
     public static var getAppVersionURL:String = Constant.serverURL+"/GetAppVersion/1"
     public static var getCheckValidReferCodeURL:String = Constant.serverURL+"/getCheckValidReferCode/"
+    public static var getReferCodeURL:String = Constant.serverURL+"/getReferCode/"
+     public static var updatePaymentStatusURL:String = Constant.serverURL+"/updatePaymentStatus"
     
     
     

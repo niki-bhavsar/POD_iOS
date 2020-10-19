@@ -9,7 +9,7 @@
 import UIKit
 import NotificationBannerSwift
 
-class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate, OnlinePaymentProtocal {//}, URLSessionDownloadDelegate, UIDocumentInteractionControllerDelegate {
+class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {//, OnlinePaymentProtocal {//}, URLSessionDownloadDelegate, UIDocumentInteractionControllerDelegate {
     
     @IBOutlet public var tblOrderDetails:UITableView!
     public var orderID = String()
@@ -157,14 +157,6 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
     @IBAction func sendClicked(sender:UIButton){
         if let photographFile : String = orderInfoDetail["photographFile"] as? String{
             if(photographFile.count == 0){
-//                Constant.OrderDic = [String:Any]()
-//                Constant.OrderDic["Name"] =  orderInfoDetail["Name"]
-//                Constant.OrderDic["Email"] =  orderInfoDetail["Email"]
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let controller = storyboard.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
-//                controller.totalAmount = "199"
-//                controller.del = self
-//                self.navigationController!.pushViewController(controller, animated: true)
             } else{
                 if let url = URL(string: photographFile) {
                     UIApplication.shared.open(url)
@@ -175,28 +167,28 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
         }
     }
     
-    //    OnlinePaymentProtocal
-    
-    func GetTransactionId(transactionID: String, status: Bool) {
-        if(transactionID.count != 0){
-            if(status == true){
-                self.SubmitPhotographerRequest()
-            }
-            else{
-                Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
-            }
-        }
-    }
-    
-    func SubmitPhotographerRequest(){
-        var dic = [String:Any]()
-        dic["OrderId"] = orderInfoDetail["Id"]
-        dic["PaymentMethod"] = "Online"
-        dic["PaymentStatus"] = "1"
-        dic["Amount"] = "199"
-        dic["CustomerId"] = orderInfoDetail["CustomerId"]
-        //MyOrderController.photographOrderPayment(vc: vc!, orderInfo: dic);
-    }
+//    //    OnlinePaymentProtocal
+//
+//    func GetTransactionId(transactionID: String, status: Bool) {
+//        if(transactionID.count != 0){
+//            if(status == true){
+//                self.SubmitPhotographerRequest()
+//            }
+//            else{
+//                Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+//            }
+//        }
+//    }
+//
+//    func SubmitPhotographerRequest(){
+//        var dic = [String:Any]()
+//        dic["OrderId"] = orderInfoDetail["Id"]
+//        dic["PaymentMethod"] = "Online"
+//        dic["PaymentStatus"] = "1"
+//        dic["Amount"] = "199"
+//        dic["CustomerId"] = orderInfoDetail["CustomerId"]
+//        //MyOrderController.photographOrderPayment(vc: vc!, orderInfo: dic);
+//    }
     
     
     @IBAction func viewReceiptClicked(sender:UIButton){
@@ -211,8 +203,6 @@ class OrderDetailViewController: BaseViewController,UITableViewDataSource,UITabl
             let controller = storyboard.instantiateViewController(withIdentifier: "SendPaymentViewController") as! SendPaymentViewController
             controller.dicInfo = orderInfoDetail
             self.navigationController!.pushViewController(controller, animated: true)
-            
-            //            self.viewExtPopup.isHidden = false;
         }
         
     }

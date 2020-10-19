@@ -80,43 +80,6 @@ class OrderDetailTableViewCell: UITableViewCell {
         //        delegate.ViewReceiptTapped(total: self.total!, visit: self.visit!, method: self.paymentMehod!, amount: self.amount!, extAmount: self.extAmount!,extMethod: self.ExtpaymentMehod!)
     }
     
-    //    @IBAction func btnSend_Click(){
-    //        if let photographFile = dicObj["photographFile"]{
-    //            if((photographFile as AnyObject).length == 0){
-    //                Constant.OrderDic = [String:Any]()
-    //                Constant.OrderDic["Name"] =  dicObj["Name"]
-    //                Constant.OrderDic["Email"] =  dicObj["Email"]
-    //                let controller = self.vc?.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
-    //                controller.totalAmount = "199"
-    //                controller.del = self
-    //                self.vc?.navigationController!.pushViewController(controller, animated: true)
-    //            }
-    //            else{
-    //                let url = NSURL(string: photographFile as! String)!
-    //                UIApplication.shared.openURL(url as URL)
-    //            }
-    //        }
-    //    }
-    
-    //    @IBAction func btnChatClick(sender:UIButton){
-    //        let dicObj = MyOrderController.listOrderDetails![indexPath.row]
-    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //        let controller = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-    //        controller.dicObj = dicObj as [String : AnyObject];
-    //        vc!.navigationController?.pushViewController(controller, animated: true)
-    //    }
-    
-    
-    //    @IBAction func btnGetHelp_Click(){
-    ////        delegate.HelpTapped(at: indexPath)
-    //    }
-    //
-    //    @IBAction func btnExtend_Click(sender:UIButton){
-    ////        delegate.ExtendButtonTapped(at: indexPath, sender: sender)
-    //    }
-    
-    
-    
     func SetOrderDetailData(dic:[String:Any]){
         self.widthExtend.constant = 0
         self.SendDetailHeightConstraing.constant = 0
@@ -340,26 +303,5 @@ class OrderDetailTableViewCell: UITableViewCell {
         //        self.widthExtend.constant = 57;
         //self.TimeheightConstraing.constant = 25;
     }
-    
-    //    ///
-    //    func GetTransactionId(transactionID: String, status: Bool) {
-    //        if(transactionID.count != 0){
-    //            if(status == true){
-    //                self.SubmitPhotographerRequest()
-    //            }
-    //            else{
-    //                Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: vc!,title:"Failed",bannerStyle: BannerStyle.danger)
-    //            }
-    //        }
-    //    }
-    //
-    //    func SubmitPhotographerRequest(){
-    //        var dic = [String:Any]()
-    //        dic["OrderId"] = dicObj["Id"]
-    //        dic["PaymentMethod"] = "Online"
-    //        dic["PaymentStatus"] = "1"
-    //        dic["Amount"] = "199"
-    //        dic["CustomerId"] = dicObj["CustomerId"]
-    //        //MyOrderController.photographOrderPayment(vc: vc!, orderInfo: dic);
-    //    }
+
 }

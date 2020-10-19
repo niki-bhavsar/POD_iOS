@@ -8,8 +8,10 @@
 
 import UIKit
 import NotificationBannerSwift
+
 class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLSessionDownloadDelegate, UIDocumentInteractionControllerDelegate {
     
+    @IBOutlet weak var lblRedeemPoint: UILabel!
     @IBOutlet weak var btnDownloadInvoice: UIButton!
     @IBOutlet var lblOrderID:UILabel!
     @IBOutlet var lblDate:UILabel!
@@ -22,7 +24,8 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
     @IBOutlet var lblAmount:UILabel!
     @IBOutlet var lblVisiting:UILabel!
     @IBOutlet var lblTotal:UILabel!
-    public var dicInfo:[String:Any]!
+    public var dicInfo  = [String:Any]()
+    @IBOutlet weak var btnPayment: UIButton!
     
     let account = AccountManager.instance().activeAccount!//Helper.UnArchivedUserDefaultObject(key: "UserInfo") as? [String:AnyObject]
     
@@ -39,6 +42,14 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
     
     func SetData(){
         if(dicInfo != nil){
+            
+            if let PaymentStatus : String = dicInfo["PaymentStatus"] as? String{
+                if(PaymentStatus != "1"){
+                    btnPayment.isHidden = false
+                }else {
+                    btnPayment.isHidden = true
+                }
+            }
             
             if let invoiceFile = dicInfo["InVoiceFile"]{
                 if((invoiceFile as AnyObject).length == 0){
@@ -75,14 +86,18 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
             var totlaVal : Double = 0.0
             var transVal : Double = 0.0
             
-            if let SubTotal : String = dicInfo!["SubTotal"] as? String{
+            if let SubTotal : String = dicInfo["SubTotal"] as? String{
                 lblAmount.text = SubTotal
                 subTotalVal = Double(SubTotal) ?? 0.0
             }
             
             if let Total : String = dicInfo["Total"] as? String {
-                self.lblTotal.text = Total
                 totlaVal = Double(Total) ?? 0.0
+               self.lblTotal.text = String(format: "%.2f", totlaVal)
+            }
+            
+            if let RedeemPoint : String = dicInfo["RedeemPoint"] as? String {
+                self.lblRedeemPoint.text = RedeemPoint
             }
             
             if let trasportation : String = dicInfo["Transportation"] as? String{
@@ -90,18 +105,27 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
                 transVal = Double(trasportation) ?? 0.0
             }
             
-            let cGST : Double = (totlaVal - subTotalVal - transVal) / 2
-            let sGST : Double = (totlaVal - subTotalVal - transVal) / 2
+            if let GST : String = dicInfo["GST"] as? String {
+                let GSTVal : Double = Double(GST) ?? 0.0
+                
+                lblCGST.text = String(format: "%.2f", GSTVal / 2)
+                lblSGST.text = String(format: "%.2f", GSTVal / 2)
+                
+            }
             
-            lblCGST.text = String(format: "%.2f", cGST)
-            lblSGST.text = String(format: "%.2f", sGST)
+            
+//            let cGST : Double = (totlaVal - subTotalVal - transVal) / 2
+//            let sGST : Double = (totlaVal - subTotalVal - transVal) / 2
+//
+//            lblCGST.text = String(format: "%.2f", cGST)
+//            lblSGST.text = String(format: "%.2f", sGST)
             
         }
     }
     
     @IBAction func downloadInvoiceClicked(_ sender: Any) {
         self.showSpinner()
-        let invoiceFile : String = dicInfo!["InVoiceFile"] as! String
+        let invoiceFile : String = dicInfo["InVoiceFile"] as! String
         
         let url = URL(string:invoiceFile)
         downloadTask = backgroundSession.downloadTask(with: url!)
@@ -109,45 +133,23 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
     }
     
     @IBAction func btnPayClick(){
-        //        //if let photographFile = dicInfo["photographFile"]{
-        //           // if(photographFile.length == 0){
-        //                Constant.OrderDic = [String:AnyObject]()
-        //                Constant.OrderDic!["Name"] =  dicInfo["Name"] as AnyObject;
-        //                Constant.OrderDic!["Email"] =  dicInfo["Email"] as AnyObject;
-        //                let controller = self.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
-        //                controller.totalAmount = "199"
-        //                controller.del = self; self.navigationController?.pushViewController(controller, animated: true)
-        //
-        //
-        //            //}
-        //
-        //        //}
-        
         Constant.OrderDic = [String:Any]()
         Constant.OrderDic["Name"] =  dicInfo["Name"]
         Constant.OrderDic["Email"] =  dicInfo["Email"]
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
         controller.totalAmount =  lblTotal.text!
-        controller.del = self; self.navigationController?.pushViewController(controller, animated: true)
-        
-        
+        controller.del = self
+        self.navigationController?.pushViewController(controller, animated: true)
     }
-    
-    //    func GetTransactionId(transactionID: String, status: Bool) {
-    //        if(transactionID.count != 0){
-    //            if(status == true){
-    //                self.SubmitPhotographerRequest()
-    //            }
-    //            else{
-    //                Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
-    //            }
-    //        }
-    //    }
     
     func GetTransactionId(transactionID: String, status: Bool) {
         if(transactionID.count != 0){
             if(status == true){
-                self.SubmitPhotographerPaymentRequest(transactionID: transactionID)
+                Constant.OrderDic = [String : Any]()
+                Constant.OrderDic["OrderId"] = dicInfo["Id"]
+                Constant.OrderDic["Transaction_id"] = transactionID
+                Constant.OrderDic["PaymentStatus"] = "1"
+                orderPaid()
             }
             else{
                 Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
@@ -155,27 +157,28 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
         }
     }
     
-    func SubmitPhotographerPaymentRequest(transactionID:String){
-        var dic = [String:Any]()
-        dic["OrderId"] = dicInfo["Id"]
-        dic["TransactionId"] = transactionID
-        dic["ExtId"] = dicInfo["ExtId"]
-        dic["CustomerId"] = dicInfo["CustomerId"] 
-        MyOrderController.ExtendedRemainPhotoGrapherOrderPayment(vc: self, orderInfo: dic);
+    
+    func orderPaid(){
+        startAnimating()
+        
+        ApiManager.sharedInstance.requestPOSTURL(Constant.updatePaymentStatusURL, params: Constant.OrderDic, success: {
+            (JSON) in
+            let msg =  JSON.dictionary?["Message"]
+            if((JSON.dictionary?["IsSuccess"]) != false){
+                let callActionHandler = { () -> Void in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: self,action:callActionHandler)
+            }
+            else{
+                Helper.ShowAlertMessage(message: msg!.description, vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+            }
+            self.stopAnimating()
+        }, failure: { (Error) in
+            self.stopAnimating()
+            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+        })
     }
-    
-    //    func SubmitPhotographerRequest(){
-    //        var dic = [String:AnyObject]()
-    //        dic["OrderId"] = dicInfo["Id"] as AnyObject;
-    //        dic["PaymentMethod"] = "Online" as AnyObject;
-    //        dic["PaymentStatus"] = "1" as AnyObject;
-    //        dic["Amount"] = "199" as AnyObject;
-    //        dic["CustomerId"] = dicInfo["CustomerId"] as AnyObject;
-    //        MyOrderController.photographOrderPayment(vc: self, orderInfo: dic);
-    //
-    //
-    //    }
-    
     
     //MARK: URLSessionDownloadDelegate
     func urlSession(_ session: URLSession,

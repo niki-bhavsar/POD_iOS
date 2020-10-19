@@ -26,7 +26,7 @@ class LoginController: NSObject {
                     let account = Account()
                     account.parseUserDict(userDict: JSON.dictionaryObject?["ResponseData"] as! NSDictionary, account: account)
                     
-                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
+//                    Helper.ArchivedUserDefaultObject(obj: JSON.dictionaryObject!["ResponseData"]! as! [String : Any], key: "UserInfo")
                     
                     DispatchQueue.main.async {
                         if(AccountManager.instance().activeAccount?.termsCondition == "1"){
@@ -413,61 +413,54 @@ class LoginController: NSObject {
             ApiManager.sharedInstance.requestGETURL(Constant.getUnPaidOrderByCustomerIdURL+userId, success: { (JSON) in
                 
                 let msg =  JSON.dictionary?["Message"]
-                let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     vc.removeSpinner()
-                    //                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
-                    //                    if(Double(appVersion!)! < Double(version as! String)!){
-                    //                        let callActionHandler = { () -> Void in
-                    //                            let urlStr = "https://apps.apple.com/in/app/apple-store/id1503321883"
-                    //                            if #available(iOS 10.0, *) {
-                    //                                UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
-                    //
-                    //                            } else {
-                    //                                UIApplication.shared.openURL(URL(string: urlStr)!)
-                    //                            }
-                    //                        }
-                    //                        Helper.ShowAlertMessageWithHandlesr(message:"Update now, New Version is Available." , vc: vc,action:callActionHandler)
-                    //                    }
-                    //                    else{
-                    let orderDetail = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
-                    let dic = (orderDetail![0] as [String:Any])
-                    if let ExtId = dic["ExtId"]{
-                        if(Int(ExtId as! String)! > 0){
-                            if(orderDetail!.count>0){
+                    let orderDetail : [[String : Any]] = ((JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]])!
+                    if(orderDetail.count > 0){
+                        let dict : [String : Any] = orderDetail[0]
+                        if let ExtId : String = dict["ExtId"] as? String{
+                            if(ExtId != "0"){
                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                 let controller = storyboard.instantiateViewController(withIdentifier: "ExtendPhotographerPaymentViewController") as! ExtendPhotographerPaymentViewController
-                                controller.dicOrder = dic
+                                controller.dicOrder = dict
                                 vc.navigationController!.pushViewController(controller, animated: true)
-                            }
-                        } else{
-                            if(orderDetail!.count>0){
+                            } else{
                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                 let controller = storyboard.instantiateViewController(withIdentifier: "SendPaymentViewController") as! SendPaymentViewController
-                                controller.dicInfo = dic
+                                controller.dicInfo = dict
                                 vc.navigationController!.pushViewController(controller, animated: true)
                             }
+                        } else {
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "SendPaymentViewController") as! SendPaymentViewController
+                            controller.dicInfo = dict
+                            vc.navigationController!.pushViewController(controller, animated: true)
                         }
+                        
+                    } else {
+                         vc.removeSpinner()
                     }
+
+//                    if let ExtId = dic["ExtId"]{
+//                        if(Int(ExtId as! String)! > 0){
+//                            if(orderDetail!.count>0){
+//                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                                let controller = storyboard.instantiateViewController(withIdentifier: "ExtendPhotographerPaymentViewController") as! ExtendPhotographerPaymentViewController
+//                                controller.dicOrder = dic
+//                                vc.navigationController!.pushViewController(controller, animated: true)
+//                            }
+//                        } else{
+//                            if(orderDetail!.count > 0){
+//                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                                let controller = storyboard.instantiateViewController(withIdentifier: "SendPaymentViewController") as! SendPaymentViewController
+//                                controller.dicInfo = dic
+//                                vc.navigationController!.pushViewController(controller, animated: true)
+//                            }
+//                        }
+//                    }
                     
-                    //                    }
-                    
-                }
-                else{
+                } else{
                     vc.removeSpinner()
-                    //                    let version = JSON.dictionaryValue["VersionIphone"]?.rawString(.utf8, options: .prettyPrinted);
-                    //                    if(Double(appVersion!)! < Double(version as! String)!){
-                    //                        let callActionHandler = { () -> Void in
-                    //                            let urlStr = "https://apps.apple.com/in/app/apple-store/id1503321883"
-                    //                            if #available(iOS 10.0, *) {
-                    //                                UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
-                    //
-                    //                            } else {
-                    //                                UIApplication.shared.openURL(URL(string: urlStr)!)
-                    //                            }
-                    //                        }
-                    //                        Helper.ShowAlertMessageWithHandlesr(message:"Update now, new version is available." , vc: vc,action:callActionHandler)
-                    //                    }
                 }
             }) { (Error) in
                 vc.removeSpinner()
