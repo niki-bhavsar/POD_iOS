@@ -115,16 +115,19 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
             
             
             if let RedeemPoint : String = dicOrder["RedeemPoint"] as? String {
-                self.lblRedeemPoints.text = RedeemPoint
+                self.lblRedeemPoints.text = "-\(RedeemPoint)"
             }
             
             if let GST : String = dicOrder["GST"] as? String {
-                          let GSTVal : Double = Double(GST) ?? 0.0
-                          
-                          lblCGST.text = String(format: "%.2f", GSTVal / 2)
-                          lblSGST.text = String(format: "%.2f", GSTVal / 2)
-                          
-                      }
+                let GSTVal : Double = Double(GST) ?? 0.0
+                let ExtGST : String = (dicOrder["ExtGST"] as? String)!
+                
+                let ExtGSTVal : Double = Double(ExtGST) ?? 0.0
+                
+                lblCGST.text = String(format: "%.2f", (GSTVal + ExtGSTVal) / 2)
+                lblSGST.text = String(format: "%.2f", (GSTVal + ExtGSTVal) / 2)
+                
+            }
             
 //            var gstVal : Double = 0.0
 //            gstVal = subTotalVal + extendedVal + transVal
@@ -169,49 +172,49 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
     func GetTransactionId(transactionID: String, status: Bool) {
         if(transactionID.count != 0){
             if(status == true){
-                Constant.OrderDic = [String : Any]()
-                Constant.OrderDic["OrderId"] = dicOrder["Id"]
-                Constant.OrderDic["Transaction_id"] = transactionID
-                Constant.OrderDic["PaymentStatus"] = "1"
-                orderPaid()
-            }
-            else{
+                SubmitPaymentRequest(transactionID: transactionID)
+//                Constant.OrderDic = [String : Any]()
+//                Constant.OrderDic["OrderId"] = dicOrder["Id"]
+//                Constant.OrderDic["Transaction_id"] = transactionID
+//                Constant.OrderDic["PaymentStatus"] = "1"
+//                orderPaid()
+            } else{
                 Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
             }
         }
     }
     
-    func orderPaid(){
-        startAnimating()
-        
-        ApiManager.sharedInstance.requestPOSTURL(Constant.updatePaymentStatusURL, params: Constant.OrderDic, success: {
-            (JSON) in
-            let msg =  JSON.dictionary?["Message"]
-            if((JSON.dictionary?["IsSuccess"]) != false){
-                let callActionHandler = { () -> Void in
-                    self.navigationController?.popViewController(animated: true)
-                }
-                Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: self,action:callActionHandler)
-            }
-            else{
-                Helper.ShowAlertMessage(message: msg!.description, vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
-            }
-            self.stopAnimating()
-        }, failure: { (Error) in
-            self.stopAnimating()
-            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
-        })
-    }
+//    func orderPaid(){
+//        startAnimating()
+//
+//        ApiManager.sharedInstance.requestPOSTURL(Constant.updatePaymentStatusURL, params: Constant.OrderDic, success: {
+//            (JSON) in
+//            let msg =  JSON.dictionary?["Message"]
+//            if((JSON.dictionary?["IsSuccess"]) != false){
+//                let callActionHandler = { () -> Void in
+//                    self.navigationController?.popViewController(animated: true)
+//                }
+//                Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: self,action:callActionHandler)
+//            }
+//            else{
+//                Helper.ShowAlertMessage(message: msg!.description, vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+//            }
+//            self.stopAnimating()
+//        }, failure: { (Error) in
+//            self.stopAnimating()
+//            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+//        })
+//    }
     
     
-    //    func SubmitPhotographerPaymentRequest(transactionID:String){
-    //        var dic = [String:Any]()
-    //        dic["OrderId"] = dicOrder["ExtOrderId"]
-    //        dic["TransactionId"] = transactionID
-    //        dic["ExtId"] = dicOrder["ExtId"]
-    //        dic["CustomerId"] = dicOrder["ExtCustomerId"]
-    //        MyOrderController.ExtendedRemainPhotoGrapherOrderPayment(vc: self, orderInfo: dic);
-    //    }
+        func SubmitPaymentRequest(transactionID:String){
+            var dic = [String:Any]()
+            dic["OrderId"] = dicOrder["ExtOrderId"]
+            dic["TransactionId"] = transactionID
+            dic["ExtId"] = dicOrder["ExtId"]
+            dic["CustomerId"] = dicOrder["ExtCustomerId"]
+            MyOrderController.ExtendedPASUserOrderPayment(vc: self, orderInfo: dic);
+        }
     
     //MARK: URLSessionDownloadDelegate
     func urlSession(_ session: URLSession,

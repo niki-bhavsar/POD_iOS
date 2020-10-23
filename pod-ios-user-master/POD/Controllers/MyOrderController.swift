@@ -361,7 +361,7 @@ class MyOrderController: NSObject {
            }
        }
     
-    static func ExtendedRemainPhotoGrapherOrderPayment(vc:ExtendPhotographerPaymentViewController,orderInfo:[String:Any]){
+    static func ExtendedPASUserOrderPayment(vc:ExtendPhotographerPaymentViewController,orderInfo:[String:Any]){
            do{
                vc.showSpinner()
                ApiManager.sharedInstance.requestPOSTURL(Constant.PASOrderPaymentdURL, params: orderInfo, success: {
@@ -370,7 +370,6 @@ class MyOrderController: NSObject {
                    if((JSON.dictionary?["IsSuccess"]) != false){
                        let callActionHandler = { () -> Void in
                            vc.navigationController?.popViewController(animated: true);
-                        
                     }
                    Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: vc,action:callActionHandler)
                    }
@@ -388,7 +387,7 @@ class MyOrderController: NSObject {
            }
        }
     
-    static func ExtendedRemainPhotoGrapherOrderPayment(vc:SendPaymentViewController,orderInfo:[String:Any]){
+    static func PASUserOrderPayment(vc:SendPaymentViewController,orderInfo:[String:Any]){
         do{
             vc.showSpinner()
             ApiManager.sharedInstance.requestPOSTURL(Constant.PASOrderPaymentdURL, params: orderInfo, success: {

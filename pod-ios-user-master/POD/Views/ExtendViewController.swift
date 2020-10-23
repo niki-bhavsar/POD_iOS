@@ -89,7 +89,7 @@ class ExtendViewController: BaseViewController {
         if let ExtDate = OrderInfo["ShootingDate"]{
             extendIndfo["ExtDate"] = ExtDate
         }
-        if let ExtStartTime = OrderInfo["ShotingStartTime"]{
+        if let ExtStartTime = OrderInfo["ShootingStartTime"]{
             extendIndfo["ExtStartTime"] = ExtStartTime
         }
         if let ExtHours = lblexthrours.text {

@@ -93,11 +93,11 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
             
             if let Total : String = dicInfo["Total"] as? String {
                 totlaVal = Double(Total) ?? 0.0
-               self.lblTotal.text = String(format: "%.2f", totlaVal)
+                self.lblTotal.text = String(format: "%.2f", totlaVal)
             }
             
             if let RedeemPoint : String = dicInfo["RedeemPoint"] as? String {
-                self.lblRedeemPoint.text = RedeemPoint
+                self.lblRedeemPoint.text = "-\(RedeemPoint)"
             }
             
             if let trasportation : String = dicInfo["Transportation"] as? String{
@@ -114,11 +114,11 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
             }
             
             
-//            let cGST : Double = (totlaVal - subTotalVal - transVal) / 2
-//            let sGST : Double = (totlaVal - subTotalVal - transVal) / 2
-//
-//            lblCGST.text = String(format: "%.2f", cGST)
-//            lblSGST.text = String(format: "%.2f", sGST)
+            //            let cGST : Double = (totlaVal - subTotalVal - transVal) / 2
+            //            let sGST : Double = (totlaVal - subTotalVal - transVal) / 2
+            //
+            //            lblCGST.text = String(format: "%.2f", cGST)
+            //            lblSGST.text = String(format: "%.2f", sGST)
             
         }
     }
@@ -136,6 +136,8 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
         Constant.OrderDic = [String:Any]()
         Constant.OrderDic["Name"] =  dicInfo["Name"]
         Constant.OrderDic["Email"] =  dicInfo["Email"]
+        
+        
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as! OnlinePaymentViewController
         controller.totalAmount =  lblTotal.text!
         controller.del = self
@@ -145,11 +147,12 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
     func GetTransactionId(transactionID: String, status: Bool) {
         if(transactionID.count != 0){
             if(status == true){
-                Constant.OrderDic = [String : Any]()
-                Constant.OrderDic["OrderId"] = dicInfo["Id"]
-                Constant.OrderDic["Transaction_id"] = transactionID
-                Constant.OrderDic["PaymentStatus"] = "1"
-                orderPaid()
+                SubmitPaymentRequest(transactionID: transactionID)
+                //                Constant.OrderDic = [String : Any]()
+                //                Constant.OrderDic["OrderId"] = dicInfo["Id"]
+                //                Constant.OrderDic["Transaction_id"] = transactionID
+                //                Constant.OrderDic["PaymentStatus"] = "1"
+                //                orderPaid()
             }
             else{
                 Helper.ShowAlertMessage(message:"Transaction Failed-(\(transactionID))" , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
@@ -158,27 +161,37 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
     }
     
     
-    func orderPaid(){
-        startAnimating()
-        
-        ApiManager.sharedInstance.requestPOSTURL(Constant.updatePaymentStatusURL, params: Constant.OrderDic, success: {
-            (JSON) in
-            let msg =  JSON.dictionary?["Message"]
-            if((JSON.dictionary?["IsSuccess"]) != false){
-                let callActionHandler = { () -> Void in
-                    self.navigationController?.popViewController(animated: true)
-                }
-                Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: self,action:callActionHandler)
-            }
-            else{
-                Helper.ShowAlertMessage(message: msg!.description, vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
-            }
-            self.stopAnimating()
-        }, failure: { (Error) in
-            self.stopAnimating()
-            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
-        })
+    //    func orderPaid(){
+    //        startAnimating()
+    //
+    //        ApiManager.sharedInstance.requestPOSTURL(Constant.updatePaymentStatusURL, params: Constant.OrderDic, success: {
+    //            (JSON) in
+    //            let msg =  JSON.dictionary?["Message"]
+    //            if((JSON.dictionary?["IsSuccess"]) != false){
+    //                let callActionHandler = { () -> Void in
+    //                    self.navigationController?.popViewController(animated: true)
+    //                }
+    //                Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: self,action:callActionHandler)
+    //            }
+    //            else{
+    //                Helper.ShowAlertMessage(message: msg!.description, vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+    //            }
+    //            self.stopAnimating()
+    //        }, failure: { (Error) in
+    //            self.stopAnimating()
+    //            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+    //        })
+    //    }
+    
+    func SubmitPaymentRequest(transactionID:String){
+        var dic = [String:Any]()
+        dic["OrderId"] = dicInfo["Id"]
+        dic["TransactionId"] = transactionID
+        dic["ExtId"] = dicInfo["ExtId"]
+        dic["CustomerId"] = dicInfo["CustomerId"]
+        MyOrderController.PASUserOrderPayment(vc: self, orderInfo: dic);
     }
+    
     
     //MARK: URLSessionDownloadDelegate
     func urlSession(_ session: URLSession,
