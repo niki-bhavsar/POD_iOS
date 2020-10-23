@@ -23,9 +23,9 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.tblMenu.reloadData();
         self.SetUserInfo();
         NotificationCenter.default.addObserver(self,
-        selector: #selector(SetUserInfo),
-        name: NSNotification.Name("UpdateProfileInfo"),
-        object: nil)
+                                               selector: #selector(SetUserInfo),
+                                               name: NSNotification.Name("UpdateProfileInfo"),
+                                               object: nil)
         // Do any additional setup after loading the view.
     }
     
@@ -40,20 +40,20 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
             // Fallback on earlier versions
         }
         let account = AccountManager.instance().activeAccount
-            lblProfileName.text = account?.name
-
+        lblProfileName.text = account?.name
+        
         
         if let url  = URL(string: account?.profileImage ?? "") {
-                       profileImage.kf.indicatorType = .activity
-                       
-                       profileImage.kf.setImage(
-                           with: url,
-                           placeholder: UIImage.init(named: "user"),
-                           options: nil)
-                       profileImage.layer.cornerRadius = profileImage.frame.width / 2
-                 
-                   }
-              profileImage.clipsToBounds = true
+            profileImage.kf.indicatorType = .activity
+            
+            profileImage.kf.setImage(
+                with: url,
+                placeholder: UIImage.init(named: "user"),
+                options: nil)
+            profileImage.layer.cornerRadius = profileImage.frame.width / 2
+            
+        }
+        profileImage.clipsToBounds = true
     }
     
     deinit {
@@ -79,9 +79,9 @@ extension SideMenuViewController {
             cell.contentView.backgroundColor = UIColor.init(hexString: "#F2F2F7")
         }
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        if(indexPath.row == 2){
-            cell.lblTitle.blink()
-        }
+        //        if(indexPath.row == 2){
+        //            cell.lblTitle.blink()
+        //        }
         
         UIColor.init(hexString: "MenuCell")
         
@@ -136,27 +136,23 @@ extension SideMenuViewController {
             AccountManager.instance().activeAccount = nil
             if(isPresent){
                 self.navigationController?.popToViewController(findVc!, animated: true)
-            }
-            else{
+            } else{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
                 self.navigationController?.viewControllers.insert(controller, at: 1)
                 self.navigationController?.popToViewController(controller, animated: true)
             }
-            
         }
-        
-        
     }
 }
 extension UILabel {
     func blink() {
         self.alpha = 0.0;
         UIView.animate(withDuration: 0.2, //Time duration you want,
-            delay: 0.0,
-            options: [.curveEaseInOut, .autoreverse, .repeat],
-            animations: { [weak self] in self?.alpha = 1.0 },
-            completion: { [weak self] _ in self?.alpha = 0.0 })
+                       delay: 0.0,
+                       options: [.curveEaseInOut, .autoreverse, .repeat],
+                       animations: { [weak self] in self?.alpha = 1.0 },
+                       completion: { [weak self] _ in self?.alpha = 0.0 })
     }
-
+    
 }

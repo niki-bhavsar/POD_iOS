@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wb4-D0-nlA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wb4-D0-nlA">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -105,7 +106,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                 <state key="normal" title="Forgot Password?">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <action selector="forgotPasswordClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gPI-sm-kwC"/>
@@ -234,6 +235,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="AVV-Vj-kfI"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="6iw-vo-8FY" secondAttribute="trailing" constant="30" id="08k-za-n71"/>
@@ -278,7 +280,6 @@
                             <constraint firstItem="U6a-we-Q3e" firstAttribute="leading" secondItem="AVV-Vj-kfI" secondAttribute="leading" constant="20" id="oeQ-7n-ZGe"/>
                             <constraint firstItem="Uvs-9u-lZX" firstAttribute="trailing" secondItem="AVV-Vj-kfI" secondAttribute="trailing" id="ptj-aA-eru"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="AVV-Vj-kfI"/>
                     </view>
                     <navigationItem key="navigationItem" id="5zk-nu-7TF"/>
                     <size key="freeformSize" width="320" height="650"/>
@@ -396,10 +397,10 @@
                                                         <color key="value" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -430,10 +431,10 @@
                                                         <color key="value" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -464,10 +465,10 @@
                                                         <color key="value" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -498,10 +499,10 @@
                                                         <color key="value" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -630,7 +631,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="jVR-UV-3mt" firstAttribute="top" secondItem="lIS-74-1Y4" secondAttribute="bottom" constant="25" id="2sD-3m-mMU"/>
                                             <constraint firstItem="lIS-74-1Y4" firstAttribute="top" secondItem="RHy-Fs-cr3" secondAttribute="bottom" constant="5" id="3hf-mP-T1O"/>
@@ -676,6 +677,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="N0Y-Hq-Fki"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="IuO-7f-I3v" firstAttribute="trailing" secondItem="N0Y-Hq-Fki" secondAttribute="trailing" id="1Gk-mZ-UHa"/>
@@ -699,7 +701,6 @@
                             <constraint firstItem="kml-5i-m0l" firstAttribute="leading" secondItem="N0Y-Hq-Fki" secondAttribute="leading" constant="10" id="z2R-eA-w7o"/>
                             <constraint firstItem="3uN-4l-dVS" firstAttribute="top" secondItem="iXg-91-u9g" secondAttribute="bottom" constant="10" id="zVN-6D-wN4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="N0Y-Hq-Fki"/>
                     </view>
                     <navigationItem key="navigationItem" id="xoT-c4-drK"/>
                     <size key="freeformSize" width="320" height="700"/>
@@ -797,10 +798,10 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Full Name"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Full Name"/>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -841,10 +842,10 @@
                                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -885,10 +886,10 @@
                                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -1003,7 +1004,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="DqI-Th-Iuc" firstAttribute="leading" secondItem="WvN-Ta-SNf" secondAttribute="leading" constant="10" id="0wK-oC-a8h"/>
                                             <constraint firstAttribute="height" constant="364" id="2yY-FE-znb"/>
@@ -1059,6 +1060,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="AgO-h9-z7t"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ToF-Fw-JwQ" firstAttribute="leading" secondItem="AgO-h9-z7t" secondAttribute="leading" id="4pK-PB-fXn"/>
@@ -1077,7 +1079,6 @@
                             <constraint firstItem="yYu-Bg-2N7" firstAttribute="top" secondItem="AgO-h9-z7t" secondAttribute="top" constant="7" id="vHD-IW-2Qq"/>
                             <constraint firstItem="6CL-CP-ewo" firstAttribute="centerY" secondItem="yYu-Bg-2N7" secondAttribute="centerY" id="vv9-IX-cv4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="AgO-h9-z7t"/>
                     </view>
                     <connections>
                         <outlet property="btnFemale" destination="6q0-5f-ffK" id="9aS-su-JOu"/>
@@ -1139,7 +1140,7 @@
                                         <rect key="frame" x="1" y="0.0" width="159.5" height="50"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
                                         <state key="normal" title="PENDING ORDERS">
-                                            <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <color key="titleColor" systemColor="groupTableViewBackgroundColor"/>
                                         </state>
                                         <state key="selected" title="PENDING ORDERS">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1152,7 +1153,7 @@
                                         <rect key="frame" x="160.5" y="0.0" width="159.5" height="50"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
                                         <state key="normal" title="BOOKED ORDERS">
-                                            <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <color key="titleColor" systemColor="groupTableViewBackgroundColor"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1178,7 +1179,7 @@
                             </view>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-kL-GXD">
                                 <rect key="frame" x="0.0" y="131" width="320" height="437"/>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="131" id="Znc-9Z-AaS" customClass="OrderCell" customModule="POD" customModuleProvider="target">
@@ -1221,7 +1222,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nx5-L4-bck">
                                                                     <rect key="frame" x="196" y="50.5" width="44" height="20"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                                    <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" systemColor="systemGreenColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -1296,6 +1297,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZCV-m5-pq8"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WfC-m3-EF6" firstAttribute="leading" secondItem="ZCV-m5-pq8" secondAttribute="leading" id="24e-mA-2cT"/>
@@ -1309,7 +1311,6 @@
                             <constraint firstItem="ca8-5Y-nXV" firstAttribute="trailing" secondItem="ZCV-m5-pq8" secondAttribute="trailing" id="tuu-ql-MU3"/>
                             <constraint firstItem="Etv-kL-GXD" firstAttribute="bottom" secondItem="ZCV-m5-pq8" secondAttribute="bottom" id="ysG-Yv-uVl"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ZCV-m5-pq8"/>
                     </view>
                     <connections>
                         <outlet property="btnComplete" destination="5IJ-LZ-dQh" id="9h6-ur-NiU"/>
@@ -1362,7 +1363,7 @@
                             </view>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="730" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QPU-Fb-PXa">
                                 <rect key="frame" x="0.0" y="86" width="320" height="482"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderDetailTableViewCell" id="nv1-Kh-5At" customClass="OrderDetailTableViewCell" customModule="POD" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="730"/>
@@ -1575,7 +1576,7 @@
                                                         </label>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NF5-j6-eFR">
                                                             <rect key="frame" x="122.5" y="206" width="182.5" height="40"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="JCL-yT-4TI"/>
                                                             </constraints>
@@ -1846,6 +1847,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="f9j-az-Mgt"/>
                         <color key="backgroundColor" red="0.98030656576156616" green="0.98044699430465698" blue="0.98027580976486206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="LhG-RN-6mb" firstAttribute="leading" secondItem="f9j-az-Mgt" secondAttribute="leading" id="5LV-T4-I2h"/>
@@ -1856,7 +1858,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="QPU-Fb-PXa" firstAttribute="bottom" secondItem="f9j-az-Mgt" secondAttribute="bottom" id="kOA-yx-UYH"/>
                             <constraint firstItem="QPU-Fb-PXa" firstAttribute="top" secondItem="LhG-RN-6mb" secondAttribute="bottom" id="oOE-op-4sK"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="f9j-az-Mgt"/>
                     </view>
                     <connections>
                         <outlet property="tblOrderDetails" destination="QPU-Fb-PXa" id="ViY-Gc-pQ8"/>
@@ -2026,7 +2027,7 @@ Regards, Team POD :)</string>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <state key="normal" title="Login With Account?">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <action selector="btnLogout_Click" destination="duD-md-whl" eventType="touchUpInside" id="Bcn-O3-TqX"/>
@@ -2044,6 +2045,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ezK-Cr-otu"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xEx-xk-aF8" firstAttribute="centerX" secondItem="fhy-u4-Nyh" secondAttribute="centerX" id="BYE-HG-Qe8"/>
@@ -2051,7 +2053,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="TvL-1A-Cyy" firstAttribute="top" secondItem="ezK-Cr-otu" secondAttribute="top" constant="7" id="peW-g7-fwP"/>
                             <constraint firstItem="TvL-1A-Cyy" firstAttribute="leading" secondItem="ezK-Cr-otu" secondAttribute="leading" constant="10" id="ql8-85-ffM"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ezK-Cr-otu"/>
                     </view>
                     <connections>
                         <outlet property="txtConfirmPassword" destination="Ytz-lc-hRP" id="PIf-IS-O3B"/>
@@ -2254,6 +2255,7 @@ Regards, Team POD :)</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.34896725171232879" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="m0g-to-qfV"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Juh-5c-6cp" firstAttribute="top" secondItem="4Pr-8O-fO1" secondAttribute="top" id="2dc-j1-lse"/>
@@ -2281,7 +2283,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="WIj-fh-bvn" firstAttribute="leading" secondItem="m0g-to-qfV" secondAttribute="leading" id="v0S-wc-nGr"/>
                             <constraint firstItem="FIb-4r-WF1" firstAttribute="centerX" secondItem="4Pr-8O-fO1" secondAttribute="centerX" id="vrb-sq-vS2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="m0g-to-qfV"/>
                     </view>
                     <navigationItem key="navigationItem" id="01Q-de-YUp"/>
                     <connections>
@@ -2410,6 +2411,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Zmd-na-OLu"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="SC8-o8-B6M" firstAttribute="top" secondItem="VDx-XD-S9i" secondAttribute="top" id="1qF-Lj-eOC"/>
@@ -2442,7 +2444,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="Rx3-U4-kIA" firstAttribute="trailing" secondItem="FjH-Qf-k0A" secondAttribute="trailing" id="vhK-Iv-ZPA"/>
                             <constraint firstItem="FjH-Qf-k0A" firstAttribute="trailing" secondItem="sR3-Rp-5Na" secondAttribute="trailing" id="xUt-Mk-9Qw"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Zmd-na-OLu"/>
                     </view>
                     <navigationItem key="navigationItem" id="K1A-GB-9PJ"/>
                 </viewController>
@@ -2491,7 +2492,7 @@ Regards, Team POD :)</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Your Query" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0Mc-VB-dYo">
                                 <rect key="frame" x="19" y="223" width="282" height="153"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2522,6 +2523,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="q0w-DX-W0X"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ZtH-ZE-kD6" firstAttribute="top" secondItem="q0w-DX-W0X" secondAttribute="top" constant="7" id="5Qd-Ys-6lL"/>
@@ -2530,7 +2532,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="xWM-ri-obC" firstAttribute="top" secondItem="LZF-ya-FDD" secondAttribute="top" id="ZU1-xb-cfd"/>
                             <constraint firstAttribute="bottom" secondItem="xWM-ri-obC" secondAttribute="bottom" id="Zxt-ZJ-iCH"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="q0w-DX-W0X"/>
                     </view>
                     <connections>
                         <outlet property="txtQuery" destination="0Mc-VB-dYo" id="Z3z-sM-vKD"/>
@@ -2598,6 +2599,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </textView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="o3p-dq-MC0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="o3p-dq-MC0" firstAttribute="bottom" secondItem="qI4-6E-CzD" secondAttribute="bottom" constant="10" id="11R-R3-Fat"/>
@@ -2618,7 +2620,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="s3j-aS-DLP" firstAttribute="centerY" secondItem="LNY-ro-pDZ" secondAttribute="centerY" id="ppV-Ec-hfZ"/>
                             <constraint firstItem="a58-sI-6K7" firstAttribute="top" secondItem="vgf-N6-9qZ" secondAttribute="top" id="vhO-oY-EfV"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="o3p-dq-MC0"/>
                     </view>
                     <connections>
                         <outlet property="btnFAQ" destination="Xqm-tY-Uq2" id="Fdc-2X-uyx"/>
@@ -2675,6 +2676,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </textView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="xev-m4-3MW"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Fhl-8A-imw" firstAttribute="top" secondItem="oXE-FS-ebw" secondAttribute="top" id="0Zu-Eq-rpc"/>
@@ -2693,7 +2695,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="UMm-9O-PVx" firstAttribute="leading" secondItem="xev-m4-3MW" secondAttribute="leading" id="sfS-Fh-wDX"/>
                             <constraint firstItem="ZxM-SD-JU5" firstAttribute="leading" secondItem="xev-m4-3MW" secondAttribute="leading" constant="16" id="swl-Mn-kJn"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="xev-m4-3MW"/>
                     </view>
                     <connections>
                         <outlet property="txtView" destination="ZxM-SD-JU5" id="qMO-UI-ueh"/>
@@ -2739,10 +2740,10 @@ Regards, Team POD :)</string>
                                         <color key="value" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -2804,6 +2805,7 @@ Regards, Team POD :)</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="dEz-hm-PSA"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dEz-hm-PSA" firstAttribute="trailing" secondItem="uA2-ZL-mcO" secondAttribute="trailing" constant="10" id="3oe-LS-jdK"/>
@@ -2825,7 +2827,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="hyZ-Wb-KD1" firstAttribute="leading" secondItem="dEz-hm-PSA" secondAttribute="leading" id="kNU-Dv-bab"/>
                             <constraint firstItem="dEz-hm-PSA" firstAttribute="trailing" secondItem="LSb-Vt-pRY" secondAttribute="trailing" constant="15" id="qkr-jQ-4sl"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dEz-hm-PSA"/>
                     </view>
                     <navigationItem key="navigationItem" id="zKm-iw-nQO"/>
                     <connections>
@@ -2853,8 +2854,8 @@ Regards, Team POD :)</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="d8Q-Do-EbY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="5gk-2d-6qa"/>
                     <connections>
@@ -2892,6 +2893,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </containerView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="jYO-2M-FKu"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kzZ-4t-dZK" firstAttribute="bottom" secondItem="GVw-gR-Q3X" secondAttribute="bottom" id="4PU-Vb-Yg4"/>
@@ -2902,7 +2904,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="kzZ-4t-dZK" firstAttribute="leading" secondItem="jYO-2M-FKu" secondAttribute="leading" id="sbM-p6-y3b"/>
                             <constraint firstItem="Jad-PP-ICs" firstAttribute="width" secondItem="GVw-gR-Q3X" secondAttribute="width" id="yU1-7f-nvV"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="jYO-2M-FKu"/>
                     </view>
                     <navigationItem key="navigationItem" id="1Rl-HE-yVd"/>
                     <connections>
@@ -3008,6 +3009,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="oZ5-Qo-ub2"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="guc-O5-B4P" firstAttribute="leading" secondItem="oZ5-Qo-ub2" secondAttribute="leading" id="0kJ-sd-k1N"/>
@@ -3018,7 +3020,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="OEy-pU-pNX" firstAttribute="leading" secondItem="oZ5-Qo-ub2" secondAttribute="leading" id="mYN-fD-xAp"/>
                             <constraint firstItem="oZ5-Qo-ub2" firstAttribute="trailing" secondItem="guc-O5-B4P" secondAttribute="trailing" id="wkJ-Wg-eLX"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="oZ5-Qo-ub2"/>
                     </view>
                     <navigationItem key="navigationItem" id="NgM-ML-FEI"/>
                     <connections>
@@ -3092,7 +3093,7 @@ Regards, Team POD :)</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Reason of reschedule" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EgY-rY-sjQ">
                                 <rect key="frame" x="16" y="309" width="288" height="71"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -3195,6 +3196,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </textField>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Jwq-Un-yaC"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9E2-fe-ssA" firstAttribute="leading" secondItem="cQE-Ck-uCl" secondAttribute="trailing" constant="18" id="DOp-PZ-9AZ"/>
@@ -3207,7 +3209,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="cQE-Ck-uCl" firstAttribute="leading" secondItem="Jwq-Un-yaC" secondAttribute="leading" constant="10" id="o3H-m4-r6n"/>
                             <constraint firstItem="nOm-YN-34s" firstAttribute="top" secondItem="Jwq-Un-yaC" secondAttribute="top" id="wa1-kB-hPU"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Jwq-Un-yaC"/>
                     </view>
                     <connections>
                         <outlet property="txtDate" destination="IDy-aO-Xbs" id="YaL-B0-3xH"/>
@@ -3429,10 +3430,10 @@ Regards, Team POD :)</string>
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -3463,10 +3464,10 @@ Regards, Team POD :)</string>
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -3500,7 +3501,7 @@ Regards, Team POD :)</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="VUN-kJ-F5H" firstAttribute="leading" secondItem="LS5-oV-Qp2" secondAttribute="leading" constant="10" id="1Gt-Ve-DJR"/>
                                             <constraint firstItem="RHS-JZ-uXN" firstAttribute="top" secondItem="MA5-ap-i6A" secondAttribute="bottom" constant="10" id="1QE-Fo-FOJ"/>
@@ -3557,6 +3558,7 @@ Regards, Team POD :)</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Is0-RU-gEw"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ohh-cu-mbT" firstAttribute="top" secondItem="Is0-RU-gEw" secondAttribute="top" constant="7" id="0Bc-85-cf7"/>
@@ -3577,7 +3579,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="2KX-QP-vWN" firstAttribute="top" secondItem="4qK-5j-OzK" secondAttribute="bottom" constant="20" id="uAd-FK-WvK"/>
                             <constraint firstItem="Bs3-IO-Ptl" firstAttribute="trailing" secondItem="Is0-RU-gEw" secondAttribute="trailing" id="w4I-AC-0vs"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Is0-RU-gEw"/>
                     </view>
                     <navigationItem key="navigationItem" id="f1m-e5-JeB"/>
                     <size key="freeformSize" width="320" height="800"/>
@@ -3767,6 +3768,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="fSS-NX-4ka"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vw3-BM-Jxb" firstAttribute="leading" secondItem="fSS-NX-4ka" secondAttribute="leading" constant="10" id="926-y3-EHK"/>
@@ -3774,7 +3776,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="vw3-BM-Jxb" firstAttribute="top" secondItem="fSS-NX-4ka" secondAttribute="top" constant="7" id="oFK-wS-WiG"/>
                             <constraint firstItem="cjK-uN-3Ge" firstAttribute="centerY" secondItem="vw3-BM-Jxb" secondAttribute="centerY" id="taV-vs-eBr"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="fSS-NX-4ka"/>
                     </view>
                     <connections>
                         <outlet property="txtConfirmPassword" destination="CSB-Dh-JBv" id="3CJ-6E-9WV"/>
@@ -4008,6 +4009,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ucq-xH-6CQ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kmp-6L-JvQ" firstAttribute="centerY" secondItem="ORq-9S-X79" secondAttribute="centerY" id="2ol-68-0O7"/>
@@ -4030,7 +4032,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="DF6-Kb-Z6V" firstAttribute="top" secondItem="Ucq-xH-6CQ" secondAttribute="top" id="vwK-Np-L98"/>
                             <constraint firstItem="DF6-Kb-Z6V" firstAttribute="trailing" secondItem="Ucq-xH-6CQ" secondAttribute="trailing" id="xc7-1f-YFY"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Ucq-xH-6CQ"/>
                     </view>
                     <connections>
                         <outlet property="tblAdd" destination="tlJ-59-6e1" id="IbR-IP-q0d"/>
@@ -4103,6 +4104,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </textView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="HFX-Fr-87n"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oXh-CP-c66" firstAttribute="trailing" secondItem="HFX-Fr-87n" secondAttribute="trailing" id="01R-u2-A61"/>
@@ -4121,7 +4123,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="9wF-HF-6bI" firstAttribute="centerY" secondItem="mT7-iu-EFq" secondAttribute="centerY" id="vkh-dX-Jbb"/>
                             <constraint firstItem="mT7-iu-EFq" firstAttribute="top" secondItem="HFX-Fr-87n" secondAttribute="top" constant="7" id="xwI-zX-n8C"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="HFX-Fr-87n"/>
                     </view>
                     <connections>
                         <outlet property="txtView" destination="1f7-RZ-LKe" id="mbc-no-yAv"/>
@@ -4177,6 +4178,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </textView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="szo-5M-oCK"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="C7f-4h-nfN" firstAttribute="trailing" secondItem="szo-5M-oCK" secondAttribute="trailing" id="2mJ-qK-2UO"/>
@@ -4195,7 +4197,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="F9X-Fk-pe2" firstAttribute="centerX" secondItem="Rny-FS-jPA" secondAttribute="centerX" id="qwN-CR-EQ0"/>
                             <constraint firstItem="C7f-4h-nfN" firstAttribute="top" secondItem="Rny-FS-jPA" secondAttribute="top" id="wJo-ih-wXH"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="szo-5M-oCK"/>
                     </view>
                     <connections>
                         <outlet property="txtView" destination="b2u-R3-M6I" id="spl-C8-Lxg"/>
@@ -4357,6 +4358,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="8CV-l2-YOW"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CHS-iy-uUD" firstAttribute="trailing" secondItem="8CV-l2-YOW" secondAttribute="trailing" id="1dy-4D-NJZ"/>
@@ -4375,7 +4377,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="CHS-iy-uUD" firstAttribute="leading" secondItem="8CV-l2-YOW" secondAttribute="leading" id="rmt-14-Aps"/>
                             <constraint firstItem="Gie-0h-ALh" firstAttribute="top" secondItem="Uu2-Ji-mFY" secondAttribute="bottom" constant="40" id="sBx-FH-770"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="8CV-l2-YOW"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dl2-7p-UsM"/>
                     <connections>
@@ -4537,6 +4538,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="fVG-rZ-WCK"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fVG-rZ-WCK" firstAttribute="trailing" secondItem="dMN-Ts-0uC" secondAttribute="trailing" id="8rm-ha-p6i"/>
@@ -4555,7 +4557,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="Lxh-r2-AhY" firstAttribute="leading" secondItem="fVG-rZ-WCK" secondAttribute="leading" id="yUQ-5W-f5i"/>
                             <constraint firstItem="fVG-rZ-WCK" firstAttribute="trailing" secondItem="XSu-E0-tgD" secondAttribute="trailing" constant="13" id="yju-lc-Jwe"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="fVG-rZ-WCK"/>
                     </view>
                     <navigationItem key="navigationItem" id="Wyq-Wo-xU9"/>
                     <connections>
@@ -4689,13 +4690,13 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ot1-97-CQI"/>
                         <color key="backgroundColor" white="0.0" alpha="0.35383668664383561" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hJK-kg-ORo" firstAttribute="leading" secondItem="Ot1-97-CQI" secondAttribute="leading" constant="16" id="CPp-4y-Qdi"/>
                             <constraint firstItem="Ot1-97-CQI" firstAttribute="trailing" secondItem="hJK-kg-ORo" secondAttribute="trailing" constant="16" id="S1i-Ok-ybZ"/>
                             <constraint firstItem="hJK-kg-ORo" firstAttribute="centerY" secondItem="9qq-iS-Zgr" secondAttribute="centerY" id="kPw-cg-zs9"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Ot1-97-CQI"/>
                     </view>
                     <connections>
                         <outlet property="lblExtAmount" destination="FC9-Kj-pja" id="17K-eo-9DR"/>
@@ -4952,7 +4953,7 @@ Regards, Team POD :)</string>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                         <state key="normal" title="Continue Booking" backgroundImage="FillButtonBG">
-                                            <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
                                         </state>
                                         <connections>
                                             <action selector="btnContinue_Click" destination="Psh-Lm-eNf" eventType="touchUpInside" id="hJJ-3C-nHo"/>
@@ -5025,6 +5026,7 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ocW-AK-eVN"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mGA-cT-O3J" firstAttribute="leading" secondItem="ocW-AK-eVN" secondAttribute="leading" id="179-GR-Chh"/>
@@ -5043,7 +5045,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="mGA-cT-O3J" firstAttribute="trailing" secondItem="ocW-AK-eVN" secondAttribute="trailing" id="rg9-RM-cy5"/>
                             <constraint firstAttribute="bottom" secondItem="mGA-cT-O3J" secondAttribute="bottom" id="w5h-s3-6sz"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ocW-AK-eVN"/>
                     </view>
                     <navigationItem key="navigationItem" id="jda-Ma-aCy"/>
                     <size key="freeformSize" width="320" height="600"/>
@@ -5152,7 +5153,7 @@ Regards, Team POD :)</string>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                         <state key="normal" title="Continue Booking" backgroundImage="FillButtonBG">
-                                            <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
                                         </state>
                                         <connections>
                                             <action selector="btnContinue_Click" destination="a6S-kA-gkS" eventType="touchUpInside" id="vzk-ys-VCA"/>
@@ -5160,7 +5161,7 @@ Regards, Team POD :)</string>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Near By Address" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KmV-Ji-Fdb">
                                         <rect key="frame" x="10" y="150" width="268" height="150"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="OIS-LH-9xc"/>
                                         </constraints>
@@ -5203,6 +5204,7 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="vte-Ej-75S"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="XDc-zT-mJl" firstAttribute="top" secondItem="vte-Ej-75S" secondAttribute="top" id="39z-6d-ug7"/>
@@ -5221,7 +5223,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="BXB-SJ-tIa" firstAttribute="trailing" secondItem="vte-Ej-75S" secondAttribute="trailing" id="nTn-sH-dqa"/>
                             <constraint firstItem="XDc-zT-mJl" firstAttribute="centerX" secondItem="sUE-t2-y4e" secondAttribute="centerX" id="ttx-ko-h0Z"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="vte-Ej-75S"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZnV-vA-9Qq"/>
                     <connections>
@@ -5279,7 +5280,7 @@ Regards, Team POD :)</string>
                                                 <color key="textColor" red="0.075633505399999995" green="0.2231803373" blue="0.56932255990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3p-29-tBw">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3p-29-tBw">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                                 <connections>
                                                     <action selector="btnUseCurrentLocation:" destination="zCr-aW-Vfm" eventType="touchUpInside" id="xTl-WG-Qxo"/>
@@ -5405,7 +5406,7 @@ Regards, Team POD :)</string>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzh-Ye-K1A">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzh-Ye-K1A">
                                         <rect key="frame" x="189" y="172" width="91" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.98420387509999996" green="0.68466877940000004" blue="0.25087225439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5565,6 +5566,7 @@ Regards, Team POD :)</string>
                                 </variation>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="r2Y-eN-Y88"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oCU-a5-5wA" firstAttribute="top" secondItem="r2Y-eN-Y88" secondAttribute="top" constant="7" id="05H-GB-PK1"/>
@@ -5583,7 +5585,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="r2Y-eN-Y88" firstAttribute="trailing" secondItem="r99-cL-vM0" secondAttribute="trailing" id="tKF-WK-Z9I"/>
                             <constraint firstAttribute="bottom" secondItem="r99-cL-vM0" secondAttribute="bottom" id="usy-zj-kKo"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="r2Y-eN-Y88"/>
                     </view>
                     <navigationItem key="navigationItem" id="a9B-pO-xJd"/>
                     <connections>
@@ -5768,7 +5769,7 @@ Regards, Team POD :)</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="4bW-yN-zgi"/>
                                                     <constraint firstItem="gfd-bd-ShD" firstAttribute="centerY" secondItem="j3X-lj-WS5" secondAttribute="centerY" id="K02-OG-rtH"/>
@@ -5948,6 +5949,7 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="M4l-8j-CSM"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ual-gc-Qiv" firstAttribute="leading" secondItem="M4l-8j-CSM" secondAttribute="leading" id="3Dx-ff-PAA"/>
@@ -5966,7 +5968,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="M4l-8j-CSM" firstAttribute="trailing" secondItem="r9Q-hy-ohL" secondAttribute="trailing" constant="10" id="fpZ-tF-afx"/>
                             <constraint firstItem="r9Q-hy-ohL" firstAttribute="leading" secondItem="M4l-8j-CSM" secondAttribute="leading" constant="10" id="oIc-hS-sy1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="M4l-8j-CSM"/>
                     </view>
                     <size key="freeformSize" width="320" height="600"/>
                     <connections>
@@ -6066,7 +6067,7 @@ Regards, Team POD :)</string>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                         <state key="normal" title="Screen Shot">
-                                                            <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleColor" systemColor="systemYellowColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnScreenSHot_ClickWithSender:" destination="62J-tP-fsQ" eventType="touchUpInside" id="5dm-8t-OFJ"/>
@@ -6111,6 +6112,7 @@ Regards, Team POD :)</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="UrG-vr-8kO"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="1tD-Sd-gOe" firstAttribute="centerX" secondItem="VrQ-rV-8Jk" secondAttribute="centerX" id="C24-do-wPU"/>
@@ -6129,11 +6131,10 @@ Regards, Team POD :)</string>
                                     <constraint firstItem="nVJ-Xe-kSw" firstAttribute="leading" secondItem="UrG-vr-8kO" secondAttribute="leading" constant="10" id="pmx-kQ-pNm"/>
                                     <constraint firstItem="n4E-In-AOf" firstAttribute="leading" secondItem="UrG-vr-8kO" secondAttribute="leading" id="zCf-Tz-aNE"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="UrG-vr-8kO"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Hes-3y-MmM"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="k1F-c1-Ew8"/>
                     <connections>
@@ -6186,7 +6187,7 @@ Regards, Team POD :)</string>
                             </view>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8pU-bW-q00">
                                 <rect key="frame" x="0.0" y="86" width="320" height="432"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatLeftCell" id="VaK-jv-KWm" customClass="ChatLeftCell" customModule="POD" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="55"/>
@@ -6197,7 +6198,7 @@ Regards, Team POD :)</string>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQI-na-MLc" customClass="PaddingLabel" customModule="POD" customModuleProvider="target">
                                                     <rect key="frame" x="82" y="50" width="0.0" height="0.0"/>
-                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -6277,7 +6278,7 @@ Regards, Team POD :)</string>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BY4-mo-qij" customClass="PaddingLabel" customModule="POD" customModuleProvider="target">
                                                     <rect key="frame" x="262" y="50" width="0.0" height="0.0"/>
-                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -6396,6 +6397,7 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="vFJ-X7-gh0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nRG-HL-vwJ" firstAttribute="top" secondItem="MYd-JA-JBP" secondAttribute="top" id="Bwn-dW-hwX"/>
@@ -6409,7 +6411,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="8pU-bW-q00" firstAttribute="leading" secondItem="vFJ-X7-gh0" secondAttribute="leading" id="pHe-Mo-2nf"/>
                             <constraint firstItem="2un-Fo-ztR" firstAttribute="leading" secondItem="vFJ-X7-gh0" secondAttribute="leading" id="zeH-A5-rYV"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="vFJ-X7-gh0"/>
                     </view>
                     <connections>
                         <outlet property="tblChat" destination="8pU-bW-q00" id="t5i-nn-byh"/>
@@ -6572,6 +6573,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="5Ge-EA-UnR"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5Ge-EA-UnR" firstAttribute="bottom" secondItem="d3b-rt-oGx" secondAttribute="bottom" id="1Xb-fw-yZD"/>
@@ -6590,7 +6592,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="sWB-Qe-cXM" firstAttribute="leading" secondItem="5Ge-EA-UnR" secondAttribute="leading" constant="10" id="sgK-bI-Rn3"/>
                             <constraint firstItem="sWB-Qe-cXM" firstAttribute="top" secondItem="5Ge-EA-UnR" secondAttribute="top" constant="7" id="yqs-iz-yJ2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="5Ge-EA-UnR"/>
                     </view>
                     <navigationItem key="navigationItem" id="pA7-LF-sv5"/>
                     <connections>
@@ -6672,7 +6673,7 @@ Regards, Team POD :)</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="ddh-JB-Wa0" firstAttribute="top" secondItem="LAD-C5-BlM" secondAttribute="top" id="36M-gv-l3c"/>
                                             <constraint firstItem="ddh-JB-Wa0" firstAttribute="width" secondItem="PPb-Tj-Wce" secondAttribute="width" id="4i6-MY-5Bx"/>
@@ -6724,6 +6725,7 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="fbu-Ru-iBZ"/>
                         <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TMh-Al-AbV" firstAttribute="centerX" secondItem="gtJ-WC-3Fd" secondAttribute="centerX" id="ZNa-sN-TyV"/>
@@ -6731,7 +6733,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="fbu-Ru-iBZ" firstAttribute="trailing" secondItem="TMh-Al-AbV" secondAttribute="trailing" constant="20" id="kOE-Ea-7kC"/>
                             <constraint firstItem="TMh-Al-AbV" firstAttribute="centerY" secondItem="gtJ-WC-3Fd" secondAttribute="centerY" id="pAj-lu-wVf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="fbu-Ru-iBZ"/>
                     </view>
                     <connections>
                         <outlet property="txtRefercode" destination="r0V-1d-dNY" id="4b7-di-vgH"/>
@@ -6873,7 +6874,7 @@ Regards, Team POD :)</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -6891,8 +6892,8 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.35469285102739728" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5YH-Lo-bRr"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.35469285102739728" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
                         <outlet property="lblAmount" destination="cE9-yR-w7v" id="fjM-52-1SW"/>
@@ -7056,6 +7057,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="4FO-Tn-pgT"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hxF-Ia-dsJ" firstAttribute="centerX" secondItem="ZIH-TL-d6T" secondAttribute="centerX" id="3KE-fF-atI"/>
@@ -7074,7 +7076,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="4FO-Tn-pgT" firstAttribute="bottom" secondItem="L1o-4e-j6f" secondAttribute="bottom" constant="20" id="oTP-kB-mBB"/>
                             <constraint firstItem="Cor-Vr-O62" firstAttribute="trailing" secondItem="4FO-Tn-pgT" secondAttribute="trailing" id="trd-wn-PWQ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="4FO-Tn-pgT"/>
                     </view>
                     <navigationItem key="navigationItem" id="vEr-QV-VsO"/>
                     <connections>
@@ -7328,6 +7329,7 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="NlK-4F-1Qz"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="NlK-4F-1Qz" firstAttribute="bottom" secondItem="NQ1-Nn-B5Q" secondAttribute="bottom" constant="20" id="0tL-Sy-FOq"/>
@@ -7347,7 +7349,6 @@ Regards, Team POD :)</string>
                             <constraint firstAttribute="bottom" secondItem="oYg-bq-31q" secondAttribute="bottom" id="naQ-yt-cTm"/>
                             <constraint firstItem="NQ1-Nn-B5Q" firstAttribute="top" secondItem="43H-o1-g6a" secondAttribute="bottom" constant="40" id="zn0-J2-HtR"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="NlK-4F-1Qz"/>
                     </view>
                     <navigationItem key="navigationItem" id="qF2-Nm-RfQ"/>
                     <connections>
@@ -7629,7 +7630,7 @@ Regards, Team POD :)</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="JeQ-Gn-NTk"/>
                                             <constraint firstItem="lUn-Tz-pUf" firstAttribute="top" secondItem="c8Q-Mc-O6W" secondAttribute="top" constant="2" id="UZP-RF-dIz"/>
@@ -7690,6 +7691,7 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="m1q-4g-Gp2"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bC4-Cu-tLu" firstAttribute="leading" secondItem="m1q-4g-Gp2" secondAttribute="leading" id="1Nw-Ez-RxA"/>
@@ -7708,7 +7710,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="29U-RS-IHz" firstAttribute="centerY" secondItem="wch-iE-IXh" secondAttribute="centerY" id="xHs-QF-gAv"/>
                             <constraint firstAttribute="bottom" secondItem="QY8-Tw-j7z" secondAttribute="bottom" id="yOq-ek-CQQ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="m1q-4g-Gp2"/>
                     </view>
                     <navigationItem key="navigationItem" id="0MS-eg-GXg"/>
                     <connections>
@@ -7864,7 +7865,7 @@ Regards, Team POD :)</string>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                 <state key="normal" title="Send Application Issues">
-                                    <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                    <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="CornerRadius">
@@ -7907,6 +7908,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="PCc-W9-ATJ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kvc-hS-iej" firstAttribute="top" secondItem="Mlc-I7-dzn" secondAttribute="top" id="200-QN-Haz"/>
@@ -7930,7 +7932,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="qJB-qX-Gh9" firstAttribute="top" secondItem="PCc-W9-ATJ" secondAttribute="top" constant="7" id="yHG-TC-zhg"/>
                             <constraint firstItem="P78-4j-DRD" firstAttribute="top" secondItem="qJB-qX-Gh9" secondAttribute="bottom" constant="50" id="zwk-qe-Xwg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="PCc-W9-ATJ"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="6oH-jr-saB"/>
@@ -8002,12 +8003,13 @@ Regards, Team POD :)</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceK-Ba-752">
                                 <rect key="frame" x="5" y="87" width="310" height="401"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="location"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
                             </textView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="S5j-gW-euE"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="weC-t1-r6I" firstAttribute="leading" secondItem="S5j-gW-euE" secondAttribute="leading" constant="10" id="5nm-Sv-ixm"/>
@@ -8029,7 +8031,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="URr-6M-q7z" firstAttribute="top" secondItem="9Ya-eJ-I7I" secondAttribute="top" id="ob0-cP-Cfo"/>
                             <constraint firstItem="sAl-uV-uMF" firstAttribute="centerY" secondItem="weC-t1-r6I" secondAttribute="centerY" id="rLV-9L-Pf9"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="S5j-gW-euE"/>
                     </view>
                     <connections>
                         <outlet property="txtDesc" destination="ceK-Ba-752" id="an6-X2-kRl"/>
@@ -8080,7 +8081,7 @@ Regards, Team POD :)</string>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A7s-ga-lAw">
                                 <rect key="frame" x="0.0" y="50" width="320" height="449"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatLeftCell" id="ZbT-aI-JbQ" customClass="ChatLeftCell" customModule="POD" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="55"/>
@@ -8091,7 +8092,7 @@ Regards, Team POD :)</string>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNn-ym-qlF" customClass="PaddingLabel" customModule="POD" customModuleProvider="target">
                                                     <rect key="frame" x="82" y="50" width="0.0" height="0.0"/>
-                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -8171,7 +8172,7 @@ Regards, Team POD :)</string>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQl-hQ-v4w" customClass="PaddingLabel" customModule="POD" customModuleProvider="target">
                                                     <rect key="frame" x="262" y="50" width="0.0" height="0.0"/>
-                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -8290,6 +8291,7 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Uw2-jQ-1TO"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iq2-sN-dqS" firstAttribute="top" secondItem="Uw2-jQ-1TO" secondAttribute="top" id="B9r-Nn-JzX"/>
@@ -8303,7 +8305,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="A7s-ga-lAw" firstAttribute="top" secondItem="iq2-sN-dqS" secondAttribute="bottom" id="lxM-ht-oJ9"/>
                             <constraint firstItem="W8u-ln-JSI" firstAttribute="leading" secondItem="Uw2-jQ-1TO" secondAttribute="leading" id="yzM-ah-Kqh"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Uw2-jQ-1TO"/>
                     </view>
                     <navigationItem key="navigationItem" id="yzb-oW-dXX"/>
                     <connections>
@@ -8362,6 +8363,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </webView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="LSJ-eM-kjB"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BUE-yV-m6R" firstAttribute="trailing" secondItem="LSJ-eM-kjB" secondAttribute="trailing" id="7FO-gV-kWW"/>
@@ -8372,7 +8374,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="hZ1-mr-Vib" firstAttribute="top" secondItem="BUE-yV-m6R" secondAttribute="bottom" id="Y6N-9T-G4d"/>
                             <constraint firstItem="BUE-yV-m6R" firstAttribute="leading" secondItem="LSJ-eM-kjB" secondAttribute="leading" id="ZJt-Ks-k0a"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="LSJ-eM-kjB"/>
                     </view>
                     <connections>
                         <outlet property="webView" destination="hZ1-mr-Vib" id="cdB-ma-gcD"/>
@@ -8518,7 +8519,7 @@ Regards, Team POD :)</string>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2E9-mK-fa0">
                                 <rect key="frame" x="251" y="468" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <state key="normal" image="trash"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="CornerRadius">
@@ -8534,6 +8535,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="lzU-Eo-TzZ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="V7P-QV-TTa" firstAttribute="centerX" secondItem="nlE-ec-SGB" secondAttribute="centerX" id="1Z7-XE-w2P"/>
@@ -8552,7 +8554,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="Npi-68-3C2" firstAttribute="leading" secondItem="lzU-Eo-TzZ" secondAttribute="leading" constant="10" id="kle-Al-pU4"/>
                             <constraint firstItem="kgh-Py-peu" firstAttribute="leading" secondItem="lzU-Eo-TzZ" secondAttribute="leading" constant="10" id="sSC-H2-o4R"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="lzU-Eo-TzZ"/>
                     </view>
                     <connections>
                         <outlet property="btnDeleteAll" destination="2E9-mK-fa0" id="xP4-YX-Yyy"/>
@@ -8598,7 +8599,7 @@ Regards, Team POD :)</string>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yzi-IR-7Vg">
                                 <rect key="frame" x="0.0" y="444" width="320" height="124"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZYC-MT-Vji">
                                 <rect key="frame" x="10" y="164" width="300" height="384"/>
@@ -8727,7 +8728,7 @@ Regards, Team POD :)</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -8778,12 +8779,12 @@ Regards, Team POD :)</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="1z0-8R-CWa"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oum-nz-Hda" firstAttribute="leading" secondItem="1z0-8R-CWa" secondAttribute="leading" constant="10" id="28j-Ve-vMM"/>
                             <constraint firstItem="oum-nz-Hda" firstAttribute="top" secondItem="1z0-8R-CWa" secondAttribute="top" constant="7" id="JKj-Y7-dVx"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1z0-8R-CWa"/>
                     </view>
                     <navigationItem key="navigationItem" id="75z-Uv-3ZD"/>
                     <size key="freeformSize" width="320" height="568"/>
@@ -8842,7 +8843,7 @@ Regards, Team POD :)</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="C2d-Vb-w8W" firstAttribute="centerX" secondItem="qqW-AP-azp" secondAttribute="centerX" id="429-DR-DdW"/>
                                     <constraint firstAttribute="width" constant="100" id="KfM-2W-goB"/>
@@ -8886,18 +8887,20 @@ Regards, Team POD :)</string>
                                 <rect key="frame" x="20" y="385.5" width="280" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POD329033573280AHM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQO-js-89n">
-                                        <rect key="frame" x="20" y="14" width="188" height="22"/>
+                                        <rect key="frame" x="10" y="14" width="188" height="22"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqn-mc-LSJ">
-                                        <rect key="frame" x="240" y="15" width="20" height="20"/>
+                                        <rect key="frame" x="207" y="15" width="63" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Qwb-Zu-wau"/>
-                                            <constraint firstAttribute="width" constant="20" id="V5y-8F-c9e"/>
                                         </constraints>
-                                        <state key="normal" image="copy"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="12"/>
+                                        <state key="normal" title="Copy Code">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="copyClicked:" destination="XjE-xs-UQq" eventType="touchUpInside" id="MkO-5L-cmM"/>
                                         </connections>
@@ -8905,11 +8908,11 @@ Regards, Team POD :)</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Fqn-mc-LSJ" secondAttribute="trailing" constant="20" id="EAy-Vr-SDm"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fqn-mc-LSJ" secondAttribute="trailing" constant="10" id="EAy-Vr-SDm"/>
                                     <constraint firstAttribute="height" constant="50" id="KZF-cq-XNR"/>
                                     <constraint firstItem="DQO-js-89n" firstAttribute="centerY" secondItem="1B7-hH-bgl" secondAttribute="centerY" id="T3y-Q4-cn7"/>
                                     <constraint firstItem="Fqn-mc-LSJ" firstAttribute="centerY" secondItem="1B7-hH-bgl" secondAttribute="centerY" id="YJC-EO-ywD"/>
-                                    <constraint firstItem="DQO-js-89n" firstAttribute="leading" secondItem="1B7-hH-bgl" secondAttribute="leading" constant="20" id="sSU-kr-laA"/>
+                                    <constraint firstItem="DQO-js-89n" firstAttribute="leading" secondItem="1B7-hH-bgl" secondAttribute="leading" constant="10" id="sSU-kr-laA"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7E-2k-Dym">
@@ -8927,7 +8930,8 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="sT0-L1-cEH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1B7-hH-bgl" firstAttribute="leading" secondItem="sT0-L1-cEH" secondAttribute="leading" constant="20" id="2aM-hI-aNS"/>
                             <constraint firstItem="sT0-L1-cEH" firstAttribute="trailing" secondItem="1B7-hH-bgl" secondAttribute="trailing" constant="20" id="4aY-kf-NkD"/>
@@ -8952,7 +8956,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="mib-VP-ebp" firstAttribute="top" secondItem="yaG-UQ-bdP" secondAttribute="top" constant="45" id="ved-JU-lZb"/>
                             <constraint firstItem="EWU-Ft-5ss" firstAttribute="top" secondItem="eV8-wg-prf" secondAttribute="bottom" constant="10" id="zT2-Ne-OUR"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="sT0-L1-cEH"/>
                     </view>
                     <connections>
                         <outlet property="codeView" destination="1B7-hH-bgl" id="E0g-Pu-A0W"/>
@@ -9259,7 +9262,7 @@ Regards, Team POD :)</string>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvu-WT-sj9">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvu-WT-sj9">
                                 <rect key="frame" x="98" y="567" width="124" height="32"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="14"/>
                                 <state key="normal" title="Download Invoice">
@@ -9270,6 +9273,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="wgk-DX-4yq"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xjq-PR-LhG" firstAttribute="top" secondItem="wgk-DX-4yq" secondAttribute="top" constant="7" id="2IL-BH-TIK"/>
@@ -9289,7 +9293,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="VbU-ed-pWD" firstAttribute="trailing" secondItem="wgk-DX-4yq" secondAttribute="trailing" id="o0k-pe-ZpA"/>
                             <constraint firstItem="VbU-ed-pWD" firstAttribute="top" secondItem="bo3-mR-MhY" secondAttribute="top" id="uQC-82-gPo"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="wgk-DX-4yq"/>
                     </view>
                     <navigationItem key="navigationItem" id="CPS-y6-6rR"/>
                     <size key="freeformSize" width="320" height="600"/>
@@ -9485,7 +9488,7 @@ Regards, Team POD :)</string>
                             <button hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6sW-6e-hBF">
                                 <rect key="frame" x="251" y="468" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <state key="normal" image="trash"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="CornerRadius">
@@ -9501,6 +9504,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="XfV-X5-uKX"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gM4-XS-aTv" firstAttribute="leading" secondItem="XfV-X5-uKX" secondAttribute="leading" id="BBy-Vc-Avw"/>
@@ -9519,7 +9523,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="XfV-X5-uKX" firstAttribute="bottom" secondItem="TJa-xX-e7f" secondAttribute="bottom" constant="8" id="u2n-mD-BI8"/>
                             <constraint firstItem="XfV-X5-uKX" firstAttribute="trailing" secondItem="TJa-xX-e7f" secondAttribute="trailing" constant="8" id="yHl-5q-tfG"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="XfV-X5-uKX"/>
                     </view>
                     <connections>
                         <outlet property="btnDeleteAll" destination="6sW-6e-hBF" id="6ni-5j-ZKF"/>
@@ -9661,6 +9664,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="lI8-jt-AS4"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ywb-e0-gfx" firstAttribute="top" secondItem="lI8-jt-AS4" secondAttribute="top" constant="7" id="8nd-7V-vSb"/>
@@ -9679,7 +9683,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="cyG-hm-ogV" firstAttribute="trailing" secondItem="lI8-jt-AS4" secondAttribute="trailing" id="jSg-5w-SMr"/>
                             <constraint firstItem="U21-ga-ihY" firstAttribute="centerX" secondItem="UaE-wZ-HCB" secondAttribute="centerX" id="umA-Zv-AaE"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="lI8-jt-AS4"/>
                     </view>
                     <connections>
                         <outlet property="tblFAQ" destination="Po1-Hz-Yq2" id="qCA-HC-WIX"/>
@@ -9740,7 +9743,8 @@ Regards, Team POD :)</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="egX-s2-ZDG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uz0-k8-XkA" firstAttribute="leading" secondItem="egX-s2-ZDG" secondAttribute="leading" constant="20" id="9o5-fj-zcp"/>
                             <constraint firstItem="7zA-W3-LXI" firstAttribute="leading" secondItem="egX-s2-ZDG" secondAttribute="leading" id="F0R-UQ-MCc"/>
@@ -9760,7 +9764,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="egX-s2-ZDG" firstAttribute="trailing" secondItem="pkb-LM-2FP" secondAttribute="trailing" constant="15" id="xuO-Z5-YIg"/>
                             <constraint firstItem="xOm-FR-gkU" firstAttribute="trailing" secondItem="egX-s2-ZDG" secondAttribute="trailing" id="yd9-qK-VVd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="egX-s2-ZDG"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OeH-qy-ay1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -10073,7 +10076,7 @@ Regards, Team POD :)</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aC9-Ef-TOd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aC9-Ef-TOd">
                                 <rect key="frame" x="98" y="580" width="124" height="32"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="14"/>
                                 <state key="normal" title="Download Invoice">
@@ -10084,6 +10087,7 @@ Regards, Team POD :)</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="vlG-7k-Ruc"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="e17-sM-HHV" firstAttribute="centerY" secondItem="vY0-yO-G2g" secondAttribute="centerY" id="3SL-pU-wbr"/>
@@ -10103,7 +10107,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="aC9-Ef-TOd" firstAttribute="top" secondItem="QC1-aS-hiY" secondAttribute="bottom" constant="15" id="uMB-sJ-gbB"/>
                             <constraint firstItem="e17-sM-HHV" firstAttribute="centerX" secondItem="9zf-Wv-tTm" secondAttribute="centerX" id="yr5-Ut-8zU"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="vlG-7k-Ruc"/>
                     </view>
                     <navigationItem key="navigationItem" id="dCG-AS-QZ5"/>
                     <size key="freeformSize" width="320" height="600"/>
@@ -10178,7 +10181,8 @@ Regards, Team POD :)</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="mH0-AU-Bob"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Aao-Wj-K8i" firstAttribute="leading" secondItem="mH0-AU-Bob" secondAttribute="leading" id="2hL-kh-0ut"/>
                             <constraint firstAttribute="trailing" secondItem="KtK-ah-qEj" secondAttribute="trailing" constant="20" id="5Tp-rf-Pzi"/>
@@ -10199,7 +10203,6 @@ Regards, Team POD :)</string>
                             <constraint firstItem="0aW-Vu-pg9" firstAttribute="trailing" secondItem="mH0-AU-Bob" secondAttribute="trailing" id="vlN-Tp-mpo"/>
                             <constraint firstItem="X0P-xC-YSe" firstAttribute="leading" secondItem="mH0-AU-Bob" secondAttribute="leading" id="ybU-Q1-x6G"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="mH0-AU-Bob"/>
                     </view>
                     <connections>
                         <outlet property="lblMessage" destination="qGh-EF-w81" id="jm9-t2-lvF"/>
@@ -10210,6 +10213,78 @@ Regards, Team POD :)</string>
             <point key="canvasLocation" x="5582" y="-1062"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="0rh-xe-HbE">
+            <size key="intrinsicContentSize" width="51.5" height="21"/>
+        </designable>
+        <designable name="1Vg-Kn-TJP">
+            <size key="intrinsicContentSize" width="88.5" height="21"/>
+        </designable>
+        <designable name="3LK-Wb-mCy">
+            <size key="intrinsicContentSize" width="50" height="50"/>
+        </designable>
+        <designable name="BY4-mo-qij"/>
+        <designable name="CKt-9m-TiX">
+            <size key="intrinsicContentSize" width="129" height="20"/>
+        </designable>
+        <designable name="CSB-Dh-JBv">
+            <size key="intrinsicContentSize" width="115.5" height="20"/>
+        </designable>
+        <designable name="DaW-X0-miH">
+            <size key="intrinsicContentSize" width="51.5" height="21"/>
+        </designable>
+        <designable name="GQl-hQ-v4w"/>
+        <designable name="QFr-KK-w23">
+            <size key="intrinsicContentSize" width="85.5" height="21"/>
+        </designable>
+        <designable name="T19-VA-Hjq">
+            <size key="intrinsicContentSize" width="85.5" height="21"/>
+        </designable>
+        <designable name="XyC-2a-9d5">
+            <size key="intrinsicContentSize" width="28" height="21"/>
+        </designable>
+        <designable name="Ytz-lc-hRP">
+            <size key="intrinsicContentSize" width="115.5" height="20"/>
+        </designable>
+        <designable name="ZNn-ym-qlF"/>
+        <designable name="aeV-xp-bGA">
+            <size key="intrinsicContentSize" width="94" height="20"/>
+        </designable>
+        <designable name="bDn-0O-nAk">
+            <size key="intrinsicContentSize" width="68" height="21"/>
+        </designable>
+        <designable name="bQI-na-MLc"/>
+        <designable name="cEN-2J-sru">
+            <size key="intrinsicContentSize" width="65" height="21"/>
+        </designable>
+        <designable name="fA4-t4-fGH">
+            <size key="intrinsicContentSize" width="148" height="20"/>
+        </designable>
+        <designable name="fLe-eg-eR6">
+            <size key="intrinsicContentSize" width="104.5" height="21"/>
+        </designable>
+        <designable name="j4k-Jh-KAX">
+            <size key="intrinsicContentSize" width="77.5" height="21"/>
+        </designable>
+        <designable name="jqd-12-cod">
+            <size key="intrinsicContentSize" width="28" height="21"/>
+        </designable>
+        <designable name="l4x-0e-wVZ">
+            <size key="intrinsicContentSize" width="77.5" height="21"/>
+        </designable>
+        <designable name="ngl-Jl-Ze9">
+            <size key="intrinsicContentSize" width="65" height="21"/>
+        </designable>
+        <designable name="vmO-bw-DTh">
+            <size key="intrinsicContentSize" width="68" height="21"/>
+        </designable>
+        <designable name="xbI-mn-7HO">
+            <size key="intrinsicContentSize" width="129" height="20"/>
+        </designable>
+        <designable name="xoH-o3-vH6">
+            <size key="intrinsicContentSize" width="2867" height="27.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="Alarm" width="50" height="50"/>
         <image name="BG" width="1080" height="1920"/>
@@ -10241,7 +10316,6 @@ Regards, Team POD :)</string>
         <image name="Work" width="30" height="30"/>
         <image name="background_slider" width="812" height="612"/>
         <image name="check" width="30" height="30"/>
-        <image name="copy" width="42.5" height="42.5"/>
         <image name="facebook" width="60" height="60"/>
         <image name="google" width="60" height="60"/>
         <image name="ic_back" width="12" height="20.5"/>
@@ -10260,5 +10334,56 @@ Regards, Team POD :)</string>
         <image name="trash" width="30" height="30"/>
         <image name="uncheck" width="30" height="30"/>
         <image name="user" width="160" height="160"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.1215686274509804" green="0.12941176470588239" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.1215686274509804" green="0.12941176470588239" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.1215686274509804" green="0.12941176470588239" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

@@ -1014,7 +1014,7 @@
 				CODE_SIGN_ENTITLEMENTS = POD/POD.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6;
+				CURRENT_PROJECT_VERSION = 1m;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2A53RWCCV7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1027,7 +1027,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1096,7 +1096,7 @@
 				CODE_SIGN_ENTITLEMENTS = POD/POD.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6;
+				CURRENT_PROJECT_VERSION = 1m;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2A53RWCCV7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1109,7 +1109,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
