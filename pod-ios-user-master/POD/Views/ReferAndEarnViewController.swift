@@ -39,6 +39,7 @@ class ReferAndEarnViewController: BaseViewController {
     @IBAction func copyClicked(_ sender: Any) {
         UIPasteboard.general.string = lblReferalCode.text
         //        let content = UIPasteboard.general.string
+        Helper.ShowAlertMessage(message:"Referral code is copied to clipboard" , vc: self,title:"",bannerStyle: BannerStyle.info)
     }
     
     @IBAction func shareclicked(_ sender: Any) {

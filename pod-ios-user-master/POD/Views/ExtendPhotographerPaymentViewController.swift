@@ -48,7 +48,7 @@ class ExtendPhotographerPaymentViewController: BaseViewController, OnlinePayment
                     btnPayment.isHidden = true
                 }
             }
-            
+            btnDownloadInvoice.isHidden = true
             if let invoiceFile = dicOrder["InVoiceFile"]{
                 if((invoiceFile as AnyObject).length == 0){
                     btnDownloadInvoice.isHidden = true

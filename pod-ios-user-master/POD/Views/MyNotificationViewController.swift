@@ -55,7 +55,7 @@ extension MyNotificationViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(MyOrderController.listNotification != nil){
-            if(MyOrderController.listNotification!.count>0){
+            if(MyOrderController.listNotification.count>0){
                 tableView.restore()
                 btnDeleteAll.isHidden = false
             }
@@ -63,13 +63,17 @@ extension MyNotificationViewController {
                 tableView.setEmptyMessage("No Notification Found")
                 btnDeleteAll.isHidden = true
             }
-            return MyOrderController.listNotification!.count
+            return MyOrderController.listNotification.count
         }
         else{
             tableView.setEmptyMessage("No Notification Found")
             btnDeleteAll.isHidden = true
         }
-        return 0;
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,11 +81,11 @@ extension MyNotificationViewController {
         cell.vc = self;
         cell.indexPath = indexPath;
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        let orderOBj = MyOrderController.listNotification?[indexPath.row]
-        if let title = orderOBj!["Title"]{
+        let orderOBj = MyOrderController.listNotification[indexPath.row]
+        if let title = orderOBj["Title"]{
             cell.lblContent?.text = "\(title as! String)";
         }
-        if let EntDt = orderOBj!["EntDt"]{
+        if let EntDt = orderOBj["EntDt"]{
             
             cell.lblDate!.text = Helper.ConvertDateToTime(dateStr: (EntDt as! String),timeFormat: "yyyy-MM-dd HH:mm:ss")
         }
@@ -90,14 +94,21 @@ extension MyNotificationViewController {
         return cell;
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let orderOBj = MyOrderController.listNotification?[indexPath.row]
-        if let generalId = orderOBj!["generalId"]{
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-            controller.orderID = generalId as! String
-            self.navigationController?.pushViewController(controller, animated: true)
+        let orderOBj : [String : Any] = MyOrderController.listNotification[indexPath.row]
+        if let generalId = orderOBj["generalId"]{
+             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let type: String = orderOBj["Type"] as! String
+           if(type == "7"){
+let controller = storyboard.instantiateViewController(withIdentifier: "ReferAndEarnViewController") as! ReferAndEarnViewController
+                     
+                      self.navigationController?.pushViewController(controller, animated: true)
+           }else {
+           
+                       let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                       controller.orderID = generalId as! String
+                       self.navigationController?.pushViewController(controller, animated: true)
+            }
         }
-        
     }
     
     @IBAction func btnDeleteAll(sender:UIButton){

@@ -16,7 +16,7 @@ class MenuController: NSObject {
         menuList.removeAll()
         menuList.append(Menu.init(name: "Home", icon: "Home"))
         menuList.append(Menu.init(name: "My Profile", icon: "ic_edit_profile"))
-        menuList.append(Menu.init(name: "Refer and Earn", icon: "ic_edit_profile"))
+        menuList.append(Menu.init(name: "Refer and Earn", icon: "ReferAndEarn"))
         menuList.append(Menu.init(name: "My Notification", icon: "Notification"))
         menuList.append(Menu.init(name: "My Booking", icon: "ic_booking"))
         menuList.append(Menu.init(name: "My Inquiry", icon: "Inquiry"))
@@ -183,6 +183,4 @@ class MenuController: NSObject {
         Helper.rootNavigation?.pushViewController(controller, animated: true)
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
     }
-    
-    
 }

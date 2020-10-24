@@ -13,7 +13,7 @@ class MyOrderController: NSObject {
     public static var listOrders:[[String:Any]]?
     public static var listTempOrders:[[String:Any]]?
     public static var listOrderDetails:[[String:Any]]?
-    public static var listNotification:[[String:Any]]?
+    public static var listNotification = [[String:Any]]()
     
     static func GetOrders(userId:String,vc:MyOrderViewController){
         do{
@@ -234,7 +234,7 @@ class MyOrderController: NSObject {
             ApiManager.sharedInstance.requestGETURL(Constant.getNotificationbyIDURL+userId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
-                    listNotification = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
+                    listNotification = ((JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]])!
 //                    print(listNotification as Any)
                     
                 }
@@ -262,7 +262,7 @@ class MyOrderController: NSObject {
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     if(listNotification != nil){
-                        listNotification?.removeAll();
+                        listNotification.removeAll()
                     }
                     //MyOrderController.GetNotificatins(userId:userId , vc: vc)
                 }

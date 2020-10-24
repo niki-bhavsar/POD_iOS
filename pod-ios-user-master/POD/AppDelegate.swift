@@ -104,35 +104,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         
         if(AccountManager.instance().activeAccount != nil){
             let dict : [String : Any] = userInfo as! [String : Any]
-                            let apsDict : [String : Any] = dict["aps"] as! [String : Any]
-                            let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
-                            if let type : String = dict["gcm.notification.Type"] as? String{
-                                let orderId : String = dict["gcm.notification.OrderId"] as! String
-                                if(type == "1"){
-                                    let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
-                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                        let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-                                        controller.orderID = orderId
-                                        if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
-                                            if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
-                                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
-                                            } else {
-                                                Helper.rootNavigation?.pushViewController(controller, animated: true)
-                                            }
-                                            
-                                        } else {
-                                            Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
-                                        }
-                                    }))
-                                    alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
-                                    }))
-                                    Helper.getTopViewController().present(alert, animated: true, completion: nil)
-                                }
+            let apsDict : [String : Any] = dict["aps"] as! [String : Any]
+            let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
+            if let type : String = dict["gcm.notification.Type"] as? String{
+                let orderId : String = dict["gcm.notification.OrderId"] as! String
+                if(type == "1"){
+                    let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                        controller.orderID = orderId
+                        if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                            if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                            } else {
+                                Helper.rootNavigation?.pushViewController(controller, animated: true)
                             }
-        //                    let type : String = dict["gcm.notification.Type"] as! String{}
                             
+                        } else {
+                            Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
                         }
+                    }))
+                    alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
+                    }))
+                    Helper.getTopViewController().present(alert, animated: true, completion: nil)
+                }
+            }
+            //                    let type : String = dict["gcm.notification.Type"] as! String{}
+            
+        }
         
         
     }
@@ -175,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
                             Helper.getTopViewController().present(alert, animated: true, completion: nil)
                         }
                     }
-//                    let type : String = dict["gcm.notification.Type"] as! String{}
+                    //                    let type : String = dict["gcm.notification.Type"] as! String{}
                     
                 }
                 
@@ -188,46 +188,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        //        let userInfo = response.notification.request.content.userInfo
-        //        // Print message ID.
-        //        // Print full message.
-        //        print(userInfo)
-        //
-        //        completionHandler()
         
         
         print(response.notification.request.content.userInfo)
         if(AccountManager.instance().activeAccount != nil){
-                            let dict : [String : Any] = response.notification.request.content.userInfo as! [String : Any]
-                            let apsDict : [String : Any] = dict["aps"] as! [String : Any]
-                            let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
-                            if let type : String = dict["gcm.notification.Type"] as? String{
-                                let orderId : String = dict["gcm.notification.OrderId"] as! String
-                                if(type == "1"){
-                                    let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
-                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                        let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-                                        controller.orderID = orderId
-                                        if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
-                                            if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
-                                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
-                                            } else {
-                                                Helper.rootNavigation?.pushViewController(controller, animated: true)
-                                            }
-                                            
-                                        } else {
-                                            Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
-                                        }
-                                    }))
-                                    alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
-                                    }))
-                                    Helper.getTopViewController().present(alert, animated: true, completion: nil)
-                                }
+            let dict : [String : Any] = response.notification.request.content.userInfo as! [String : Any]
+            let apsDict : [String : Any] = dict["aps"] as! [String : Any]
+            let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
+            if let type : String = dict["gcm.notification.Type"] as? String{
+                let orderId : String = dict["gcm.notification.OrderId"] as! String
+                if(type == "1"){
+                    let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                        controller.orderID = orderId
+                        if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                            if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                            } else {
+                                Helper.rootNavigation?.pushViewController(controller, animated: true)
                             }
-        //                    let type : String = dict["gcm.notification.Type"] as! String{}
-                            
+                        } else {
+                            Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
                         }
+                    }))
+                    alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
+                    }))
+                    Helper.getTopViewController().present(alert, animated: true, completion: nil)
+                }
+            }
+            //                    let type : String = dict["gcm.notification.Type"] as! String{}
+            
+        }
     }
     
     
@@ -248,7 +241,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("received remote notification")
     }
-
+    
     
     func playSound() {
         guard let url = Bundle.main.url(forResource: "NotificationSound", withExtension: "caf") else { return }
@@ -291,7 +284,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
             //locationManager.startUpdatingHeading()
@@ -300,19 +293,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-
+        
         if(Constant.currLat != userLocation.coordinate.latitude){
             DispatchQueue.global(qos: .background).async {
                 print("Run on background thread")
                 LoginController.SaveUserTrackingData()
                 DispatchQueue.main.async {
                     print("We finished that.")
-
+                    
                 }
             }
         }
-//        print("user latitude = \(userLocation.coordinate.latitude)")
-//        print("user longitude = \(userLocation.coordinate.longitude)")
+        //        print("user latitude = \(userLocation.coordinate.latitude)")
+        //        print("user longitude = \(userLocation.coordinate.longitude)")
         Constant.currLat = userLocation.coordinate.latitude
         Constant.currLng = userLocation.coordinate.longitude
     }

@@ -50,7 +50,7 @@ class SendPaymentViewController: BaseViewController, OnlinePaymentProtocal, URLS
                     btnPayment.isHidden = true
                 }
             }
-            
+            btnDownloadInvoice.isHidden = true
             if let invoiceFile = dicInfo["InVoiceFile"]{
                 if((invoiceFile as AnyObject).length == 0){
                     btnDownloadInvoice.isHidden = true

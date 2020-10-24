@@ -40,7 +40,7 @@ class NotificationTableCell: UITableViewCell {
             // Fallback on earlier versions
         }
         deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-            let obj = MyOrderController.listNotification![self.indexPath.row] as [String:Any]
+            let obj = MyOrderController.listNotification[self.indexPath.row] as [String:Any]
             MyOrderController.DeleteNotificatins(userId: obj["customerId"] as! String, notificationID: obj["Id"] as! String, vc: self.vc)
         }))
         
