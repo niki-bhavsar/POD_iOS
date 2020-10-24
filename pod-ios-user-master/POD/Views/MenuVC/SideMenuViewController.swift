@@ -8,20 +8,25 @@
 
 import UIKit
 import Kingfisher
+import NotificationBannerSwift
 
 class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet var profileImage:UIImageView!
     @IBOutlet var lblProfileName:UILabel!
+    @IBOutlet weak var lblEarnerPoints: UILabel!
     @IBOutlet var tblMenu:UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true);
         Helper.SetRoundImage(img: profileImage, cornerRadius: 50, borderWidth: 2, borderColor: UIColor.white)
-        MenuController.GetMenuList();
-        self.tblMenu.reloadData();
-        self.SetUserInfo();
+        MenuController.GetMenuList()
+        
+        self.tblMenu.reloadData()
+        
+        self.SetUserInfo()
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(SetUserInfo),
                                                name: NSNotification.Name("UpdateProfileInfo"),
@@ -39,11 +44,11 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
         } else {
             // Fallback on earlier versions
         }
-        let account = AccountManager.instance().activeAccount
-        lblProfileName.text = account?.name
+        let account : Account = AccountManager.instance().activeAccount!
+        lblProfileName.text = account.name
+        lblEarnerPoints.text = account.referralPoint
         
-        
-        if let url  = URL(string: account?.profileImage ?? "") {
+        if let url  = URL(string: account.profileImage ) {
             profileImage.kf.indicatorType = .activity
             
             profileImage.kf.setImage(
@@ -54,6 +59,23 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
         }
         profileImage.clipsToBounds = true
+        GetCustomerProfile(userID: account.user_id, account: account)
+        
+    }
+    
+    func GetCustomerProfile(userID:String, account : Account){
+        ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
+            let msg =  JSON.dictionary?["Message"]
+            if((JSON.dictionary?["IsSuccess"]) != false){
+                account.parseUserDict(userDict: JSON.dictionaryObject!["ResponseData"] as! NSDictionary, account: account)
+                self.lblEarnerPoints.text = account.referralPoint
+                
+            } else{
+                Helper.ShowAlertMessage(message:msg!.description , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
+            }
+        }) { (Error) in
+            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
+        }
     }
     
     deinit {
@@ -83,7 +105,7 @@ extension SideMenuViewController {
         //            cell.lblTitle.blink()
         //        }
         
-        UIColor.init(hexString: "MenuCell")
+//        UIColor.init(hexString: "MenuCell")
         
         return cell
     }
@@ -145,14 +167,14 @@ extension SideMenuViewController {
         }
     }
 }
-extension UILabel {
-    func blink() {
-        self.alpha = 0.0;
-        UIView.animate(withDuration: 0.2, //Time duration you want,
-                       delay: 0.0,
-                       options: [.curveEaseInOut, .autoreverse, .repeat],
-                       animations: { [weak self] in self?.alpha = 1.0 },
-                       completion: { [weak self] _ in self?.alpha = 0.0 })
-    }
-    
-}
+//extension UILabel {
+//    func blink() {
+//        self.alpha = 0.0;
+//        UIView.animate(withDuration: 0.2, //Time duration you want,
+//                       delay: 0.0,
+//                       options: [.curveEaseInOut, .autoreverse, .repeat],
+//                       animations: { [weak self] in self?.alpha = 1.0 },
+//                       completion: { [weak self] _ in self?.alpha = 0.0 })
+//    }
+//
+//}

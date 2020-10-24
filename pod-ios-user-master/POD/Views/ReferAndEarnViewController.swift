@@ -11,6 +11,10 @@ import NotificationBannerSwift
 
 class ReferAndEarnViewController: BaseViewController {
     
+    @IBOutlet weak var lblNoOrderMessage: UILabel!
+    @IBOutlet weak var referalCodeTitle: UILabel!
+    @IBOutlet weak var btnShare: UIButton!
+    @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var codeView: UIView!
     @IBOutlet weak var lblPoints: UILabel!
     @IBOutlet weak var lblReferalCode: UILabel!
@@ -22,6 +26,12 @@ class ReferAndEarnViewController: BaseViewController {
         account = AccountManager.instance().activeAccount!
         lblPoints.text = account.referralPoint
         lblReferalCode.text = account.referralCode
+        
+        self.codeView.isHidden = true
+        self.btnShare.isHidden = true
+        self.referalCodeTitle.isHidden = true
+        self.lblNoOrderMessage.isHidden = false
+        
         GetCustomerProfile(userID: account.user_id, account: account)
     }
     
@@ -58,6 +68,24 @@ class ReferAndEarnViewController: BaseViewController {
                 let ResponseData : [[String : Any]]  = ((JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]])!
                 
                 self.strMessage = ResponseData[0]["Message"] as! String
+                
+                self.lblMessage.text = "Invite your friends to signup with your referral code and book their first order. Once done you have earned \(ResponseData[0]["Point"] as! String) points."
+                
+                let strTotalOrder : String = ResponseData[0]["TotalOrder"] as! String
+                
+                let totalOrder : Int = Int(strTotalOrder) ?? 0
+                
+                if(totalOrder > 0){
+                    self.codeView.isHidden = false
+                    self.btnShare.isHidden = false
+                    self.referalCodeTitle.isHidden = false
+                    self.lblNoOrderMessage.isHidden = true
+                } else {
+                    self.codeView.isHidden = true
+                    self.btnShare.isHidden = true
+                    self.referalCodeTitle.isHidden = true
+                    self.lblNoOrderMessage.isHidden = false
+                }
                 
             } else{
                 self.stopAnimating()
