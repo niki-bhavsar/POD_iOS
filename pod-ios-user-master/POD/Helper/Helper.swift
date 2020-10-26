@@ -73,6 +73,7 @@ class Constant{
     public static var getCheckValidReferCodeURL:String = Constant.serverURL+"/getCheckValidReferCode/"
     public static var getReferCodeURL:String = Constant.serverURL+"/getReferCode/"
      public static var updatePaymentStatusURL:String = Constant.serverURL+"/updatePaymentStatus"
+    public static var getUserReferralsURL:String = Constant.serverURL+"/getReferCodeUsedUserList/"
     
     
     

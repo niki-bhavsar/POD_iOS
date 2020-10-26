@@ -106,24 +106,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
             let dict : [String : Any] = userInfo as! [String : Any]
             let apsDict : [String : Any] = dict["aps"] as! [String : Any]
             let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
-            if let type : String = dict["gcm.notification.Type"] as? String{
-                let orderId : String = dict["gcm.notification.OrderId"] as! String
-                if(type == "1"){
+            if let type : String = dict["Type"] as? String{
+                let orderId : String = dict["OrderId"] as! String
+                if(type == "1" || type == "7"){
                     let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-                        controller.orderID = orderId
-                        if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
-                            if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                        if(type == "1" || type == "7"){
+                            let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                            controller.orderID = orderId
+                            if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                                if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                                } else {
+                                    Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                }
+                                
                             } else {
-                                Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
                             }
-                            
                         } else {
-                            Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "ReferAndEarnViewController") as! ReferAndEarnViewController
+                            if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                                if((Helper.rootNavigation?.viewControllers.last?.isKind(of: ReferAndEarnViewController.self))!){
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateReferAndEarnView"), object: orderId)
+                                } else {
+                                    Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                }
+                                
+                            } else {
+                                Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
+                            }
                         }
+                        
                     }))
                     alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
                     }))
@@ -151,24 +166,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
                     let dict : [String : Any] = notification.request.content.userInfo as! [String : Any]
                     let apsDict : [String : Any] = dict["aps"] as! [String : Any]
                     let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
-                    if let type : String = dict["gcm.notification.Type"] as? String{
-                        let orderId : String = dict["gcm.notification.OrderId"] as! String
-                        if(type == "1"){
+                    if let type : String = dict["Type"] as? String{
+                        let orderId : String = dict["OrderId"] as! String
+                        if(type == "1" || type == "7"){
                             let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-                                controller.orderID = orderId
-                                if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
-                                    if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
-                                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                                if(type == "1"){
+                                    let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                                    controller.orderID = orderId
+                                    if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                                        if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
+                                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                                        } else {
+                                            Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                        }
+                                        
                                     } else {
-                                        Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                        Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
                                     }
-                                    
                                 } else {
-                                    Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
+                                    let controller = storyboard.instantiateViewController(withIdentifier: "ReferAndEarnViewController") as! ReferAndEarnViewController
+                                    if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                                        if((Helper.rootNavigation?.viewControllers.last?.isKind(of: ReferAndEarnViewController.self))!){
+                                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateReferAndEarnView"), object: orderId)
+                                        } else {
+                                            Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                        }
+                                        
+                                    } else {
+                                        Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
+                                    }
                                 }
+                                
                             }))
                             alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
                             }))
@@ -195,23 +225,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
             let dict : [String : Any] = response.notification.request.content.userInfo as! [String : Any]
             let apsDict : [String : Any] = dict["aps"] as! [String : Any]
             let alertDict : [String : Any] = apsDict["alert"] as! [String : Any]
-            if let type : String = dict["gcm.notification.Type"] as? String{
-                let orderId : String = dict["gcm.notification.OrderId"] as! String
-                if(type == "1"){
+            if let type : String = dict["Type"] as? String{
+                let orderId : String = dict["OrderId"] as! String
+                if(type == "1" || type == "7"){
                     let alert = UIAlertController(title:"Hi \(AccountManager.instance().activeAccount?.name ?? "")", message: alertDict["body"] as? String, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "VIEW", style: UIAlertAction.Style.default, handler: { _ in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-                        controller.orderID = orderId
-                        if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
-                            if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                        if(type == "1"){
+                            let controller = storyboard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                            controller.orderID = orderId
+                            if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                                if((Helper.rootNavigation?.viewControllers.last?.isKind(of: OrderDetailViewController.self))!){
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateOrderDetailView"), object: orderId)
+                                } else {
+                                    Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                }
+                                
                             } else {
-                                Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
                             }
                         } else {
-                            Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "ReferAndEarnViewController") as! ReferAndEarnViewController
+                            if((Helper.rootNavigation?.isKind(of: UINavigationController.self))!){
+                                if((Helper.rootNavigation?.viewControllers.last?.isKind(of: ReferAndEarnViewController.self))!){
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateReferAndEarnView"), object: orderId)
+                                } else {
+                                    Helper.rootNavigation?.pushViewController(controller, animated: true)
+                                }
+                                
+                            } else {
+                                Helper.rootNavigation?.navigationController?.pushViewController(controller, animated: true)
+                            }
                         }
+                        
                     }))
                     alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: {(_: UIAlertAction!) in
                     }))

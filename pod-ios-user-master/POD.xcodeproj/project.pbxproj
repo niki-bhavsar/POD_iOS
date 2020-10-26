@@ -150,6 +150,8 @@
 		18FE8B002412C5A6004C77AC /* MyInquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE8AFF2412C5A6004C77AC /* MyInquiryViewController.swift */; };
 		18FE8B022412CFFF004C77AC /* MyInquiryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE8B012412CFFF004C77AC /* MyInquiryCell.swift */; };
 		18FE8B042412D01A004C77AC /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE8B032412D01A004C77AC /* FAQCell.swift */; };
+		3489DFB22544407E0059D0B9 /* MyReferralsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3489DFB12544407E0059D0B9 /* MyReferralsViewController.swift */; };
+		3489DFD825444A1A0059D0B9 /* ReferralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3489DFD725444A1A0059D0B9 /* ReferralCell.swift */; };
 		844EF27D203666B4AF6C3832 /* Pods_POD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C00BAF7FF1FEA68C00BCCD7D /* Pods_POD.framework */; };
 /* End PBXBuildFile section */
 
@@ -301,6 +303,8 @@
 		18FE8AFF2412C5A6004C77AC /* MyInquiryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInquiryViewController.swift; sourceTree = "<group>"; };
 		18FE8B012412CFFF004C77AC /* MyInquiryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInquiryCell.swift; sourceTree = "<group>"; };
 		18FE8B032412D01A004C77AC /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQCell.swift; sourceTree = "<group>"; };
+		3489DFB12544407E0059D0B9 /* MyReferralsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReferralsViewController.swift; sourceTree = "<group>"; };
+		3489DFD725444A1A0059D0B9 /* ReferralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCell.swift; sourceTree = "<group>"; };
 		B609E769C897BBC38B40FD5F /* Pods-POD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POD.release.xcconfig"; path = "Target Support Files/Pods-POD/Pods-POD.release.xcconfig"; sourceTree = "<group>"; };
 		C00BAF7FF1FEA68C00BCCD7D /* Pods_POD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_POD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0468ADC1B575A979E519BD4 /* Pods-POD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POD.debug.xcconfig"; path = "Target Support Files/Pods-POD/Pods-POD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -386,6 +390,7 @@
 				18FE8B012412CFFF004C77AC /* MyInquiryCell.swift */,
 				18FE8B032412D01A004C77AC /* FAQCell.swift */,
 				18C0820B2428C7D400F8DA6E /* SearchAreaTableViewCell.swift */,
+				3489DFD725444A1A0059D0B9 /* ReferralCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -560,6 +565,7 @@
 				184C3857251477BA007D1BD9 /* UpdateTermsAndConditionViewController.swift */,
 				18798AB72535E60C004816CC /* ReferAndEarnViewController.swift */,
 				1805E7442536B88E00C3D48E /* ReferCodePopup.swift */,
+				3489DFB12544407E0059D0B9 /* MyReferralsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -756,6 +762,7 @@
 				187CAA7B250FA0C20002CE62 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,
 				1843206C23A2C6B000430FA4 /* ForgetPassController.swift in Sources */,
 				187CAA63250FA0C10002CE62 /* NVActivityIndicatorAnimationBallDoubleBounce.swift in Sources */,
+				3489DFD825444A1A0059D0B9 /* ReferralCell.swift in Sources */,
 				187CAA66250FA0C10002CE62 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
 				187CAA7C250FA0C20002CE62 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
 				189FA6E723905EEB008EBD79 /* Helper.swift in Sources */,
@@ -777,6 +784,7 @@
 				18611803239C1ACC00736D4D /* InqueryDetailViewController.swift in Sources */,
 				18520EB424B7268B004B740A /* ExtendPhotographerPaymentViewController.swift in Sources */,
 				185C8AE423982F34009E6D20 /* TermsAndConditionViewController.swift in Sources */,
+				3489DFB22544407E0059D0B9 /* MyReferralsViewController.swift in Sources */,
 				1816A26D239310C40022E8B8 /* OrderCell.swift in Sources */,
 				1855C54823AA9B4200ED8141 /* MyOrderController.swift in Sources */,
 				18E585082397BB0D009D1B98 /* SplashViewController.swift in Sources */,

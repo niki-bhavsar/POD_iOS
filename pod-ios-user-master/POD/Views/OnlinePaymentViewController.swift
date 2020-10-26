@@ -46,8 +46,8 @@ class OnlinePaymentViewController: BaseViewController, UIWebViewDelegate {
             "amount" : amount_str,
             "currency" : currency_str,
             "description" : description_str,
-            "name" : name_str,
-            "email" : email_str,
+            "name" : name_str.trimmingCharacters(in: .whitespaces),
+            "email" : email_str.trimmingCharacters(in: .whitespaces),
             "phone" : phone_str,
             "address_line_1" : address_line_1_str,
             "address_line_2" : address_line_2_str,
@@ -71,7 +71,7 @@ class OnlinePaymentViewController: BaseViewController, UIWebViewDelegate {
         let hash = sha512Hex(string: hashData)
         post = post + ("hash=\(hash.uppercased())")
         let postData: Data? = post.data(using: .ascii, allowLossyConversion: true)
-        let url = URL(string: "https://biz.traknpay.in/v2/paymentrequest")
+        let url = URL(string: "https://biz.aggrepaypayments.com/v2/paymentrequest")
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.setValue("\(UInt(postData?.count ?? 0))", forHTTPHeaderField: "Content-Length")

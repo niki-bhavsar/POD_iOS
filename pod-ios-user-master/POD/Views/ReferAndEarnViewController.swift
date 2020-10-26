@@ -21,8 +21,15 @@ class ReferAndEarnViewController: BaseViewController {
     var account = Account()
     var strMessage = String()
     
+    @IBOutlet weak var myReferralView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateReferandEarnView(_:)),
+                                               name: NSNotification.Name("UpdateReferAndEarnView"),
+                                               object: nil)
+        
         account = AccountManager.instance().activeAccount!
         lblPoints.text = account.referralPoint
         lblReferalCode.text = account.referralCode
@@ -30,6 +37,21 @@ class ReferAndEarnViewController: BaseViewController {
         self.codeView.isHidden = true
         self.btnShare.isHidden = true
         self.referalCodeTitle.isHidden = true
+        self.myReferralView.isHidden = true
+        self.lblNoOrderMessage.isHidden = false
+        
+        GetCustomerProfile(userID: account.user_id, account: account)
+    }
+    
+    @objc func updateReferandEarnView(_ notification: Notification){
+        account = AccountManager.instance().activeAccount!
+        lblPoints.text = account.referralPoint
+        lblReferalCode.text = account.referralCode
+        
+        self.codeView.isHidden = true
+        self.btnShare.isHidden = true
+        self.referalCodeTitle.isHidden = true
+        self.myReferralView.isHidden = true
         self.lblNoOrderMessage.isHidden = false
         
         GetCustomerProfile(userID: account.user_id, account: account)
@@ -79,11 +101,13 @@ class ReferAndEarnViewController: BaseViewController {
                     self.codeView.isHidden = false
                     self.btnShare.isHidden = false
                     self.referalCodeTitle.isHidden = false
+                    self.myReferralView.isHidden = false
                     self.lblNoOrderMessage.isHidden = true
                 } else {
                     self.codeView.isHidden = true
                     self.btnShare.isHidden = true
                     self.referalCodeTitle.isHidden = true
+                    self.myReferralView.isHidden = true
                     self.lblNoOrderMessage.isHidden = false
                 }
                 
@@ -96,6 +120,7 @@ class ReferAndEarnViewController: BaseViewController {
             Helper.ShowAlertMessage(message: Error.localizedDescription, vc: self,title:"Error",bannerStyle: BannerStyle.danger)
         }
     }
+    
     
     func GetCustomerProfile(userID:String, account : Account){
         ApiManager.sharedInstance.requestGETURL(Constant.getCustomerProfileURL+"/"+userID, success: { (JSON) in
@@ -114,4 +139,10 @@ class ReferAndEarnViewController: BaseViewController {
         }
     }
     
+    
+    @IBAction func myReferralClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MyReferralsViewController") as! MyReferralsViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }

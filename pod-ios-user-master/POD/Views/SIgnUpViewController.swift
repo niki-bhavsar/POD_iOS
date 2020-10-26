@@ -156,8 +156,8 @@ class SIgnUpViewController: BaseViewController {
             userInfo["ProfileImage"] = Data.init()
         }
         userInfo["ProfileImageUrl"] = ""
-        userInfo["Name"] = txtfullName.text
-        userInfo["Email"] = txtEmail.text
+        userInfo["Name"] = txtfullName.text?.trimmingCharacters(in: .whitespaces)
+        userInfo["Email"] = txtEmail.text?.trimmingCharacters(in: .whitespaces)
         userInfo["Phone"] = txtPhoneNo.text
         if(txtDOB.text?.count != 0){
             userInfo["DOB"] = txtDOB.text
