@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
+import FirebaseDynamicLinks
 
 class ReferAndEarnViewController: BaseViewController {
     
@@ -20,6 +21,7 @@ class ReferAndEarnViewController: BaseViewController {
     @IBOutlet weak var lblReferalCode: UILabel!
     var account = Account()
     var strMessage = String()
+    var invitationUrl = String()
     
     @IBOutlet weak var myReferralView: UIView!
     override func viewDidLoad() {
@@ -39,6 +41,8 @@ class ReferAndEarnViewController: BaseViewController {
         self.referalCodeTitle.isHidden = true
         self.myReferralView.isHidden = true
         self.lblNoOrderMessage.isHidden = false
+        
+        createLink()
         
         GetCustomerProfile(userID: account.user_id, account: account)
     }
@@ -75,10 +79,37 @@ class ReferAndEarnViewController: BaseViewController {
     }
     
     @IBAction func shareclicked(_ sender: Any) {
-        let items = [strMessage]
+        
+        //        let msg = "<p>Let's play MyExampleGame together! Use my <a href=\"\(invitationUrl)\">referrer link</a>!</p>"
+        
+        let items = ["\(strMessage) ReferLink: \(invitationUrl)"]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(ac, animated: true)
         
+    }
+    
+    func createLink(){
+        //        http://photographerondemand.in
+        //        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let link = URL(string: "https://www.podahmedabad.com/?invitedby=\(AccountManager.instance().activeAccount?.referralCode ?? "")")
+        let referralLink = DynamicLinkComponents(link: link!, domainURIPrefix: "https://poduser.page.link")
+        
+        
+        referralLink!.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.seawindsolution.PODUser")
+        //        referralLink!.iOSParameters?.minimumAppVersion = "1.0.1"
+        referralLink!.iOSParameters?.appStoreID = "1503321883"
+        
+        referralLink!.androidParameters = DynamicLinkAndroidParameters(packageName: "com.seawindsolution.pod")
+        //        referralLink!.androidParameters?.minimumVersion = 125
+        
+        referralLink!.shorten { (shortURL, warnings, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            print(shortURL!)
+            self.invitationUrl = shortURL?.absoluteString ?? ""
+        }
     }
     
     func getReferCode(){

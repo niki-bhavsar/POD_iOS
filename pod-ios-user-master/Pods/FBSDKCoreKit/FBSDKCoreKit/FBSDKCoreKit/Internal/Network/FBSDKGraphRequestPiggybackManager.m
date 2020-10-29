@@ -76,8 +76,7 @@ static int const FBSDKTokenRefreshRetrySeconds = 60 * 60;           // hour
                                                                                 userID:currentToken.userID
                                                                         expirationDate:expirationDate
                                                                            refreshDate:[NSDate date]
-                                                                           dataAccessExpirationDate:dataExpirationDate
-                                                                           graphDomain:currentToken.graphDomain];
+                                                                           dataAccessExpirationDate:dataExpirationDate];
       if (expectedToken == currentToken) {
         [FBSDKAccessToken setCurrentAccessToken:refreshedToken];
       }

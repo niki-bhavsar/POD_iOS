@@ -45,7 +45,7 @@ CG_INLINE BOOL isIPhone4() {
 // UIInterfaceOrientationMask vs. UIInterfaceOrientation
 // As far as I know, a function like this isn't available in the API. I derived this from the enum def for
 // UIInterfaceOrientationMask.
-#define OrientationMaskSupportsOrientation(mask, orientation)   ((mask & (1 << orientation)) == (1 << orientation))
+#define OrientationMaskSupportsOrientation(mask, orientation)   ((mask & (1 << orientation)) != 0)
 
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
@@ -169,12 +169,6 @@ CG_INLINE BOOL isIPhone4() {
 
         self.context = [CIContext contextWithOptions:nil];
         self.filter = [CIFilter filterWithName:@"CIGaussianBlur"];
-    }
-
-    if (@available(iOS 13.0, *)) {
-        self.pickerBackgroundColor = [UIColor secondarySystemBackgroundColor];
-        [self setTextColor: [UIColor labelColor]];
-        self.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.labelColor };
     }
 
     return self;
@@ -548,7 +542,7 @@ CG_INLINE BOOL isIPhone4() {
     }
     else {
         // Support iOS 13 Dark Mode - support dynamic background color in iOS 13
-        #if defined(__IPHONE_13_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
+        #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
 
         if (@available(iOS 13.0, *)) {
             [toolBarItemLabel setTextColor: [UIColor labelColor]];
@@ -699,7 +693,7 @@ CG_INLINE BOOL isIPhone4() {
 - (void)configureAndPresentActionSheetForView:(UIView *)aView {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIApplicationWillChangeStatusBarOrientationNotification object:nil];
 
-    _actionSheet = [[SWActionSheet alloc] initWithView:aView windowLevel:self.windowLevel];
+    _actionSheet = [[SWActionSheet alloc] initWithView:aView windowLevel:self.windowLevel withSupportedOrientation:self.supportedInterfaceOrientations];
     if (self.pickerBackgroundColor) {
         _actionSheet.bgView.backgroundColor = self.pickerBackgroundColor;
     }
@@ -713,11 +707,8 @@ CG_INLINE BOOL isIPhone4() {
 }
 
 - (void)didRotate:(NSNotification *)notification {
-// #TODO: Rotation is broken on iphones ios 13+. so I decided just to dismiss picker as a solution.
-
-//    if (!OrientationMaskSupportsOrientation(self.supportedInterfaceOrientations, DEVICE_ORIENTATION)) {
+    if (OrientationMaskSupportsOrientation(self.supportedInterfaceOrientations, DEVICE_ORIENTATION))
         [self dismissPicker];
-//    }
 }
 
 - (void)presentActionSheet:(SWActionSheet *)actionSheet {

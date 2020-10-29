@@ -18,18 +18,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TargetConditionals.h"
-
-#if TARGET_OS_TV
-
-@interface FBLoginButton : UIView
-
-@property (copy, nonatomic) NSArray<NSString *> *permissions;
-
-@end
-
-#else
-
 #if defined BUCK || defined FBSDKCOCOAPODS || defined __cplusplus
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #else
@@ -146,5 +134,3 @@ didCompleteWithResult:(nullable FBSDKLoginManagerLoginResult *)result
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif

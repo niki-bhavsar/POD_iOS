@@ -162,8 +162,7 @@ static NSMutableArray<FBSDKDeviceLoginManager *> *g_loginManagerInstances;
                                                                                userID:userID
                                                                        expirationDate:nil
                                                                           refreshDate:nil
-                                                             dataAccessExpirationDate:nil
-                                                                          graphDomain:nil];
+                                                             dataAccessExpirationDate:nil];
         FBSDKDeviceLoginManagerResult *result = [[FBSDKDeviceLoginManagerResult alloc] initWithToken:accessToken
                                                                                          isCancelled:NO];
         completeWithResult(result);

@@ -13,7 +13,7 @@ static const enum UIViewAnimationOptions options = UIViewAnimationOptionCurveEas
 
 
 @interface SWActionSheetVC : UIViewController
-
+@property (nonatomic) UIInterfaceOrientationMask maskVC;
 @property (nonatomic, retain) SWActionSheet *actionSheet;
 
 @end
@@ -37,6 +37,7 @@ static const enum UIViewAnimationOptions options = UIViewAnimationOptionCurveEas
 {
     UIView *view;
     UIView *_bgView;
+    UIInterfaceOrientationMask mask;
 }
 
 - (void)dismissWithClickedButtonIndex:(int)i animated:(BOOL)animated
@@ -144,6 +145,11 @@ static const enum UIViewAnimationOptions options = UIViewAnimationOptionCurveEas
     return self;
 }
 
+- (instancetype)initWithView:(UIView *)aView windowLevel:(UIWindowLevel)windowLevel withSupportedOrientation:(UIInterfaceOrientationMask) mask {
+    self = [[SWActionSheet alloc] initWithView:aView windowLevel:windowLevel];
+    self->mask = mask;
+    return self;
+}
 
 - (void)configureFrameForBounds:(CGRect)bounds
 {
@@ -188,6 +194,9 @@ static const enum UIViewAnimationOptions options = UIViewAnimationOptionCurveEas
     self.presented = YES;
 }
 
+- (UIInterfaceOrientationMask) getMasking {
+    return self->mask;
+}
 @end
 
 
@@ -232,16 +241,29 @@ static const enum UIViewAnimationOptions options = UIViewAnimationOptionCurveEas
     }
 }
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
+- (NSUInteger)supportedInterfaceOrientations
+#else
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+#endif
+{
+    return (NSUInteger) [self.actionSheet getMasking];
+}
+
 - (BOOL)prefersStatusBarHidden {
 	return [UIApplication sharedApplication].statusBarHidden;
 }
-
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
 // iOS6 support
 // ---
 - (BOOL)shouldAutorotate
 {
+    if (self.maskVC == UIInterfaceOrientationPortrait){
+        return NO;
+    } else {
         return YES;
+    }
+
 }
 #else
 

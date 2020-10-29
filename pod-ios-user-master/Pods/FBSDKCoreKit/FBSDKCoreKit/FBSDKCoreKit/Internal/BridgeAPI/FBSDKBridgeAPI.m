@@ -16,10 +16,6 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKBridgeAPI.h"
 
 #import "FBSDKCoreKit+Internal.h"
@@ -103,10 +99,6 @@ typedef void (^FBSDKAuthenticationCompletionHandler)(NSURL *_Nullable callbackUR
          annotation:(id)annotation
 {
   id<FBSDKURLOpening> pendingURLOpen = _pendingURLOpen;
-  BOOL canOpenURL =   [pendingURLOpen canOpenURL:url
-                                  forApplication:application
-                               sourceApplication:sourceApplication
-                                      annotation:annotation];
 
   void (^completePendingOpenURLBlock)(void) = ^{
     self->_pendingURLOpen = nil;
@@ -127,28 +119,15 @@ typedef void (^FBSDKAuthenticationCompletionHandler)(NSURL *_Nullable callbackUR
       if (_authenticationSession != nil) {
         [_authenticationSession cancel];
         _authenticationSession = nil;
-
-        // This check is needed in case another sdk / message / ad etc... tries to open the app
-        // during the login flow.
-        // This dismisses the authentication browser without triggering any login callbacks.
-        // Hence we need to explicitly call the authentication session's completion handler.
-        if (!canOpenURL) {
-          NSString *errorMessage = [[NSString alloc]
-                                    initWithFormat:@"Login attempt cancelled by alternate call to openURL from: %@",
-                                    url];
-          NSError *loginError = [[NSError alloc]
-                                 initWithDomain:FBSDKErrorDomain
-                                 code:FBSDKErrorBridgeAPIInterruption
-                                 userInfo:@{FBSDKErrorLocalizedDescriptionKey: errorMessage}];
-          _authenticationSessionCompletionHandler(url, loginError);
-          _authenticationSessionCompletionHandler = nil;
-        }
       }
     }
     completePendingOpenURLBlock();
   }
 
-  if (canOpenURL) {
+  if ([pendingURLOpen canOpenURL:url
+                  forApplication:application
+               sourceApplication:sourceApplication
+                      annotation:annotation]) {
     return YES;
   }
 
@@ -454,5 +433,3 @@ didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *
 }
 
 @end
-
-#endif

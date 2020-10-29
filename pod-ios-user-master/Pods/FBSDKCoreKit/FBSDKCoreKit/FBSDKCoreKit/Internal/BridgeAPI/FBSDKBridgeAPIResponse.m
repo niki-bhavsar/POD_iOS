@@ -16,10 +16,6 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKBridgeAPIResponse.h"
 
 #import "FBSDKBridgeAPIProtocol.h"
@@ -56,14 +52,10 @@ NS_DESIGNATED_INITIALIZER;
   FBSDKBridgeAPIProtocolType protocolType = request.protocolType;
   switch (protocolType) {
     case FBSDKBridgeAPIProtocolTypeNative:{
-      if (@available(iOS 13, *)) {
-        break;
-      } else {
-        if (![FBSDKInternalUtility isFacebookBundleIdentifier:sourceApplication]) {
-          return nil;
-        }
-        break;
+      if (![FBSDKInternalUtility isFacebookBundleIdentifier:sourceApplication]) {
+        return nil;
       }
+      break;
     }
     case FBSDKBridgeAPIProtocolTypeWeb:{
       if (![FBSDKInternalUtility isSafariBundleIdentifier:sourceApplication]) {
@@ -127,5 +119,3 @@ NS_DESIGNATED_INITIALIZER;
 }
 
 @end
-
-#endif

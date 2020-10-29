@@ -26,9 +26,6 @@
 
 #define FBSDK_MAX_CRASH_LOGS 5
 #define FBSDK_CRASH_PATH_NAME @"instrument"
-#ifndef FBSDK_VERSION_STRING
-#define FBSDK_VERSION_STRING @"5.15.1"
-#endif
 
 static NSUncaughtExceptionHandler *previousExceptionHandler = NULL;
 static NSString *mappingTableIdentifier = NULL;
@@ -194,13 +191,7 @@ static void FBSDKExceptionHandler(NSException *exception)
 
   for (NSDictionary<NSString *, id> *crashLog in crashLogs) {
     NSArray<NSString *> *callstack = crashLog[kFBSDKCallstack];
-    NSData *data = [self loadLibData:crashLog];
-    if (!data) {
-      continue;
-    }
-    NSDictionary<NSString *, id> *methodMapping  = [NSJSONSerialization JSONObjectWithData:data
-                                                                                   options:kNilOptions
-                                                                                     error:nil];
+    NSDictionary<NSString *, id> *methodMapping = [self loadLibData:crashLog];
     NSArray<NSString *> *symbolicatedCallstack = [FBSDKLibAnalyzer symbolicateCallstack:callstack methodMapping:methodMapping];
     NSMutableDictionary<NSString *, id> *symbolicatedCrashLog = [NSMutableDictionary dictionaryWithDictionary:crashLog];
     if (symbolicatedCallstack) {
@@ -221,23 +212,15 @@ static void FBSDKExceptionHandler(NSException *exception)
   NSMutableArray<NSDictionary<NSString *, id> *> *crashLogArray = [NSMutableArray array];
 
   for (NSUInteger i = 0; i < MIN(fileNames.count, FBSDK_MAX_CRASH_LOGS); i++) {
-    NSData *data = [self loadCrashLog:fileNames[i]];
-    if (!data) {
-      continue;
-    }
-    NSDictionary<NSString *, id>* crashLog = [NSJSONSerialization JSONObjectWithData:data
-                                                                             options:kNilOptions
-                                                                               error:nil];
-    if (crashLog) {
-      [crashLogArray addObject:crashLog];
-    }
+    NSDictionary<NSString *, id> *crashLog = [self loadCrashLog:fileNames[i]];
+    [crashLogArray addObject:crashLog];
   }
   return [crashLogArray copy];
 }
 
-+ (nullable NSData *)loadCrashLog:(NSString *)fileName
++ (NSDictionary<NSString *,id> *)loadCrashLog:(NSString *)fileName
 {
-  return [NSData dataWithContentsOfFile:[directoryPath stringByAppendingPathComponent:fileName] options:NSDataReadingMappedIfSafe error:nil];
+  return [NSDictionary dictionaryWithContentsOfFile:[directoryPath stringByAppendingPathComponent:fileName]];
 }
 
 + (void)clearCrashReportFiles
@@ -284,10 +267,8 @@ static void FBSDKExceptionHandler(NSException *exception)
 
   [completeCrashLog setObject:[UIDevice currentDevice].systemVersion forKey:kFBSDKDeviceOSVersion];
 
-  NSData *data = [NSJSONSerialization dataWithJSONObject:completeCrashLog options:0 error:nil];
-
-  [data writeToFile:[self getPathToCrashFile:currentTimestamp]
-         atomically:YES];
+  [completeCrashLog writeToFile:[self getPathToCrashFile:currentTimestamp]
+                     atomically:YES];
 }
 
 + (void)generateMethodMapping:(id<FBSDKCrashObserving>)observer
@@ -299,16 +280,15 @@ static void FBSDKExceptionHandler(NSException *exception)
   NSDictionary<NSString *, NSString *> *methodMapping = [FBSDKLibAnalyzer getMethodsTable:observer.prefixes
                                                                                frameworks:observer.frameworks];
   if (methodMapping.count > 0){
-    NSData *data = [NSJSONSerialization dataWithJSONObject:methodMapping options:0 error:nil];
-    [data writeToFile:[self getPathToLibDataFile:mappingTableIdentifier]
+    [methodMapping writeToFile:[self getPathToLibDataFile:mappingTableIdentifier]
                     atomically:YES];
   }
 }
 
-+ (nullable NSData *)loadLibData:(NSDictionary<NSString *, id> *)crashLog
++ (NSDictionary<NSString *, id> *)loadLibData:(NSDictionary<NSString *, id> *)crashLog
 {
   NSString *identifier = [crashLog objectForKey:kFBSDKMappingTableIdentifier];
-  return [NSData dataWithContentsOfFile:[self getPathToLibDataFile:identifier] options:NSDataReadingMappedIfSafe error:nil];
+  return [NSDictionary dictionaryWithContentsOfFile:[self getPathToLibDataFile:identifier]];
 }
 
 + (NSString *)getPathToCrashFile:(NSString *)timestamp
@@ -337,11 +317,6 @@ static void FBSDKExceptionHandler(NSException *exception)
 
   return [[NSFileManager defaultManager] fileExistsAtPath:[self getPathToLibDataFile:identifier]];
 #endif
-}
-
-+ (NSString *)getFBSDKVersion
-{
-  return FBSDK_VERSION_STRING;
 }
 
 @end

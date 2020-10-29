@@ -42,7 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         
         GIDSignIn.sharedInstance().clientID = "73490473596-99b8v0bu4g6nicuv9rhhith4bd0qc0a5.apps.googleusercontent.com"//"920480468386-a3v6c07os2nre2vansr4bj1u5fv1fgj0.apps.googleusercontent.com"
         
+        //Firebase
+        
         FirebaseApp.configure()
+        
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -76,10 +79,96 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         nav.setNavigationBarHidden(true, animated: true)
         window?.rootViewController = nav;
         window?.makeKeyAndVisible();
-        UIView.appearance().isOpaque = false;
-        return true;
+        UIView.appearance().isOpaque = false
+        
+        return true
     }
     
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+      let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+        // ...
+      }
+
+      return handled
+    }
+    
+//    private func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+//        return GIDSignIn.sharedInstance().handle(url)
+//    }
+    
+    
+    func application(_ app: UIApplication, open url: URL, options:
+                        [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let isDynamicLink : Bool = DynamicLinks.dynamicLinks().shouldHandleDynamicLink(fromCustomSchemeURL: url),
+          isDynamicLink {
+            let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url)
+        return handleDynamicLink(dynamicLink) || GIDSignIn.sharedInstance().handle(url)
+      }
+      // Handle incoming URL with other methods as necessary
+      // ...
+      return false
+    }
+    
+//    func application(_ application: UIApplication,
+//        continue userActivity: NSUserActivity,
+//        restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+//
+//
+//
+//      guard let dynamicLinks = DynamicLinks.dynamicLinks() else { return false }
+//      let handled = dynamicLinks.handleUniversalLink(userActivity.webpageURL!) { (dynamicLink, error) in
+//        if (dynamicLink != nil) && !(error != nil) {
+//          self.handleDynamicLink(dynamicLink)
+//        }
+//      }
+//      if !handled {
+//        // Handle incoming URL with other methods as necessary
+//        // ...
+//      }
+//      return handled
+//    }
+    
+    
+    
+    func handleDynamicLink(_ dynamicLink: DynamicLink?) -> Bool {
+      guard let dynamicLink = dynamicLink else { return false }
+      guard let deepLink = dynamicLink.url else { return false }
+      let queryItems = URLComponents(url: deepLink, resolvingAgainstBaseURL: true)?.queryItems
+      let invitedBy = queryItems?.filter({(item) in item.name == "invitedby"}).first?.value
+//      let user = Auth.auth().currentUser
+      // If the user isn't signed in and the app was opened via an invitation
+      // link, sign in the user anonymously and record the referrer UID in the
+      // user's RTDB record.
+//      if user == nil && invitedBy != nil {
+//        Auth.auth().signInAnonymously() { (user, error) in
+//          if let user = user {
+//            let userRecord = Database.database().reference().child("users").child(user.uid)
+//            userRecord.child("referred_by").setValue(invitedBy)
+//            if dynamicLink.matchConfidence == .weak {
+//              // If the Dynamic Link has a weak match confidence, it is possible
+//              // that the current device isn't the same device on which the invitation
+//              // link was originally opened. The way you handle this situation
+//              // depends on your app, but in general, you should avoid exposing
+//              // personal information, such as the referrer's email address, to
+//              // the user.
+//            }
+//          }
+//        }
+//      }
+      return true
+    }
+
+
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        if DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) != nil {
+        // Handle the deep link. For example, show the deep-linked content or
+        // apply a promotional offer to the user's account.
+        // ...
+        return true
+      }
+      return false
+    }
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("deviceToken\(deviceToken)")
@@ -360,9 +449,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         print("Error \(error)")
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
-    }
+   
     
     
 }

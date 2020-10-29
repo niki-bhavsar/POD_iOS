@@ -16,10 +16,6 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKAddressInferencer.h"
 
 #import "FBSDKModelManager.h"
@@ -68,11 +64,7 @@ static std::vector<float> _denseFeature;
 
 + (void)loadWeights
 {
-  NSString *path = [FBSDKModelManager getWeightsPath:DATA_DETECTION_ADDRESS_KEY];
-  if (!path) {
-    return;
-  }
-  NSData *latestData = [NSData dataWithContentsOfFile:path
+  NSData *latestData = [NSData dataWithContentsOfFile:[FBSDKModelManager getWeightsPath:DATA_DETECTION_ADDRESS_KEY]
                                               options:NSDataReadingMappedIfSafe
                                                 error:nil];
   if (!latestData) {
@@ -209,5 +201,3 @@ static std::vector<float> _denseFeature;
 }
 
 @end
-
-#endif
