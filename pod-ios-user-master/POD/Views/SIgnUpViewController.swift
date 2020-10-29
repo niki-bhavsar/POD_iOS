@@ -76,6 +76,8 @@ class SIgnUpViewController: BaseViewController {
         
     }
     
+
+    
     @IBAction func tapLabel(gesture: UITapGestureRecognizer) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if gesture.didTapAttributedTextInLabel(label: lblTerms, targetText: "Terms & Condition") {
@@ -125,6 +127,14 @@ class SIgnUpViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let appDelegateShared = UIApplication.shared.delegate as? AppDelegate
+        if(UserDefaults.standard.object(forKey: "UserReferralCode") != nil){
+            txtRefferCode.text = UserDefaults.standard.string(forKey: "UserReferralCode")!
+        } else{
+            txtRefferCode.text = appDelegateShared?.userCode
+        }
+        
+        
     }
     
     @IBAction func btnVerifyOTP(){

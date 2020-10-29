@@ -129,7 +129,7 @@ class LoginController: NSObject {
                     vc.showSpinner()
                     
                     if let accessToken = AccessToken.current?.tokenString {
-                        fetchUserProfile(vc:vc,loginToken:accessToken);
+                        fetchUserProfile(vc:vc,loginToken:accessToken)
                     }
                 }
             }

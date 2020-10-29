@@ -154,7 +154,7 @@
                                         </constraints>
                                         <state key="normal" image="facebook"/>
                                         <connections>
-                                            <action selector="btnFacebook_Click" destination="BYZ-38-t0r" eventType="touchUpInside" id="bzH-DE-sAE"/>
+                                            <action selector="btnFacebook_Click" destination="BYZ-38-t0r" eventType="touchUpInside" id="cVJ-AG-Fzr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kv-oE-iAn">
@@ -305,7 +305,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG" translatesAutoresizingMaskIntoConstraints="NO" id="IuO-7f-I3v">
-                                <rect key="frame" x="0.0" y="44" width="320" height="656"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="1920"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeaderBG" translatesAutoresizingMaskIntoConstraints="NO" id="xvJ-ap-4I9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -6207,14 +6207,14 @@ Regards, Team POD :)</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatLeftCell" id="VaK-jv-KWm" customClass="ChatLeftCell" customModule="POD" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VaK-jv-KWm" id="nVM-h7-To7">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQI-na-MLc" customClass="PaddingLabel" customModule="POD" customModuleProvider="target">
-                                                    <rect key="frame" x="82" y="50" width="10" height="10"/>
+                                                    <rect key="frame" x="82" y="50" width="0.0" height="0.0"/>
                                                     <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -6287,14 +6287,14 @@ Regards, Team POD :)</string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatRightCell" id="7Ol-og-8c5" customClass="ChatRightCell" customModule="POD" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="93" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="83" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Ol-og-8c5" id="raj-mv-LBQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BY4-mo-qij" customClass="PaddingLabel" customModule="POD" customModuleProvider="target">
-                                                    <rect key="frame" x="346" y="50" width="10" height="10"/>
+                                                    <rect key="frame" x="356" y="50" width="0.0" height="0.0"/>
                                                     <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -8101,14 +8101,14 @@ Regards, Team POD :)</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatLeftCell" id="ZbT-aI-JbQ" customClass="ChatLeftCell" customModule="POD" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZbT-aI-JbQ" id="5XZ-XI-os4">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNn-ym-qlF" customClass="PaddingLabel" customModule="POD" customModuleProvider="target">
-                                                    <rect key="frame" x="82" y="50" width="10" height="10"/>
+                                                    <rect key="frame" x="82" y="50" width="0.0" height="0.0"/>
                                                     <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -8181,14 +8181,14 @@ Regards, Team POD :)</string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatRightCell" id="S4z-sv-x88" customClass="ChatRightCell" customModule="POD" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="93" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="83" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S4z-sv-x88" id="n2q-8j-ktI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQl-hQ-v4w" customClass="PaddingLabel" customModule="POD" customModuleProvider="target">
-                                                    <rect key="frame" x="346" y="50" width="10" height="10"/>
+                                                    <rect key="frame" x="356" y="50" width="0.0" height="0.0"/>
                                                     <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -8443,7 +8443,7 @@ Regards, Team POD :)</string>
                                         <rect key="frame" x="0.0" y="28" width="396" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tjx-3G-v49" id="KWL-G8-AHA">
-                                            <rect key="frame" x="0.0" y="0.0" width="396" height="105"/>
+                                            <rect key="frame" x="0.0" y="2" width="396" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKa-fa-inQ">
@@ -9463,7 +9463,7 @@ Regards, Team POD :)</string>
                                         <rect key="frame" x="0.0" y="28" width="396" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zyg-R3-9bk" id="Yat-Xa-geN">
-                                            <rect key="frame" x="0.0" y="0.0" width="396" height="120"/>
+                                            <rect key="frame" x="0.0" y="2" width="396" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHF-KE-pTv">
@@ -10584,9 +10584,10 @@ Regards, Team POD :)</string>
         <designable name="1Vg-Kn-TJP">
             <size key="intrinsicContentSize" width="300" height="41.637671874999995"/>
         </designable>
-        <designable name="BY4-mo-qij">
-            <size key="intrinsicContentSize" width="10" height="10"/>
+        <designable name="3LK-Wb-mCy">
+            <size key="intrinsicContentSize" width="50" height="50"/>
         </designable>
+        <designable name="BY4-mo-qij"/>
         <designable name="CKt-9m-TiX">
             <size key="intrinsicContentSize" width="375" height="41.637671874999995"/>
         </designable>
@@ -10596,9 +10597,7 @@ Regards, Team POD :)</string>
         <designable name="DaW-X0-miH">
             <size key="intrinsicContentSize" width="394" height="41.637671874999995"/>
         </designable>
-        <designable name="GQl-hQ-v4w">
-            <size key="intrinsicContentSize" width="10" height="10"/>
-        </designable>
+        <designable name="GQl-hQ-v4w"/>
         <designable name="QFr-KK-w23">
             <size key="intrinsicContentSize" width="260" height="41.637671874999995"/>
         </designable>
@@ -10611,18 +10610,14 @@ Regards, Team POD :)</string>
         <designable name="Ytz-lc-hRP">
             <size key="intrinsicContentSize" width="375" height="41.637671874999995"/>
         </designable>
-        <designable name="ZNn-ym-qlF">
-            <size key="intrinsicContentSize" width="10" height="10"/>
-        </designable>
+        <designable name="ZNn-ym-qlF"/>
         <designable name="aeV-xp-bGA">
             <size key="intrinsicContentSize" width="300" height="41.637671874999995"/>
         </designable>
         <designable name="bDn-0O-nAk">
             <size key="intrinsicContentSize" width="394" height="41.637671874999995"/>
         </designable>
-        <designable name="bQI-na-MLc">
-            <size key="intrinsicContentSize" width="10" height="10"/>
-        </designable>
+        <designable name="bQI-na-MLc"/>
         <designable name="cEN-2J-sru">
             <size key="intrinsicContentSize" width="394" height="41.637671874999995"/>
         </designable>

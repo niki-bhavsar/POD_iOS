@@ -24,6 +24,15 @@ class ReferCodePopup: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let appDelegateShared = UIApplication.shared.delegate as? AppDelegate
+        if(UserDefaults.standard.object(forKey: "UserReferralCode") != nil){
+            txtRefercode.text = UserDefaults.standard.string(forKey: "UserReferralCode")!
+        } else{
+            txtRefercode.text = appDelegateShared?.userCode
+        }
+    }
 
     @IBAction func cancleClicked(_ sender: Any) {
           if(self.delegate != nil){

@@ -7,47 +7,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C7F63B20-FE1A-448A-A97A-8C6FB1020F0C"
+            uuid = "06004305-2F4F-425C-BEBB-658CF42D2CF6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POD/AppDelegate.swift"
+            filePath = "POD/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "handleDynamicLink(_:)"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "FacebookRegistration(vc:dicObj:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F18CABE2-8EE6-4E52-B126-7892D16DF75E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POD/Controllers/LoginController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "FacebookRegistration(vc:dicObj:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "15F95055-613E-44E4-B28B-3321273F2338"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POD/Controllers/LoginController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "FacebookRegistration(vc:dicObj:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C7F63B20-FE1A-448A-A97A-8C6FB1020F0C - 3fda6e8f8675db92"
+                  uuid = "15F95055-613E-44E4-B28B-3321273F2338 - 47fc57cfa1755c61"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "POD.AppDelegate.handleDynamicLink(Swift.Optional&lt;__C.FIRDynamicLink&gt;) -&gt; Swift.Bool"
+                  symbolName = "static POD.LoginController.FacebookRegistration(vc: POD.LoginViewController, dicObj: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "POD"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/baps/Documents/POD_iOS/pod-ios-user-master/POD/AppDelegate.swift"
+                  urlString = "file:///Users/baps/Documents/POD_iOS/pod-ios-user-master/POD/Controllers/LoginController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "940">
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "84">
                </Location>
                <Location
-                  uuid = "C7F63B20-FE1A-448A-A97A-8C6FB1020F0C - 1d06cfb3439c1be1"
+                  uuid = "15F95055-613E-44E4-B28B-3321273F2338 - 1797ac59fb6c3981"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Foundation.URLQueryItem) -&gt; Swift.Bool in POD.AppDelegate.handleDynamicLink(Swift.Optional&lt;__C.FIRDynamicLink&gt;) -&gt; Swift.Bool"
+                  symbolName = "closure #1 (SwiftyJSON.JSON) -&gt; () in static POD.LoginController.FacebookRegistration(vc: POD.LoginViewController, dicObj: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "POD"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/baps/Documents/POD_iOS/pod-ios-user-master/POD/AppDelegate.swift"
+                  urlString = "file:///Users/baps/Documents/POD_iOS/pod-ios-user-master/POD/Controllers/LoginController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "84">
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -55,80 +87,128 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "19DC4D0C-F33C-49FD-8BA5-E8EE1CEA062E"
+            uuid = "E9B758EB-DA9F-4737-BAAF-20392E037966"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POD/AppDelegate.swift"
+            filePath = "POD/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "application(_:open:options:)"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "fetchUserProfile(vc:loginToken:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "19BBA215-6760-4DF9-B1C8-7C5DB2A59DF2"
-            shouldBeEnabled = "Yes"
+            uuid = "B6694096-1F55-4A81-890A-14C3EF629277"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POD/AppDelegate.swift"
+            filePath = "POD/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "application(_:open:sourceApplication:annotation:)"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "LoginWithFaceBook(vc:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EAA504D2-8C3B-4433-970D-1227E2BC2346"
+            uuid = "65573434-1413-4B36-AE0F-CD7D8FD90B6D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POD/AppDelegate.swift"
+            filePath = "POD/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "handleDynamicLink(_:)"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "FacebookRegistration(vc:dicObj:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "76392A11-9CF7-404D-9EF2-9ED46D53C55E"
+            uuid = "F7B568FA-FE01-46EE-A0E8-8FD2B641BFDB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POD/Views/ReferAndEarnViewController.swift"
+            filePath = "POD/Views/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "btnFacebook_Click()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F88640B-FE26-4F18-AB3C-113266BB850E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POD/Controllers/LoginController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "LoginWithFaceBook(vc:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03DC6114-88C2-40A3-83F4-52BEE9B4A71F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POD/Views/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
             endingLineNumber = "95"
-            landmarkName = "createLink()"
+            landmarkName = "btnGoogle_Click()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F84C324C-393C-409A-BFED-753F2F9C8D2C"
+            uuid = "766666BF-0799-476E-8495-66DE7617F594"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POD/Views/ReferAndEarnViewController.swift"
+            filePath = "POD/Views/SIgnUpViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "createLink()"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "18334C85-B50B-47F7-A5C4-E343EDF02BDC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POD/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "handleDynamicLink(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

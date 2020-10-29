@@ -25,6 +25,8 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Constant.homeVC = self
+        UserDefaults.standard.set("", forKey: "UserReferralCode")
+        UserDefaults.standard.synchronize()
         
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
@@ -60,6 +62,7 @@ class HomeViewController: BaseViewController {
         if(account?.signBy != "4"){
             self.CheckCompleteProfile()
         }
+        
        
         pageControler.addTarget(self, action: #selector(self.changePage(sender:)), for: UIControl.Event.valueChanged)
         LoginController.GetBanners(vc: self);
