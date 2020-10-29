@@ -18,15 +18,15 @@ class MyOrderController: NSObject {
     static func GetOrders(userId:String,vc:MyOrderViewController){
         do{
             try
-            
-            vc.tblOrder?.reloadData()
+                
+                vc.tblOrder?.reloadData()
             vc.showSpinner()
             ApiManager.sharedInstance.requestGETURL(Constant.getOrdersbyIDURL+userId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 listOrders = [[String:Any]]()
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     listOrders = (JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]];
-//                    print(listOrders as Any)
+                    //                    print(listOrders as Any)
                     self.FilterData(index: 1);
                 }
                 else{
@@ -56,18 +56,18 @@ class MyOrderController: NSObject {
         do{
             try
                 listOrderDetails = [[String:Any]]()
-                vc.tblOrderDetails?.reloadData()
-                vc.showSpinner()
+            vc.tblOrderDetails?.reloadData()
+            vc.showSpinner()
             ApiManager.sharedInstance.requestGETURL(Constant.getOrdersbyOrderIDURL+orderId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
                 listOrderDetails = [[String:Any]]()
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     let dicObjOrder : [[String:Any]] = JSON.dictionaryObject!["ResponseData"] as! [[String : Any]]
-//                    print(dicObjOrder)
+                    //                    print(dicObjOrder)
                     listOrderDetails = dicObjOrder
                     
                     if(dicObjOrder.count > 0){
-                      vc.orderInfoDetail = dicObjOrder[0]
+                        vc.orderInfoDetail = dicObjOrder[0]
                     }
                     
                     vc.tblOrderDetails.reloadData()
@@ -120,30 +120,33 @@ class MyOrderController: NSObject {
                     var total = (Double(vc.lblDistanceCost.text!)! + Double(price)+gst)
                     
                     
-                    
                     Constant.OrderDic["GST"] = gst
                     Constant.OrderDic["Transportation"] = vc.lblDistanceCost.text
                     Constant.OrderDic["SubTotal"] = vc.lblShootCost.text
                     var redeemPoint : Double = Double(AccountManager.instance().activeAccount?.referralPoint ?? "") ?? 0.0
+                    let redeemLimit : Double = Double(AccountManager.instance().activeAccount?.redemLimit ?? "") ?? 0.0
                     let orderType : Int = Constant.OrderDic["OrderType"] as! Int
                     vc.lblRedeemPointTitle.text = ""
-                     vc.lblRedemPointValue.text = ""
+                    vc.lblRedemPointValue.text = ""
+                    if(redeemPoint > redeemLimit){
+                        redeemPoint = redeemLimit
+                        Constant.OrderDic["RedeemPoint"] = String(format: "%.2f", redeemPoint)
+                    }
                     if(orderType == 1){
                         if(total > redeemPoint){
-                             total = total - redeemPoint
+                            total = total - redeemPoint
                         } else {
                             
                             redeemPoint = total
-                             Constant.OrderDic["RedeemPoint"] = String(format: "%.2f", redeemPoint)
+                            Constant.OrderDic["RedeemPoint"] = String(format: "%.2f", redeemPoint)
                             total = 0.0
                         }
-                       
                         vc.lblRedeemPointTitle.text = "Redeem Points"
-                         vc.lblRedemPointValue.text = String(format: "-%.2f", redeemPoint)
+                        vc.lblRedemPointValue.text = String(format: "-%.2f", redeemPoint)
                     }
-                     vc.lblTotal.text = String(format: "%.2f", total)
-                     Constant.OrderDic["Total"] = vc.lblTotal.text
-                   
+                    vc.lblTotal.text = String(format: "%.2f", total)
+                    Constant.OrderDic["Total"] = vc.lblTotal.text
+                    
                 } else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
@@ -158,33 +161,33 @@ class MyOrderController: NSObject {
     
     
     static func CreateOrder(vc:PaymentDetailViewController,orderInfo:[String:Any]){
-//        do{
-            vc.showSpinner()
-            
-            ApiManager.sharedInstance.requestPOSTURL(Constant.CreateOrderURL, params: orderInfo, success: {
-                (JSON) in
-                let msg =  JSON.dictionary?["Message"]
-                if((JSON.dictionary?["IsSuccess"]) != false){
-                    let callActionHandler = { () -> Void in
-                        vc.navigationController!.popToRootViewController(animated: true)
-                        NotificationCenter.default.post(name: NSNotification.Name("closePopup"), object: nil)
-                    }
-                    
-                    Helper.ShowAlertMessageWithHandlesr(message:"Your order has been placed successfully but still in the Queue to confirm, you will be notified on confirmation",title:"Your booking has been placed successfully." ,vc: vc,action:callActionHandler)
-                    
+        //        do{
+        vc.showSpinner()
+        
+        ApiManager.sharedInstance.requestPOSTURL(Constant.CreateOrderURL, params: orderInfo, success: {
+            (JSON) in
+            let msg =  JSON.dictionary?["Message"]
+            if((JSON.dictionary?["IsSuccess"]) != false){
+                let callActionHandler = { () -> Void in
+                    vc.navigationController!.popToRootViewController(animated: true)
+                    NotificationCenter.default.post(name: NSNotification.Name("closePopup"), object: nil)
                 }
-                else{
-                    Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
-                }
-                vc.removeSpinner()
-            }, failure: { (Error) in
-                vc.removeSpinner()
-                Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-            })
-//        }
-//        catch let _{
-//            vc.removeSpinner(onView: vc.view)
-//        }
+                
+                Helper.ShowAlertMessageWithHandlesr(message:"Your order has been placed successfully but still in the Queue to confirm, you will be notified on confirmation",title:"Your booking has been placed successfully." ,vc: vc,action:callActionHandler)
+                
+            }
+            else{
+                Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
+            }
+            vc.removeSpinner()
+        }, failure: { (Error) in
+            vc.removeSpinner()
+            Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
+        })
+        //        }
+        //        catch let _{
+        //            vc.removeSpinner(onView: vc.view)
+        //        }
         
     }
     
@@ -196,7 +199,7 @@ class MyOrderController: NSObject {
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     let callActionHandler = { () -> Void in
-                    MyOrderController.GetOrderByorderId(orderId:orderInfo["ExtOrderId"] as! String , vc: vc.vc!)
+                        MyOrderController.GetOrderByorderId(orderId:orderInfo["ExtOrderId"] as! String , vc: vc.vc!)
                         vc.dismiss(animated: true, completion: nil  )
                         
                     }
@@ -235,7 +238,7 @@ class MyOrderController: NSObject {
                 let msg =  JSON.dictionary?["Message"]
                 if((JSON.dictionary?["IsSuccess"]) != false){
                     listNotification = ((JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]])!
-//                    print(listNotification as Any)
+                    //                    print(listNotification as Any)
                     
                 }
                 else{
@@ -255,7 +258,7 @@ class MyOrderController: NSObject {
     static func DeleteNotificatins(userId:String,notificationID:String,vc:MyNotificationViewController){
         do{
             try
-            vc.tblOrder?.reloadData()
+                vc.tblOrder?.reloadData()
             vc.showSpinner()
             
             ApiManager.sharedInstance.requestGETURL(Constant.deleteNotificationbyIDURL+notificationID, success: { (JSON) in
@@ -283,7 +286,7 @@ class MyOrderController: NSObject {
     static func DeleteAllNotificatins(userId:String,vc:MyNotificationViewController){
         do{
             try
-            vc.showSpinner()
+                vc.showSpinner()
             
             ApiManager.sharedInstance.requestGETURL(Constant.deleteAllNotification+userId, success: { (JSON) in
                 let msg =  JSON.dictionary?["Message"]
@@ -291,7 +294,7 @@ class MyOrderController: NSObject {
                     MyOrderController.GetNotificatins(userId:userId , vc: vc)
                 }
                 else{
-                Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
+                    Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
                 vc.removeSpinner()
                 vc.tblOrder?.reloadData()
@@ -318,7 +321,7 @@ class MyOrderController: NSObject {
                         vc.popPushToVC(ofKind:  ContainerViewController.self, pushController: vc)
                         
                     }
-                Helper.ShowAlertMessageWithHandlesr(message:"Your request has been send successfully ,You will notify soon.",title:"" ,vc: vc,action:callActionHandler)
+                    Helper.ShowAlertMessageWithHandlesr(message:"Your request has been send successfully ,You will notify soon.",title:"" ,vc: vc,action:callActionHandler)
                 }
                 else{
                     Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
@@ -336,56 +339,56 @@ class MyOrderController: NSObject {
     
     
     static func ExtendedOrderPayment(vc:ExtendOrderPaymentViewController,orderInfo:[String:Any]){
-           do{
-               vc.showSpinner()
-               ApiManager.sharedInstance.requestPOSTURL(Constant.extendOrderPaymentURL, params: orderInfo, success: {
-                   (JSON) in
-                   let msg =  JSON.dictionary?["Message"]
-                   if((JSON.dictionary?["IsSuccess"]) != false){
-                       let callActionHandler = { () -> Void in
+        do{
+            vc.showSpinner()
+            ApiManager.sharedInstance.requestPOSTURL(Constant.extendOrderPaymentURL, params: orderInfo, success: {
+                (JSON) in
+                let msg =  JSON.dictionary?["Message"]
+                if((JSON.dictionary?["IsSuccess"]) != false){
+                    let callActionHandler = { () -> Void in
                         vc.navigationController?.popViewController(animated: true);
-                       }
-                   Helper.ShowAlertMessageWithHandlesr(message:"Your request has been send successfully ,You will notify soon.",title:"" ,vc: vc,action:callActionHandler)
-                   }
-                   else{
-                       Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
-                   }
-                   vc.removeSpinner()
-               }, failure: { (Error) in
-                   vc.removeSpinner()
-                   Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-               })
-           }
-           catch let _{
-               vc.removeSpinner()
-           }
-       }
+                    }
+                    Helper.ShowAlertMessageWithHandlesr(message:"Your request has been send successfully ,You will notify soon.",title:"" ,vc: vc,action:callActionHandler)
+                }
+                else{
+                    Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
+                }
+                vc.removeSpinner()
+            }, failure: { (Error) in
+                vc.removeSpinner()
+                Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
+            })
+        }
+        catch let _{
+            vc.removeSpinner()
+        }
+    }
     
     static func ExtendedPASUserOrderPayment(vc:ExtendPhotographerPaymentViewController,orderInfo:[String:Any]){
-           do{
-               vc.showSpinner()
-               ApiManager.sharedInstance.requestPOSTURL(Constant.PASOrderPaymentdURL, params: orderInfo, success: {
-                   (JSON) in
-                   let msg =  JSON.dictionary?["Message"]
-                   if((JSON.dictionary?["IsSuccess"]) != false){
-                       let callActionHandler = { () -> Void in
-                           vc.navigationController?.popViewController(animated: true);
+        do{
+            vc.showSpinner()
+            ApiManager.sharedInstance.requestPOSTURL(Constant.PASOrderPaymentdURL, params: orderInfo, success: {
+                (JSON) in
+                let msg =  JSON.dictionary?["Message"]
+                if((JSON.dictionary?["IsSuccess"]) != false){
+                    let callActionHandler = { () -> Void in
+                        vc.navigationController?.popViewController(animated: true);
                     }
-                   Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: vc,action:callActionHandler)
-                   }
-                   else{
-                       Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
-                   }
-                   vc.removeSpinner()
-               }, failure: { (Error) in
-                   vc.removeSpinner()
-                   Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
-               })
-           }
-           catch let _{
-               vc.removeSpinner()
-           }
-       }
+                    Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: vc,action:callActionHandler)
+                }
+                else{
+                    Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
+                }
+                vc.removeSpinner()
+            }, failure: { (Error) in
+                vc.removeSpinner()
+                Helper.ShowAlertMessage(message: Error.localizedDescription, vc: vc,title:"Error",bannerStyle: BannerStyle.danger)
+            })
+        }
+        catch let _{
+            vc.removeSpinner()
+        }
+    }
     
     static func PASUserOrderPayment(vc:SendPaymentViewController,orderInfo:[String:Any]){
         do{
@@ -397,7 +400,7 @@ class MyOrderController: NSObject {
                     let callActionHandler = { () -> Void in
                         vc.navigationController?.popViewController(animated: true);
                     }
-                Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: vc,action:callActionHandler)
+                    Helper.ShowAlertMessageWithHandlesr(message:"Payment has been done successfully.",title:"" ,vc: vc,action:callActionHandler)
                 }
                 else{
                     Helper.ShowAlertMessage(message: msg!.description, vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
