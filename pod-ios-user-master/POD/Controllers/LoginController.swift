@@ -203,15 +203,14 @@ class LoginController: NSObject {
                 let msg =  result["Message"]
                 if(((result["IsSuccess"]) as! Bool) != false){
                     let dataDict  : [String :Any] =  result["ResponseData"] as! [String : Any]
-                    let IsExsit : Bool = (dataDict["IsExsit"] != nil)
-                    if(IsExsit == true){
+                    let IsExsit : Int = dataDict["IsExsit"] as! Int
+                    if(IsExsit == 1){
                         let account = Account()
                         self.GetCustomerProfile(vc: vc, userID: dataDict["Id"] as! String, IsBack: false, account: account)
                     } else {
                         vc.showRefercodeAlert(userId: dataDict["Id"] as! String)
                     }
-                }
-                else{
+                } else{
                     Helper.ShowAlertMessage(message:msg as! String , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)
                 }
                 

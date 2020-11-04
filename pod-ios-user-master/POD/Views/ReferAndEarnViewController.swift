@@ -80,12 +80,9 @@ class ReferAndEarnViewController: BaseViewController {
     
     @IBAction func shareclicked(_ sender: Any) {
         
-        //        let msg = "<p>Let's play MyExampleGame together! Use my <a href=\"\(invitationUrl)\">referrer link</a>!</p>"
-        
-        let items = ["\(strMessage) ReferLink: \(invitationUrl)"]
+        let items = ["http://photographerondemand.in\n\(strMessage) \(invitationUrl) or use my code \(AccountManager.instance().activeAccount?.referralCode ?? "") upon signing up"]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(ac, animated: true)
-        
     }
     
     func createLink(){

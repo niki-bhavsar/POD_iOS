@@ -105,27 +105,40 @@ class MyOrderController: NSObject {
                     else if let transportation = dicObjOrder?["TransportationCharge"] as? String {
                         Constant.TrasportationCharges = Double(transportation)!
                     }
-                    vc.lblDistanceCost.text = Constant.TrasportationCharges.description;
+                    vc.lblDistanceCost.text = Constant.TrasportationCharges.description
+                    let orderType : Int = Constant.OrderDic["OrderType"] as! Int
                     
                     let p = Double(Constant.SelectedCategory["Price"] as! String)!
                     let h = Double(Constant.OrderDic["ShootingHours"]! as! String)!
                     let price = (p*h)
                     
-                    vc.lblShootCost.text = price.description
-                    
                     let trans = Double(Constant.TrasportationCharges)
-                    
-                    let gst = (((price + trans)*18)/100)
-                    
-                    var total = (Double(vc.lblDistanceCost.text!)! + Double(price)+gst)
-                    
-                    
+                    var redeemPoint : Double = Double(AccountManager.instance().activeAccount?.referralPoint ?? "") ?? 0.0
+                    let redeemLimit : Double = Double(AccountManager.instance().activeAccount?.redemLimit ?? "") ?? 0.0
+                    var  gst = Double()
+                    if(orderType == 1){
+                        let transPrice = price + trans
+//                        if(transPrice > redeemPoint){
+                        let x = transPrice - redeemLimit
+                        if(x > 0){
+                             gst = ((x*18)/100)
+                        } else {
+                            gst = 0.0
+                        }
+                        let total = x + gst
+                        vc.lblTotal.text = String(format: "%.2f", total)
+                    } else {
+                        gst = (((price + trans)*18)/100)
+                        
+                        let total = (Double(vc.lblDistanceCost.text!)! + Double(price)+gst)
+                        vc.lblTotal.text = String(format: "%.2f", total)
+                    }
+                    vc.lblShootCost.text = price.description
+                    Constant.OrderDic["Total"] = vc.lblTotal.text
                     Constant.OrderDic["GST"] = gst
                     Constant.OrderDic["Transportation"] = vc.lblDistanceCost.text
                     Constant.OrderDic["SubTotal"] = vc.lblShootCost.text
-                    var redeemPoint : Double = Double(AccountManager.instance().activeAccount?.referralPoint ?? "") ?? 0.0
-                    let redeemLimit : Double = Double(AccountManager.instance().activeAccount?.redemLimit ?? "") ?? 0.0
-                    let orderType : Int = Constant.OrderDic["OrderType"] as! Int
+                   
                     vc.lblRedeemPointTitle.text = ""
                     vc.lblRedemPointValue.text = ""
                     if(redeemPoint > redeemLimit){
@@ -133,19 +146,24 @@ class MyOrderController: NSObject {
                         Constant.OrderDic["RedeemPoint"] = String(format: "%.2f", redeemPoint)
                     }
                     if(orderType == 1){
-                        if(total > redeemPoint){
-                            total = total - redeemPoint
-                        } else {
-                            
-                            redeemPoint = total
-                            Constant.OrderDic["RedeemPoint"] = String(format: "%.2f", redeemPoint)
-                            total = 0.0
-                        }
                         vc.lblRedeemPointTitle.text = "Redeem Points"
                         vc.lblRedemPointValue.text = String(format: "-%.2f", redeemPoint)
                     }
-                    vc.lblTotal.text = String(format: "%.2f", total)
-                    Constant.OrderDic["Total"] = vc.lblTotal.text
+                    
+                    
+//                    if(orderType == 1){
+//                        if(total > redeemPoint){
+//                            total = total - redeemPoint
+//                        } else {
+//
+//                            redeemPoint = total
+//                            Constant.OrderDic["RedeemPoint"] = String(format: "%.2f", redeemPoint)
+//                            total = 0.0
+//                        }
+//                        vc.lblRedeemPointTitle.text = "Redeem Points"
+//                        vc.lblRedemPointValue.text = String(format: "-%.2f", redeemPoint)
+//                    }
+                   
                     
                 } else{
                     Helper.ShowAlertMessage(message:msg!.description , vc: vc,title:"Failed",bannerStyle: BannerStyle.danger)

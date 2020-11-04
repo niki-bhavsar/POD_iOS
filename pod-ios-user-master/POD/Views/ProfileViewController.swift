@@ -121,7 +121,7 @@ class ProfileViewController: BaseViewController {
         } else if(txtPhoneNo.text?.count == 0){
             Helper.ShowAlertMessage(message:"Please enter mobile no." , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return
-        } else if(txtDOB.text?.count == 0 ){//|| txtDOB.text == "0000-00-00"
+        } else if(txtDOB.text?.count == 0 || txtDOB.text == "0000-00-00"){//|| txtDOB.text == "0000-00-00"
             Helper.ShowAlertMessage(message:"Please select Date of Birth" , vc: self,title:"Required",bannerStyle: BannerStyle.warning)
             return
         }

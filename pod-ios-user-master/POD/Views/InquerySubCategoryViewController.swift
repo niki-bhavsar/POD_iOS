@@ -67,7 +67,7 @@ class InquerySubCategoryViewController: BaseViewController, UICollectionViewDele
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath as IndexPath) as! CategoryCollectionCellCollectionViewCell
         cell.indexPath = indexPath
-        cell.delegate = self;
+        cell.delegate = self
         cell.SetData(dic: listSubCategory[indexPath.row])
         return cell
     }
@@ -120,7 +120,7 @@ class InquerySubCategoryViewController: BaseViewController, UICollectionViewDele
             
             Constant.AllSubcategory = (Constant.AllSubcategoryArr.map{String($0)}).joined(separator: ",")
             
-            Constant.InquiryDic["TypeOfShoot"] = "\(Constant.FirstSubcategoryId),\(Constant.AllSubcategoryId)" 
+            Constant.InquiryDic["TypeOfShoot"] = "\(Constant.FirstSubcategoryId),\(Constant.AllSubcategoryId)"
             controller.Multiplier = obj["Multiplier"] as? String
             self.navigationController?.pushViewController(controller, animated: true)
         }
@@ -134,10 +134,9 @@ class InquerySubCategoryViewController: BaseViewController, UICollectionViewDele
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
                 controller.desc = (obj["Content"] as! String)
-                 self.navigationController?.pushViewController(controller, animated: true)
-//                controller.modalPresentationStyle = .overCurrentContext
-//                controller.modalTransitionStyle = .crossDissolve
-//                present(controller, animated: true, completion: nil)
+                controller.modalPresentationStyle = .overCurrentContext
+                controller.modalTransitionStyle = .crossDissolve
+                present(controller, animated: true, completion: nil)
             }
         }
         

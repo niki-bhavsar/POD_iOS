@@ -50,6 +50,14 @@ class MyReferralsViewController: UIViewController, UITableViewDelegate, UITableV
             if((JSON.dictionary?["IsSuccess"]) != false){
                 self.userArray = ((JSON.dictionaryObject!["ResponseData"]) as? [[String:Any]])!
                 self.tblView.reloadData()
+                var totalPoint = Int()
+                for user in self.userArray{
+                    let str : String = user["Total_Refer_Point"] as! String
+                    let point : Int = Int(str) ?? 0
+                    totalPoint = totalPoint + point
+                }
+                self.lblPoints.text = "\(totalPoint)"
+                self.lblReferrals.text = "\(self.userArray.count)"
             } else{
                 Helper.ShowAlertMessage(message:msg!.description , vc: self,title:"Failed",bannerStyle: BannerStyle.danger)
             }

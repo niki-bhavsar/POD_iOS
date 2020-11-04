@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectGategoryViewController : BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class SelectGategoryViewController : BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, CategoryActionButtonDelegate {
     
     public  var listCategory:[[String:Any]] = [[String:Any]]()
     public var categoryIndex:Int = 0;
@@ -69,7 +69,7 @@ class SelectGategoryViewController : BaseViewController, UICollectionViewDelegat
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath as IndexPath) as! CategoryCollectionCellCollectionViewCell
         cell.indexPath = indexPath
-//        cell.delegate = self
+        cell.delegate = self
         cell.SetData(dic: listCategory[indexPath.row])
         return cell
     }
@@ -109,36 +109,7 @@ class SelectGategoryViewController : BaseViewController, UICollectionViewDelegat
             let controller = storyboard.instantiateViewController(withIdentifier: "BookingDetailViewController") as! BookingDetailViewController
             Constant.SelectedCategory = obj as [String : AnyObject];
             controller.Multiplier = obj["Multiplier"] as? String
-//            
-//            if(Constant.FirstSubcategoryId == ""){
-//                Constant.FirstSubcategoryId =  obj["Id"] as! String
-//                Constant.FirstSubcategory = obj["Title"] as! String
-//            };
-//            if(Constant.AllSubcategoryId == ""){
-//                Constant.AllSubcategoryId =  obj["Id"] as! String
-//                Constant.AllSubcategory = obj["Title"] as! String
-//                
-//            }
-//            else{
-//                
-//                
-//                
-//                if Constant.AllSubcategoryId.contains((obj["Id"] as! String)) {
-//                    print("exists")
-//                }
-//                else{
-//                    Constant.AllSubcategoryId =  "\(Constant.AllSubcategoryId),\(obj["Id"] as! String)"
-//                }
-//                if Constant.AllSubcategory.contains(((obj["Title"] as? String) ?? "")) {
-//                    print("exists")
-//                }
-//                else{
-//                    Constant.AllSubcategory = "\(Constant.AllSubcategory),\(obj["Title"] as! String)"
-//                }
-//            }
-//            
-//            
-            categoryIndex = Constant.AllSubcategoryArr.count;
+            categoryIndex = Constant.AllSubcategoryArr.count
             Constant.AllSubcategoryArr.append(obj["Title"] as! String)
             Constant.AllSubcategoryIdArr.append(obj["Id"] as! String)
             Constant.AllSubcategoryId = (Constant.AllSubcategoryIdArr.map{String($0)}).joined(separator: ",")
@@ -157,22 +128,21 @@ class SelectGategoryViewController : BaseViewController, UICollectionViewDelegat
     
     
     
-//    func InfoTapped(at index: IndexPath) {
-//        if(listCategory.count>index.row){
-//        let obj  = listCategory[index.row]
-//        if(obj["Content"] != nil){
-//
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
-//            controller.desc = (obj["Content"] as! String)
-//            self.navigationController?.pushViewController(controller, animated: true)
-////            controller.modalPresentationStyle = .overCurrentContext
-////            controller.modalTransitionStyle = .crossDissolve
-////            present(controller, animated: true, completion: nil)
-//        }
-//        }
-//
-//    }
+    func InfoTapped(at index: IndexPath) {
+        if(listCategory.count>index.row){
+        let obj  = listCategory[index.row]
+        if(obj["Content"] != nil){
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "InfoPopupViewController") as! InfoPopupViewController
+            controller.desc = (obj["Content"] as! String)
+            controller.modalPresentationStyle = .overCurrentContext
+            controller.modalTransitionStyle = .crossDissolve
+            present(controller, animated: true, completion: nil)
+        }
+        }
+        
+    }
     
 
 }
